@@ -23,6 +23,7 @@
 #  amount           :decimal(19, 4)   not null
 #  created_at       :datetime
 #  delivery_turn    :integer          not null
+#  description      :text
 #  id               :integer          not null, primary key
 #  originator_id    :integer          not null
 #  quantity         :decimal(19, 4)   not null

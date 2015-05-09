@@ -17,5 +17,5 @@
 #
 
 class Backend::GamesController < Backend::BaseController
-  manage_restfully
+  manage_restfully grids: [:actors, :farms]
 end

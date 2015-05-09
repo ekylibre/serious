@@ -21,23 +21,32 @@
 # == Table: games
 #
 #  created_at    :datetime
+#  description   :text
 #  id            :integer          not null, primary key
 #  name          :string           not null
 #  planned_at    :datetime
 #  scenario_id   :integer
 #  state         :string
 #  turn_duration :integer
-#  turn_nature   :integer
+#  turn_nature   :string
 #  turns_count   :integer
 #  updated_at    :datetime
 #
 class Game < ActiveRecord::Base
+  extend Enumerize
+  enumerize :turn_nature, in: [:month], default: :month
   belongs_to :scenario
+  has_many :actors
+  has_many :farms
   has_many :participants
   has_many :turns, class_name: "GameTurn"
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :planned_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
-  validates_numericality_of :turn_duration, :turn_nature, allow_nil: true, only_integer: true
+  validates_numericality_of :turn_duration, allow_nil: true, only_integer: true
   validates_presence_of :name
   #]VALIDATORS]
+
+  accepts_nested_attributes_for :farms
+  accepts_nested_attributes_for :actors
+
 end

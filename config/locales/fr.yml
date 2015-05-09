@@ -3,13 +3,23 @@ fr:
     backend/games:
       index: "Parties"
       new: "Nouvelle partie"
-      show: "Partie"
+      show: "Partie\_: %{name}"
     backend/scenarios:
       index: "Scénarios"
       new: "Nouveau scénario"
       show: "Scénario\_: %{name}"
+    backend/scenario_broadcasts:
+      new: "Nouvelle news"
+      show: "News\_: %{name}"
+      edit: "Modifier la news\_: %{name}"
+    backend/users:
+      edit: "Modifier\_: %{first_name} %{last_name}"
+      index: "Utilisateurs"
+      new: "Nouvel utilisateur"
+      show: "Utilisateur\_: %{first_name} %{last_name}"
   labels:
     are_you_sure: "Êtes-vous sûr(e)\_?"
+    minutes: "Minutes"
   rest:
     actions:
       new: "Ajouter"

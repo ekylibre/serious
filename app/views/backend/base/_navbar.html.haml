@@ -4,6 +4,6 @@
       = link_to("Game of Farms", "#", class: "navbar-brand")
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li= link_to("Scénarios", backend_scenarios_path)
-        %li= link_to("Parties", backend_games_path)
+        - [:scenarios, :games, :users].each do |name|
+          %li{class: controller_name =~ /^#{name.to_s.singularize}/ ? :active : nil}= link_to("actions.backend/#{name}.index".t, controller: "backend/#{name}".to_sym, action: :index)
 

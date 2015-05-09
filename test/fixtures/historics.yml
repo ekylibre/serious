@@ -20,11 +20,12 @@
 #
 # == Table: historics
 #
-#  created_at :datetime
-#  currency   :string           not null
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  updated_at :datetime
+#  created_at  :datetime
+#  currency    :string           not null
+#  description :text
+#  id          :integer          not null, primary key
+#  name        :string           not null
+#  updated_at  :datetime
 #
 #
 # == Fixture: historics

@@ -21,13 +21,14 @@
 # == Table: games
 #
 #  created_at    :datetime
+#  description   :text
 #  id            :integer          not null, primary key
 #  name          :string           not null
 #  planned_at    :datetime
 #  scenario_id   :integer
 #  state         :string
 #  turn_duration :integer
-#  turn_nature   :integer
+#  turn_nature   :string
 #  turns_count   :integer
 #  updated_at    :datetime
 #

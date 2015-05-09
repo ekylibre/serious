@@ -21,13 +21,15 @@
 # == Table: scenario_curves
 #
 #  created_at               :datetime
+#  description              :text
 #  id                       :integer          not null, primary key
-#  initial_amount           :decimal(19, 4)   not null
+#  initial_amount           :decimal(19, 4)
 #  interpolation_method     :string
+#  name                     :string
 #  nature                   :string
-#  negative_alea_percentage :decimal(19, 4)   not null
-#  positive_alea_percentage :decimal(19, 4)   not null
-#  reference_id             :integer          not null
+#  negative_alea_percentage :decimal(19, 4)
+#  positive_alea_percentage :decimal(19, 4)
+#  reference_id             :integer
 #  scenario_id              :integer          not null
 #  unit_name                :string
 #  updated_at               :datetime
@@ -39,10 +41,6 @@
 # == Fixture: scenario_curves
 #
 # scenario_curves_001:
-#   initial_amount: 0
-#   negative_alea_percentage: 0
-#   positive_alea_percentage: 0
-#   reference: references_001
 #   scenario: scenarios_001
 #
 

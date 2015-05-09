@@ -33,4 +33,17 @@ module ApplicationHelper
     I18n.translate("actions.#{controller_path}.#{action_name}", options)
   end
 
+
+  def nested_fields(items, f)
+    item = items.to_s.singularize
+    content_tag(:div, id: items, class: "panel") do
+      f.simple_fields_for(:farms) do |nested|
+        render("#{item}_fields", f: nested)
+      end +
+        content_tag(:div, class: "links") do
+        link_to_add_association("add_#{item}".tl, f, items)
+      end
+    end
+  end
+
 end

@@ -1,7 +1,7 @@
 = grid(collection_grid) do |g|
 
   - g.column name: ScenarioCurve.human_attribute_name(:name) do |item|
-    - item.name
+    - link_to(item.name, backend_scenario_curve_path(item))
 
   - g.column name: ScenarioCurve.human_attribute_name(:nature)  do |item|
     - item.nature
@@ -11,7 +11,7 @@
 
   - g.column name: ScenarioCurve.human_attribute_name(:reference)  do |item|
     - if item.reference
-      - link_to(item.reference, backend_scenario_curve_url(item.reference)) + " (+#{item.positive_alea_percentage}%/-#{item.negative_alea_percentage}%)"
+      - link_to(item.reference, backend_scenario_curve_path(item.reference)) + " (+#{item.positive_alea_percentage}%/-#{item.negative_alea_percentage}%)"
 
   - g.column do |item|
-    - link_to('Edit', edit_backend_scenario_curve_path(item))
+    - link_to(:edit.ta, edit_backend_scenario_curve_path(item))

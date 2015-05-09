@@ -21,13 +21,15 @@
 # == Table: scenario_curves
 #
 #  created_at               :datetime
+#  description              :text
 #  id                       :integer          not null, primary key
-#  initial_amount           :decimal(19, 4)   not null
+#  initial_amount           :decimal(19, 4)
 #  interpolation_method     :string
+#  name                     :string
 #  nature                   :string
-#  negative_alea_percentage :decimal(19, 4)   not null
-#  positive_alea_percentage :decimal(19, 4)   not null
-#  reference_id             :integer          not null
+#  negative_alea_percentage :decimal(19, 4)
+#  positive_alea_percentage :decimal(19, 4)
+#  reference_id             :integer
 #  scenario_id              :integer          not null
 #  unit_name                :string
 #  updated_at               :datetime
@@ -37,13 +39,13 @@
 #
 class ScenarioCurve < ActiveRecord::Base
   extend Enumerize
-  enumerize :interpolation_method, in: [:linear, :previous, :following], default: :linear
+  enumerize :interpolation_method, in: [:linear, :previous, :following], default: :linear, predicates: {prefix: true}
   enumerize :nature, in: [:variant, :loan_interest, :reference]
   belongs_to :reference, class_name: "ScenarioCurve"
   belongs_to :scenario
-  has_many :steps
+  has_many :steps, class_name: "ScenarioCurveStep", foreign_key: :curve_id
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :initial_amount, :negative_alea_percentage, :positive_alea_percentage, allow_nil: true
-  validates_presence_of :initial_amount, :negative_alea_percentage, :positive_alea_percentage, :reference, :scenario
+  validates_presence_of :scenario
   #]VALIDATORS]
 end

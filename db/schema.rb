@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150507085614) do
     t.decimal  "quantity",         precision: 19, scale: 4, null: false
     t.integer  "release_turn",                              null: false
     t.integer  "delivery_turn",                             null: false
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -79,17 +80,19 @@ ActiveRecord::Schema.define(version: 20150507085614) do
     t.string   "name",          null: false
     t.datetime "planned_at"
     t.string   "state"
-    t.integer  "turn_nature"
+    t.string   "turn_nature"
     t.integer  "turn_duration"
     t.integer  "turns_count"
     t.integer  "scenario_id"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "historics", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "currency",   null: false
+    t.string   "name",        null: false
+    t.string   "currency",    null: false
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -159,15 +162,17 @@ ActiveRecord::Schema.define(version: 20150507085614) do
   create_table "scenario_curves", force: :cascade do |t|
     t.integer  "scenario_id",                                       null: false
     t.string   "nature"
+    t.string   "name"
     t.string   "unit_name"
     t.string   "variant"
     t.string   "variant_indicator_name"
     t.string   "variant_indicator_unit"
     t.string   "interpolation_method"
-    t.integer  "reference_id",                                      null: false
-    t.decimal  "initial_amount",           precision: 19, scale: 4, null: false
-    t.decimal  "positive_alea_percentage", precision: 19, scale: 4, null: false
-    t.decimal  "negative_alea_percentage", precision: 19, scale: 4, null: false
+    t.text     "description"
+    t.integer  "reference_id"
+    t.decimal  "initial_amount",           precision: 19, scale: 4
+    t.decimal  "positive_alea_percentage", precision: 19, scale: 4
+    t.decimal  "negative_alea_percentage", precision: 19, scale: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -179,8 +184,8 @@ ActiveRecord::Schema.define(version: 20150507085614) do
     t.string   "name",        null: false
     t.string   "currency",    null: false
     t.string   "turn_nature"
-    t.string   "turns_count"
-    t.integer  "duration",    null: false
+    t.string   "turns_count", null: false
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -196,6 +201,8 @@ ActiveRecord::Schema.define(version: 20150507085614) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "first_name"
+    t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

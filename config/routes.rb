@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :scenarios
-  resources :games
   devise_for :users
 
   concern :list do
@@ -10,10 +8,15 @@ Rails.application.routes.draw do
   end
 
   namespace :backend do
+    resources :actors
+    resources :farms
     resources :games
+    resources :historics
+    resources :participants
     resources :scenarios
     resources :scenario_broadcasts
     resources :scenario_curves
+    resources :users
     root to: "scenarios#index"
   end
 

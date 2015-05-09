@@ -53,6 +53,7 @@ GEM
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
+    cocoon (1.2.6)
     code_analyzer (0.4.5)
       sexp_processor
     code_string (0.0.0)
@@ -223,6 +224,7 @@ DEPENDENCIES
   awesome_nested_set (~> 3.0.0)
   bootstrap-sass (~> 3.1)
   byebug
+  cocoon
   code_string
   coffee-rails (~> 4.1.0)
   devise

@@ -6,15 +6,16 @@ class AddBase < ActiveRecord::Migration
     create_table :historics do |t|
       t.string     :name,        null: false
       t.string     :currency,    null: false
+      t.text       :description
       t.timestamps
     end
 
     create_table :scenarios do |t|
       t.string     :name,     null: false
       t.string     :currency, null: false
-      t.string     :turn_nature # month
-      t.string     :turns_count
-      t.integer    :duration, null: false # 12 * 5 seems to be minimum
+      t.string     :turn_nature              # month
+      t.string     :turns_count, null: false # 12 seems to be minimum
+      t.text       :description
       t.timestamps
     end
 
@@ -27,18 +28,20 @@ class AddBase < ActiveRecord::Migration
     end
 
     create_table :scenario_curves do |t|
-      t.references :scenario, null: false, index: true
+      t.references :scenario,    null: false, index: true
       t.string     :nature # variant, loan_interest, reference
+      t.string     :name
       t.string     :unit_name
       t.string     :variant
       t.string     :variant_indicator_name
       t.string     :variant_indicator_unit
       t.string     :interpolation_method  # linear, previous, next
+      t.text       :description
       # Curve generator
-      t.references :reference,                                         null: false, index: true
-      t.decimal    :initial_amount,           precision: 19, scale: 4, null: false
-      t.decimal    :positive_alea_percentage, precision: 19, scale: 4, null: false
-      t.decimal    :negative_alea_percentage, precision: 19, scale: 4, null: false
+      t.references :reference,                index: true
+      t.decimal    :initial_amount,           precision: 19, scale: 4
+      t.decimal    :positive_alea_percentage, precision: 19, scale: 4
+      t.decimal    :negative_alea_percentage, precision: 19, scale: 4
       t.timestamps
     end
 
@@ -53,10 +56,11 @@ class AddBase < ActiveRecord::Migration
       t.string     :name,        null: false
       t.datetime   :planned_at
       t.string     :state
-      t.integer    :turn_nature   # month (later, other could come: week, bimester, trimester, quater, semester)
+      t.string     :turn_nature   # month (later, other could come: week, bimester, trimester, quater, semester)
       t.integer    :turn_duration # in minutes
       t.integer    :turns_count
       t.references :scenario
+      t.text       :description
       t.timestamps
     end
 
@@ -98,6 +102,7 @@ class AddBase < ActiveRecord::Migration
       t.decimal    :quantity, precision: 19, scale: 4, null: false
       t.integer    :release_turn,  null: false
       t.integer    :delivery_turn, null: false
+      t.text       :description
       t.timestamps
     end
 

@@ -22,11 +22,11 @@
 #
 #  created_at  :datetime
 #  currency    :string           not null
-#  duration    :integer          not null
+#  description :text
 #  id          :integer          not null, primary key
 #  name        :string           not null
 #  turn_nature :string
-#  turns_count :string
+#  turns_count :string           not null
 #  updated_at  :datetime
 #
 require 'test_helper'

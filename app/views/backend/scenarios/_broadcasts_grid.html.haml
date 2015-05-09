@@ -1,10 +1,10 @@
 = grid(collection_grid) do |g|
 
   - g.column name: ScenarioBroadcast.human_attribute_name(:release_turn) do |item|
-    = item.release_turn
+    - item.release_turn
 
   - g.column name: ScenarioBroadcast.human_attribute_name(:name)  do |item|
-    = item.name
+    - link_to(item.name, backend_scenario_broadcast_path(item))
 
   - g.column do |item|
-    = link_to('Edit', edit_backend_scenario_broadcast_path(item))
+    - link_to(:edit.ta, edit_backend_scenario_broadcast_path(item))

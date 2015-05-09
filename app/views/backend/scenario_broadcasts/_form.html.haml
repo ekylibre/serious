@@ -1,0 +1,8 @@
+= field_set do
+  .row
+    .col-sm-6= f.input :name
+    .col-sm-6
+      = f.input :release_turn, wrapper: :append do
+        %span.input-group-addon= "N°"
+        = f.input_field :release_turn, class: 'form-control'
+  = f.input :content

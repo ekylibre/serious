@@ -133,4 +133,17 @@ SimpleForm.setup do |config|
     file: :vertical_file_input,
     boolean: :vertical_boolean,
   }
+
+  config.wrappers :append, :tag => 'div', :class => "form-group", :error_class => 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label, class: 'control-label'
+    b.wrapper tag: 'div', class: 'input-group' do |group|
+      group.use :input, class: 'form-control'
+    end
+    b.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+    b.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
+  end
+
+
 end

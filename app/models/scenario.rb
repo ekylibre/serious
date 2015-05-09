@@ -22,22 +22,22 @@
 #
 #  created_at  :datetime
 #  currency    :string           not null
-#  duration    :integer          not null
+#  description :text
 #  id          :integer          not null, primary key
 #  name        :string           not null
 #  turn_nature :string
-#  turns_count :string
+#  turns_count :string           not null
 #  updated_at  :datetime
 #
 class Scenario < ActiveRecord::Base
   extend Enumerize
   enumerize :currency, in: [:EUR], default: :EUR
-  has_many :broadcasts, class_name: "ScenarioBroadcast"
+  enumerize :turn_nature, in: [:month], default: :month
+  has_many :broadcasts, -> { order(:release_turn) }, class_name: "ScenarioBroadcast"
   has_many :curves, class_name: "ScenarioCurve"
   has_many :games
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
-  validates_numericality_of :duration, allow_nil: true, only_integer: true
-  validates_presence_of :currency, :duration, :name
+  validates_presence_of :currency, :name
   #]VALIDATORS]
 
   accepts_nested_attributes_for :broadcasts

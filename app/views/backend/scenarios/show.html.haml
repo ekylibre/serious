@@ -1,8 +1,11 @@
+- unless resource.description.blank?
+  .well= resource.description
+
 = link_to(t(".edit"), edit_backend_scenario_path(resource), class: "btn btn-default")
 
 
 %h2= Scenario.human_attribute_name(:broadcasts)
-.btn-group{role: "group"}
+.btn-group.btn-toolbox{role: "group"}
   = link_to(t(".add"), new_backend_scenario_broadcast_path(scenario_id: resource.id), class: "btn btn-default")
 
 = show_grid :broadcasts

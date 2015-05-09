@@ -1,0 +1,20 @@
+- unless resource.description.blank?
+  .well= resource.description
+
+.btn-group.btn-toolbox
+  = link_to(:edit.ta, edit_backend_scenario_curve_path(resource), class: "btn btn-default")
+
+-# %h2= ScenarioCurve.human_attribute_name(:things)
+-# .btn-group.btn-toolbox{role: "group"}
+-#   = link_to(:new.ta, new_backend_scenario_curve_things_path(scenario_curve_id: resource.id), class: "btn btn-default")
+-# = show_grid :things
+
+:ruby
+  serie = {name: resource.name, data: resource.steps.map{|s| [s.turn, s.amount.to_f]}}
+  if resource.interpolation_method_previous?
+    serie[:step] = "left"
+  elsif resource.interpolation_method_following?
+    serie[:step] = "right"
+  end
+  
+= line_chart([serie])

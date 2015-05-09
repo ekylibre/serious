@@ -1,0 +1,14 @@
+= grid(collection_grid) do |g|
+
+  - g.column name: User.human_attribute_name(:first_name) do |item|
+    - link_to(item.first_name, backend_user_path(item))
+
+  - g.column name: User.human_attribute_name(:last_name) do |item|
+    - link_to(item.last_name, backend_user_path(item))
+
+  - g.column do |item|
+    - link_to(:edit.ta, edit_backend_user_path(item))
+
+  - g.column do |item|
+    - link_to(:destroy.ta, backend_user_path(item), method: :delete, data: {confirm: :are_you_sure.tl})
+

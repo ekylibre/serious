@@ -2,7 +2,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def migrate(direction)
     super
     # Create a default user
-    User.create!(email: 'admin@ekylibre.org', password: '12345678', password_confirmation: '12345678') if direction == :up
+    User.create!(email: 'admin@ekylibre.org', first_name: "Admin", last_name: "STRATOR", password: '12345678', password_confirmation: '12345678') if direction == :up
   end
 
   def change
@@ -36,6 +36,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
+      t.string :first_name
+      t.string :last_name
 
       t.timestamps
     end

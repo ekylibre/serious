@@ -22,11 +22,11 @@
 #
 #  created_at  :datetime
 #  currency    :string           not null
-#  duration    :integer          not null
+#  description :text
 #  id          :integer          not null, primary key
 #  name        :string           not null
 #  turn_nature :string
-#  turns_count :string
+#  turns_count :string           not null
 #  updated_at  :datetime
 #
 #
@@ -34,8 +34,8 @@
 #
 # scenarios_001:
 #   currency: "Lorem ipsum"
-#   duration: 0
 #   name: "Lorem ipsum"
+#   turns_count: "Lorem ipsum"
 #
 
 # This model initially had no columns defined.  If you add columns to the
