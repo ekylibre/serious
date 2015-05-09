@@ -56,4 +56,12 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
 
+  # Returns the URL of the avatar of the user
+  def avatar_url(options = {})
+    size = options[:size] || 200
+    hash = Digest::MD5.hexdigest(self.email)
+    options[:default] = :retro unless options.has_key? :default
+    return "https://secure.gravatar.com/avatar/#{hash}?size=#{size}&d=#{options[:default]}"
+  end
+
 end

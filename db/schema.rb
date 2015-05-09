@@ -109,16 +109,20 @@ ActiveRecord::Schema.define(version: 20150507085614) do
   end
 
   create_table "participants", force: :cascade do |t|
-    t.integer  "game_id",                       null: false
-    t.string   "name",                          null: false
+    t.integer  "game_id",                           null: false
+    t.string   "name",                              null: false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
     t.string   "type"
     t.integer  "historic_id"
-    t.boolean  "client",        default: false, null: false
-    t.boolean  "supplier",      default: false, null: false
-    t.boolean  "lender",        default: false, null: false
-    t.boolean  "borrower",      default: false, null: false
-    t.boolean  "contractor",    default: false, null: false
-    t.boolean  "subcontractor", default: false, null: false
+    t.boolean  "client",            default: false, null: false
+    t.boolean  "supplier",          default: false, null: false
+    t.boolean  "lender",            default: false, null: false
+    t.boolean  "borrower",          default: false, null: false
+    t.boolean  "contractor",        default: false, null: false
+    t.boolean  "subcontractor",     default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

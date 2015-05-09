@@ -48,6 +48,7 @@ gem 'state_machine'
 gem 'awesome_nested_set', '~> 3.0.0'
 gem 'enumerize'
 gem 'jc-validates_timeliness', '~> 3.1.1'
+gem 'paperclip'
 
 gem 'devise'
 gem 'devise-i18n-views'

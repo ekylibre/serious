@@ -20,19 +20,23 @@
 #
 # == Table: participants
 #
-#  borrower      :boolean          default(FALSE), not null
-#  client        :boolean          default(FALSE), not null
-#  contractor    :boolean          default(FALSE), not null
-#  created_at    :datetime
-#  game_id       :integer          not null
-#  historic_id   :integer
-#  id            :integer          not null, primary key
-#  lender        :boolean          default(FALSE), not null
-#  name          :string           not null
-#  subcontractor :boolean          default(FALSE), not null
-#  supplier      :boolean          default(FALSE), not null
-#  type          :string
-#  updated_at    :datetime
+#  borrower          :boolean          default(FALSE), not null
+#  client            :boolean          default(FALSE), not null
+#  contractor        :boolean          default(FALSE), not null
+#  created_at        :datetime
+#  game_id           :integer          not null
+#  historic_id       :integer
+#  id                :integer          not null, primary key
+#  lender            :boolean          default(FALSE), not null
+#  logo_content_type :string
+#  logo_file_name    :string
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
+#  name              :string           not null
+#  subcontractor     :boolean          default(FALSE), not null
+#  supplier          :boolean          default(FALSE), not null
+#  type              :string
+#  updated_at        :datetime
 #
 class Participant < ActiveRecord::Base
   belongs_to :game
@@ -45,7 +49,10 @@ class Participant < ActiveRecord::Base
   has_many :lendings,   class_name: "Loan", foreign_key: :lender_id
   has_many :subcontractings, class_name: "Contract", foreign_key: :originator_id
   has_many :contractings,    class_name: "Contract", foreign_key: :subcontractor_id
+  has_attached_file :logo
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  validates_datetime :logo_updated_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
+  validates_numericality_of :logo_file_size, allow_nil: true, only_integer: true
   validates_inclusion_of :borrower, :client, :contractor, :lender, :subcontractor, :supplier, in: [true, false]
   validates_presence_of :game, :name
   #]VALIDATORS]

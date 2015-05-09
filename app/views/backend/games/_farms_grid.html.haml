@@ -10,8 +10,8 @@
   - g.column name: Farm.human_attribute_name(:users) do |item|
     :ruby
       item.users.map do |user|
-        link_to(user.name, backend_user_path(user))
-      end.to_sentence.html_safe
+        link_to(image_tag(user.avatar_url(size: 18)), backend_user_path(user), title: user.name)
+      end.join(" ").html_safe
 
   - g.column do |item|
     - link_to(:edit.ta, edit_backend_farm_path(item))

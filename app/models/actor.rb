@@ -20,19 +20,23 @@
 #
 # == Table: participants
 #
-#  borrower      :boolean          default(FALSE), not null
-#  client        :boolean          default(FALSE), not null
-#  contractor    :boolean          default(FALSE), not null
-#  created_at    :datetime
-#  game_id       :integer          not null
-#  historic_id   :integer
-#  id            :integer          not null, primary key
-#  lender        :boolean          default(FALSE), not null
-#  name          :string           not null
-#  subcontractor :boolean          default(FALSE), not null
-#  supplier      :boolean          default(FALSE), not null
-#  type          :string
-#  updated_at    :datetime
+#  borrower          :boolean          default(FALSE), not null
+#  client            :boolean          default(FALSE), not null
+#  contractor        :boolean          default(FALSE), not null
+#  created_at        :datetime
+#  game_id           :integer          not null
+#  historic_id       :integer
+#  id                :integer          not null, primary key
+#  lender            :boolean          default(FALSE), not null
+#  logo_content_type :string
+#  logo_file_name    :string
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
+#  name              :string           not null
+#  subcontractor     :boolean          default(FALSE), not null
+#  supplier          :boolean          default(FALSE), not null
+#  type              :string
+#  updated_at        :datetime
 #
 class Actor < Participant
 end

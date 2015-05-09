@@ -83,6 +83,7 @@ class AddBase < ActiveRecord::Migration
     create_table :participants do |t|
       t.references :game,           null: false, index: true
       t.string     :name,           null: false
+      t.attachment :logo
       t.string     :type
       t.references :historic,                    index: true
       t.boolean    :client,         null: false, default: false
