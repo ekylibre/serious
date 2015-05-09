@@ -36,14 +36,26 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'code_string'
+
 gem 'haml'
+
+# Models helpers
+gem 'acts_as_list'
+gem 'state_machine'
+gem 'awesome_nested_set', '~> 3.0.0'
+gem 'enumerize'
+gem 'jc-validates_timeliness', '~> 3.1.1'
 
 gem 'devise'
 gem 'devise-i18n-views'
+gem 'devise-bootstrap-views'
 
 gem 'rails-i18n', '~> 4.0.0'
 
-gem 'activeadmin', '~> 1.0.0.pre1'
+# gem 'active_list'
+gem 'wice_grid'
+# gem 'activeadmin', '~> 1.0.0.pre1'
 
 gem 'bootstrap-sass', '~> 3.1'
 

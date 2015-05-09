@@ -1,0 +1,12 @@
+%h1 Scénarios
+
+= link_to(t(".new"), new_backend_scenario_url, class: "btn btn-primary")
+
+%table.table
+  %thead
+    %tr
+      %th Nom
+  %tbody
+    - collection.each do |item|
+      %tr
+        %td= item.name

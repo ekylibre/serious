@@ -1,0 +1,52 @@
+# = Informations
+#
+# == License
+#
+# Serious - Serious Game based on Ekylibre
+# Copyright (C) 2015-2015 Ekylibre SAS
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses.
+#
+# == Table: catalog_items
+#
+#  created_at                 :datetime
+#  id                         :integer          not null, primary key
+#  nature                     :boolean
+#  negative_margin_percentage :decimal(19, 4)   not null
+#  participant_id             :integer          not null
+#  positive_margin_percentage :decimal(19, 4)   not null
+#  quota                      :decimal(19, 4)   not null
+#  updated_at                 :datetime
+#  variant                    :string           not null
+#
+#
+# == Fixture: catalog_items
+#
+# catalog_items_001:
+#   negative_margin_percentage: 0
+#   participant: participants_001
+#   positive_margin_percentage: 0
+#   quota: 0
+#   variant: "Lorem ipsum"
+#
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+#  column: value
