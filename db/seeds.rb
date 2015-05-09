@@ -30,8 +30,25 @@ end
 
 game = Game.create!(scenario: scenario, name: "Sainte-Livrade 10月9日", description: "Phase de test grandeur nature")
 
+85.times do |index|
+  first_name, last_name = FFaker::NameFR.first_name, FFaker::NameFR.last_name.mb_chars.upcase
+  email = "#{first_name}.#{last_name}@#{FFaker::Internet.domain_name}"
+  User.create!(first_name: first_name, last_name: last_name, email: email, password: '12346578', password_confirmation: '12346578')
+end
+
+
+historic = Historic.create!(name: "4 ans en 47", currency: scenario.currency)
+
 15.times do |index|
-  game.farms.create!(name: "Ferme n°#{index + 1}")
+  game.farms.create!(name: "Ferme n°#{index + 1}", historic: historic)
+end
+
+farms = game.farms.to_a
+User.find_each do |user|
+  if farm = farms.sample
+    game.participations.create!(participant: farm, user: user)
+    farms.delete(farm) if farm.participations.count >= 4
+  end
 end
 
 

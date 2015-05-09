@@ -38,6 +38,7 @@ class Game < ActiveRecord::Base
   belongs_to :scenario
   has_many :actors
   has_many :farms
+  has_many :participations
   has_many :participants
   has_many :turns, class_name: "GameTurn"
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.

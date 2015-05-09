@@ -52,4 +52,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
+
 end
