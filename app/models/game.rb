@@ -22,12 +22,13 @@
 #
 #  created_at    :datetime
 #  id            :integer          not null, primary key
+#  name          :string           not null
 #  planned_at    :datetime
 #  scenario_id   :integer
 #  state         :string
 #  turn_duration :integer
 #  turn_nature   :integer
-#  turns_quota   :integer          not null
+#  turns_count   :integer
 #  updated_at    :datetime
 #
 class Game < ActiveRecord::Base
@@ -36,7 +37,7 @@ class Game < ActiveRecord::Base
   has_many :turns, class_name: "GameTurn"
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :planned_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
-  validates_numericality_of :turn_duration, :turn_nature, :turns_quota, allow_nil: true, only_integer: true
-  validates_presence_of :turns_quota
+  validates_numericality_of :turn_duration, :turn_nature, allow_nil: true, only_integer: true
+  validates_presence_of :name
   #]VALIDATORS]
 end

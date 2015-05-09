@@ -52,6 +52,7 @@ gem 'devise-i18n-views'
 gem 'devise-bootstrap-views'
 
 gem 'rails-i18n', '~> 4.0.0'
+gem 'i18n-complements'
 
 # gem 'active_list'
 gem 'wice_grid'

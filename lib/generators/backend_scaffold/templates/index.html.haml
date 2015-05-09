@@ -1,4 +1,4 @@
-= main_toolbar do |t|
-  - t.new
+.btn-group.btn-toolbox{role: "group"}
+  = link_to(:new.ta, new_backend_<%= singular_name -%>_path, class: "btn btn-primary")
 
-= list
+= show_grid

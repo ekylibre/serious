@@ -22,12 +22,13 @@
 #
 #  created_at    :datetime
 #  id            :integer          not null, primary key
+#  name          :string           not null
 #  planned_at    :datetime
 #  scenario_id   :integer
 #  state         :string
 #  turn_duration :integer
 #  turn_nature   :integer
-#  turns_quota   :integer          not null
+#  turns_count   :integer
 #  updated_at    :datetime
 #
 require 'test_helper'

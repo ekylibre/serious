@@ -1,0 +1,9 @@
+%nav.navbar.navbar-inverse.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      = link_to("Game of Farms", "#", class: "navbar-brand")
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li= link_to("Scénarios", backend_scenarios_path)
+        %li= link_to("Parties", backend_games_path)
+

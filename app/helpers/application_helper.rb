@@ -19,8 +19,18 @@ module ApplicationHelper
     end
   end
 
-  def show_grid(name, *args)
-    render "#{name}_grid", collection_grid: instance_variable_get("@#{name}_grid")
+  def show_grid(name = nil)
+    render((name ? "#{name}_grid" : "grid"), collection_grid: instance_variable_get("@#{name}_grid"))
   end
-  
+
+  def action_title
+    if resource
+      @title_interpolations ||= resource.attributes.symbolize_keys
+    end
+    options = @title_interpolations || {}
+    options[:default] = []
+    options[:default] << (action_name == "index" ? controller_name.to_s.humanize : action_name == "new" ? "New #{controller_name.to_s.singularize}" : "#{action_name.humanize}: %{name}")
+    I18n.translate("actions.#{controller_path}.#{action_name}", options)
+  end
+
 end

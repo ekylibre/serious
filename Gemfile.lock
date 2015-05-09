@@ -86,6 +86,8 @@ GEM
     haml (4.0.6)
       tilt
     i18n (0.7.0)
+    i18n-complements (0.0.14)
+      i18n (>= 0.6)
     jbuilder (2.2.13)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -228,6 +230,7 @@ DEPENDENCIES
   devise-i18n-views
   enumerize
   haml
+  i18n-complements
   jbuilder (~> 2.0)
   jc-validates_timeliness (~> 3.1.1)
   jquery-rails

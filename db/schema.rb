@@ -76,11 +76,12 @@ ActiveRecord::Schema.define(version: 20150507085614) do
   add_index "game_turns", ["game_id"], name: "index_game_turns_on_game_id"
 
   create_table "games", force: :cascade do |t|
+    t.string   "name",          null: false
     t.datetime "planned_at"
     t.string   "state"
     t.integer  "turn_nature"
     t.integer  "turn_duration"
-    t.integer  "turns_quota",   null: false
+    t.integer  "turns_count"
     t.integer  "scenario_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -175,9 +176,11 @@ ActiveRecord::Schema.define(version: 20150507085614) do
   add_index "scenario_curves", ["scenario_id"], name: "index_scenario_curves_on_scenario_id"
 
   create_table "scenarios", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "currency",   null: false
-    t.integer  "duration",   null: false
+    t.string   "name",        null: false
+    t.string   "currency",    null: false
+    t.string   "turn_nature"
+    t.string   "turns_count"
+    t.integer  "duration",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

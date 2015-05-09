@@ -12,6 +12,8 @@ class AddBase < ActiveRecord::Migration
     create_table :scenarios do |t|
       t.string     :name,     null: false
       t.string     :currency, null: false
+      t.string     :turn_nature # month
+      t.string     :turns_count
       t.integer    :duration, null: false # 12 * 5 seems to be minimum
       t.timestamps
     end
@@ -48,11 +50,12 @@ class AddBase < ActiveRecord::Migration
     end
 
     create_table :games do |t|
+      t.string     :name,        null: false
       t.datetime   :planned_at
       t.string     :state
-      t.integer    :turn_nature # month (later, other could come: week, bimester, trimester, quater, semester)
+      t.integer    :turn_nature   # month (later, other could come: week, bimester, trimester, quater, semester)
       t.integer    :turn_duration # in minutes
-      t.integer    :turns_quota, null: false
+      t.integer    :turns_count
       t.references :scenario
       t.timestamps
     end

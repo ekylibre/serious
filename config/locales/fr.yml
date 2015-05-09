@@ -1,0 +1,17 @@
+fr:
+  actions:
+    backend/games:
+      index: "Parties"
+      new: "Nouvelle partie"
+      show: "Partie"
+    backend/scenarios:
+      index: "Scénarios"
+      new: "Nouveau scénario"
+      show: "Scénario\_: %{name}"
+  labels:
+    are_you_sure: "Êtes-vous sûr(e)\_?"
+  rest:
+    actions:
+      new: "Ajouter"
+      edit: "Modifier"
+      destroy: "Supprimer"

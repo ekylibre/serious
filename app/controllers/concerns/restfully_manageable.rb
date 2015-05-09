@@ -60,7 +60,8 @@ module RestfullyManageable
 
       if actions.include?(:index)
         code << "def index\n"
-        code << "  @#{name} = resource_model.all\n"
+        # code << "  @#{name} = resource_model.all\n"
+        code << "  @_grid = initialize_grid(resource_model)\n"
         code << "  respond_to do |format|\n"
         code << "    format.html\n"
         code << "    format.xml  { render xml:  resource_model.all }\n"

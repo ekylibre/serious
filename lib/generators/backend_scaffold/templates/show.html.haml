@@ -1,7 +1,6 @@
-= main_toolbar do |t|
-  - t.edit resource
+= link_to(:edit.ta, edit_backend_<%= singular_name -%>_path(resource), class: "btn btn-default")
 
-= beehive do |b|
-  - b.cell do
-    = attributes_list do |l|
-      - l.attribute :name
+-# %h2= <%= class_name -%>.human_attribute_name(:things)
+-# .btn-group.btn-toolbox{role: "group"}
+-#   = link_to(:add.ta, new_backend_<%= singular_name -%>_things_path(<%= singular_name -%>_id: resource.id), class: "btn btn-default")
+-# = show_grid :things

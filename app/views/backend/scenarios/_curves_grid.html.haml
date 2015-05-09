@@ -1,18 +1,17 @@
 = grid(collection_grid) do |g|
 
   - g.column name: ScenarioCurve.human_attribute_name(:name) do |item|
-    = item.name
+    - item.name
 
   - g.column name: ScenarioCurve.human_attribute_name(:nature)  do |item|
-    = item.nature
+    - item.nature
 
   - g.column name: ScenarioCurve.human_attribute_name(:interpolation_method)  do |item|
-    = item.interpolation_method
+    - item.interpolation_method
 
   - g.column name: ScenarioCurve.human_attribute_name(:reference)  do |item|
     - if item.reference
-      = link_to(item.reference, backend_scenario_curve_url(item.reference))
-      = " (+#{item.positive_alea_percentage}%/-#{item.negative_alea_percentage}%)"
-    
+      - link_to(item.reference, backend_scenario_curve_url(item.reference)) + " (+#{item.positive_alea_percentage}%/-#{item.negative_alea_percentage}%)"
+
   - g.column do |item|
-    = link_to('Edit', edit_backend_scenario_curve_path(item))
+    - link_to('Edit', edit_backend_scenario_curve_path(item))

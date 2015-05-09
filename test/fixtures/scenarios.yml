@@ -20,12 +20,14 @@
 #
 # == Table: scenarios
 #
-#  created_at :datetime
-#  currency   :string           not null
-#  duration   :integer          not null
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  updated_at :datetime
+#  created_at  :datetime
+#  currency    :string           not null
+#  duration    :integer          not null
+#  id          :integer          not null, primary key
+#  name        :string           not null
+#  turn_nature :string
+#  turns_count :string
+#  updated_at  :datetime
 #
 #
 # == Fixture: scenarios

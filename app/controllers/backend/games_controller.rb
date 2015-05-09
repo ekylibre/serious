@@ -1,9 +1,6 @@
-# = Informations
-#
 # == License
-#
 # Serious - Serious Game based on Ekylibre
-# Copyright (C) 2015-2015 Ekylibre SAS
+# Copyright (C) 2015 Ekylibre SAS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -16,23 +13,9 @@
 # GNU Affero General Public License for more details.
 #
 # You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see http://www.gnu.org/licenses.
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# == Table: scenarios
-#
-#  created_at  :datetime
-#  currency    :string           not null
-#  duration    :integer          not null
-#  id          :integer          not null, primary key
-#  name        :string           not null
-#  turn_nature :string
-#  turns_count :string
-#  updated_at  :datetime
-#
-require 'test_helper'
 
-class ScenarioTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class Backend::GamesController < Backend::BaseController
+  manage_restfully
 end

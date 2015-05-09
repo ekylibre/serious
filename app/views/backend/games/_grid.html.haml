@@ -1,0 +1,11 @@
+= grid(collection_grid) do |g|
+
+  - g.column name: Game.human_attribute_name(:name) do |item|
+    - link_to(item.name, backend_game_path(item))
+
+  - g.column do |item|
+    - link_to(:edit.ta, edit_backend_game_path(item))
+
+  - g.column do |item|
+    - link_to(:destroy.ta, backend_game_path(item), method: :delete, data: {confirm: :are_you_sure.tl})
+

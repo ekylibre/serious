@@ -18,5 +18,4 @@
 
 class Backend::<%= controller_class_name -%>Controller < Backend::BaseController
   manage_restfully
-  unroll
 end

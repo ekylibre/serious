@@ -1,12 +1,4 @@
-%h1 Scénarios
+.btn-group.btn-toolbox{role: "group"}
+  = link_to(:new.ta, new_backend_scenario_path, class: "btn btn-primary")
 
-= link_to(t(".new"), new_backend_scenario_url, class: "btn btn-primary")
-
-%table.table
-  %thead
-    %tr
-      %th Nom
-  %tbody
-    - collection.each do |item|
-      %tr
-        %td= item.name
+= show_grid

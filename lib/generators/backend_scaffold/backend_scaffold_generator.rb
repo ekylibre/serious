@@ -3,7 +3,7 @@ class BackendScaffoldGenerator < Rails::Generators::NamedBase
   include Rails::Generators::ResourceHelpers
 
   def create_route
-    route("resources :#{plural_name}, concerns: [:list, :unroll]")
+    route("resources :#{plural_name}")
   end
 
   def create_model
@@ -16,6 +16,7 @@ class BackendScaffoldGenerator < Rails::Generators::NamedBase
 
   def create_views
     template("index.html.haml", File.join('app', 'views', 'backend', controller_file_name, "index.html.haml"))
+    template("_grid.html.haml", File.join('app', 'views', 'backend', controller_file_name, "_grid.html.haml"))
     template("show.html.haml",  File.join('app', 'views', 'backend', controller_file_name, "show.html.haml"))
     template("_form.html.haml", File.join('app', 'views', 'backend', controller_file_name, "_form.html.haml"))
   end
