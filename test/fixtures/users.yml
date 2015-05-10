@@ -20,6 +20,7 @@
 #
 # == Table: users
 #
+#  administrator          :boolean          default(FALSE), not null
 #  created_at             :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
@@ -40,6 +41,7 @@
 # == Fixture: users
 #
 # users_001:
+#   administrator: true
 #   email: "Lorem ipsum"
 #   encrypted_password: "Lorem ipsum"
 #   sign_in_count: 0

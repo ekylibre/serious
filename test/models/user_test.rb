@@ -20,6 +20,7 @@
 #
 # == Table: users
 #
+#  administrator          :boolean          default(FALSE), not null
 #  created_at             :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string

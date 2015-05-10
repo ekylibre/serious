@@ -1,0 +1,45 @@
+---
+cac40:
+  name: CAC40
+  description: "Le CAC 40 (cotation assistée en continu) est le principal indice boursier de la place de Paris."
+  unit_name: "points"
+  round: 2
+  initial_amount: 2712
+usd:
+  name: Dollar américain (USD)
+  description: "Cours du dollar américain en euros"
+  unit_name: "€"
+  round: 4
+  initial_amount: 0.8911
+common_wheat:
+  name: Blé panifiable
+  description: "Cours de la tonne de blé panifiable à Paris"
+  unit_name: "€/t"
+  round: 4
+  initial_amount: 163.27
+petroleum:
+  name: Pétrole
+  description: "Cours du baril de pétrole en dollar américain (USD)"
+  unit_name: "$/baril"
+  round: 2
+  initial_amount: 59.41
+gold:
+  name: Or
+  description: "Cours de l'or"
+  unit_name: "€/kg"
+  round: 2
+  initial_amount: 34135.93
+copper:
+  name: Cuivre
+  description: "Cours du cuivre"
+  unit_name: "€/t"
+  round: 2
+  initial_amount: 6436.12
+world_population:
+  name: Population mondiale
+  description: "Nombre d'habitants sur Terre (en millions)"
+  unit_name: "M"
+  round: 0
+  initial_amount: 7125
+  positive_variation: 0.3
+  negative_variation: 0.2

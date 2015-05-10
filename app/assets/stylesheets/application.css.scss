@@ -25,6 +25,39 @@ $navbar-height: 50px;
   margin-bottom: $padding-base-vertical;
 }
 
-body {
-  padding-top: $navbar-height * 1.4;
+html.backend {
+  body {
+    padding-top: $navbar-height * 1.4;
+  }
+}
+
+
+html.public {
+  body {
+    overflow: hidden;
+    #map-wrap {
+      overflow: hidden;
+      #map-toolbar {
+        background: rgba(white, 0.8);
+        padding: 8px;
+        width: 100%;
+        position:absolute;
+        top: 0;
+      }
+      background: linear-gradient(to bottom, #666, #222);
+      svg#map {
+        height: 100vh;
+        width: 100vw;
+        // background: #444;
+        .farm {
+          opacity: 1;
+          &:hover {
+            .top {
+              fill: #584;
+            }
+          }
+        }
+      }
+    }
+  }
 }

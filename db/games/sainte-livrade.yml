@@ -1,0 +1,260 @@
+---
+name: Sainte-Livrade
+map_width: 40
+map_height: 40
+farms:
+  F01:
+    name: Ferme Barthelemy
+    historic: SL47
+    zone_x: 0
+    zone_y: 0
+    zone_width: 4
+    zone_height: 6
+  F02:
+    name: Ferme Monnier
+    historic: SL47
+    zone_x: 4
+    zone_y: 0
+    zone_width: 6
+    zone_height: 4
+  F03:
+    name: Ferme Renaud
+    historic: SL47
+    zone_x: 10
+    zone_y: 0
+    zone_width: 6
+    zone_height: 4
+  F04:
+    name: Ferme Mendes
+    historic: SL47
+    zone_x: 16
+    zone_y: 0
+    zone_width: 6
+    zone_height: 4
+  F05:
+    name: Ferme Poirier
+    historic: SL47
+    zone_x: 0
+    zone_y: 8
+    zone_width: 6
+    zone_height: 4
+  F06:
+    name: Ferme Fouquet
+    historic: SL47
+    zone_x: 6
+    zone_y: 6
+    zone_width: 4
+    zone_height: 6
+  F07:
+    name: Ferme Michaud
+    historic: SL47
+    zone_x: 12
+    zone_y: 6
+    zone_width: 4
+    zone_height: 6
+  F08:
+    name: Ferme Ramos
+    historic: SL47
+    zone_x: 18
+    zone_y: 4
+    zone_width: 4
+    zone_height: 6
+  F09:
+    name: Ferme Wagner
+    historic: SL47
+    zone_x: 22
+    zone_y: 6
+    zone_width: 6
+    zone_height: 4
+  F10:
+    name: Les winners
+    historic: SL47
+    zone_x: 22
+    zone_y: 0
+    zone_width: 4
+    zone_height: 6
+  F11:
+    name: Ferme Leclercq
+    historic: SL47
+    zone_x: 0
+    zone_y: 12
+    zone_width: 4
+    zone_height: 6
+  F12:
+    name: Ferme Brunel
+    historic: SL47
+    zone_x: 4
+    zone_y: 14
+    zone_width: 6
+    zone_height: 4
+  F13:
+    name: Ferme Colin
+    historic: SL47
+    zone_x: 0
+    zone_y: 18
+    zone_width: 6
+    zone_height: 4
+  F14:
+    name: Ferme Valette
+    historic: SL47
+    zone_x: 6
+    zone_y: 18
+    zone_width: 6
+    zone_height: 4
+  F15:
+    name: Ferme Ferreira
+    historic: SL47
+    zone_x: 12
+    zone_y: 12
+    zone_width: 6
+    zone_height: 4
+actors:
+  A01:
+    name: Crédit Agricole
+  A02:
+    name: Groupama
+  A03:
+    name: Unicoque
+  A04:
+    name: Terre du Sud
+  A05:
+    name: Razol
+  A06:
+    name: CER
+  A07:
+    name: "@com"
+  A08:
+    name: MSA
+participations:
+- participant: F01
+  user: laetitia.da@boyer.info
+- participant: F01
+  user: thomas.georges@beier.biz
+- participant: F01
+  user: alexandrie.bouvier@jacobson.name
+- participant: F01
+  user: thomas.barbier@runte.ca
+- participant: F02
+  user: auguste.lesage@botsfordeichmann.info
+- participant: F02
+  user: franck.brunel@gleason.us
+- participant: F02
+  user: patricia.picard@haucktorphy.us
+- participant: F02
+  user: theodore.jacques@uptonhyatt.info
+- participant: F03
+  user: georges.boucher@luettgenhirthe.com
+- participant: F03
+  user: margaux.lesage@baumbach.co.uk
+- participant: F03
+  user: franck.pichon@ledner.com
+- participant: F03
+  user: celina.barthelemy@ebert.com
+- participant: F04
+  user: julien.dumas@padberg.co.uk
+- participant: F04
+  user: mathilde.moreno@hauck.com
+- participant: F04
+  user: jules.jacob@leuschketurcotte.com
+- participant: F04
+  user: alex.rossi@rogahndicki.info
+- participant: F05
+  user: eric.lelievre@gerlachjohnston.info
+- participant: F05
+  user: andree.brunet@stanton.ca
+- participant: F05
+  user: celine.lebrun@wyman.us
+- participant: F05
+  user: frederic.herve@ratke.us
+- participant: F06
+  user: odette.lemoine@terry.ca
+- participant: F06
+  user: emmanuelle.remy@abshire.name
+- participant: F06
+  user: denis.becker@swaniawski.biz
+- participant: F06
+  user: frederic.maury@goodwinkerluke.us
+- participant: F07
+  user: etienne.rossi@wymanokuneva.biz
+- participant: F07
+  user: astrid.leroy@abbottlynch.ca
+- participant: F07
+  user: helene.charrier@goyette.biz
+- participant: F07
+  user: marianne.lombard@grady.biz
+- participant: F08
+  user: franck.garcia@jewesswehner.info
+- participant: F08
+  user: audrey.lacroix@bauch.us
+- participant: F08
+  user: adrien.francois@dietrich.ca
+- participant: F08
+  user: andre.petit@romaguerarunolfsdottir.com
+- participant: F09
+  user: odette.guibert@mcglynn.name
+- participant: F09
+  user: valerie.rousset@gulgowski.name
+- participant: F09
+  user: danielle.gillet@schambergermurphy.co.uk
+- participant: F09
+  user: david.guibert@jacobsonlarson.co.uk
+- participant: F10
+  user: jacques.chauvin@watersnicolas.com
+- participant: F10
+  user: celine.chretien@stanton.co.uk
+- participant: F10
+  user: isaac.diaz@auer.name
+- participant: F10
+  user: lucy.traore@kirlin.biz
+- participant: F11
+  user: sabine.gay@gislasonarmstrong.name
+- participant: F11
+  user: valentine.benard@quitzon.us
+- participant: F11
+  user: maggie.navarro@bradtke.name
+- participant: F11
+  user: arthur.carre@mcglynn.name
+- participant: F12
+  user: daisy.nicolas@spinka.us
+- participant: F12
+  user: aimee.ollivier@jenkins.ca
+- participant: F12
+  user: laure.guillet@bashirian.ca
+- participant: F12
+  user: genevieve.bailly@zulauf.co.uk
+- participant: F13
+  user: lorraine.paul@bradtke.us
+- participant: F13
+  user: celina.cordier@fisher.biz
+- participant: F13
+  user: paulette.barbe@schillerziemann.co.uk
+- participant: F13
+  user: nath.arnaud@reichelarmstrong.us
+- participant: F14
+  user: mathilde.dias@konopelski.ca
+- participant: F14
+  user: zacharie.bonnin@howegoldner.ca
+- participant: F14
+  user: christiane.begue@marks.biz
+- participant: F14
+  user: genevieve.jacques@denesik.us
+- participant: F15
+  user: christelle.lebon@trantow.info
+- participant: F15
+  user: corinne.joseph@hermann.us
+- participant: F15
+  user: penelope.mathieu@faymayer.com
+- participant: F15
+  user: virginie.besson@windler.co.uk
+- participant: A01
+  user: louis.hamon@mraz.name
+- participant: A01
+  user: nicolas.maury@dubuquehirthe.biz
+- participant: A04
+  user: camille.gautier@jacobi.us
+- participant: A04
+  user: alexandrie.ollivier@lueilwitzbraun.name
+- participant: A06
+  user: henri.martineau@rolfson.name
+- participant: A07
+  user: martin.le@shanahancassin.co.uk

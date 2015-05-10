@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(version: 20150507085614) do
     t.string   "turn_nature"
     t.integer  "turn_duration"
     t.integer  "turns_count"
+    t.integer  "map_width"
+    t.integer  "map_height"
     t.integer  "scenario_id"
     t.text     "description"
     t.datetime "created_at"
@@ -91,6 +93,7 @@ ActiveRecord::Schema.define(version: 20150507085614) do
 
   create_table "historics", force: :cascade do |t|
     t.string   "name",        null: false
+    t.string   "code"
     t.string   "currency",    null: false
     t.text     "description"
     t.datetime "created_at"
@@ -111,11 +114,16 @@ ActiveRecord::Schema.define(version: 20150507085614) do
   create_table "participants", force: :cascade do |t|
     t.integer  "game_id",                           null: false
     t.string   "name",                              null: false
+    t.string   "code"
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "type"
+    t.integer  "zone_x"
+    t.integer  "zone_y"
+    t.integer  "zone_width"
+    t.integer  "zone_height"
     t.integer  "historic_id"
     t.boolean  "client",            default: false, null: false
     t.boolean  "supplier",          default: false, null: false
@@ -164,7 +172,7 @@ ActiveRecord::Schema.define(version: 20150507085614) do
   add_index "scenario_curve_steps", ["curve_id"], name: "index_scenario_curve_steps_on_curve_id"
 
   create_table "scenario_curves", force: :cascade do |t|
-    t.integer  "scenario_id",                                       null: false
+    t.integer  "scenario_id",                                     null: false
     t.string   "nature"
     t.string   "name"
     t.string   "unit_name"
@@ -174,9 +182,12 @@ ActiveRecord::Schema.define(version: 20150507085614) do
     t.string   "interpolation_method"
     t.text     "description"
     t.integer  "reference_id"
-    t.decimal  "initial_amount",           precision: 19, scale: 4
-    t.decimal  "positive_alea_percentage", precision: 19, scale: 4
-    t.decimal  "negative_alea_percentage", precision: 19, scale: 4
+    t.decimal  "initial_amount",         precision: 19, scale: 4
+    t.integer  "amount_round"
+    t.decimal  "amplitude_factor",       precision: 19, scale: 4
+    t.decimal  "offset_amount",          precision: 19, scale: 4
+    t.decimal  "positive_alea_amount",   precision: 19, scale: 4
+    t.decimal  "negative_alea_amount",   precision: 19, scale: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -186,6 +197,7 @@ ActiveRecord::Schema.define(version: 20150507085614) do
 
   create_table "scenarios", force: :cascade do |t|
     t.string   "name",        null: false
+    t.string   "code"
     t.string   "currency",    null: false
     t.string   "turn_nature"
     t.string   "turns_count", null: false
@@ -195,18 +207,19 @@ ActiveRecord::Schema.define(version: 20150507085614) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "first_name"
     t.string   "last_name"
+    t.boolean  "administrator",          default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

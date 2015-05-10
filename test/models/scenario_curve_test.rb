@@ -20,22 +20,25 @@
 #
 # == Table: scenario_curves
 #
-#  created_at               :datetime
-#  description              :text
-#  id                       :integer          not null, primary key
-#  initial_amount           :decimal(19, 4)
-#  interpolation_method     :string
-#  name                     :string
-#  nature                   :string
-#  negative_alea_percentage :decimal(19, 4)
-#  positive_alea_percentage :decimal(19, 4)
-#  reference_id             :integer
-#  scenario_id              :integer          not null
-#  unit_name                :string
-#  updated_at               :datetime
-#  variant                  :string
-#  variant_indicator_name   :string
-#  variant_indicator_unit   :string
+#  amount_round           :integer
+#  amplitude_factor       :decimal(19, 4)
+#  created_at             :datetime
+#  description            :text
+#  id                     :integer          not null, primary key
+#  initial_amount         :decimal(19, 4)
+#  interpolation_method   :string
+#  name                   :string
+#  nature                 :string
+#  negative_alea_amount   :decimal(19, 4)
+#  offset_amount          :decimal(19, 4)
+#  positive_alea_amount   :decimal(19, 4)
+#  reference_id           :integer
+#  scenario_id            :integer          not null
+#  unit_name              :string
+#  updated_at             :datetime
+#  variant                :string
+#  variant_indicator_name :string
+#  variant_indicator_unit :string
 #
 require 'test_helper'
 

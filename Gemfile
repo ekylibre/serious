@@ -57,6 +57,8 @@ gem 'devise-bootstrap-views'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'i18n-complements'
 
+gem 'color'
+
 # gem 'active_list'
 gem 'wice_grid'
 # gem 'activeadmin', '~> 1.0.0.pre1'

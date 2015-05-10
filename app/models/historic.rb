@@ -20,6 +20,7 @@
 #
 # == Table: historics
 #
+#  code        :string
 #  created_at  :datetime
 #  currency    :string           not null
 #  description :text
@@ -31,4 +32,14 @@ class Historic < ActiveRecord::Base
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_presence_of :currency, :name
   #]VALIDATORS]
+
+  class << self
+
+    def import(file)
+      hash = YAML.load_file(file).deep_symbolize_keys
+      historic = create!(hash.slice(:code, :name, :description, :currency))
+    end
+
+  end
+
 end

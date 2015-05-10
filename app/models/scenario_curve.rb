@@ -20,22 +20,25 @@
 #
 # == Table: scenario_curves
 #
-#  created_at               :datetime
-#  description              :text
-#  id                       :integer          not null, primary key
-#  initial_amount           :decimal(19, 4)
-#  interpolation_method     :string
-#  name                     :string
-#  nature                   :string
-#  negative_alea_percentage :decimal(19, 4)
-#  positive_alea_percentage :decimal(19, 4)
-#  reference_id             :integer
-#  scenario_id              :integer          not null
-#  unit_name                :string
-#  updated_at               :datetime
-#  variant                  :string
-#  variant_indicator_name   :string
-#  variant_indicator_unit   :string
+#  amount_round           :integer
+#  amplitude_factor       :decimal(19, 4)
+#  created_at             :datetime
+#  description            :text
+#  id                     :integer          not null, primary key
+#  initial_amount         :decimal(19, 4)
+#  interpolation_method   :string
+#  name                   :string
+#  nature                 :string
+#  negative_alea_amount   :decimal(19, 4)
+#  offset_amount          :decimal(19, 4)
+#  positive_alea_amount   :decimal(19, 4)
+#  reference_id           :integer
+#  scenario_id            :integer          not null
+#  unit_name              :string
+#  updated_at             :datetime
+#  variant                :string
+#  variant_indicator_name :string
+#  variant_indicator_unit :string
 #
 class ScenarioCurve < ActiveRecord::Base
   extend Enumerize
@@ -45,7 +48,57 @@ class ScenarioCurve < ActiveRecord::Base
   belongs_to :scenario
   has_many :steps, class_name: "ScenarioCurveStep", foreign_key: :curve_id
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
-  validates_numericality_of :initial_amount, :negative_alea_percentage, :positive_alea_percentage, allow_nil: true
+  validates_numericality_of :amount_round, allow_nil: true, only_integer: true
+  validates_numericality_of :amplitude_factor, :initial_amount, :negative_alea_amount, :offset_amount, :positive_alea_amount, allow_nil: true
   validates_presence_of :scenario
   #]VALIDATORS]
+  validates_presence_of :positive_alea_amount, :negative_alea_amount, :amplitude_factor, :offset_amount, if: :reference
+
+  accepts_nested_attributes_for :steps
+
+  before_validation do
+    self.amount_round ||= 2
+    if self.reference and self.amplitude_factor
+      self.offset_amount ||= 0
+      self.positive_alea_amount ||= self.reference.initial_amount * self.amplitude_factor * 0.03
+      self.negative_alea_amount ||= self.positive_alea_amount
+    end
+  end
+
+  def generate!
+    self.steps.clear
+    reference = self.reference
+    self.scenario.turns_count.times do |index|
+      turn = index + 1
+      amount = reference.turn_amount(turn) * self.amplitude_factor + self.offset_amount, rand * (self.positive_alea_amount + self.negative_alea_amount) - self.negative_alea_amount
+      self.steps.create!(turn: turn, amount: amount.round(self.amount_round))
+    end
+  end
+
+  def turn_amount(turn)
+    if step = self.steps.find_by(turn: turn)
+      return step.amount
+    else # Interpolate
+      previous  = self.steps.where("turn < ?", turn).order(turn: :desc).first
+      following = self.steps.where("turn > ?", turn).order(:turn).first
+      unless previous or following
+        raise "Cannot interpolate amount with no steps..."
+      end
+      if self.interpolation_method_linear?
+        if previous and following
+          # y = a * x + b
+          a = (following.amount - previous.amount) / (following.turn - previous.turn)
+          b = previous.amount - a * previous.turn
+          return (a * turn + b)
+        else
+          return (previous ? previous.amount : following.amount)
+        end
+      elsif self.interpolation_method_previous?
+        return (previous ? previous.amount : following.amount)
+      elsif self.interpolation_method_following?
+        return (following ? following.amount : previous.amount)
+      end
+    end
+  end
+
 end

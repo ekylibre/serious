@@ -5,14 +5,16 @@ class AddBase < ActiveRecord::Migration
 
     create_table :historics do |t|
       t.string     :name,        null: false
+      t.string     :code
       t.string     :currency,    null: false
       t.text       :description
       t.timestamps
     end
 
     create_table :scenarios do |t|
-      t.string     :name,     null: false
-      t.string     :currency, null: false
+      t.string     :name,        null: false
+      t.string     :code
+      t.string     :currency,    null: false
       t.string     :turn_nature              # month
       t.string     :turns_count, null: false # 12 seems to be minimum
       t.text       :description
@@ -40,8 +42,11 @@ class AddBase < ActiveRecord::Migration
       # Curve generator
       t.references :reference,                index: true
       t.decimal    :initial_amount,           precision: 19, scale: 4
-      t.decimal    :positive_alea_percentage, precision: 19, scale: 4
-      t.decimal    :negative_alea_percentage, precision: 19, scale: 4
+      t.integer    :amount_round
+      t.decimal    :amplitude_factor,         precision: 19, scale: 4
+      t.decimal    :offset_amount,            precision: 19, scale: 4
+      t.decimal    :positive_alea_amount,     precision: 19, scale: 4
+      t.decimal    :negative_alea_amount,     precision: 19, scale: 4
       t.timestamps
     end
 
@@ -59,6 +64,8 @@ class AddBase < ActiveRecord::Migration
       t.string     :turn_nature   # month (later, other could come: week, bimester, trimester, quater, semester)
       t.integer    :turn_duration # in minutes
       t.integer    :turns_count
+      t.integer    :map_width
+      t.integer    :map_height
       t.references :scenario
       t.text       :description
       t.timestamps
@@ -83,8 +90,13 @@ class AddBase < ActiveRecord::Migration
     create_table :participants do |t|
       t.references :game,           null: false, index: true
       t.string     :name,           null: false
+      t.string     :code
       t.attachment :logo
       t.string     :type
+      t.integer    :zone_x
+      t.integer    :zone_y
+      t.integer    :zone_width
+      t.integer    :zone_height
       t.references :historic,                    index: true
       t.boolean    :client,         null: false, default: false
       t.boolean    :supplier,       null: false, default: false

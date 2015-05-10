@@ -46,8 +46,41 @@ class Game < ActiveRecord::Base
   validates_numericality_of :turn_duration, allow_nil: true, only_integer: true
   validates_presence_of :name
   #]VALIDATORS]
+  validates_presence_of :planned_at
 
   accepts_nested_attributes_for :farms
   accepts_nested_attributes_for :actors
+
+  before_validation do
+    self.planned_at ||= Time.now
+  end
+
+  class << self
+
+    def import(file)
+      hash = YAML.load_file(file).deep_symbolize_keys
+      attributes = hash.slice(:name, :description, :planned_at, :turns_count, :turn_nature, :turn_duration, :map_width, :map_height)
+      attributes[:scenario] = Scenario.find_by(code: hash[:scenario]) if hash[:scenario]
+      game = create!(attributes)
+
+      hash[:farms].each do |code, farm|
+        historic = farm[:historic].blank? ? nil : Historic.find_by(code: farm[:historic])
+        game.farms.create! farm.slice(:name, :borrower, :lender, :client, :supplier, :subcontractor, :contractor, :zone_x, :zone_y, :zone_width, :zone_height).merge(code: code, historic: historic)
+      end
+
+      hash[:actors].each do |code, actor|
+        game.actors.create! actor.slice(:name, :borrower, :lender, :client, :supplier, :subcontractor, :contractor, :zone_x, :zone_y, :zone_width, :zone_height).merge(code: code)
+      end
+
+      hash[:participations].each do |participation|
+        game.participations.create!(participant: game.participants.find_by(code: participation[:participant]), user: User.find_by(email: participation[:user]))
+      end
+    end
+
+  end
+
+  def started?
+    Time.now >= self.planned_at
+  end
 
 end

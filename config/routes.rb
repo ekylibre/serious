@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  concern :list do
-    collection do
-      get :list
-    end
-  end
-
   namespace :backend do
     resources :actors
     resources :farms
@@ -20,5 +14,7 @@ Rails.application.routes.draw do
     root to: "scenarios#index"
   end
 
-  root to: "home#index"
+  resources :games
+
+  root to: "games#index"
 end

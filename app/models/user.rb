@@ -20,6 +20,7 @@
 #
 # == Table: users
 #
+#  administrator          :boolean          default(FALSE), not null
 #  created_at             :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
@@ -43,6 +44,7 @@ class User < ActiveRecord::Base
 
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :current_sign_in_at, :last_sign_in_at, :remember_created_at, :reset_password_sent_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
+  validates_inclusion_of :administrator, in: [true, false]
   validates_presence_of :email, :encrypted_password
   #]VALIDATORS]
   validates_presence_of :first_name, :last_name

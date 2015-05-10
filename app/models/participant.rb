@@ -22,6 +22,7 @@
 #
 #  borrower          :boolean          default(FALSE), not null
 #  client            :boolean          default(FALSE), not null
+#  code              :string
 #  contractor        :boolean          default(FALSE), not null
 #  created_at        :datetime
 #  game_id           :integer          not null

@@ -68,6 +68,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    color (1.7.1)
     colored (1.2)
     columnize (0.9.0)
     daemons (1.2.2)
@@ -237,6 +238,7 @@ DEPENDENCIES
   cocoon
   code_string
   coffee-rails (~> 4.1.0)
+  color
   devise
   devise-bootstrap-views
   devise-i18n-views

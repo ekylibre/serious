@@ -1,0 +1,14 @@
+.container
+  %h1 Game of Farms
+
+  .list-group
+    - @games.each do |game|
+      = link_to(game_path(game), class: "list-group-item") do
+        %h4.list-group-item-heading= game.name
+        - unless game.description.blank?
+          %p.list-group-item-text= game.description
+        - if game.started?
+          %p= "Rejoindre la partie maintenant"
+        - else
+          %p= "La partie commence dans " + distance_of_time_in_words_to_now(game.planned_at)
+
