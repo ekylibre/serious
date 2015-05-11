@@ -20,6 +20,7 @@ fr:
   labels:
     are_you_sure: "Êtes-vous sûr(e)\_?"
     minutes: "Minutes"
+    close: "Fermer"
   rest:
     actions:
       new: "Ajouter"

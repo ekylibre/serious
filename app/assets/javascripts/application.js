@@ -16,5 +16,6 @@
 //= require jquery-ui
 //= require bootstrap
 //= require wice_grid
+//= require svg-pan-zoom
 //= require cocoon
 //= require_tree .
