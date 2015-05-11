@@ -23,6 +23,8 @@
 #  created_at    :datetime
 #  description   :text
 #  id            :integer          not null, primary key
+#  map_height    :integer
+#  map_width     :integer
 #  name          :string           not null
 #  planned_at    :datetime
 #  scenario_id   :integer

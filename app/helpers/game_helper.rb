@@ -22,5 +22,5 @@ module GameHelper
     end
     return svg
   end
-  
+
 end

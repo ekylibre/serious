@@ -38,6 +38,10 @@
 #  supplier          :boolean          default(FALSE), not null
 #  type              :string
 #  updated_at        :datetime
+#  zone_height       :integer
+#  zone_width        :integer
+#  zone_x            :integer
+#  zone_y            :integer
 #
 #
 # == Fixture: participants

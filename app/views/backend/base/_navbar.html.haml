@@ -1,9 +1,0 @@
-%nav.navbar.navbar-inverse.navbar-fixed-top
-  .container-fluid
-    .navbar-header
-      = link_to("Game of Farms", "#", class: "navbar-brand")
-    .collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        - [:scenarios, :games, :users].each do |name|
-          %li{class: controller_name =~ /^#{name.to_s.singularize}/ ? :active : nil}= link_to("actions.backend/#{name}.index".t, controller: "backend/#{name}".to_sym, action: :index)
-

@@ -38,6 +38,10 @@
 #  supplier          :boolean          default(FALSE), not null
 #  type              :string
 #  updated_at        :datetime
+#  zone_height       :integer
+#  zone_width        :integer
+#  zone_x            :integer
+#  zone_y            :integer
 #
 class Participant < ActiveRecord::Base
   belongs_to :game
@@ -53,7 +57,7 @@ class Participant < ActiveRecord::Base
   has_attached_file :logo
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :logo_updated_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
-  validates_numericality_of :logo_file_size, allow_nil: true, only_integer: true
+  validates_numericality_of :logo_file_size, :zone_height, :zone_width, :zone_x, :zone_y, allow_nil: true, only_integer: true
   validates_inclusion_of :borrower, :client, :contractor, :lender, :subcontractor, :supplier, in: [true, false]
   validates_presence_of :game, :name
   #]VALIDATORS]

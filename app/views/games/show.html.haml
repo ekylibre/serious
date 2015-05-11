@@ -1,6 +1,6 @@
 -#%h1= @game.name
 
-  
+
 :ruby
   ts = 10  # tile size
   width  = @game.map_width * ts
@@ -34,6 +34,6 @@
           %span= raw "&times;"
         %h4.modal-title Ferme
       .modal-body
-        Info sur la ferme  
+        Info sur la ferme
       .modal-footer
         %button.btn.btn-default{type: "button", data: {dismiss: "modal"}}= :close.tl

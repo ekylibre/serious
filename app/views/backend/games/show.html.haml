@@ -1,7 +1,9 @@
 - unless resource.description.blank?
   .well= resource.description
 
-= link_to(:edit.ta, edit_backend_game_path(resource), class: "btn btn-default")
+.btn-group.btn-toolbox
+  = link_to(:edit.ta, edit_backend_game_path(resource), class: "btn btn-default")
+  = link_to("Partie", game_path(resource), class: "btn btn-default")
 
 %h2= Game.human_attribute_name(:farms)
 .btn-group.btn-toolbox{role: "group"}

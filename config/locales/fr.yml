@@ -12,6 +12,10 @@ fr:
       new: "Nouvelle news"
       show: "News\_: %{name}"
       edit: "Modifier la news\_: %{name}"
+    backend/scenario_curves:
+      new: "Nouvelle courbe"
+      show: "Courbe\_: %{name}"
+      edit: "Modifier la courbe\_: %{name}"
     backend/users:
       edit: "Modifier\_: %{first_name} %{last_name}"
       index: "Utilisateurs"
@@ -19,8 +23,9 @@ fr:
       show: "Utilisateur\_: %{first_name} %{last_name}"
   labels:
     are_you_sure: "Êtes-vous sûr(e)\_?"
-    minutes: "Minutes"
     close: "Fermer"
+    minutes: "Minutes"
+    value: "Valeur"
   rest:
     actions:
       new: "Ajouter"

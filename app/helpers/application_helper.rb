@@ -4,6 +4,10 @@ module ApplicationHelper
     instance_variable_get('@' + self.controller_name.singularize)
   end
 
+  def resource_model
+    self.controller_name.singularize.camelize.constantize
+  end
+
   def collection
     instance_variable_get('@' + self.controller_name)
   end

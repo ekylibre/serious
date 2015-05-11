@@ -1,11 +1,11 @@
 !!!
-%html.backend
+%html
   %head
     %title Game of Farms
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body
+  %body.backend
     = render "navbar"
     .container
       %h1= action_title
