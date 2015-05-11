@@ -1,0 +1,16 @@
+---
+name: Game of Thrones
+map_width: 40
+map_height: 40
+farms:
+  baratheon:
+    name: Barathon
+  lannister:
+    name: Lannister
+  stark:
+    name: Stark
+  targaryen:
+    name: Targaryen
+actors:
+  iron_bank:
+    name: La banque de fer
