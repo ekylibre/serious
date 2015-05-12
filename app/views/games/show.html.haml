@@ -10,7 +10,7 @@
   nwidth, nheight = (height + width) * Math.cos(Math::PI/6)*coeff, (height + width) * Math.sin(Math::PI/6)*coeff
   margin = 0.05
 #map-wrap
-  #map-toolbar
+  -# #map-toolbar
     Barre d'outils
   %svg#map{viewBox: "#{-(height *  Math.cos(Math::PI/6)*coeff + margin*nwidth).round}, #{-(margin*nheight).round - 40}, #{((1 + 2 * margin)*nwidth).round}, #{(1 + 2 * margin)*nheight.round + thickness}", fill: "#333"}
     %g#viewport
