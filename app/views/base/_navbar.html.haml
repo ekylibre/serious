@@ -8,7 +8,8 @@
           %ul.nav.navbar-nav
             - [:scenarios, :games, :users].each do |name|
               %li{class: controller_name =~ /^#{name.to_s.singularize}/ ? :active : nil}= link_to("actions.backend/#{name}.index".t, controller: "backend/#{name}".to_sym, action: :index)
-
+        - else
+          %ul.nav.navbar-nav
 
         %ul.nav.navbar-nav.navbar-right
           %li= link_to('Se déconnecter', destroy_user_session_path, method: :delete)

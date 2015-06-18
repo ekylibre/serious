@@ -56,8 +56,8 @@ $backgroundColorFlop2: rgba(208, 223, 226, .4);
 }
 
 .cube:hover {
-  -webkit-transform: rotateX(89deg);
-  transform: rotateX(89deg);
+  -webkit-transform: rotateX(90deg);
+  transform: rotateX(90deg);
 }
 
 
@@ -81,6 +81,10 @@ $white_50: rgba(255, 255, 255, 0.5);
 .carousel{
   background-color: mix($brand-primary, white, 10%);
 
+  .row{
+    width: 100%;
+  }
+
   .carousel-content {
     height: 89px;
     color:$black;
@@ -90,10 +94,19 @@ $white_50: rgba(255, 255, 255, 0.5);
     padding-bottom: 5px;
   }
   .carousel-control{
-    .glyphicon-chevron-right {
+
+    .glyphicon-chevron-left{
+      color: #666666;
+    }
+
+    .glyphicon-chevron-right{
+      color: #666666;
+    }
+
+    .glyphicon-chevron-right:hover {
       color: $black;
     }
-    .glyphicon-chevron-left {
+    .glyphicon-chevron-left:hover {
       color: $black;
     }
   }
