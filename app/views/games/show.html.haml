@@ -6,20 +6,20 @@
   .row
     .col-xs-offset-2.col-xs-8
       .carousel-inner
-        -@news.each do |new|
+        .item.active
+          .carousel-content
+            %div
+              %h4= truncate(@news.first.name, length: 70)
+              %p.ellipsis=  @news.first.content
 
-          -if new.release_turn == @currentTurn
-            .item.active
-              .carousel-content
-                %div
-                  %h4= truncate(new.name, length: 70)
-                  %p.ellipsis=  new.content
-          -else
-            .item
-              .carousel-content
-                %div
-                  %h4= new.name
-                  %p.ellipsis=  new.content
+        - @news.drop(0).each do |new|
+          .item
+            .carousel-content
+              %div
+                %h4= truncate(new.name, length: 70)
+                %p.ellipsis=  new.content
+
+
 
 
 
@@ -57,7 +57,7 @@
       %h2= curve.name
 
       :ruby
-        serie = {name: curve.name, data: curve.steps.where('turn <= ?', 28).order(:turn).map{|s| [s.turn , s.amount.to_f]}}
+        serie = {name: curve.name, data: curve.steps.where('turn <= ?', @currentTurn).order(:turn).map{|s| [s.turn , s.amount.to_f]}}
 
         if curve.interpolation_method_previous?
           serie[:step] = 'left'

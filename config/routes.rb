@@ -11,10 +11,10 @@ Rails.application.routes.draw do
     resources :scenario_broadcasts
     resources :scenario_curves
     resources :users
-    root to: "scenarios#index"
+    root to: 'scenarios#index'
   end
 
   resources :games
 
-  root to: "games#index"
+  root to: 'games#index'
 end
