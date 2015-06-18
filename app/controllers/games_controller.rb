@@ -7,7 +7,14 @@ class GamesController < BaseController
 
   def show
     @game = Game.find_by(id: params[:id])
-    render layout: "game"
+    @actors = Actor.where(:game_id => @game.id)
+    @currentTurn = 28
+    @news = ScenarioBroadcast.where(:scenario_id => 1)
+    #@news = ScenarioBroadcast.where(:scenario_id => @game.scenario_id)
+    #@curves = ScenarioCurve.where(:scenario_id => @game.scenario_id)
+
+    @curves = ScenarioCurve.where(:scenario_id => 1)
+    render layout: 'game'
   end
 
 end

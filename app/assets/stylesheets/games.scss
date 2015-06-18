@@ -1,0 +1,128 @@
+/* Set-up pour les cubes*/
+
+$widthCube: 218px;
+$heightCube: 165px;
+
+$widthImg: 215px;
+$heightImg: 215px;
+
+
+$backgroundColorFlip: rgb(247, 247, 247);
+$borderColor: #77220b;
+$backgroundColorFlop1: rgba(105, 108, 109, .3);
+$backgroundColorFlop2: rgba(208, 223, 226, .4);
+
+.cube {
+  display: inline-block;
+  width: $widthCube;
+  height: $heightCube; //Hauteur de basculement
+  text-align: left;
+  margin-left: 43px;
+  padding-left: 1px;
+
+  -webkit-transition: -webkit-transform .20s;
+  transition: transform .20s; /* Animate the transform properties */
+
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d; /* <-NB */
+
+  .flip img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 2%;
+  }
+
+  %extend_1 {
+    height: $heightCube; //Hauteur du cube de base
+    background: $backgroundColorFlip;
+    border: 1px solid $borderColor;
+    border-radius: 5px;
+    box-shadow: 0 5px 20px $backgroundColorFlop1, 0 0 8px 5px $backgroundColorFlop2 inset;
+  }
+
+  /* Position the faces */
+  .flip {
+    @extend %extend_1;
+    -webkit-transform: translateZ(50px);
+    transform: translateZ(50px);
+  }
+
+  .flop {
+    @extend %extend_1;
+    padding-left: 10px;
+    -webkit-transform: rotateX(-90deg) translateZ(-50px);
+    transform: rotateX(-90deg) translateZ(-50px);
+  }
+}
+
+.cube:hover {
+  -webkit-transform: rotateX(89deg);
+  transform: rotateX(89deg);
+}
+
+
+/* Curve */
+.curve  {
+  width: 48%;
+  display: block;
+  float: left;
+  margin-right: 10px;
+
+  @media screen and (max-width: 767px){
+    width: 100%;
+  }
+}
+
+
+/* news */
+$black: black;
+$white_50: rgba(255, 255, 255, 0.5);
+
+.carousel{
+  background-color: mix($brand-primary, white, 10%);
+
+  .carousel-content {
+    height: 89px;
+    color:$black;
+    display:block;
+    align-items:center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .carousel-control{
+    .glyphicon-chevron-right {
+      color: $black;
+    }
+    .glyphicon-chevron-left {
+      color: $black;
+    }
+  }
+
+  .ellipsis {
+    @media screen and (max-width: 727px) {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .carousel-control {
+    &.right {
+      background-image: linear-gradient(to right, transparent 0, $white_50 100%);
+    }
+    &.left {
+      background-image: linear-gradient(to right, transparent 0, $white_50 100%);
+    }
+  }
+
+  #withoutBackground {
+    background-image: linear-gradient(to right, transparent 100%, rgba(255, 255, 255, 0.5) 100%);
+  }
+}
+
+
+
+
+
+
+

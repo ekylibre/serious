@@ -1,5 +1,5 @@
 .btn-group.btn-toolbox
-  = link_to(:edit.ta, edit_backend_scenario_curve_path(resource), class: "btn btn-default")
+  = link_to(:edit.ta, edit_backend_scenario_curve_path(resource), class: 'btn btn-default')
 
 .panel.panel-default
   .panel-body
@@ -13,9 +13,9 @@
 :ruby
   serie = {name: resource.name, data: resource.steps.map{|s| [s.turn, s.amount.to_f]}}
   if resource.interpolation_method_previous?
-    serie[:step] = "left"
+    serie[:step] = 'left'
   elsif resource.interpolation_method_following?
-    serie[:step] = "right"
+    serie[:step] = 'right'
   end
 
 = line_chart([serie], y_axis: {title: {text: "#{:value.tl} (#{resource.unit_name})"}})

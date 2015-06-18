@@ -44,15 +44,16 @@ class ScenarioCurve < ActiveRecord::Base
   extend Enumerize
   enumerize :interpolation_method, in: [:linear, :previous, :following], default: :linear, predicates: {prefix: true}
   enumerize :nature, in: [:variant, :loan_interest, :reference]
-  belongs_to :reference, class_name: "ScenarioCurve"
+  belongs_to :reference, class_name: 'ScenarioCurve'
   belongs_to :scenario
-  has_many :steps, class_name: "ScenarioCurveStep", foreign_key: :curve_id
+  has_many :steps, class_name: 'ScenarioCurveStep', foreign_key: :curve_id
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount_round, allow_nil: true, only_integer: true
   validates_numericality_of :amplitude_factor, :initial_amount, :negative_alea_amount, :offset_amount, :positive_alea_amount, allow_nil: true
   validates_presence_of :scenario
   #]VALIDATORS]
   validates_presence_of :positive_alea_amount, :negative_alea_amount, :amplitude_factor, :offset_amount, if: :reference
+
 
   accepts_nested_attributes_for :steps
 

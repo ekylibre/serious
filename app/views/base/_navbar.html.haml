@@ -1,7 +1,7 @@
 %nav.navbar.navbar-inverse.navbar-fixed-top
   .container-fluid
     .navbar-header
-      = link_to("Game of Farms", root_url, class: "navbar-brand")
+      = link_to('Game of Farms', root_url, class: 'navbar-brand')
     .collapse.navbar-collapse
       - if current_user
         - if current_user.administrator?
@@ -9,5 +9,6 @@
             - [:scenarios, :games, :users].each do |name|
               %li{class: controller_name =~ /^#{name.to_s.singularize}/ ? :active : nil}= link_to("actions.backend/#{name}.index".t, controller: "backend/#{name}".to_sym, action: :index)
 
+
         %ul.nav.navbar-nav.navbar-right
-          %li= link_to("Se déconnecter", destroy_user_session_path, method: :delete)
+          %li= link_to('Se déconnecter', destroy_user_session_path, method: :delete)

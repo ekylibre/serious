@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507085614) do
+ActiveRecord::Schema.define(version: 20150616115750) do
 
   create_table "catalog_items", force: :cascade do |t|
     t.integer  "participant_id",                                      null: false
@@ -133,6 +133,8 @@ ActiveRecord::Schema.define(version: 20150507085614) do
     t.boolean  "subcontractor",     default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "isPresence",        default: true
+    t.string   "locationEvent"
   end
 
   add_index "participants", ["game_id"], name: "index_participants_on_game_id"
