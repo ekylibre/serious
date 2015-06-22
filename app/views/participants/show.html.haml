@@ -1,0 +1,19 @@
+
+.container
+  .row
+    .col-md-5
+      .logo
+        =image_tag('ca.jpg')
+    .col-md-5
+      %h1= @participant.name
+
+  - if @participant.type == 'Farm'
+    =render 'farms'
+  -else
+    =render 'actor'
+
+
+
+
+
+

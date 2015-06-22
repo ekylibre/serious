@@ -28,9 +28,9 @@
 #  updated_at  :datetime
 #
 class Deal < ActiveRecord::Base
-  belongs_to :client, class_name: "Participant"
-  belongs_to :supplier, class_name: "Participant"
-  has_many :items, class_name: "DealItem"
+  belongs_to :client, class_name: 'Participant'
+  belongs_to :supplier, class_name: 'Participant'
+  has_many :items, class_name: 'DealItem'
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, allow_nil: true
   validates_presence_of :client, :supplier

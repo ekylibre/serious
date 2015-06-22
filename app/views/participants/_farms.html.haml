@@ -1,0 +1,51 @@
+//Todo Boucler et mettre les données en fct
+.saleBuyInterface
+  %h3 Mes achats
+  .cubeSalesBuy
+    - 2.times do
+      .sale
+        %h4 Achat 1
+        %p
+          test test test test test test
+          %b 33€
+
+.saleBuyInterface
+  %h3 Mes ventes
+  .cubeSalesBuy
+    - 2.times do
+      .sale
+        %h4 Achat 1
+        %p
+          test test test test test test
+          %b 33€
+
+.saleBuyInterface
+  %h3 Mes contrats
+  .cubeSalesBuy
+    - 2.times do
+      .sale
+        %h4 Achat 1
+        %p
+          test test test test test test
+          %b 33€
+
+.saleBuyInterface
+  %h3 Mes emprunts
+  .cubeSalesBuy
+    - 3.times do
+      .sale
+        %h4 Achat 1
+        %p
+          test test test test test test
+          %b 33€
+
+.curve
+  %h3 Trésorie
+  :ruby
+      serie = {name: @curve.name, data: @curve.steps.map{|s| [s.turn , s.amount.to_f]}}
+      if @curve.interpolation_method_previous?
+        serie[:step] = 'left'
+      elsif @curve.interpolation_method_following?
+        serie[:step] = 'right'
+      end
+  = line_chart([serie],chart: {height: 150}, y_axis: {title: {text: "#{:value.tl} (#{@curve.unit_name})"}})

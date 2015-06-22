@@ -1,0 +1,10 @@
+.curve
+  %h3 Trésorie
+  :ruby
+      serie = {name: @curve.name, data: @curve.steps.map{|s| [s.turn , s.amount.to_f]}}
+      if @curve.interpolation_method_previous?
+        serie[:step] = 'left'
+      elsif @curve.interpolation_method_following?
+        serie[:step] = 'right'
+      end
+  = line_chart([serie],chart: {height: 150}, y_axis: {title: {text: "#{:value.tl} (#{@curve.unit_name})"}})

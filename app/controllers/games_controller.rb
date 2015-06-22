@@ -13,8 +13,11 @@ class GamesController < BaseController
     #@news = ScenarioBroadcast.where(:scenario_id => @game.scenario_id)
     #@curves = ScenarioCurve.where(:scenario_id => @game.scenario_id)
 
+    @participation = Participation.find_by(game_id: @game.id, user_id: current_user.id)
+
     @curves = ScenarioCurve.where(:scenario_id => 1)
     render layout: 'game'
+
   end
 
 end

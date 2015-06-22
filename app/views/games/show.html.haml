@@ -1,6 +1,3 @@
-%br/
-%br/
-
 
 #carousel.carousel.slide{'data-ride' => 'carousel'}
   .row
@@ -19,10 +16,6 @@
                 %h4= truncate(new.name, length: 70)
                 %p.ellipsis=  new.content
 
-
-
-
-
   %a#withoutBackground.left.carousel-control{'data-slide' => 'prev', :href => '#carousel'}
     %span.glyphicon.glyphicon-chevron-left
 
@@ -30,13 +23,21 @@
     %span.glyphicon.glyphicon-chevron-right
 
 
+
 .container
+  .row
+    .col-md-5
+    .col-md-5
+      %h1 Ma ferme
+  %h4=link_to('Voir ma ferme', {controller: :farms, action: :show, id: @participation.participant_id})
+
+
   .row
     .col-md-5
     .col-md-5
       %h1 Le monde
 
-  %h1 Liste des acteurs   :
+  %h2 Liste des acteurs
 
   -@actors.each do |actor|
     .cube
@@ -47,14 +48,16 @@
         -if actor.isPresence?
           %h4 Emplacement:
           -actor.locationEvent
+          =link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id} )
         -else
-          =link_to('Voir les contrats',   )
+          =link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id} )
 
 
-  %h1 Les courbes   :
+
+  %h2 Les courbes
   -@curves.each do |curve|
     .curve
-      %h2= curve.name
+      %h3= curve.name
 
       :ruby
         serie = {name: curve.name, data: curve.steps.where('turn <= ?', @currentTurn).order(:turn).map{|s| [s.turn , s.amount.to_f]}}

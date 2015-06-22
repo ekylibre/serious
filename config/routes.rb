@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :games
+  resources :participants
+  resources :farms
+  resources :actors
 
   root to: 'games#index'
 end

@@ -12,6 +12,10 @@ $borderColor: #77220b;
 $backgroundColorFlop1: rgba(105, 108, 109, .3);
 $backgroundColorFlop2: rgba(208, 223, 226, .4);
 
+.container{
+  margin-top: 51px;
+}
+
 .cube {
   display: inline-block;
   width: $widthCube;
@@ -80,6 +84,7 @@ $white_50: rgba(255, 255, 255, 0.5);
 
 .carousel{
   background-color: mix($brand-primary, white, 10%);
+  margin-top: 51px;
 
   .row{
     width: 100%;
@@ -133,6 +138,46 @@ $white_50: rgba(255, 255, 255, 0.5);
   }
 }
 
+
+
+
+/* Vue Participant A changer*/
+.logo img{
+  height: 110px;
+}
+
+.saleBuyInterface{
+  float: left;
+  margin-right: 80px;
+
+
+  .cubeSalesBuy{
+    border: 1.7px solid $borderColor;
+    width: 300px;
+    height: auto;
+    background-color: #C1BEBE;
+   // box-shadow: 0 5px 20px $backgroundColorFlop1, 0 0 8px 5px $backgroundColorFlop2 inset;
+    padding: 4%;
+
+
+    .sale {
+      display: block;
+      //float: right;
+      margin-right: 30px;
+      b{
+        text-align: right;
+      }
+
+      h4{
+
+      }
+    }
+  }
+}
+
+.test{
+  margin-top: 20px;
+}
 
 
 
