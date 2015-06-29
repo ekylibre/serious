@@ -1,0 +1,61 @@
+// Place all the styles related to the shops controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$backgroundColorCube: rgb(247, 247, 247);
+$borderColor: #77220b;
+.cube_shop{
+  display: inline-block;
+  width: 130px;
+  height: auto;
+  margin-top: 10px;
+  margin-right: 25px;
+  margin-bottom: 10px;
+
+  text-align: left;
+  padding: 5px;
+
+  background: $backgroundColorCube;
+  border: 1px solid $borderColor;
+
+  .text_cube{
+    font-size: medium;
+    text-align: center;
+  }
+
+  .logo{
+    width: auto;
+    height: 70px;
+
+    h3{
+      padding-left: 5%;
+    }
+
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .price{
+    border-top : 1px solid $borderColor;
+    border-bottom : 1px solid $borderColor;
+    width : auto;
+  }
+
+  .quantity{
+    padding-top: 10px;
+    text-align: center;
+
+
+    a{
+      font-size: small;
+      margin-right: 8px;
+    }
+  }
+
+}
+
+.dropdown-menu{
+  padding: 6px;
+}

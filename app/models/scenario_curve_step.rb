@@ -28,7 +28,7 @@
 #  updated_at :datetime
 #
 class ScenarioCurveStep < ActiveRecord::Base
-  belongs_to :curve, class_name: "ScenarioCurve"
+  belongs_to :curve, class_name: 'ScenarioCurve'
   has_one :scenario, through: :curve
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :turn, allow_nil: true, only_integer: true

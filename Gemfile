@@ -68,6 +68,8 @@ gem 'bootstrap-sass', '~> 3.1'
 gem 'simple_form', '~> 3.1.0'
 gem 'cocoon'
 
+gem 'treetop'
+
 group :development do
   gem 'quiet_assets'
   # gem 'rack-mini-profiler'

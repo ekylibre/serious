@@ -36,5 +36,8 @@ class Deal < ActiveRecord::Base
   validates_presence_of :client, :supplier
   #]VALIDATORS]
 
+  before_validation do
+    self.amount ||= 0
+  end
   accepts_nested_attributes_for :items
 end

@@ -80,10 +80,10 @@ class ScenarioCurve < ActiveRecord::Base
     if step = self.steps.find_by(turn: turn)
       return step.amount
     else # Interpolate
-      previous  = self.steps.where("turn < ?", turn).order(turn: :desc).first
-      following = self.steps.where("turn > ?", turn).order(:turn).first
+      previous  = self.steps.where('turn < ?', turn).order(turn: :desc).first
+      following = self.steps.where('turn > ?', turn).order(:turn).first
       unless previous or following
-        raise "Cannot interpolate amount with no steps..."
+        raise 'Cannot interpolate amount with no steps...'
       end
       if self.interpolation_method_linear?
         if previous and following

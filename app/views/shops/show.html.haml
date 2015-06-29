@@ -1,0 +1,43 @@
+.container
+  .row
+    .col-md-4
+    .col-md-4
+      %h2= "Boutique de #{@participant.name}"
+  .row
+    .col-md-4
+    .col-md-4
+    .col-md-4
+      .dropdown
+        %button#dropdownMenu1.btn.btn-default.dropdown-toggle{'aria-expanded' => 'true', 'aria-haspopup' => 'true','data-toggle' => 'dropdown', :type => 'button'}
+          ="Total : #{@deal.amount} €"
+          %span.caret
+        %ul.dropdown-menu
+          - if @deal.items.count == 0
+            %li Vous n'avez rien dans votre panier
+          - else
+            - @deal.items.each do |item|
+              %li= "<b>#{item.variant}</b> x #{item.quantity} = <b>#{item.amount} €</b>".html_safe
+              = link_to options= {controller: :shops, action: :remove, variant: item.variant}, method: :delete do
+                %span.glyphicon.glyphicon-remove
+  .row
+    .col-md-4
+      %h2 Liste des items
+    .col-md-4
+    .col-md-4
+
+  - @catalog_item.each do |item_catalog|
+    .cube_shop
+      .logo
+        .text_cube= item_catalog.variant
+      .price
+        .text_cube= "#{item_catalog.positive_margin_percentage} €"
+      .quantity
+        - quantity = 0
+        - if (item = @deal.items.find_by(variant: item_catalog.variant))
+          - quantity = item.quantity
+        .text_cube= "Nb : #{quantity}"
+        = link_to options= {controller: :shops, action: :add, variant: item_catalog.variant}, method: :post do
+          %span.glyphicon.glyphicon-plus
+
+        = link_to options= {controller: :shops, action: :decrement, variant: item_catalog.variant}, method: :patch do
+          %span.glyphicon.glyphicon-minus

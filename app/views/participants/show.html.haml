@@ -1,11 +1,16 @@
-
 .container
   .row
-    .col-md-5
+    .col-md-4
       .logo
         =image_tag('ca.jpg')
-    .col-md-5
+    .col-md-4
       %h1= @participant.name
+  .row
+    -if @participant.type == 'Actor'
+      .col-md-4
+        //todo style bouton a faire
+        .btn.btn-default
+          = link_to( 'Boutique', {controller: :shops, action: :show, id: @participant.id} )
 
   - if @participant.type == 'Farm'
     =render 'farms'

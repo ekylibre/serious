@@ -18,6 +18,13 @@ Rails.application.routes.draw do
   resources :participants
   resources :farms
   resources :actors
+  resources :shops do
+    member do
+      post :add
+      delete :remove
+      patch :decrement
+    end
+  end
 
   root to: 'games#index'
 end

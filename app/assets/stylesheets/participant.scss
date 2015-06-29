@@ -2,9 +2,37 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$borderColor: #77220b;
+$backgroundColor: rgb(247, 247, 247);
 
-.test img{
-  height: 100px;
+.logo img{
+  height: 110px;
+}
+
+.saleBuyInterface{
+  display: inline-block;
+  float: left;
+  margin-right: 80px;
+
+  .cubeSalesBuy{
+    border: 1.7px solid $borderColor;
+    width: 300px;
+    height: auto;
+    background-color: $backgroundColor;
+    // box-shadow: 0 5px 20px $backgroundColorFlop1, 0 0 8px 5px $backgroundColorFlop2 inset;
+    padding: 4%;
+
+    .sale {
+      display: block;
+      //float: right;
+      margin-right: 30px;
+
+      b{
+        text-align: right;
+      }
+
+    }
+  }
 }
 
 
