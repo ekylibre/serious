@@ -23,53 +23,11 @@
     %span.glyphicon.glyphicon-chevron-right
 
 
+- if @participant.type == 'Actor'
+  = render 'actor'
+- else
+  = render 'farm'
 
-.container
-  .row
-    .col-md-5
-    .col-md-5
-      %h1 Ma ferme
-  %h4=link_to('Voir ma ferme', {controller: :farms, action: :show, id: @participation.participant_id})
-
-
-  .row
-    .col-md-5
-    .col-md-5
-      %h1 Le monde
-
-  %h2 Liste des acteurs
-
-  -@actors.each do |actor|
-    .cube
-      .flip
-        = image_tag('ca.jpg')
-      .flop
-        %h3= actor.name
-        -if actor.isPresence?
-          %h4 Emplacement:
-          -actor.locationEvent
-          =link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id} )
-        -else
-          =link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id} )
-
-
-
-  %h2 Les courbes
-  -@curves.each do |curve|
-    .curve
-      %h3= curve.name
-
-      :ruby
-        serie = {name: curve.name, data: curve.steps.where('turn <= ?', @currentTurn).order(:turn).map{|s| [s.turn , s.amount.to_f]}}
-
-        if curve.interpolation_method_previous?
-          serie[:step] = 'left'
-        elsif curve.interpolation_method_following?
-          serie[:step] = 'right'
-        end
-
-
-      = line_chart([serie],chart: {height: 150}, y_axis: {title: {text: "#{:value.tl} (#{curve.unit_name})"}})
 
 
 

@@ -38,7 +38,23 @@ class DealItem < ActiveRecord::Base
   validates_numericality_of :amount, :pretax_amount, :quantity, :unit_amount, :unit_pretax_amount, allow_nil: true
   validates_presence_of :deal
   #]VALIDATORS]
+
+  after_initialize :init
+
   before_validation do
+    self.amount = self.unit_amount * self.quantity
+  end
+
+  after_save do
+    self.deal.save
+  end
+
+  after_destroy do
+    self.deal.save
+  end
+
+  def init
     self.quantity ||= 0
+    self.unit_amount ||= 0
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616115750) do
+ActiveRecord::Schema.define(version: 20150630125434) do
 
   create_table "catalog_items", force: :cascade do |t|
     t.integer  "participant_id",                                      null: false
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150616115750) do
     t.decimal  "negative_margin_percentage", precision: 19, scale: 4, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "tax"
   end
 
   add_index "catalog_items", ["participant_id"], name: "index_catalog_items_on_participant_id"
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150616115750) do
     t.decimal  "amount",      precision: 19, scale: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state"
   end
 
   create_table "game_turns", force: :cascade do |t|

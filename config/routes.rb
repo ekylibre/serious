@@ -20,9 +20,11 @@ Rails.application.routes.draw do
   resources :actors
   resources :shops do
     member do
+
       post :add
       delete :remove
       patch :decrement
+      put :checkout
     end
   end
 

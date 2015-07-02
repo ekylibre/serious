@@ -36,7 +36,13 @@ class Deal < ActiveRecord::Base
   validates_presence_of :client, :supplier
   #]VALIDATORS]
 
+
   before_validation do
+    self.amount = self.items.sum(:amount)
+  end
+
+  before_validation do
+    self.state ||= 'draft'
     self.amount ||= 0
   end
   accepts_nested_attributes_for :items

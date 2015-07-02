@@ -35,4 +35,12 @@ class CatalogItem < ActiveRecord::Base
   validates_numericality_of :negative_margin_percentage, :positive_margin_percentage, :quota, allow_nil: true
   validates_presence_of :negative_margin_percentage, :positive_margin_percentage, :quota, :variant
   #]VALIDATORS]
+  
+  def amount
+    10
+  end
+
+  def pretax_amount
+    8
+  end
 end

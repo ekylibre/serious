@@ -1,0 +1,8 @@
+.saleBuyInterface
+  %h3 Achats
+  .cubeSalesBuy
+    - @purchases.each do |purchase|
+      .sale
+        %h4= "#{purchase.supplier.name} - <i> #{purchase.updated_at.strftime('%d/%m/%Y')}</i>".html_safe
+        - purchase.items.each do |item|
+          = "- #{item.variant} - #{item.amount}€ <br/>".html_safe

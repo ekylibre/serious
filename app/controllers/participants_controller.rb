@@ -7,12 +7,24 @@ class ParticipantsController < BaseController
     @participant = Participant.find( params[:id] )
     @game = Game.find_by( id: @participant.game_id )
     @user = User.find(current_user.id)
+    @current_participant = Participation.find_by(user_id: @user.id)
 
     # Todo Récupérer la courbe des finances d'une ferme
-    @curve = ScenarioCurve.find(1)
+    #@curve = ScenarioCurve.find(1)
+
+    if @participant.type == 'Actor'
+      @purchases = Deal.joins(:supplier).where(client: @current_participant, supplier: @participant, state: 'invoice')
+      @sales = Deal.joins(:client).where(supplier: @current_participant, client: @current_participant, state: 'invoice')
+    else
+      @purchases = Deal.joins(:supplier).where(client: @current_participant, state: 'invoice')
+      @sales = Deal.joins(:client).where(supplier: @current_participant, state: 'invoice')
+    end
   end
 
   def index
+  end
 
+  def find_name_client(purchase)
+    Participant.find(purchase.supplier_id).name
   end
 end

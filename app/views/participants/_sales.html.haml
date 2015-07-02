@@ -1,0 +1,8 @@
+.saleBuyInterface
+  %h3 Ventes
+  .cubeSalesBuy
+    - @sales.each do |sale|
+      .sale
+        %h4= "#{@sales.client.name} - <i> #{sale.updated_at.strftime('%d/%m/%Y')}</i>".html_safe
+        - sale.items.each do |item|
+          = "- #{item.variant} - #{item.amount}€ <br/>".html_safe

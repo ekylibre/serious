@@ -16,26 +16,34 @@
             %li Vous n'avez rien dans votre panier
           - else
             - @deal.items.each do |item|
-              %li= "<b>#{item.variant}</b> x #{item.quantity} = <b>#{item.amount} €</b>".html_safe
-              = link_to options= {controller: :shops, action: :remove, variant: item.variant}, method: :delete do
-                %span.glyphicon.glyphicon-remove
+              .article
+                %li= "<b>#{item.variant}</b> x #{item.quantity} = <b>#{item.amount} € </b>".html_safe
+                = link_to options= {controller: :shops, action: :remove, variant: item.variant}, method: :delete do
+                  %span.glyphicon.glyphicon-remove
+                  Supprimer
+            %li
+            = link_to options= {controller: :shops, action: :checkout}, method: :put do
+              Valider la commande
   .row
     .col-md-4
       %h2 Liste des items
     .col-md-4
     .col-md-4
-
+  - if @current_participant.id == @participant.id
+    .btn.btn-default
+      = link_to( 'Ajouter un item', {controller: :shops, action: :add, id: @participant.id} )
+    %br/
   - @catalog_item.each do |item_catalog|
     .cube_shop
       .logo
         .text_cube= item_catalog.variant
       .price
-        .text_cube= "#{item_catalog.positive_margin_percentage} €"
+        .text_cube= "#{item_catalog.pretax_amount} €"
       .quantity
         - quantity = 0
         - if (item = @deal.items.find_by(variant: item_catalog.variant))
           - quantity = item.quantity
-        .text_cube= "Nb : #{quantity}"
+        .text_cube= "Quantité : #{quantity}"
         = link_to options= {controller: :shops, action: :add, variant: item_catalog.variant}, method: :post do
           %span.glyphicon.glyphicon-plus
 

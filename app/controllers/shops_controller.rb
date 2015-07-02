@@ -5,46 +5,58 @@ class ShopsController < ApplicationController
 
   layout 'shop'
 
+  def new
 
-  def show
-    @catalog_item = CatalogItem.where( participant_id: params[:id] )
   end
 
+  def show
+  end
 
   def add
-    item = @deal.items.find_or_create_by(variant: params[:variant])
+    item_catalog = @catalog_item.find_by(variant: params[:variant])
+    item = @deal.items.find_or_initialize_by( variant: params[:variant] )
     item.quantity += 1
+
+    item.unit_pretax_amount = item_catalog.pretax_amount
+    item.unit_amount = item_catalog.amount
     item.save!
     redirect_to action: :show
   end
 
   def remove
-    @deal.items.destroy(DealItem.find_by(variant: params[:variant]))
+    item = DealItem.find_by(variant: params[:variant])
+    @deal.items.destroy(DealItem.find_by(variant: item.variant))
     redirect_to action: :show
   end
 
   def decrement
-
-    item = @deal.items.find_or_create_by(variant: params[:variant])
-    if item.quantity > 0
-      item.quantity -= 1
-      item.save!
+    item_catalog = @catalog_item.find_by(variant: params[:variant])
+    if item = @deal.items.find_by(variant: item_catalog.variant)
+      if item.quantity - 1 > 0
+        item.quantity -= 1
+        item.save!
+      else
+        @deal.items.destroy(DealItem.find_by(variant: item.variant))
+      end
     end
     redirect_to action: :show
   end
 
   def checkout
-
+    @deal.state = 'invoice'
+    @deal.save!
+    redirect_to participant_url
   end
+
 
   protected
 
   def find_deal
-    @deal = Deal.find_or_create_by!(client: @current_participant, supplier: @participant)
-    #Todo Créer la migration pour ajouter la colonne state et récupérer celle qui est en draft
+    @deal = Deal.find_or_create_by!(client: @current_participant, supplier: @participant, state: 'draft')
   end
 
   def init
+    @catalog_item = CatalogItem.where( participant_id: params[:id] )
     @participant = Participant.find( params[:id] )
     participation =  Participation.find_by(user_id: current_user.id)
     @current_participant = Participant.find(participation.participant_id)
