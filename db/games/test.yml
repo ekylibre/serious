@@ -1,0 +1,474 @@
+---
+name: test
+scenario: tomorrow-never-dies
+farms:
+  F01:
+    name: Ferme Maillard0
+    historic: SL47
+    stand_number: SF01
+  F02:
+    name: Ferme Leroy1
+    historic: SL47
+    stand_number: SF02
+  F03:
+    name: Ferme Remy2
+    historic: SL47
+    stand_number: SF03
+  F04:
+    name: Ferme Pinto3
+    historic: SL47
+    stand_number: SF04
+  F05:
+    name: Ferme Torres4
+    historic: SL47
+    stand_number: SF05
+  F06:
+    name: Ferme Fournier5
+    historic: SL47
+    stand_number: SF06
+  F07:
+    name: Ferme Didier6
+    historic: SL47
+    stand_number: SF07
+  F08:
+    name: Ferme Mace7
+    historic: SL47
+    stand_number: SF08
+  F09:
+    name: Ferme Torres8
+    historic: SL47
+    stand_number: SF09
+  F10:
+    name: Ferme Gallet9
+    historic: SL47
+    stand_number: SF10
+  F11:
+    name: Ferme Goncalves10
+    historic: SL47
+    stand_number: SF11
+  F12:
+    name: Ferme Renaud11
+    historic: SL47
+    stand_number: SF12
+  F13:
+    name: Ferme Morvan12
+    historic: SL47
+    stand_number: SF13
+  F14:
+    name: Ferme Allain13
+    historic: SL47
+    stand_number: SF14
+  F15:
+    name: Ferme Moreno14
+    historic: SL47
+    stand_number: SF15
+actors:
+  A01:
+    name: Crédit Agricole
+    stand_number: SA01
+    catalog_items:
+    - variant: male_adult_cow
+      quota: 7
+    - variant: coop:avoine_d_hiver_n_une_de_mai_en_s20kg
+      quota: 7
+    - variant: coop:eca_excel_pack_protor_b_vrac
+      quota: 7
+    - variant: winter_barley_seed_25
+      quota: 7
+    - variant: daily_training_course
+      quota: 7
+    - variant: coop:nikeyl_5_l
+      quota: 7
+    - variant: sower
+      quota: 7
+    - variant: coop:bd_s_miradoux_r1_gau_red_25kg
+      quota: 7
+    - variant: pear_seedling
+      quota: 7
+    - variant: bulk_animal_food
+      quota: 7
+    - variant: pig_herd
+      quota: 7
+    - variant: etincel_winter_barley_crop
+      quota: 7
+    - variant: wheat_seed_25
+      quota: 7
+    - variant: actilact
+      quota: 7
+    - variant: coop:trefle_alexandrie_s10k
+      quota: 7
+  A02:
+    name: Groupama
+    stand_number: SA02
+    catalog_items:
+    - variant: reaper
+      quota: 7
+    - variant: coop:prosaro_5_l
+      quota: 7
+    - variant: accommodation_travel
+      quota: 7
+    - variant: hen_compost
+      quota: 7
+    - variant: coop:esc_s_etincel_r1_gau_red_s25kg
+      quota: 7
+    - variant: hen_guano
+      quota: 7
+    - variant: bulk_urea_46
+      quota: 7
+    - variant: merlot_noir_so4_vine_seedling
+      quota: 7
+    - variant: daily_training_course
+      quota: 7
+    - variant: mixed_chemical_fertilizer
+      quota: 7
+    - variant: sunflower_crop
+      quota: 7
+    - variant: coop:metarex_rg_tds_20kg
+      quota: 7
+    - variant: salary_social_contribution
+      quota: 7
+    - variant: female_adult_pony
+      quota: 7
+    - variant: hazelnut
+      quota: 7
+  A03:
+    name: Unicoque
+    stand_number: SA03
+    catalog_items:
+    - variant: merveille_hazelnut
+      quota: 7
+    - variant: bulk_ammo_phosphorus_sulfur_20_23_0
+      quota: 7
+    - variant: coop:moha_25kg
+      quota: 7
+    - variant: pig_slurry
+      quota: 7
+    - variant: building_material_in_own_outstanding_installation
+      quota: 7
+    - variant: plow
+      quota: 7
+    - variant: actilact
+      quota: 7
+    - variant: hen_guano
+      quota: 7
+    - variant: rape_crop
+      quota: 7
+    - variant: equipment
+      quota: 7
+    - variant: ovis_compost
+      quota: 7
+    - variant: hoe
+      quota: 7
+    - variant: arezzo_wheat_crop
+      quota: 7
+    - variant: coop:fertiactyl_starter
+      quota: 7
+    - variant: helianthus_herbicide
+      quota: 7
+  A04:
+    name: Terre du Sud
+    stand_number: SA04
+    catalog_items:
+    - variant: female_adult_pony
+      quota: 7
+    - variant: beef_meat
+      quota: 7
+    - variant: coop:balmora_5_l
+      quota: 7
+    - variant: bee_band_pollinate_service
+      quota: 7
+    - variant: animal_housing_service
+      quota: 7
+    - variant: spelt_seed_25
+      quota: 7
+    - variant: sunflower_grain
+      quota: 7
+    - variant: grain_tank
+      quota: 7
+    - variant: land_parcel
+      quota: 7
+    - variant: coop:vesce_velue_savane_hiver_10k
+      quota: 7
+    - variant: plastic_cover_500m
+      quota: 7
+    - variant: rape_seed
+      quota: 7
+    - variant: goat_milk
+      quota: 7
+    - variant: so2_liquid_a8
+      quota: 7
+    - variant: coop:ray_g_hyb_bahial_10kg
+      quota: 7
+  A05:
+    name: Razol
+    stand_number: SA05
+    catalog_items:
+    - variant: winter_oat_crop
+      quota: 7
+    - variant: freelance_sofware_development
+      quota: 7
+    - variant: male_pig_band
+      quota: 7
+    - variant: frozen_fruit
+      quota: 7
+    - variant: manure_division
+      quota: 7
+    - variant: male_young_sheep
+      quota: 7
+    - variant: irrigation_water
+      quota: 7
+    - variant: ovis_manure
+      quota: 7
+    - variant: coop:mix_in_5_l
+      quota: 7
+    - variant: walnut_crop
+      quota: 7
+    - variant: coop:ma_lg3530_cruiser_50mg
+      quota: 7
+    - variant: diesel
+      quota: 7
+    - variant: car
+      quota: 7
+    - variant: minced_beef_meat
+      quota: 7
+    - variant: corn_seed_50tg
+      quota: 7
+  A06:
+    name: CER
+    stand_number: SA06
+    catalog_items:
+    - variant: cereals_feed_bag_25
+      quota: 7
+    - variant: responsibility_insurance
+      quota: 7
+    - variant: bottle_75cl_wine
+      quota: 7
+    - variant: food_tank
+      quota: 7
+    - variant: potato_crop
+      quota: 7
+    - variant: computer_display
+      quota: 7
+    - variant: hen_slurry
+      quota: 7
+    - variant: male_adult_pony
+      quota: 7
+    - variant: pea_grain
+      quota: 7
+    - variant: animal_division
+      quota: 7
+    - variant: blackcurrant_crop
+      quota: 7
+    - variant: liquid_10_25_d1.4
+      quota: 7
+    - variant: shoulder_veal_meat
+      quota: 7
+    - variant: coop:boa_3_l
+      quota: 7
+    - variant: tobacco_crop
+      quota: 7
+  A07:
+    name: "@com"
+    stand_number: SA07
+    catalog_items:
+    - variant: hazel_seedling
+      quota: 7
+    - variant: coop:fandango_s_5_l
+      quota: 7
+    - variant: plum_reaper
+      quota: 7
+    - variant: coop:nikeyl_5_l
+      quota: 7
+    - variant: male_adult_pony
+      quota: 7
+    - variant: ink_cartridge
+      quota: 7
+    - variant: pig_slurry
+      quota: 7
+    - variant: land_parcel_locative_charge
+      quota: 7
+    - variant: coop:ma_dkc_3912_50mgr
+      quota: 7
+    - variant: hen_guano
+      quota: 7
+    - variant: female_young_goat
+      quota: 7
+    - variant: fig_seedling
+      quota: 7
+    - variant: subsoil_plow
+      quota: 7
+    - variant: bolt
+      quota: 7
+    - variant: walnut_crop
+      quota: 7
+  A08:
+    name: MSA
+    stand_number: SA08
+    catalog_items:
+    - variant: quince_crop
+      quota: 7
+    - variant: chicory_crop
+      quota: 7
+    - variant: calcium_carbonate_25kg
+      quota: 7
+    - variant: peanut_crop
+      quota: 7
+    - variant: piglet_meat
+      quota: 7
+    - variant: congress
+      quota: 7
+    - variant: salmon_band
+      quota: 7
+    - variant: coop:bofix_20_l
+      quota: 7
+    - variant: seedling
+      quota: 7
+    - variant: coop:ma_bergxxon_duo_sonido_d50mg
+      quota: 7
+    - variant: manure_division
+      quota: 7
+    - variant: lucerne_seed
+      quota: 7
+    - variant: bottle_75cl_wine
+      quota: 7
+    - variant: winter_barley_crop
+      quota: 7
+    - variant: female_adult_cattle_herd
+      quota: 7
+participations:
+- participant: F01
+  user: aime.labbe@lemkeblanda.com
+- participant: F01
+  user: caroline.guillot@stoltenberg.info
+- participant: F01
+  user: luce.normand@bodehuels.info
+- participant: F01
+  user: auguste.lesage@botsfordeichmann.info
+- participant: F02
+  user: georges.boucher@luettgenhirthe.com
+- participant: F02
+  user: aurelie.camus@mills.biz
+- participant: F02
+  user: laure.guillet@bashirian.ca
+- participant: F02
+  user: sabine.de@auerborer.com
+- participant: F03
+  user: marguerite.lefevre@dickinson.com
+- participant: F03
+  user: celina.cordier@fisher.biz
+- participant: F03
+  user: henriette.valentin@rowebarrows.ca
+- participant: F03
+  user: penelope.lebon@kerluke.name
+- participant: F04
+  user: marianne.munoz@kiehn.ca
+- participant: F04
+  user: charles.lambert@macejkovic.biz
+- participant: F04
+  user: penelope.begue@franeckiking.us
+- participant: F04
+  user: theophile.coste@brakus.us
+- participant: F05
+  user: aimee.pineau@mcculloughhamill.us
+- participant: F05
+  user: josephine.gall@rueckerfranecki.name
+- participant: F05
+  user: laetitia.da@boyer.info
+- participant: F05
+  user: jules.jacob@leuschketurcotte.com
+- participant: F06
+  user: martin.le@shanahancassin.co.uk
+- participant: F06
+  user: genevieve.bailly@zulauf.co.uk
+- participant: F06
+  user: luc.adam@kuhicreichel.ca
+- participant: F06
+  user: elodie.rodrigues@daugherty.com
+- participant: F07
+  user: audrey.lacroix@bauch.us
+- participant: F07
+  user: alex.francois@heller.name
+- participant: F07
+  user: josephine.durand@ferrysatterfield.co.uk
+- participant: F07
+  user: christelle.lebon@trantow.info
+- participant: F08
+  user: gabrielle.de@metztorp.name
+- participant: F08
+  user: theodore.jacques@uptonhyatt.info
+- participant: F08
+  user: eric.lelievre@gerlachjohnston.info
+- participant: F08
+  user: elodie.giraud@torphy.co.uk
+- participant: F09
+  user: penelope.mathieu@faymayer.com
+- participant: F09
+  user: jeanne.garcia@rice.com
+- participant: F09
+  user: alice.thomas@kemmer.info
+- participant: F09
+  user: patricia.picard@haucktorphy.us
+- participant: F10
+  user: pierre.mathieu@conroy.us
+- participant: F10
+  user: nath.arnaud@reichelarmstrong.us
+- participant: F10
+  user: antoinette.buisson@schmitt.info
+- participant: F10
+  user: frederic.maury@goodwinkerluke.us
+- participant: F11
+  user: margot.georges@vandervort.com
+- participant: F11
+  user: andre.gimenez@mcglynn.co.uk
+- participant: F11
+  user: benoit.levy@bernhard.com
+- participant: F11
+  user: louis.hamon@mraz.name
+- participant: F12
+  user: jules.bousquet@franeckiwunsch.name
+- participant: F12
+  user: odette.lemoine@terry.ca
+- participant: F12
+  user: dominique.legendre@blickkerluke.ca
+- participant: F12
+  user: marie.fleury@lemkeromaguera.biz
+- participant: F13
+  user: madeleine.martineau@steuber.biz
+- participant: F13
+  user: raymond.louis@kilback.us
+- participant: F13
+  user: celine.chretien@stanton.co.uk
+- participant: F13
+  user: luce.guillaume@quigley.co.uk
+- participant: F14
+  user: emile.gimenez@corkery.ca
+- participant: F14
+  user: hugues.bourgeois@daniel.biz
+- participant: F14
+  user: christiane.begue@marks.biz
+- participant: F14
+  user: victoire.thibault@schaden.name
+- participant: F15
+  user: genevieve.guyon@quigley.com
+- participant: F15
+  user: bertrand.maury@jaskolskihodkiewicz.com
+- participant: F15
+  user: henri.martineau@rolfson.name
+- participant: F15
+  user: margaux.lesage@baumbach.co.uk
+- participant: A02
+  user: thomas.richard@fadel.name
+- participant: A02
+  user: henriette.jacob@hayesrogahn.biz
+- participant: A04
+  user: astrid.leroy@abbottlynch.ca
+- participant: A04
+  user: etienne.rossi@wymanokuneva.biz
+- participant: A06
+  user: odette.guibert@mcglynn.name
+- participant: A06
+  user: mathilde.dias@konopelski.ca
+- participant: A07
+  user: michel.duhamel@kling.us
+- participant: A08
+  user: celina.barthelemy@ebert.com

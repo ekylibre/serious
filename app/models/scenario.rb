@@ -61,7 +61,7 @@ class Scenario < ActiveRecord::Base
           curves[code] = curve
           attributes[:steps].each do |step|
             curve.steps.create!(step.slice(:turn, :amount))
-          end
+          end if attributes[:steps]
         end
         # Set references
         hash[:curves].each do |code, attributes|

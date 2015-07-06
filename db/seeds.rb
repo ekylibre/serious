@@ -9,18 +9,32 @@
 
 root = Rails.root
 
+print "Users: "
+YAML.load_file(root.join("db", "users.yml")).each do |user|
+  unless User.find_by(email: user["email"])
+    User.create!(user.merge(password: '12345678', password_confirmation: '12345678'))
+    print "."
+  end
+end
+puts ""
+
+print "Scenario: "
 Dir.glob(root.join("db", "scenarios", "*.yml")).each do |file|
   Scenario.import(file)
+  print "."
 end
+puts ""
 
+print "Historic: "
 Dir.glob(root.join("db", "historics", "*.yml")).each do |file|
   Historic.import(file)
+  print "."
 end
+puts ""
 
-YAML.load_file(root.join("db", "users.yml")).each do |user|
-  User.create!(user.merge(password: '12345678', password_confirmation: '12345678'))
-end
-
+print "Games: "
 Dir.glob(root.join("db", "games", "*.yml")).each do |file|
   Game.import(file)
+  print "."
 end
+puts ""

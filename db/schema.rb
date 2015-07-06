@@ -14,12 +14,12 @@
 ActiveRecord::Schema.define(version: 20150630125434) do
 
   create_table "catalog_items", force: :cascade do |t|
-    t.integer  "participant_id",                                      null: false
-    t.string   "variant",                                             null: false
-    t.boolean  "nature"
-    t.decimal  "quota",                      precision: 19, scale: 4, null: false
-    t.decimal  "positive_margin_percentage", precision: 19, scale: 4, null: false
-    t.decimal  "negative_margin_percentage", precision: 19, scale: 4, null: false
+    t.integer  "participant_id",                                                    null: false
+    t.string   "variant",                                                           null: false
+    t.string   "nature"
+    t.decimal  "quota",                      precision: 19, scale: 4,               null: false
+    t.decimal  "positive_margin_percentage", precision: 19, scale: 4, default: 0.0, null: false
+    t.decimal  "negative_margin_percentage", precision: 19, scale: 4, default: 0.0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "tax"
@@ -135,8 +135,8 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.boolean  "subcontractor",     default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "isPresence",        default: true
-    t.string   "locationEvent"
+    t.boolean  "present",           default: false, null: false
+    t.string   "stand_number"
   end
 
   add_index "participants", ["game_id"], name: "index_participants_on_game_id"
@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(version: 20150630125434) do
   add_index "scenario_curve_steps", ["curve_id"], name: "index_scenario_curve_steps_on_curve_id"
 
   create_table "scenario_curves", force: :cascade do |t|
-    t.integer  "scenario_id",                                     null: false
+    t.integer  "scenario_id",                                                   null: false
     t.string   "nature"
     t.string   "name"
     t.string   "unit_name"
@@ -188,10 +188,10 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.integer  "reference_id"
     t.decimal  "initial_amount",         precision: 19, scale: 4
     t.integer  "amount_round"
-    t.decimal  "amplitude_factor",       precision: 19, scale: 4
-    t.decimal  "offset_amount",          precision: 19, scale: 4
-    t.decimal  "positive_alea_amount",   precision: 19, scale: 4
-    t.decimal  "negative_alea_amount",   precision: 19, scale: 4
+    t.decimal  "amplitude_factor",       precision: 19, scale: 4, default: 1.0, null: false
+    t.decimal  "offset_amount",          precision: 19, scale: 4, default: 0.0, null: false
+    t.decimal  "positive_alea_amount",   precision: 19, scale: 4, default: 0.0, null: false
+    t.decimal  "negative_alea_amount",   precision: 19, scale: 4, default: 0.0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

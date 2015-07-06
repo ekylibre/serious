@@ -71,7 +71,9 @@ class Game < ActiveRecord::Base
       end
 
       hash[:actors].each do |code, actor|
-        game.actors.create! actor.slice(:name, :borrower, :lender, :client, :supplier, :subcontractor, :contractor, :zone_x, :zone_y, :zone_width, :zone_height).merge(code: code)
+        attributes = actor.slice(:name, :borrower, :lender, :client, :supplier, :subcontractor, :contractor, :zone_x, :zone_y, :zone_width, :zone_height).merge(code: code)
+        attributes[:catalog_items_attributes] = actor[:catalog_items] if actor[:catalog_items]
+        game.actors.create! attributes
       end
 
       hash[:participations].each do |participation|

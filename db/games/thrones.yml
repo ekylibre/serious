@@ -4,11 +4,21 @@ map_width: 40
 map_height: 40
 farms:
   baratheon:
-    name: Barathon
+    name: Barathéon
   lannister:
     name: Lannister
   stark:
     name: Stark
+  bolton:
+    name: Bolton
+  arryn:
+    name: Arryn
+  greyjoy:
+    name: Greyjoy
+  tully:
+    name: Tully
+  martel:
+    name: Martel
   targaryen:
     name: Targaryen
 actors:

@@ -21,7 +21,7 @@
 # == Table: scenario_curves
 #
 #  amount_round           :integer
-#  amplitude_factor       :decimal(19, 4)
+#  amplitude_factor       :decimal(19, 4)   default(1), not null
 #  created_at             :datetime
 #  description            :text
 #  id                     :integer          not null, primary key
@@ -29,9 +29,9 @@
 #  interpolation_method   :string
 #  name                   :string
 #  nature                 :string
-#  negative_alea_amount   :decimal(19, 4)
-#  offset_amount          :decimal(19, 4)
-#  positive_alea_amount   :decimal(19, 4)
+#  negative_alea_amount   :decimal(19, 4)   default(0), not null
+#  offset_amount          :decimal(19, 4)   default(0), not null
+#  positive_alea_amount   :decimal(19, 4)   default(0), not null
 #  reference_id           :integer
 #  scenario_id            :integer          not null
 #  unit_name              :string
@@ -44,6 +44,10 @@
 # == Fixture: scenario_curves
 #
 # scenario_curves_001:
+#   amplitude_factor: 0
+#   negative_alea_amount: 0
+#   offset_amount: 0
+#   positive_alea_amount: 0
 #   scenario: scenarios_001
 #
 

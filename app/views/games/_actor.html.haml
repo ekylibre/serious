@@ -10,18 +10,18 @@
     .col-md-5
       %h1 Le monde
   %h2 Liste des participants
-  -@farms.each do |farm|
+  - @farms.each do |farm|
     .cube
       .flip
         %h3= farm.name
       .flop
         %h3= farm.name
-        -if farm.isPresence?
-          %h4 Emplacement:
-          -farm.locationEvent
+        - if farm.present
+          %h4 Emplacement :
+          - farm.stand_number
           //todo enlever le lien quand il y a aura présence
-          =link_to('Voir la boutique', {controller: :shops, action: :show, id: farm.id} )
-        -else
-          =link_to('Voir les contrats', {controller: :actors, action: :show, id: farm.id} )
+          = link_to('Voir la boutique', {controller: :shops, action: :show, id: farm.id} )
+        - else
+          = link_to('Voir les contrats', {controller: :actors, action: :show, id: farm.id} )
 
   = render 'curve'

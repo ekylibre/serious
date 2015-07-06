@@ -34,6 +34,8 @@
 #  logo_file_size    :integer
 #  logo_updated_at   :datetime
 #  name              :string           not null
+#  present           :boolean          default(FALSE), not null
+#  stand_number      :string
 #  subcontractor     :boolean          default(FALSE), not null
 #  supplier          :boolean          default(FALSE), not null
 #  type              :string
@@ -53,6 +55,7 @@
 #   game: games_001
 #   lender: true
 #   name: "Lorem ipsum"
+#   present: true
 #   subcontractor: true
 #   supplier: true
 #

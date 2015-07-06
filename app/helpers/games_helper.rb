@@ -1,4 +1,4 @@
-module GameHelper
+module GamesHelper
 
   def strat(x, y, width, height, thickness, options = {})
     depth = options.delete(:depth) || 0

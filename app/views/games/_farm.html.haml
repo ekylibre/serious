@@ -11,18 +11,18 @@
       %h1 Le monde
 
   %h2 Liste des acteurs
-  -@actors.each do |actor|
+  - @actors.each do |actor|
     .cube
       .flip
         = image_tag('ca.jpg')
       .flop
         %h3= actor.name
-        -if actor.isPresence?
-          %h4 Emplacement:
-          -actor.locationEvent
+        - if actor.present
+          %h4 Emplacement :
+          - actor.stand_number
           //todo enlever le lien quand il y a aura présence
-          =link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id} )
-        -else
-          =link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id} )
+          = link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id} )
+        - else
+          = link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id} )
 
   = render 'curve'

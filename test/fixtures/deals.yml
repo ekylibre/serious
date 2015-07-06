@@ -24,6 +24,7 @@
 #  client_id   :integer          not null
 #  created_at  :datetime
 #  id          :integer          not null, primary key
+#  state       :string
 #  supplier_id :integer          not null
 #  updated_at  :datetime
 #

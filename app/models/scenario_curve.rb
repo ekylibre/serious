@@ -21,7 +21,7 @@
 # == Table: scenario_curves
 #
 #  amount_round           :integer
-#  amplitude_factor       :decimal(19, 4)
+#  amplitude_factor       :decimal(19, 4)   default(1), not null
 #  created_at             :datetime
 #  description            :text
 #  id                     :integer          not null, primary key
@@ -29,9 +29,9 @@
 #  interpolation_method   :string
 #  name                   :string
 #  nature                 :string
-#  negative_alea_amount   :decimal(19, 4)
-#  offset_amount          :decimal(19, 4)
-#  positive_alea_amount   :decimal(19, 4)
+#  negative_alea_amount   :decimal(19, 4)   default(0), not null
+#  offset_amount          :decimal(19, 4)   default(0), not null
+#  positive_alea_amount   :decimal(19, 4)   default(0), not null
 #  reference_id           :integer
 #  scenario_id            :integer          not null
 #  unit_name              :string
@@ -43,16 +43,16 @@
 class ScenarioCurve < ActiveRecord::Base
   extend Enumerize
   enumerize :interpolation_method, in: [:linear, :previous, :following], default: :linear, predicates: {prefix: true}
-  enumerize :nature, in: [:variant, :loan_interest, :reference]
+  enumerize :nature, in: [:variant, :loan_interest, :reference], predicates: {prefix: true}
   belongs_to :reference, class_name: 'ScenarioCurve'
   belongs_to :scenario
   has_many :steps, class_name: 'ScenarioCurveStep', foreign_key: :curve_id
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount_round, allow_nil: true, only_integer: true
   validates_numericality_of :amplitude_factor, :initial_amount, :negative_alea_amount, :offset_amount, :positive_alea_amount, allow_nil: true
-  validates_presence_of :scenario
+  validates_presence_of :amplitude_factor, :negative_alea_amount, :offset_amount, :positive_alea_amount, :scenario
   #]VALIDATORS]
-  validates_presence_of :positive_alea_amount, :negative_alea_amount, :amplitude_factor, :offset_amount, if: :reference
+  # validates_presence_of :positive_alea_amount, :negative_alea_amount, :amplitude_factor, :offset_amount, if: :nature_variant?
 
 
   accepts_nested_attributes_for :steps

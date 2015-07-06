@@ -34,6 +34,8 @@
 #  logo_file_size    :integer
 #  logo_updated_at   :datetime
 #  name              :string           not null
+#  present           :boolean          default(FALSE), not null
+#  stand_number      :string
 #  subcontractor     :boolean          default(FALSE), not null
 #  supplier          :boolean          default(FALSE), not null
 #  type              :string
@@ -58,9 +60,11 @@ class Participant < ActiveRecord::Base
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :logo_updated_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
   validates_numericality_of :logo_file_size, :zone_height, :zone_width, :zone_x, :zone_y, allow_nil: true, only_integer: true
-  validates_inclusion_of :borrower, :client, :contractor, :lender, :subcontractor, :supplier, in: [true, false]
+  validates_inclusion_of :borrower, :client, :contractor, :lender, :present, :subcontractor, :supplier, in: [true, false]
   validates_presence_of :game, :name
   #]VALIDATORS]
   validates_uniqueness_of :name, scope: :game_id
+
+  accepts_nested_attributes_for :catalog_items, allow_destroy: true
 
 end

@@ -1,6 +1,6 @@
 class AddPresenceActor < ActiveRecord::Migration
   def change
-    add_column :participants, :isPresence, :boolean, :default => false
-    add_column :participants, :locationEvent, :string, :null => true
+    add_column :participants, :present, :boolean, null: false, default: false
+    add_column :participants, :stand_number, :string
   end
 end

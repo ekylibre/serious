@@ -43,10 +43,10 @@ class AddBase < ActiveRecord::Migration
       t.references :reference,                index: true
       t.decimal    :initial_amount,           precision: 19, scale: 4
       t.integer    :amount_round
-      t.decimal    :amplitude_factor,         precision: 19, scale: 4
-      t.decimal    :offset_amount,            precision: 19, scale: 4
-      t.decimal    :positive_alea_amount,     precision: 19, scale: 4
-      t.decimal    :negative_alea_amount,     precision: 19, scale: 4
+      t.decimal    :amplitude_factor,         precision: 19, scale: 4, null: false, default: 1
+      t.decimal    :offset_amount,            precision: 19, scale: 4, null: false, default: 0
+      t.decimal    :positive_alea_amount,     precision: 19, scale: 4, null: false, default: 0
+      t.decimal    :negative_alea_amount,     precision: 19, scale: 4, null: false, default: 0
       t.timestamps
     end
 
@@ -151,10 +151,10 @@ class AddBase < ActiveRecord::Migration
     create_table :catalog_items do |t|
       t.references :participant,  null: false, index: true
       t.string     :variant,      null: false, index: true
-      t.boolean    :nature
+      t.string     :nature
       t.decimal    :quota,                      precision: 19, scale: 4, null: false
-      t.decimal    :positive_margin_percentage, precision: 19, scale: 4, null: false
-      t.decimal    :negative_margin_percentage, precision: 19, scale: 4, null: false
+      t.decimal    :positive_margin_percentage, precision: 19, scale: 4, null: false, default: 0
+      t.decimal    :negative_margin_percentage, precision: 19, scale: 4, null: false, default: 0
       t.timestamps
     end
 

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GameHelperTest < ActionView::TestCase
+class GamesHelperTest < ActionView::TestCase
 
   # Replace this with your real tests.'
   test "the truth" do
