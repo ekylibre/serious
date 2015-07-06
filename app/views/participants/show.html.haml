@@ -2,11 +2,11 @@
   .row
     .col-md-4
       .logo
-        =image_tag('ca.jpg')
+        = image_tag('http://placehold.it/350')
     .col-md-4
       %h1= @participant.name
   .row
-    -if @participant.type == 'Actor'
+    - if @participant.type == 'Actor'
       .col-md-4
         .btn.btn-default
           = link_to( 'Boutique', {controller: :shops, action: :show, id: @participant.id} )
