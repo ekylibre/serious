@@ -47,4 +47,6 @@
 #
 class Farm < Participant
   belongs_to :historic
+
+  
 end

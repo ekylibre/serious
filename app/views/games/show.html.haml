@@ -19,12 +19,40 @@
       = link_to("#carousel", class: "without-background right carousel-control", data: {slide: 'next'}) do
         %span.glyphicon.glyphicon-chevron-right
 
-- if @participant.is_a?(Actor)
-  = render 'actor'
-- else
-  = render 'farm'
+#world.container
+  %h1 Le monde
+  .btn.btn-default
+    = link_to('Vers ma page', {controller: :actors, action: :show, id: @participant.id})
+  - if @current_participant.is_a?(Actor)
+    %h2 Liste des participants
+    - @farms.each do |farm|
+      .cube
+        .flip
+          %h3= farm.name
+        .flop
+          %h3= farm.name
+          - if farm.present
+            %h4 Emplacement :
+            - farm.stand_number
+            //todo enlever le lien quand il y a aura présence
+            = link_to('Voir la boutique', {controller: :shops, action: :show, id: farm.id} )
+          - else
+            = link_to('Voir les contrats', {controller: :actors, action: :show, id: farm.id} )
 
-
-
-
-
+  - if @current_participant.is_a?(Farm)    
+    %h2 Liste des acteurs
+    - @actors.each do |actor|
+      .cube
+        .flip
+          = image_tag('ca.jpg')
+        .flop
+          %h3= actor.name
+          - if actor.present
+            %h4 Emplacement :
+            - actor.stand_number
+            //todo enlever le lien quand il y a aura présence
+            = link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id} )
+          - else
+            = link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id} )
+          
+  = render 'curve'

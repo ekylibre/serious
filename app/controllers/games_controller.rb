@@ -16,6 +16,7 @@ class GamesController < BaseController
 
     @participation = Participation.find_by(game_id: @game.id, user_id: current_user.id)
     @participant = Participant.find(@participation.participant_id)
+    @current_participant = @participant
 
     @curves = ScenarioCurve.where(:scenario_id => 1)
     render layout: 'game'

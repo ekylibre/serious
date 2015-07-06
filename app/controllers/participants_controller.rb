@@ -1,3 +1,4 @@
+# coding: utf-8
 class ParticipantsController < BaseController
   before_action :authenticate_user!
   layout 'participant'
@@ -12,7 +13,7 @@ class ParticipantsController < BaseController
     # Todo Récupérer la courbe des finances d'une ferme
     #@curve = ScenarioCurve.find(1)
 
-    if @participant.type == 'Actor'
+    if @participant.is_a?(Actor)
       @purchases = Deal.joins(:supplier).where(client: @current_participant, supplier: @participant, state: 'invoice')
       @sales = Deal.joins(:client).where(supplier: @current_participant, client: @current_participant, state: 'invoice')
     else
@@ -24,7 +25,10 @@ class ParticipantsController < BaseController
   def index
   end
 
+  protected
+  
   def find_name_client(purchase)
     Participant.find(purchase.supplier_id).name
   end
+  
 end
