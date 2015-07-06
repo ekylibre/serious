@@ -2,15 +2,15 @@
   .well= resource.description
 
 .btn-group.btn-toolbox
-  = link_to(:edit.ta, edit_backend_game_path(resource), class: "btn btn-default")
-  = link_to('Partie', game_path(resource), class: "btn btn-default")
+  = link_to(:edit.ta, edit_backend_game_path(resource), class: 'btn btn-default')
+  = link_to('Partie', game_path(resource), class: 'btn btn-default')
 
 %h2= Game.human_attribute_name(:farms)
-.btn-group.btn-toolbox{role: "group"}
-  = link_to(:new.ta, new_backend_farm_path(game_id: resource.id), class: "btn btn-default")
+.btn-group.btn-toolbox{role: 'group'}
+  = link_to(:new.ta, new_backend_farm_path(game_id: resource.id), class: 'btn btn-default')
 = show_grid :farms
 
 %h2= Game.human_attribute_name(:actors)
-.btn-group.btn-toolbox{role: "group"}
-  = link_to(:new.ta, new_backend_actor_path(game_id: resource.id), class: "btn btn-default")
+.btn-group.btn-toolbox{role: 'group'}
+  = link_to(:new.ta, new_backend_actor_path(game_id: resource.id), class: 'btn btn-default')
 = show_grid :actors

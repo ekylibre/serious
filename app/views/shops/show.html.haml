@@ -29,10 +29,7 @@
       %h2 Liste des items
     .col-md-4
     .col-md-4
-  - if @current_participant.id == @participant.id
-    .btn.btn-default
-      = link_to( 'Ajouter un item', {controller: :shops, action: :add, id: @participant.id} )
-    %br/
+
   - @catalog_item.each do |item_catalog|
     .cube_shop
       .logo

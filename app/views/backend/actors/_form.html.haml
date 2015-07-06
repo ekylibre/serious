@@ -1,2 +1,17 @@
 = field_set do
   = f.input :name
+  = f.input :code
+%h3 Liste des items
+=link_to(:add_item.ta, edit_backend_catalog_item_path, class: 'btn btn-default')
+
+%br/
+- @catalog_items.each do |item_catalog|
+  .cube_shop
+    .logo
+      .text_cube= item_catalog.variant
+    .price
+      .text_cube= "#{item_catalog.pretax_amount} €"
+    .quantity
+      .text_cube= "Quantité : #{item_catalog.quota}"
+
+%br/

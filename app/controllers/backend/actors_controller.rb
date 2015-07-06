@@ -17,4 +17,10 @@
 #
 
 class Backend::ActorsController < Backend::ParticipantsController
+  before_action 'init'
+  protected
+
+  def init
+    @catalog_items = CatalogItem.where(participant_id: params[:id])
+  end
 end

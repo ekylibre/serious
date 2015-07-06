@@ -43,4 +43,5 @@ class CatalogItem < ActiveRecord::Base
   def pretax_amount
     8
   end
+
 end

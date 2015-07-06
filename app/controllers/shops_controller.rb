@@ -5,10 +5,6 @@ class ShopsController < ApplicationController
 
   layout 'shop'
 
-  def new
-
-  end
-
   def show
   end
 

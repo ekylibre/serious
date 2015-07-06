@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :scenario_broadcasts
     resources :scenario_curves
     resources :users
+    resources :catalog_items
     root to: 'scenarios#index'
   end
 
@@ -20,7 +21,6 @@ Rails.application.routes.draw do
   resources :actors
   resources :shops do
     member do
-
       post :add
       delete :remove
       patch :decrement
