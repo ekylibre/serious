@@ -1,28 +1,47 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+=== Ruby version
 
-Things you may want to cover:
+Ruby 2.2 or later is needed.
++rbenv+ (https://github.com/sstephenson/rbenv) is recommended to manage many ruby versions.
 
-* Ruby version
+=== System dependencies
 
-* System dependencies
+For now, it uses SQlite DB, but the system will migrate on PostgreSQL database
 
-* Configuration
+  sudo apt-get install graphicsmagick postgresql
 
-* Database creation
+=== Configuration
 
-* Database initialization
+All default seed data are in +db/+
 
-* How to run the test suite
+* Scenarios
+* Historics
+* Games
+* Users (samples)
 
-* Services (job queues, cache servers, search engines, etc.)
+=== Database creation and initialization
 
-* Deployment instructions
+To initialize DB, it's possible to run this command:
 
-* ...
+  rake db:drop db:create db:migrate db:seed
 
+or in less words:
+
+  rake db:reset
+
+The seeds are generated from existing scenarios, historics and games soted in +db/+.
+
+=== How to run the test suite
+
+  rake test
+
+=== Services (job queues, cache servers, search engines, etc.)
+
+
+=== Deployment instructions
+
+TODO
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
