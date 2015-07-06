@@ -19,7 +19,7 @@ namespace :serious do
     broadcasts = []
     turn = 1
     while turn < slength
-      rand(3).each do
+      (1 + rand(3)).times do
         broadcasts << {
           name: FFaker::LoremFR.sentence,
           content: FFaker::LoremFR.paragraph(5),
@@ -54,7 +54,7 @@ namespace :serious do
         steps: steps
       }
     end
-    references_keys = references.keys
+    references_keys = references.keys.map(&:to_s)
     # variants
     VARIANTS.each do |v|
       curves[v] = {
@@ -62,10 +62,10 @@ namespace :serious do
         nature: "variant",
         unit_name: "unit",
         reference: references_keys.sample,
-        positive_alea_amount: 50 * rand,
-        negative_alea_amount: 50 * rand,
-        amplitude_factor: 3.5 * rand,
-        offset_amount: 600 * rand - 300,
+        positive_alea_amount: (50 * rand).round(2),
+        negative_alea_amount: (50 * rand).round(2),
+        amplitude_factor: (3.5 * rand).round(2),
+        offset_amount: (600 * rand - 300).round(2),
         amount_round: rand(4) - 2
       }
     end

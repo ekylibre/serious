@@ -1,7 +1,7 @@
 /* Set-up pour les cubes*/
 
-$widthCube: 218px;
-$heightCube: 165px;
+$width-cube: 218px;
+$height-cube: 165px;
 
 $widthImg: 215px;
 $heightImg: 215px;
@@ -18,8 +18,8 @@ $backgroundColorFlop2: rgba(208, 223, 226, .4);
 
 .cube {
   display: inline-block;
-  width: $widthCube;
-  height: $heightCube; //Hauteur de basculement
+  width: $width-cube;
+  height: $height-cube; //Hauteur de basculement
   text-align: left;
   margin-left: 43px;
   padding-left: 1px;
@@ -37,7 +37,7 @@ $backgroundColorFlop2: rgba(208, 223, 226, .4);
   }
 
   %extend_1 {
-    height: $heightCube; //Hauteur du cube de base
+    height: $height-cube; //Hauteur du cube de base
     background: $backgroundColorFlip;
     border: 1px solid $borderColor;
     border-radius: 5px;

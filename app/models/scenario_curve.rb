@@ -67,9 +67,10 @@ class ScenarioCurve < ActiveRecord::Base
   end
 
   def generate!
+    return unless self.nature_reference?
     self.steps.clear
     reference = self.reference
-    self.scenario.turns_count.times do |index|
+    self.scenario.turns_count.to_i.times do |index|
       turn = index + 1
       amount = reference.turn_amount(turn) * self.amplitude_factor + self.offset_amount, rand * (self.positive_alea_amount + self.negative_alea_amount) - self.negative_alea_amount
       self.steps.create!(turn: turn, amount: amount.round(self.amount_round))

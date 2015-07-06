@@ -1,22 +1,23 @@
+- if @news.any?
+  #carousel.carousel.slide{data: {ride: 'carousel'}}
+    .row
+      .col-xs-offset-2.col-xs-8
+        .carousel-inner
+          - @news.each_with_index do |broadcast, index|
+            - classes = []
+            - classes << "active" if index.zero?
+            .item{class: classes}
+              .carousel-content
+                %div
+                  %h4= truncate(broadcast.name, length: 70)
+                  %p.ellipsis= broadcast.content
 
-#carousel.carousel.slide{data: {ride: 'carousel'}}
-  .row
-    .col-xs-offset-2.col-xs-8
-      .carousel-inner
-        - @news.each_with_index do |broadcast, index|
-          - classes = []
-          - classes << "active" if index.zero?
-          .item{class: classes}
-            .carousel-content
-              %div
-                %h4= truncate(broadcast.name, length: 70)
-                %p.ellipsis=  broadcast.content
+    - if @news.count > 1
+      = link_to("#carousel", class: "without-background left carousel-control", data: {slide: 'prev'}) do
+        %span.glyphicon.glyphicon-chevron-left
 
-  = link_to("#carousel", class: "without-background left carousel-control", data: {slide: 'prev'}) do
-    %span.glyphicon.glyphicon-chevron-left
-
-  = link_to("#carousel", class: "without-background left carousel-control", data: {slide: 'next'}) do
-    %span.glyphicon.glyphicon-chevron-right
+      = link_to("#carousel", class: "without-background right carousel-control", data: {slide: 'next'}) do
+        %span.glyphicon.glyphicon-chevron-right
 
 - if @participant.is_a?(Actor)
   = render 'actor'

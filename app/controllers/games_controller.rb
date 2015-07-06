@@ -10,7 +10,7 @@ class GamesController < BaseController
     @actors = Actor.where(:game_id => @game.id)
     @farms = Farm.where(game_id: @game.id)
     @current_turn = 28
-    @news = ScenarioBroadcast.where({:scenario_id => 1, :release_turn => @current_turn})
+    @news = ScenarioBroadcast.where({:scenario_id => 1, :release_turn => @current_turn + 1})
     #@news = ScenarioBroadcast.where(:scenario_id => @game.scenario_id)
     #@curves = ScenarioCurve.where(:scenario_id => @game.scenario_id)
 
