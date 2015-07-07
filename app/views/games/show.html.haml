@@ -16,7 +16,7 @@
       = link_to("#carousel", class: "without-background left carousel-control", data: {slide: 'prev'}) do
         %span.glyphicon.glyphicon-chevron-left
 
-      = link_to("#carousel", class: "without-background right carousel-control", data: {slide: 'next'}) do
+      = link_to('#carousel', class: 'without-background right carousel-control', data: {slide: 'next'}) do
         %span.glyphicon.glyphicon-chevron-right
 
 #world.container
@@ -31,28 +31,21 @@
           %h3= farm.name
         .flop
           %h3= farm.name
-          - if farm.present
-            %h4 Emplacement :
-            - farm.stand_number
-            //todo enlever le lien quand il y a aura présence
-            = link_to('Voir la boutique', {controller: :shops, action: :show, id: farm.id} )
-          - else
-            = link_to('Voir les contrats', {controller: :actors, action: :show, id: farm.id} )
+          = link_to('Voir la ferme', {controller: :actors, action: :show, id: farm.id} )
 
-  - if @current_participant.is_a?(Farm)    
+  - if @current_participant.is_a?(Farm)
     %h2 Liste des acteurs
     - @actors.each do |actor|
-      .cube
+      - classes = []
+      - classes << 'with-stand' if actor.present
+      .cube{class: classes}
         .flip
           = image_tag('ca.jpg')
         .flop
-          %h3= actor.name
           - if actor.present
-            %h4 Emplacement :
-            - actor.stand_number
-            //todo enlever le lien quand il y a aura présence
-            = link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id} )
-          - else
-            = link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id} )
-          
+            .stand-event
+              = actor.stand_number
+          %h3= actor.name
+          = link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id})
+
   = render 'curve'

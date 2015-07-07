@@ -12,6 +12,8 @@ $borderColor: #77220b;
 $backgroundColorFlop1: rgba(105, 108, 109, .3);
 $backgroundColorFlop2: rgba(208, 223, 226, .4);
 
+$present-actor-color: #425000;
+
 .container{
   margin-top: 51px;
 }
@@ -36,7 +38,7 @@ $backgroundColorFlop2: rgba(208, 223, 226, .4);
     border-radius: 2%;
   }
 
-  %extend_1 {
+  %extend {
     height: $height-cube; //Hauteur du cube de base
     background: $backgroundColorFlip;
     border: 1px solid $borderColor;
@@ -46,16 +48,31 @@ $backgroundColorFlop2: rgba(208, 223, 226, .4);
 
   /* Position the faces */
   .flip {
-    @extend %extend_1;
+    @extend %extend;
     -webkit-transform: translateZ(50px);
     transform: translateZ(50px);
   }
 
   .flop {
-    @extend %extend_1;
+    @extend %extend;
     padding-left: 10px;
     -webkit-transform: rotateX(-90deg) translateZ(-50px);
     transform: rotateX(-90deg) translateZ(-50px);
+
+    .stand-event{
+      margin-top: 10px;
+      margin-right: 5px;
+      height: 40px;
+      width: 50px;
+      background-color: $present-actor-color;
+      color: white;
+      padding: 5px;
+      float: right;
+      border-radius: 5px;
+    }
+  }
+
+  &.with-stand{
   }
 }
 
@@ -63,7 +80,6 @@ $backgroundColorFlop2: rgba(208, 223, 226, .4);
   -webkit-transform: rotateX(90deg);
   transform: rotateX(90deg);
 }
-
 
 /* Curve */
 .curve  {

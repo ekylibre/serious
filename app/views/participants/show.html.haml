@@ -11,13 +11,43 @@
         .btn.btn-default
           = link_to( 'Boutique', {controller: :shops, action: :show, id: @participant.id} )
 
-  - if @participant.type == 'Farm'
-    =render 'farms'
-  -else
-    =render 'actor'
+  .saleBuyInterface
+    %h3 Achats
+    .cubeSalesBuy
+      - @purchases.each do |purchase|
+        .sale
+          %h4= "#{purchase.supplier.name} - <i> #{purchase.updated_at.strftime('%d/%m/%Y')}</i>".html_safe
+          - purchase.items.each do |item|
+            = "- #{item.variant} - #{item.amount}€ <br/>".html_safe
 
+  .saleBuyInterface
+    %h3 Ventes
+    .cubeSalesBuy
+      - @sales.each do |sale|
+        .sale
+          %h4= "#{@sales.client.name} - <i> #{sale.updated_at.strftime('%d/%m/%Y')}</i>".html_safe
+          - sale.items.each do |item|
+            = "- #{item.variant} - #{item.amount}€ <br/>".html_safe
 
-
+  - if @participant.is_a?(Farm)
+    .saleBuyInterface
+      %h3 Mes contrats
+      .cubeSalesBuy
+        - 2.times do
+          .sale
+            %h4 Achat 1
+            %p
+              test test test test test test
+              %b 33€
+    .saleBuyInterface
+      %h3 Mes emprunts
+      .cubeSalesBuy
+        - 3.times do
+          .sale
+            %h4 Achat 1
+            %p
+              test test test test test test
+              %b 33€
 
 
 
