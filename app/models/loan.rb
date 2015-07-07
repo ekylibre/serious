@@ -31,8 +31,8 @@
 #  updated_at           :datetime
 #
 class Loan < ActiveRecord::Base
-  belongs_to :borrower, class_name: "Participant"
-  belongs_to :lender, class_name: "Participant"
+  belongs_to :borrower, class_name: 'Participant'
+  belongs_to :lender, class_name: 'Participant'
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, :insurance_percentage, :interest_percentage, allow_nil: true
   validates_presence_of :borrower, :insurance_percentage, :interest_percentage, :lender

@@ -6,10 +6,15 @@
     .col-md-4
       %h1= @participant.name
   .row
-    - if @participant.type == 'Actor'
-      .col-md-4
-        .btn.btn-default
-          = link_to( 'Boutique', {controller: :shops, action: :show, id: @participant.id} )
+    -if @participant.type == 'Actor'
+      - if !@participant.present
+        .col-md-4
+          .btn.btn-default
+            = link_to( 'Boutique', {controller: :shops, action: :show, id: @participant.id})
+          .btn.btn-default
+            = link_to( 'Effectuer un emprunt', {controller: :loans, action: :show, id: @participant.id})
+      - else
+        %h3= "<b>L'acteur est présent à l'événement, vous pouvez le retrouver à l'emplacement : #{@participant.stand_number} </b>".html_safe
 
   .saleBuyInterface
     %h3 Achats

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :participants
   resources :farms
   resources :actors
+  resources :loans
   resources :shops do
     member do
       post :add

@@ -33,7 +33,7 @@
   - @catalog_item.each do |item_catalog|
     .cube_shop
       .logo
-        .text_cube= item_catalog.variant
+        .text_cube= item_catalog.variant.humanize
       .price
         .text_cube= "#{item_catalog.pretax_amount} €"
       .quantity
