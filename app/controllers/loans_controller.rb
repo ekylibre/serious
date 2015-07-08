@@ -1,4 +1,4 @@
-class LoansController < ApplicationController
+class LoansController < BaseController
   before_action 'init'
   layout 'loan'
 
@@ -10,13 +10,11 @@ class LoansController < ApplicationController
     #redirect_to action: :show, id: params[:id]
   end
 
-  def create
-
-  end
-
   protected
   def init
     @participant = Participant.find(params[:lender_id])
-    @current_participant = Participant.find(current_user.id)
+    @current_participation = Participation.find_by(user_id: current_user.id)
+    @current_participant = Participant.find(@current_participation.participant_id)
+    #@current_participant = Participant.find(16)
   end
 end

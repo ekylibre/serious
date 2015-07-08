@@ -1,4 +1,4 @@
-class ShopsController < ApplicationController
+class ShopsController < BaseController
   before_action :authenticate_user!
   before_action :init
   before_action :find_deal

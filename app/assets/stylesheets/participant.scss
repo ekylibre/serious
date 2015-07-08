@@ -6,13 +6,19 @@ $borderColor: #77220b;
 $backgroundColor: rgb(247, 247, 247);
 
 .logo img{
-  height: 110px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  height: 90px;
+  width: 120px;
 }
+
 
 .saleBuyInterface{
   display: inline-block;
   float: left;
-  margin-right: 80px;
+  //margin-right: 80px;
+  margin-left: 150px;
 
   .cubeSalesBuy{
     border: 1.7px solid $borderColor;

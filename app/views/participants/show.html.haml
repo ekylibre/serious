@@ -6,7 +6,7 @@
     .col-md-4
       %h1= @participant.name
   .row
-    -if @participant.type == 'Actor'
+    -if @participant.is_a?(Actor)
       - if !@participant.present
         .col-md-4
           .btn.btn-default

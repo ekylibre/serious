@@ -20,7 +20,11 @@
         %span.glyphicon.glyphicon-chevron-right
 
 #world.container
-  %h1 Le monde
+  .row
+    .col-md-5
+    .col-md-4
+      %h1 Le monde
+
   .btn.btn-default
     = link_to('Vers ma page', {controller: :actors, action: :show, id: @participant.id})
   - if @current_participant.is_a?(Actor)
@@ -40,7 +44,7 @@
       - classes << 'with-stand' if actor.present
       .cube{class: classes}
         .flip
-          = image_tag('http://placehold.it/350')
+          = image_tag('http://placehold.it/350x163')
         .flop
           - if actor.present
             .stand-event

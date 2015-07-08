@@ -1,0 +1,8 @@
+.container
+  = simple_form_for resource, class: 'form' do |f|
+    = render 'form', f: f
+    .col-md-5
+    .col-md-3
+      .btn-group
+        = button_tag(t('.create'), class: 'btn btn-primary')
+        = link_to(t('.cancel'), {action: :index}, class: 'btn btn-default')

@@ -2,7 +2,7 @@ class Backend::BaseController < BaseController
   include RestfullyManageable
   before_action :authenticate_user!
   before_action :authorize_user!
-  layout "backend"
+  layout 'backend'
 
   protected
 

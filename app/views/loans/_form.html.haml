@@ -1,4 +1,18 @@
-= simple_form_for @loan do |f|
-  = f.input :turns_count, label: 'Nombres de tours'
-  = f.input :amount, label: "Montant de l'emprunt"
-  = f.association :lender, as: :hidden
+.row
+  .col-md-5
+    .logo
+      = image_tag('http://placehold.it/350')
+  .col-md-4
+    %h2= @participant.name
+.row
+  .col-md-3
+  .col-md-6
+    = f.input :turns_count, label: 'Nombres de tours'
+    = f.input :amount, label: "Montant de l'emprunt"
+    = f.association :lender, as: :hidden
+    - if @current_participant == @participant
+      = f.association :borrower, label: 'Emprunteur'
+      = f.input :interest_percentage, label: "Pourcentage de l'intéret"
+      = f.input :insurance_percentage, label: "Pourcentage de l'assurance"
+    - else
+      = f.association :borrower, as: :hidden
