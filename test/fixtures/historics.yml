@@ -20,7 +20,7 @@
 #
 # == Table: historics
 #
-#  code        :string
+#  code        :string           not null
 #  created_at  :datetime
 #  currency    :string           not null
 #  description :text
@@ -32,6 +32,7 @@
 # == Fixture: historics
 #
 # historics_001:
+#   code: "Lorem ipsum"
 #   currency: "Lorem ipsum"
 #   name: "Lorem ipsum"
 #

@@ -11,7 +11,7 @@
 
   - g.column name: ScenarioCurve.human_attribute_name(:reference)  do |item|
     - if item.reference
-      - link_to(item.reference, backend_scenario_curve_path(item.reference)) + " (+#{item.positive_alea_percentage}%/-#{item.negative_alea_percentage}%)"
+      - link_to(item.reference.name, backend_scenario_curve_path(item.reference)) + " (+#{item.positive_alea_amount}/-#{item.negative_alea_amount})"
 
   - g.column do |item|
     - link_to(:edit.ta, edit_backend_scenario_curve_path(item))

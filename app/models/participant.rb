@@ -22,7 +22,7 @@
 #
 #  borrower          :boolean          default(FALSE), not null
 #  client            :boolean          default(FALSE), not null
-#  code              :string
+#  code              :string           not null
 #  contractor        :boolean          default(FALSE), not null
 #  created_at        :datetime
 #  game_id           :integer          not null
@@ -61,10 +61,14 @@ class Participant < ActiveRecord::Base
   validates_datetime :logo_updated_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
   validates_numericality_of :logo_file_size, :zone_height, :zone_width, :zone_x, :zone_y, allow_nil: true, only_integer: true
   validates_inclusion_of :borrower, :client, :contractor, :lender, :present, :subcontractor, :supplier, in: [true, false]
-  validates_presence_of :game, :name
+  validates_presence_of :code, :game, :name
   #]VALIDATORS]
   validates_uniqueness_of :name, scope: :game_id
 
   accepts_nested_attributes_for :catalog_items, allow_destroy: true
+
+  def unique_name
+    "serious_#{id}"
+  end
 
 end

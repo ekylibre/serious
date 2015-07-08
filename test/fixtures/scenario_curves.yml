@@ -22,13 +22,14 @@
 #
 #  amount_round           :integer
 #  amplitude_factor       :decimal(19, 4)   default(1), not null
+#  code                   :string           not null
 #  created_at             :datetime
 #  description            :text
 #  id                     :integer          not null, primary key
 #  initial_amount         :decimal(19, 4)
 #  interpolation_method   :string
-#  name                   :string
-#  nature                 :string
+#  name                   :string           not null
+#  nature                 :string           not null
 #  negative_alea_amount   :decimal(19, 4)   default(0), not null
 #  offset_amount          :decimal(19, 4)   default(0), not null
 #  positive_alea_amount   :decimal(19, 4)   default(0), not null
@@ -36,7 +37,6 @@
 #  scenario_id            :integer          not null
 #  unit_name              :string
 #  updated_at             :datetime
-#  variant                :string
 #  variant_indicator_name :string
 #  variant_indicator_unit :string
 #
@@ -45,6 +45,9 @@
 #
 # scenario_curves_001:
 #   amplitude_factor: 0
+#   code: "Lorem ipsum"
+#   name: "Lorem ipsum"
+#   nature: "Lorem ipsum"
 #   negative_alea_amount: 0
 #   offset_amount: 0
 #   positive_alea_amount: 0

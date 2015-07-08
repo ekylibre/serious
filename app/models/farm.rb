@@ -22,7 +22,7 @@
 #
 #  borrower          :boolean          default(FALSE), not null
 #  client            :boolean          default(FALSE), not null
-#  code              :string
+#  code              :string           not null
 #  contractor        :boolean          default(FALSE), not null
 #  created_at        :datetime
 #  game_id           :integer          not null
@@ -48,5 +48,13 @@
 class Farm < Participant
   belongs_to :historic
 
-  
+
+  def load
+    if Serious::Tenant.exist?(self.unique_name)
+      Serious::Tenant.drop(self.unique_name)
+    end
+    Serious::Tenant.create(self.unique_name)
+    # Serious::Tenant.load_fixtures(self.unique_name)
+  end
+
 end

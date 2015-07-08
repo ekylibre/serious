@@ -62,6 +62,7 @@ class Game < ActiveRecord::Base
     def import(file)
       hash = YAML.load_file(file).deep_symbolize_keys
       attributes = hash.slice(:name, :description, :planned_at, :turns_count, :turn_nature, :turn_duration, :map_width, :map_height)
+      # puts Scenario.find_by(code: hash[:scenario]).inspect
       attributes[:scenario] = Scenario.find_by(code: hash[:scenario]) if hash[:scenario]
       game = create!(attributes)
 
@@ -85,6 +86,14 @@ class Game < ActiveRecord::Base
 
   def started?
     Time.now >= self.planned_at
+  end
+
+  # Launch the game
+  # Creates Ekylibre instances and load them with their historics
+  def load
+    self.participants.each do |participant|
+      participant.load
+    end
   end
 
 end

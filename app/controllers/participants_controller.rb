@@ -26,9 +26,9 @@ class ParticipantsController < BaseController
   end
 
   protected
-  
+
   def find_name_client(purchase)
     Participant.find(purchase.supplier_id).name
   end
-  
+
 end

@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20150630125434) do
 
   create_table "historics", force: :cascade do |t|
     t.string   "name",        null: false
-    t.string   "code"
+    t.string   "code",        null: false
     t.string   "currency",    null: false
     t.text     "description"
     t.datetime "created_at"
@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(version: 20150630125434) do
   create_table "participants", force: :cascade do |t|
     t.integer  "game_id",                           null: false
     t.string   "name",                              null: false
-    t.string   "code"
+    t.string   "code",                              null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -177,10 +177,10 @@ ActiveRecord::Schema.define(version: 20150630125434) do
 
   create_table "scenario_curves", force: :cascade do |t|
     t.integer  "scenario_id",                                                   null: false
-    t.string   "nature"
-    t.string   "name"
+    t.string   "nature",                                                        null: false
+    t.string   "name",                                                          null: false
+    t.string   "code",                                                          null: false
     t.string   "unit_name"
-    t.string   "variant"
     t.string   "variant_indicator_name"
     t.string   "variant_indicator_unit"
     t.string   "interpolation_method"
@@ -201,7 +201,7 @@ ActiveRecord::Schema.define(version: 20150630125434) do
 
   create_table "scenarios", force: :cascade do |t|
     t.string   "name",        null: false
-    t.string   "code"
+    t.string   "code",        null: false
     t.string   "currency",    null: false
     t.string   "turn_nature"
     t.string   "turns_count", null: false

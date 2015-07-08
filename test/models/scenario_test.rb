@@ -20,7 +20,7 @@
 #
 # == Table: scenarios
 #
-#  code        :string
+#  code        :string           not null
 #  created_at  :datetime
 #  currency    :string           not null
 #  description :text

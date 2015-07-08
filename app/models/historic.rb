@@ -20,7 +20,7 @@
 #
 # == Table: historics
 #
-#  code        :string
+#  code        :string           not null
 #  created_at  :datetime
 #  currency    :string           not null
 #  description :text
@@ -30,7 +30,7 @@
 #
 class Historic < ActiveRecord::Base
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
-  validates_presence_of :currency, :name
+  validates_presence_of :code, :currency, :name
   #]VALIDATORS]
 
   class << self

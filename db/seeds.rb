@@ -11,30 +11,39 @@ root = Rails.root
 
 print "Users: "
 YAML.load_file(root.join("db", "users.yml")).each do |user|
-  unless User.find_by(email: user["email"])
+  if User.find_by(email: user["email"])
+    print "-"
+  else
     User.create!(user.merge(password: '12345678', password_confirmation: '12345678'))
-    print "."
+    print "·"
   end
 end
-puts ""
-
-print "Scenario: "
-Dir.glob(root.join("db", "scenarios", "*.yml")).each do |file|
-  Scenario.import(file)
-  print "."
+if User.find_by(email: "admin@ekylibre.org")
+  print "="
+else
+  User.create!(email: "admin@ekylibre.org", password: '12345678', password_confirmation: '12345678', first_name: "Admin", last_name: "STRATOR", administrator: true)
+  print "•"
 end
-puts ""
+puts "!"
 
-print "Historic: "
+
+print "Historics: "
 Dir.glob(root.join("db", "historics", "*.yml")).each do |file|
   Historic.import(file)
-  print "."
+  print "·"
 end
-puts ""
+puts "!"
 
-print "Games: "
-Dir.glob(root.join("db", "games", "*.yml")).each do |file|
-  Game.import(file)
-  print "."
+puts "Scenarios:"
+Dir.glob(root.join("db", "scenarios", "*.yml")).each do |file|
+  print "  " + File.basename(file) + ": "
+  Scenario.import(file)
+  puts "!"
 end
-puts ""
+
+puts "Games: "
+Dir.glob(root.join("db", "games", "*.yml")).each do |file|
+  print "  " + File.basename(file) + ": "
+  Game.import(file)
+  puts "!"
+end

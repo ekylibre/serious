@@ -1,65 +1,66 @@
 ---
-name: test
-scenario: tomorrow-never-dies
+code: test
+name: Test
+scenario: random
 farms:
   F01:
-    name: Ferme Maillard0
+    name: Ferme Garcia0
     historic: SL47
     stand_number: SF01
   F02:
-    name: Ferme Leroy1
+    name: Ferme Chevalier1
     historic: SL47
     stand_number: SF02
   F03:
-    name: Ferme Remy2
+    name: Ferme Vaillant2
     historic: SL47
     stand_number: SF03
   F04:
-    name: Ferme Pinto3
+    name: Ferme Weber3
     historic: SL47
     stand_number: SF04
   F05:
-    name: Ferme Torres4
+    name: Ferme Giraud4
     historic: SL47
     stand_number: SF05
   F06:
-    name: Ferme Fournier5
+    name: Ferme Hubert5
     historic: SL47
     stand_number: SF06
   F07:
-    name: Ferme Didier6
+    name: Ferme Charrier6
     historic: SL47
     stand_number: SF07
   F08:
-    name: Ferme Mace7
+    name: Ferme Lefebvre7
     historic: SL47
     stand_number: SF08
   F09:
-    name: Ferme Torres8
+    name: Ferme Gomez8
     historic: SL47
     stand_number: SF09
   F10:
-    name: Ferme Gallet9
+    name: Ferme Vaillant9
     historic: SL47
     stand_number: SF10
   F11:
-    name: Ferme Goncalves10
+    name: Ferme Clement10
     historic: SL47
     stand_number: SF11
   F12:
-    name: Ferme Renaud11
+    name: Ferme Albert11
     historic: SL47
     stand_number: SF12
   F13:
-    name: Ferme Morvan12
+    name: Ferme Bernier12
     historic: SL47
     stand_number: SF13
   F14:
-    name: Ferme Allain13
+    name: Ferme Boyer13
     historic: SL47
     stand_number: SF14
   F15:
-    name: Ferme Moreno14
+    name: Ferme Antoine14
     historic: SL47
     stand_number: SF15
 actors:
@@ -67,408 +68,414 @@ actors:
     name: Crédit Agricole
     stand_number: SA01
     catalog_items:
-    - variant: male_adult_cow
+    - variant: tractor
       quota: 7
-    - variant: coop:avoine_d_hiver_n_une_de_mai_en_s20kg
+    - variant: irrigation_water
       quota: 7
-    - variant: coop:eca_excel_pack_protor_b_vrac
+    - variant: meal_travel
       quota: 7
-    - variant: winter_barley_seed_25
+    - variant: hydraulic_oil
       quota: 7
-    - variant: daily_training_course
+    - variant: car
       quota: 7
-    - variant: coop:nikeyl_5_l
+    - variant: small_sticker
+      quota: 7
+    - variant: server_rental
+      quota: 7
+    - variant: air_compressor
       quota: 7
     - variant: sower
       quota: 7
-    - variant: coop:bd_s_miradoux_r1_gau_red_25kg
+    - variant: diesel
       quota: 7
-    - variant: pear_seedling
+    - variant: vine_residu
       quota: 7
-    - variant: bulk_animal_food
+    - variant: implanter
       quota: 7
-    - variant: pig_herd
+    - variant: corker
       quota: 7
-    - variant: etincel_winter_barley_crop
+    - variant: building_material
       quota: 7
-    - variant: wheat_seed_25
-      quota: 7
-    - variant: actilact
-      quota: 7
-    - variant: coop:trefle_alexandrie_s10k
+    - variant: portable_computer
       quota: 7
   A02:
     name: Groupama
     stand_number: SA02
     catalog_items:
-    - variant: reaper
+    - variant: plum_reaper
       quota: 7
-    - variant: coop:prosaro_5_l
+    - variant: tractor
+      quota: 7
+    - variant: manual_implanter
+      quota: 7
+    - variant: building_material
+      quota: 7
+    - variant: roll
+      quota: 7
+    - variant: acetal
+      quota: 7
+    - variant: manager
+      quota: 7
+    - variant: car
+      quota: 7
+    - variant: server_rental
+      quota: 7
+    - variant: diesel
+      quota: 7
+    - variant: big_sticker
       quota: 7
     - variant: accommodation_travel
       quota: 7
-    - variant: hen_compost
+    - variant: implanter
       quota: 7
-    - variant: coop:esc_s_etincel_r1_gau_red_s25kg
+    - variant: sower
       quota: 7
-    - variant: hen_guano
-      quota: 7
-    - variant: bulk_urea_46
-      quota: 7
-    - variant: merlot_noir_so4_vine_seedling
-      quota: 7
-    - variant: daily_training_course
-      quota: 7
-    - variant: mixed_chemical_fertilizer
-      quota: 7
-    - variant: sunflower_crop
-      quota: 7
-    - variant: coop:metarex_rg_tds_20kg
-      quota: 7
-    - variant: salary_social_contribution
-      quota: 7
-    - variant: female_adult_pony
-      quota: 7
-    - variant: hazelnut
+    - variant: forager
       quota: 7
   A03:
     name: Unicoque
     stand_number: SA03
     catalog_items:
-    - variant: merveille_hazelnut
-      quota: 7
-    - variant: bulk_ammo_phosphorus_sulfur_20_23_0
-      quota: 7
-    - variant: coop:moha_25kg
-      quota: 7
-    - variant: pig_slurry
-      quota: 7
-    - variant: building_material_in_own_outstanding_installation
-      quota: 7
-    - variant: plow
-      quota: 7
-    - variant: actilact
+    - variant: motor_oil
       quota: 7
     - variant: hen_guano
       quota: 7
-    - variant: rape_crop
+    - variant: acetal
       quota: 7
-    - variant: equipment
+    - variant: mineral_cleaner
       quota: 7
-    - variant: ovis_compost
+    - variant: corker
       quota: 7
-    - variant: hoe
+    - variant: moving_travel
       quota: 7
-    - variant: arezzo_wheat_crop
+    - variant: natural_water
       quota: 7
-    - variant: coop:fertiactyl_starter
+    - variant: grain_crusher
       quota: 7
-    - variant: helianthus_herbicide
+    - variant: mower
+      quota: 7
+    - variant: sower
+      quota: 7
+    - variant: manager
+      quota: 7
+    - variant: accommodation_travel
+      quota: 7
+    - variant: plum_reaper
+      quota: 7
+    - variant: printer
+      quota: 7
+    - variant: manual_implanter
       quota: 7
   A04:
     name: Terre du Sud
     stand_number: SA04
     catalog_items:
-    - variant: female_adult_pony
+    - variant: bos_vial
       quota: 7
-    - variant: beef_meat
+    - variant: acetal
       quota: 7
-    - variant: coop:balmora_5_l
+    - variant: irrigation_water
       quota: 7
-    - variant: bee_band_pollinate_service
+    - variant: meal_travel
       quota: 7
-    - variant: animal_housing_service
+    - variant: hydraulic_oil
       quota: 7
-    - variant: spelt_seed_25
+    - variant: printer
       quota: 7
-    - variant: sunflower_grain
+    - variant: natural_water
       quota: 7
-    - variant: grain_tank
+    - variant: grain_crusher
       quota: 7
-    - variant: land_parcel
+    - variant: spreader
       quota: 7
-    - variant: coop:vesce_velue_savane_hiver_10k
+    - variant: hedge_cutter
       quota: 7
-    - variant: plastic_cover_500m
+    - variant: vine_residu
       quota: 7
-    - variant: rape_seed
+    - variant: grape_reaper
       quota: 7
-    - variant: goat_milk
+    - variant: manager
       quota: 7
-    - variant: so2_liquid_a8
+    - variant: implanter
       quota: 7
-    - variant: coop:ray_g_hyb_bahial_10kg
+    - variant: portable_computer
       quota: 7
   A05:
     name: Razol
     stand_number: SA05
     catalog_items:
-    - variant: winter_oat_crop
+    - variant: hazel_reaper
       quota: 7
-    - variant: freelance_sofware_development
+    - variant: trailer
       quota: 7
-    - variant: male_pig_band
+    - variant: hen_guano
       quota: 7
-    - variant: frozen_fruit
-      quota: 7
-    - variant: manure_division
-      quota: 7
-    - variant: male_young_sheep
-      quota: 7
-    - variant: irrigation_water
-      quota: 7
-    - variant: ovis_manure
-      quota: 7
-    - variant: coop:mix_in_5_l
-      quota: 7
-    - variant: walnut_crop
-      quota: 7
-    - variant: coop:ma_lg3530_cruiser_50mg
-      quota: 7
-    - variant: diesel
+    - variant: spreader_trailer
       quota: 7
     - variant: car
       quota: 7
-    - variant: minced_beef_meat
+    - variant: inseminator
       quota: 7
-    - variant: corn_seed_50tg
+    - variant: grape_trailer
+      quota: 7
+    - variant: acetal
+      quota: 7
+    - variant: motor_oil
+      quota: 7
+    - variant: corker
+      quota: 7
+    - variant: tractor
+      quota: 7
+    - variant: sower
+      quota: 7
+    - variant: diesel
+      quota: 7
+    - variant: accommodation_travel
+      quota: 7
+    - variant: irrigation_water
       quota: 7
   A06:
     name: CER
     stand_number: SA06
     catalog_items:
-    - variant: cereals_feed_bag_25
+    - variant: forager
       quota: 7
-    - variant: responsibility_insurance
+    - variant: hazel_reaper
       quota: 7
-    - variant: bottle_75cl_wine
+    - variant: motor_oil
       quota: 7
-    - variant: food_tank
+    - variant: meal_travel
       quota: 7
-    - variant: potato_crop
+    - variant: sprayer
       quota: 7
-    - variant: computer_display
+    - variant: natural_water
       quota: 7
-    - variant: hen_slurry
+    - variant: land_parcel
       quota: 7
-    - variant: male_adult_pony
+    - variant: grape_trailer
       quota: 7
-    - variant: pea_grain
+    - variant: small_sticker
       quota: 7
-    - variant: animal_division
+    - variant: server_rental
       quota: 7
-    - variant: blackcurrant_crop
+    - variant: water_spreader
       quota: 7
-    - variant: liquid_10_25_d1.4
+    - variant: irrigation_water
       quota: 7
-    - variant: shoulder_veal_meat
+    - variant: running_water
       quota: 7
-    - variant: coop:boa_3_l
+    - variant: acetal
       quota: 7
-    - variant: tobacco_crop
+    - variant: printer
       quota: 7
   A07:
     name: "@com"
     stand_number: SA07
     catalog_items:
-    - variant: hazel_seedling
+    - variant: motor_oil
       quota: 7
-    - variant: coop:fandango_s_5_l
+    - variant: meal_travel
       quota: 7
-    - variant: plum_reaper
+    - variant: grinder
       quota: 7
-    - variant: coop:nikeyl_5_l
+    - variant: grape_trailer
       quota: 7
-    - variant: male_adult_pony
+    - variant: hydraulic_oil
       quota: 7
-    - variant: ink_cartridge
+    - variant: land_parcel
       quota: 7
-    - variant: pig_slurry
+    - variant: hazel_reaper
       quota: 7
-    - variant: land_parcel_locative_charge
+    - variant: car
       quota: 7
-    - variant: coop:ma_dkc_3912_50mgr
+    - variant: reaper
       quota: 7
-    - variant: hen_guano
+    - variant: moving_travel
       quota: 7
-    - variant: female_young_goat
+    - variant: grape_reaper
       quota: 7
-    - variant: fig_seedling
+    - variant: water_spreader
       quota: 7
-    - variant: subsoil_plow
+    - variant: grain_crusher
       quota: 7
-    - variant: bolt
+    - variant: big_sticker
       quota: 7
-    - variant: walnut_crop
+    - variant: manager
       quota: 7
   A08:
     name: MSA
     stand_number: SA08
     catalog_items:
-    - variant: quince_crop
+    - variant: car
       quota: 7
-    - variant: chicory_crop
+    - variant: calf
       quota: 7
-    - variant: calcium_carbonate_25kg
+    - variant: sower
       quota: 7
-    - variant: peanut_crop
+    - variant: silage_distributor
       quota: 7
-    - variant: piglet_meat
+    - variant: grape_reaper
       quota: 7
-    - variant: congress
+    - variant: sprayer
       quota: 7
-    - variant: salmon_band
+    - variant: small_sticker
       quota: 7
-    - variant: coop:bofix_20_l
+    - variant: hen_guano
       quota: 7
-    - variant: seedling
+    - variant: grape_trailer
       quota: 7
-    - variant: coop:ma_bergxxon_duo_sonido_d50mg
+    - variant: vine_residu
       quota: 7
-    - variant: manure_division
+    - variant: diesel
       quota: 7
-    - variant: lucerne_seed
+    - variant: accommodation_travel
       quota: 7
-    - variant: bottle_75cl_wine
+    - variant: hydraulic_oil
       quota: 7
-    - variant: winter_barley_crop
+    - variant: mineral_cleaner
       quota: 7
-    - variant: female_adult_cattle_herd
+    - variant: reaper
       quota: 7
 participations:
 - participant: F01
-  user: aime.labbe@lemkeblanda.com
+  user: jeanne.garcia@rice.com
 - participant: F01
-  user: caroline.guillot@stoltenberg.info
+  user: francoise.tessier@krislangworth.com
 - participant: F01
-  user: luce.normand@bodehuels.info
-- participant: F01
-  user: auguste.lesage@botsfordeichmann.info
-- participant: F02
   user: georges.boucher@luettgenhirthe.com
+- participant: F01
+  user: bernadette.collin@conn.com
 - participant: F02
-  user: aurelie.camus@mills.biz
+  user: valerie.rousset@gulgowski.name
 - participant: F02
-  user: laure.guillet@bashirian.ca
+  user: margaret.coulon@cruickshankcollins.co.uk
 - participant: F02
-  user: sabine.de@auerborer.com
+  user: celine.lebrun@wyman.us
+- participant: F02
+  user: susanne.rodrigues@stamm.us
 - participant: F03
+  user: margot.georges@vandervort.com
+- participant: F03
+  user: leon.olivier@torp.com
+- participant: F03
+  user: michel.duhamel@kling.us
+- participant: F03
+  user: claude.hardy@erdman.name
+- participant: F04
+  user: alex.rossi@rogahndicki.info
+- participant: F04
+  user: nicolas.maury@dubuquehirthe.biz
+- participant: F04
+  user: michelle.diaz@barrows.info
+- participant: F04
   user: marguerite.lefevre@dickinson.com
-- participant: F03
-  user: celina.cordier@fisher.biz
-- participant: F03
-  user: henriette.valentin@rowebarrows.ca
-- participant: F03
-  user: penelope.lebon@kerluke.name
-- participant: F04
-  user: marianne.munoz@kiehn.ca
-- participant: F04
-  user: charles.lambert@macejkovic.biz
-- participant: F04
-  user: penelope.begue@franeckiking.us
-- participant: F04
-  user: theophile.coste@brakus.us
 - participant: F05
-  user: aimee.pineau@mcculloughhamill.us
+  user: lorraine.paul@bradtke.us
 - participant: F05
-  user: josephine.gall@rueckerfranecki.name
+  user: odette.lemoine@terry.ca
 - participant: F05
-  user: laetitia.da@boyer.info
+  user: madeleine.martineau@steuber.biz
 - participant: F05
-  user: jules.jacob@leuschketurcotte.com
+  user: bernard.michel@goldner.biz
 - participant: F06
-  user: martin.le@shanahancassin.co.uk
+  user: franck.brunel@gleason.us
 - participant: F06
-  user: genevieve.bailly@zulauf.co.uk
+  user: paul.benard@littlekoepp.info
 - participant: F06
-  user: luc.adam@kuhicreichel.ca
+  user: eric.antoine@brakus.co.uk
 - participant: F06
-  user: elodie.rodrigues@daugherty.com
+  user: etienne.rossi@wymanokuneva.biz
 - participant: F07
-  user: audrey.lacroix@bauch.us
+  user: genevieve.guyon@quigley.com
 - participant: F07
-  user: alex.francois@heller.name
+  user: theodore.jacques@uptonhyatt.info
 - participant: F07
-  user: josephine.durand@ferrysatterfield.co.uk
+  user: olivie.lebreton@orn.com
 - participant: F07
   user: christelle.lebon@trantow.info
 - participant: F08
-  user: gabrielle.de@metztorp.name
+  user: gregoire.becker@ankunding.info
 - participant: F08
-  user: theodore.jacques@uptonhyatt.info
+  user: theodore.roux@kozey.info
 - participant: F08
-  user: eric.lelievre@gerlachjohnston.info
+  user: alice.maury@cummings.com
 - participant: F08
-  user: elodie.giraud@torphy.co.uk
-- participant: F09
-  user: penelope.mathieu@faymayer.com
-- participant: F09
-  user: jeanne.garcia@rice.com
+  user: christophe.marin@mantekuhic.us
 - participant: F09
   user: alice.thomas@kemmer.info
 - participant: F09
-  user: patricia.picard@haucktorphy.us
+  user: andree.brunet@stanton.ca
+- participant: F09
+  user: charles.lambert@macejkovic.biz
+- participant: F09
+  user: hortense.moreau@dachconroy.com
 - participant: F10
-  user: pierre.mathieu@conroy.us
+  user: thomas.georges@beier.biz
 - participant: F10
-  user: nath.arnaud@reichelarmstrong.us
+  user: anne.munoz@ankundingschmitt.com
 - participant: F10
-  user: antoinette.buisson@schmitt.info
+  user: robert.garnier@stracke.name
 - participant: F10
-  user: frederic.maury@goodwinkerluke.us
+  user: daniel.rousset@blanda.name
 - participant: F11
-  user: margot.georges@vandervort.com
+  user: julien.dumas@padberg.co.uk
 - participant: F11
-  user: andre.gimenez@mcglynn.co.uk
+  user: sabine.de@auerborer.com
 - participant: F11
-  user: benoit.levy@bernhard.com
+  user: marianne.lombard@grady.biz
 - participant: F11
-  user: louis.hamon@mraz.name
+  user: denis.becker@swaniawski.biz
 - participant: F12
-  user: jules.bousquet@franeckiwunsch.name
+  user: thomas.barbier@runte.ca
 - participant: F12
-  user: odette.lemoine@terry.ca
+  user: maryse.monnier@greenholt.co.uk
 - participant: F12
-  user: dominique.legendre@blickkerluke.ca
+  user: maggie.navarro@bradtke.name
 - participant: F12
-  user: marie.fleury@lemkeromaguera.biz
-- participant: F13
-  user: madeleine.martineau@steuber.biz
-- participant: F13
-  user: raymond.louis@kilback.us
-- participant: F13
-  user: celine.chretien@stanton.co.uk
-- participant: F13
   user: luce.guillaume@quigley.co.uk
-- participant: F14
+- participant: F13
   user: emile.gimenez@corkery.ca
+- participant: F13
+  user: martine.diaz@ullrichgleichner.info
+- participant: F13
+  user: martin.le@shanahancassin.co.uk
+- participant: F13
+  user: jacqueline.michel@bartonfranecki.us
 - participant: F14
-  user: hugues.bourgeois@daniel.biz
+  user: genevieve.bailly@zulauf.co.uk
 - participant: F14
-  user: christiane.begue@marks.biz
+  user: jules.bousquet@franeckiwunsch.name
 - participant: F14
-  user: victoire.thibault@schaden.name
+  user: caroline.guillot@stoltenberg.info
+- participant: F14
+  user: marie.fleury@lemkeromaguera.biz
 - participant: F15
-  user: genevieve.guyon@quigley.com
+  user: david.rocher@oreilly.co.uk
 - participant: F15
-  user: bertrand.maury@jaskolskihodkiewicz.com
+  user: arthur.carre@mcglynn.name
 - participant: F15
-  user: henri.martineau@rolfson.name
+  user: christine.labbe@gaylord.info
 - participant: F15
-  user: margaux.lesage@baumbach.co.uk
+  user: michelle.barbier@schneiderdenesik.co.uk
 - participant: A02
-  user: thomas.richard@fadel.name
+  user: adele.foucher@bartonbeier.biz
 - participant: A02
-  user: henriette.jacob@hayesrogahn.biz
+  user: michelle.guichard@heller.us
+- participant: A03
+  user: jerome.auger@king.us
+- participant: A03
+  user: franck.tanguy@schmitt.name
 - participant: A04
-  user: astrid.leroy@abbottlynch.ca
-- participant: A04
-  user: etienne.rossi@wymanokuneva.biz
+  user: michelle.lopes@mann.co.uk
+- participant: A05
+  user: penelope.mathieu@faymayer.com
 - participant: A06
-  user: odette.guibert@mcglynn.name
-- participant: A06
-  user: mathilde.dias@konopelski.ca
-- participant: A07
-  user: michel.duhamel@kling.us
-- participant: A08
   user: celina.barthelemy@ebert.com
+- participant: A07
+  user: victoire.thibault@schaden.name
+- participant: A07
+  user: alexandrie.blondel@collier.name
+- participant: A08
+  user: diane.bertin@terry.biz
+- participant: A08
+  user: bernadette.roy@walterwitting.us

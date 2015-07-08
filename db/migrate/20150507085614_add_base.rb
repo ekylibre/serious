@@ -5,7 +5,7 @@ class AddBase < ActiveRecord::Migration
 
     create_table :historics do |t|
       t.string     :name,        null: false
-      t.string     :code
+      t.string     :code,        null: false
       t.string     :currency,    null: false
       t.text       :description
       t.timestamps
@@ -13,7 +13,7 @@ class AddBase < ActiveRecord::Migration
 
     create_table :scenarios do |t|
       t.string     :name,        null: false
-      t.string     :code
+      t.string     :code,        null: false
       t.string     :currency,    null: false
       t.string     :turn_nature              # month
       t.string     :turns_count, null: false # 12 seems to be minimum
@@ -31,10 +31,10 @@ class AddBase < ActiveRecord::Migration
 
     create_table :scenario_curves do |t|
       t.references :scenario,    null: false, index: true
-      t.string     :nature # variant, loan_interest, reference
-      t.string     :name
+      t.string     :nature,      null: false # variant, loan_interest, reference
+      t.string     :name,        null: false
+      t.string     :code,        null: false
       t.string     :unit_name
-      t.string     :variant
       t.string     :variant_indicator_name
       t.string     :variant_indicator_unit
       t.string     :interpolation_method  # linear, previous, next
@@ -90,7 +90,7 @@ class AddBase < ActiveRecord::Migration
     create_table :participants do |t|
       t.references :game,           null: false, index: true
       t.string     :name,           null: false
-      t.string     :code
+      t.string     :code,           null: false
       t.attachment :logo
       t.string     :type
       t.integer    :zone_x

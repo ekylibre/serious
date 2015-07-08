@@ -20,7 +20,7 @@
 #
 # == Table: scenarios
 #
-#  code        :string
+#  code        :string           not null
 #  created_at  :datetime
 #  currency    :string           not null
 #  description :text
@@ -30,6 +30,8 @@
 #  turns_count :string           not null
 #  updated_at  :datetime
 #
+
+
 class Scenario < ActiveRecord::Base
   extend Enumerize
   enumerize :currency, in: [:EUR], default: :EUR
@@ -38,8 +40,9 @@ class Scenario < ActiveRecord::Base
   has_many :curves, class_name: "ScenarioCurve"
   has_many :games
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
-  validates_presence_of :currency, :name
+  validates_presence_of :code, :currency, :name
   #]VALIDATORS]
+  validates_uniqueness_of :name, :code
 
   accepts_nested_attributes_for :broadcasts
   accepts_nested_attributes_for :curves
@@ -48,6 +51,7 @@ class Scenario < ActiveRecord::Base
 
     def import(file)
       hash = YAML.load_file(file).deep_symbolize_keys
+      return if find_by(name: hash[:name]) or find_by(code: hash[:code])
       scenario = create!(hash.slice(:code, :name, :description, :turn_nature, :turns_count, :currency))
       if hash[:broadcasts]
         hash[:broadcasts].each do |b|
@@ -55,21 +59,18 @@ class Scenario < ActiveRecord::Base
         end
       end
       if hash[:curves]
-        curves = {}
         hash[:curves].each do |code, attributes|
-          curve = scenario.curves.create!(attributes.slice(:nature, :name, :description, :unit_name, :initial_amount, :interpolation_method, :negative_alea_amount, :positive_alea_amount, :amplitude_factor, :offset_amount, :amount_round, :variant, :variant_indicator_name, :variant_indicator_unit))
-          curves[code] = curve
-          attributes[:steps].each do |step|
-            curve.steps.create!(step.slice(:turn, :amount))
-          end if attributes[:steps]
-        end
-        # Set references
-        hash[:curves].each do |code, attributes|
-          next unless attributes[:reference]
-          curve = curves[code]
-          curve.reference = curves[attributes[:reference]]
-          curve.save!
-          curve.generate! unless attributes[:steps]
+          attributes[:code] = code
+          attributes[:reference] = scenario.curves.find_by(code: attributes[:reference]) if attributes[:reference]
+          curve = scenario.curves.create!(attributes.slice(:nature, :name, :code, :description, :unit_name, :initial_amount, :interpolation_method, :negative_alea_amount, :positive_alea_amount, :amplitude_factor, :offset_amount, :amount_round, :variant_indicator_name, :variant_indicator_unit, :reference))
+          if attributes[:steps]
+            attributes[:steps].each do |step|
+              curve.steps.create!(step.slice(:turn, :amount))
+            end
+          else
+            curve.generate!
+          end
+          print "#"
         end
       end
     end

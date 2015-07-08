@@ -22,13 +22,14 @@
 #
 #  amount_round           :integer
 #  amplitude_factor       :decimal(19, 4)   default(1), not null
+#  code                   :string           not null
 #  created_at             :datetime
 #  description            :text
 #  id                     :integer          not null, primary key
 #  initial_amount         :decimal(19, 4)
 #  interpolation_method   :string
-#  name                   :string
-#  nature                 :string
+#  name                   :string           not null
+#  nature                 :string           not null
 #  negative_alea_amount   :decimal(19, 4)   default(0), not null
 #  offset_amount          :decimal(19, 4)   default(0), not null
 #  positive_alea_amount   :decimal(19, 4)   default(0), not null
@@ -36,24 +37,25 @@
 #  scenario_id            :integer          not null
 #  unit_name              :string
 #  updated_at             :datetime
-#  variant                :string
 #  variant_indicator_name :string
 #  variant_indicator_unit :string
 #
+
+# Code must contain variant name if nature is variant.
 class ScenarioCurve < ActiveRecord::Base
   extend Enumerize
   enumerize :interpolation_method, in: [:linear, :previous, :following], default: :linear, predicates: {prefix: true}
   enumerize :nature, in: [:variant, :loan_interest, :reference], predicates: {prefix: true}
   belongs_to :reference, class_name: 'ScenarioCurve'
   belongs_to :scenario
-  has_many :steps, class_name: 'ScenarioCurveStep', foreign_key: :curve_id
+  has_many :steps, class_name: 'ScenarioCurveStep', foreign_key: :curve_id, dependent: :delete_all
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount_round, allow_nil: true, only_integer: true
   validates_numericality_of :amplitude_factor, :initial_amount, :negative_alea_amount, :offset_amount, :positive_alea_amount, allow_nil: true
-  validates_presence_of :amplitude_factor, :negative_alea_amount, :offset_amount, :positive_alea_amount, :scenario
+  validates_presence_of :amplitude_factor, :code, :name, :nature, :negative_alea_amount, :offset_amount, :positive_alea_amount, :scenario
   #]VALIDATORS]
-  # validates_presence_of :positive_alea_amount, :negative_alea_amount, :amplitude_factor, :offset_amount, if: :nature_variant?
-
+  validates_presence_of :positive_alea_amount, :negative_alea_amount, :amplitude_factor, :offset_amount, :reference, if: :nature_variant?
+  validates_uniqueness_of :name, :code, scope: :scenario_id
 
   accepts_nested_attributes_for :steps
 
@@ -67,13 +69,13 @@ class ScenarioCurve < ActiveRecord::Base
   end
 
   def generate!
-    return unless self.nature_reference?
     self.steps.clear
-    reference = self.reference
-    self.scenario.turns_count.to_i.times do |index|
-      turn = index + 1
-      amount = reference.turn_amount(turn) * self.amplitude_factor + self.offset_amount, rand * (self.positive_alea_amount + self.negative_alea_amount) - self.negative_alea_amount
-      self.steps.create!(turn: turn, amount: amount.round(self.amount_round))
+    if self.nature_variant? and reference = self.reference
+      self.scenario.turns_count.to_i.times do |index|
+        turn = index + 1
+        amount = reference.turn_amount(turn) * self.amplitude_factor + self.offset_amount + rand * (self.positive_alea_amount + self.negative_alea_amount) - self.negative_alea_amount
+        self.steps.create!(turn: turn, amount: amount.round(self.amount_round))
+      end
     end
   end
 

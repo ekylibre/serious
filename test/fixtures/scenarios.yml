@@ -20,7 +20,7 @@
 #
 # == Table: scenarios
 #
-#  code        :string
+#  code        :string           not null
 #  created_at  :datetime
 #  currency    :string           not null
 #  description :text
@@ -34,6 +34,7 @@
 # == Fixture: scenarios
 #
 # scenarios_001:
+#   code: "Lorem ipsum"
 #   currency: "Lorem ipsum"
 #   name: "Lorem ipsum"
 #   turns_count: "Lorem ipsum"
