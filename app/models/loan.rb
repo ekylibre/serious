@@ -37,4 +37,23 @@ class Loan < ActiveRecord::Base
   validates_numericality_of :amount, :insurance_percentage, :interest_percentage, allow_nil: true
   validates_presence_of :borrower, :insurance_percentage, :interest_percentage, :lender
   #]VALIDATORS]
+
+  after_initialize :init
+
+  before_validation do
+    percentage_interest = self.interest_percentage / 100 + 1
+    percentage_insurance = self.insurance_percentage / 100
+    amount_total = self.amount * percentage_interest + self.amount * percentage_insurance
+
+    self.turns_count = amount_total / 10000
+    if amount_total % 10000 !=0
+      self.turns_count += 1
+    end
+  end
+
+  def init
+    self.interest_percentage ||= 3
+    self.insurance_percentage ||= 0.3
+
+  end
 end

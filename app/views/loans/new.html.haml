@@ -1,0 +1,9 @@
+.container
+  .row
+    .col-md-4
+      .logo
+        = image_tag('ca.jpg')
+    .col-md-4
+      %h2= @participant.name
+
+  = render 'form'

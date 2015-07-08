@@ -12,7 +12,7 @@
           .btn.btn-default
             = link_to( 'Boutique', {controller: :shops, action: :show, id: @participant.id})
           .btn.btn-default
-            = link_to( 'Effectuer un emprunt', {controller: :loans, action: :show, id: @participant.id})
+            = link_to( 'Souscrire un emprunt', {controller: :loans, action: :new, lender_id: @participant.id})
       - else
         %h3= "<b>L'acteur est présent à l'événement, vous pouvez le retrouver à l'emplacement : #{@participant.stand_number} </b>".html_safe
 
