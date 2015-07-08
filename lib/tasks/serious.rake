@@ -11,7 +11,7 @@ namespace :serious do
     slength = (ENV["TURNS"] || 60).to_i
     scenario = {}
     scenario[:code] = ENV["SCENARIO"] || FFaker::LoremFR.words.join(" ").parameterize
-    scenario[:name] = ENV["SCENARIO_NAME"] || scenario[:code].humanize 
+    scenario[:name] = ENV["SCENARIO_NAME"] || scenario[:code].humanize
     scenario[:description] = FFaker::LoremFR.paragraph(10)
     scenario[:turn_nature] = "month"
     scenario[:turns_count] = slength
