@@ -21,7 +21,8 @@ $present-actor-color: #425000;
   text-align: left;
   border: 1px solid red;
 
-  @include transition(transform 2.20s);
+  -webkit-transition: -webkit-transform 1s;
+  transition: transform 1s; /* Animate the transform properties */
 
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d; /* <-NB */
@@ -31,21 +32,19 @@ $present-actor-color: #425000;
     width: $cube-width;
     height: $cube-height;
     background: $background-color-flip;
-    // border: 1px solid $borderColor;
-    // border-radius: 5px;
-    // box-shadow: 0 5px 20px $background-color-flop1, 0 0 8px 5px $background-color-flop2 inset;
+    border: 1px solid $borderColor;
+    border-radius: 5px;
+    box-shadow: 0 5px 20px $background-color-flop1, 0 0 8px 5px $background-color-flop2 inset;
   }
 
   /* Position the faces */
   .flip {
     @extend %extend;
-    transform: rotateX(0deg);
 
-    img {
-      width: 100%;
-      height: $cube-height;
-      border-radius: 2%;
-    }
+    -webkit-transform: translateZ(100px);
+    transform: translateZ(100px);
+
+
   }
 
   .flop {
@@ -54,20 +53,8 @@ $present-actor-color: #425000;
     //-webkit-transform: rotateX(-90deg) translateZ(-1 * $cube-height / 2);
     transform: rotateX(-90deg) translateZ(-1 * $cube-height / 2 - 20px);
 
-    .stand-event{
-      margin-top: 10px;
-      margin-right: 5px;
-      height: 40px;
-      width: 50px;
-      background-color: $present-actor-color;
-      color: white;
-      padding: 5px;
-      float: right;
-      border-radius: 5px;
-    }
   }
-
-  &.with-stand{
+  &.with-stand {
   }
   &:hover {
     -webkit-transform: rotateX(90deg);
@@ -148,6 +135,74 @@ $white_50: rgba(255, 255, 255, 0.5);
   }
 }
 
+
+.box-scene {
+  -webkit-perspective: 700px;
+  width: 200px;
+  height: 200px;
+
+  float: left;
+  margin: 20px 40px;
+  z-index: 999;
+}
+.box-scene:hover .box {
+  -webkit-transform: rotateY(-90deg);
+  transform: rotateY(-90deg);
+
+}
+.box {
+  width: $cube-width;
+  height: $cube-height;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+
+  @include  transition(all .40s ease-out);
+  @include  transform-origin(90px 90px -90px);
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  @include  backface-visibility(visible);
+  @include transform-origin(0 0);
+  text-align: center;
+  background: $background-color-flip;
+  border: 1px solid $borderColor;
+  border-radius: 5px;
+}
+.front {
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  z-index: 2;
+  background: #d9d9d9;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 2%;
+  }
+
+}
+.side {
+  -webkit-transform: rotateY(90deg);
+  transform: rotateY(90deg);
+  z-index: 1;
+  left: 180px;
+
+  .stand-event {
+    margin-top: 10px;
+    margin-right: 5px;
+    height: 40px;
+    width: 50px;
+    background-color: $present-actor-color;
+    color: white;
+    padding: 5px;
+    float: right;
+    border-radius: 5px;
+  }
+}
 
 
 

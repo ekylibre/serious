@@ -37,9 +37,9 @@
           %h3= farm.name
           = link_to('Voir la ferme', {controller: :actors, action: :show, id: farm.id} )
 
-  - if @current_participant.is_a?(Farm)
+  -if @current_participant.is_a?(Farm)
     %h2 Liste des acteurs
-    - @actors.each do |actor|
+    -# @actors.each do |actor|
       - classes = []
       - classes << 'with-stand' if actor.present
       .cube{class: classes}
@@ -51,5 +51,19 @@
               = actor.stand_number
           %h3= actor.name
           = link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id})
+
+    - @actors.each do |actor|
+      - classes = []
+      - classes << 'with-stand' if actor.present
+      .box-scene
+        .box
+          .front.face
+            = image_tag('http://placehold.it/350')
+          .side.face
+            - if actor.present
+              .stand-event
+                = actor.stand_number
+            %h3= actor.name
+            = link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id})
 
   = render 'curve'
