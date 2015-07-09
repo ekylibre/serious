@@ -23,7 +23,8 @@
 #  created_at     :datetime
 #  game_id        :integer          not null
 #  id             :integer          not null, primary key
-#  participant_id :integer          not null
+#  nature         :string           not null
+#  participant_id :integer
 #  updated_at     :datetime
 #  user_id        :integer          not null
 #
@@ -32,7 +33,7 @@
 #
 # participations_001:
 #   game: games_001
-#   participant: participants_001
+#   nature: "Lorem ipsum"
 #   user: users_001
 #
 

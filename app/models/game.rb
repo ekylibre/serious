@@ -78,7 +78,7 @@ class Game < ActiveRecord::Base
       end
 
       hash[:participations].each do |participation|
-        game.participations.create!(participant: game.participants.find_by(code: participation[:participant]), user: User.find_by(email: participation[:user]))
+        game.participations.create!(participation.merge(participant: game.participants.find_by(code: participation[:participant]), user: User.find_by(email: participation[:user])))
       end if hash[:participations]
     end
 

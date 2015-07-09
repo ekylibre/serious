@@ -7,20 +7,18 @@ class GamesController < BaseController
 
   def show
     @game = Game.find_by(id: params[:id])
-    @actors = Actor.where(:game_id => @game.id)
-    @farms = Farm.where(game_id: @game.id)
+    @actors = @game.actors
+    @farms = @game.farms
     @current_turn = 28
-    @news = ScenarioBroadcast.where({:scenario_id => 1, :release_turn => @current_turn + 1})
-    #@news = ScenarioBroadcast.where(:scenario_id => @game.scenario_id)
-    #@curves = ScenarioCurve.where(:scenario_id => @game.scenario_id)
+    scenario = @game.scenario || Scenario.first
+    @broadcasts = scenario.broadcasts.where(release_turn: @current_turn + 1)
+    # @curves = scenario.curves
 
-    @participation = Participation.find_by(game_id: @game.id, user_id: current_user.id)
-    @participant = Participant.find(@participation.participant_id)
-    @current_participant = @participant
+    @current_participation = @game.participations.includes(:participant).find_by(user_id: current_user.id)
+    @current_participant = @current_participation.participant
 
-    @curves = ScenarioCurve.where(:scenario_id => 1)
+    @curves = scenario.curves
     render layout: 'game'
-
   end
 
 end

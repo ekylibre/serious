@@ -1,9 +1,9 @@
-- if @news.any?
+- if @broadcasts.any?
   #carousel.carousel.slide{data: {ride: 'carousel'}}
     .row
       .col-xs-offset-2.col-xs-8
         .carousel-inner
-          - @news.each_with_index do |broadcast, index|
+          - @broadcasts.each_with_index do |broadcast, index|
             - classes = []
             - classes << "active" if index.zero?
             .item{class: classes}
@@ -12,7 +12,7 @@
                   %h4= truncate(broadcast.name, length: 70)
                   %p.ellipsis= broadcast.content
 
-    - if @news.count > 1
+    - if @broadcasts.count > 1
       = link_to("#carousel", class: "without-background left carousel-control", data: {slide: 'prev'}) do
         %span.glyphicon.glyphicon-chevron-left
 
@@ -20,38 +20,23 @@
         %span.glyphicon.glyphicon-chevron-right
 
 #world.container
-  .row
-    .col-md-5
-    .col-md-4
-      %h1 Le monde
+  %h1= @game.name
 
-  .btn.btn-default
-    = link_to('Vers ma page', {controller: :actors, action: :show, id: @participant.id})
-  - if @current_participant.is_a?(Actor)
-    %h2 Liste des participants
-    - @farms.each do |farm|
-      .cube
-        .flip
-          %h3= farm.name
-        .flop
-          %h3= farm.name
-          = link_to('Voir la ferme', {controller: :actors, action: :show, id: farm.id} )
+  - if current_participant
+    = link_to('Vers ma page', {controller: :actors, action: :show, id: @participant.id}, class: "btn btn-default")
+  - @game.participants.order(:name).each do |participant|
+    - next unless current_participation.can_see?(participant)
+    - classes = []
+    - classes << 'with-stand' if actor.present
+    .participant.box-scene{class: classes}
+      .box
+        .partipant-front.front.face
+          = image_tag('http://placehold.it/350x350')
+          .participant-caption= participant.name
+        .partipant-back.side.face
+          - if participant.present
+            .stand-number
+              = participant.stand_number
+          %h3= link_to(participant.name, {controller: participant.class.name.tableize, action: :show, id: participant.id})
 
-  -if @current_participant.is_a?(Farm)
-    %h2 Liste des acteurs
-
-    - @actors.each do |actor|
-      - classes = []
-      - classes << 'with-stand' if actor.present
-      .box-scene
-        .box
-          .front.face
-            = image_tag('http://placehold.it/350')
-          .side.face
-            - if actor.present
-              .stand-event
-                = actor.stand_number
-            %h3= actor.name
-            = link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id})
-
-  = render 'curve'
+  -#= render 'curve'

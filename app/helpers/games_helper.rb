@@ -1,5 +1,19 @@
 module GamesHelper
 
+  # Returns current_participation if any
+  # Need to refactor that with a preference or equivalent
+  # method
+  def current_participation
+    @current_participation
+  end
+
+  # Returns current_participant if any
+  # Need to refactor that with a preference or equivalent
+  # method
+  def current_participant
+    @current_participant
+  end
+
   def strat(x, y, width, height, thickness, options = {})
     depth = options.delete(:depth) || 0
     depth += thickness

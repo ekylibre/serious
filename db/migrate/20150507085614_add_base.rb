@@ -83,7 +83,8 @@ class AddBase < ActiveRecord::Migration
     create_table :participations do |t|
       t.references :game,           null: false, index: true
       t.references :user,           null: false, index: true
-      t.references :participant,    null: false, index: true
+      t.string     :nature,         null: false
+      t.references :participant,                 index: true
       t.timestamps
     end
 

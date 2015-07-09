@@ -54,7 +54,7 @@ gem 'devise'
 gem 'devise-i18n-views'
 gem 'devise-bootstrap-views'
 
-gem 'rails-i18n', '~> 4.0.0'
+gem 'rails-i18n'
 gem 'i18n-complements'
 
 gem 'color'

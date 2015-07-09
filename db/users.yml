@@ -110,6 +110,7 @@
 - first_name: Laetitia
   last_name: DA
   email: laetitia.da@boyer.info
+  role: organizer
 - first_name: Pénélope
   last_name: LEBON
   email: penelope.lebon@kerluke.name
@@ -476,6 +477,7 @@
 - first_name: Franck
   last_name: BRUNEL
   email: franck.brunel@gleason.us
+  role: organizer
 - first_name: Olivie
   last_name: LEBRETON
   email: olivie.lebreton@orn.com

@@ -20,7 +20,6 @@
 #
 # == Table: users
 #
-#  administrator          :boolean          default(FALSE), not null
 #  created_at             :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
@@ -34,18 +33,20 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  role                   :string           not null
 #  sign_in_count          :integer          default(0), not null
 #  updated_at             :datetime
 #
 class User < ActiveRecord::Base
+  extend Enumerize
+  enumerize :role, in: [:player, :organizer, :administrator], default: :player, predicates: true
   has_many :participations
   has_many :participants, through: :participations
   has_many :games, through: :participations
 
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :current_sign_in_at, :last_sign_in_at, :remember_created_at, :reset_password_sent_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
-  validates_inclusion_of :administrator, in: [true, false]
-  validates_presence_of :email, :encrypted_password
+  validates_presence_of :email, :encrypted_password, :role
   #]VALIDATORS]
   validates_presence_of :first_name, :last_name
 
@@ -64,6 +65,10 @@ class User < ActiveRecord::Base
     hash = Digest::MD5.hexdigest(self.email)
     options[:default] = :retro unless options.has_key? :default
     return "https://secure.gravatar.com/avatar/#{hash}?size=#{size}&d=#{options[:default]}"
+  end
+
+  def can_organize?
+    self.organizer? or self.administrator?
   end
 
 end

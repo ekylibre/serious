@@ -20,7 +20,6 @@
 #
 # == Table: users
 #
-#  administrator          :boolean          default(FALSE), not null
 #  created_at             :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
@@ -34,6 +33,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  role                   :string           not null
 #  sign_in_count          :integer          default(0), not null
 #  updated_at             :datetime
 #

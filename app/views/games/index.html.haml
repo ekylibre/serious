@@ -1,6 +1,6 @@
 .container
   %h1 Mes parties
-  - if @games.any?
+  - if @games.any? or current_user.can_organize?
     .list-group
       - @games.each do |game|
         = link_to(game_path(game), class: 'list-group-item') do
@@ -11,5 +11,7 @@
             %p= 'Rejoindre la partie maintenant'
           - else
             %p= 'La partie commence dans ' + distance_of_time_in_words_to_now(game.planned_at)
+      = link_to(new_backend_game_path, class: 'list-group-item list-group-item-info') do
+        %h4 Nouvelle partie
   - else
     %p Aucune partie en cours ou en attente
