@@ -28,15 +28,20 @@
 #  supplier_id :integer          not null
 #  updated_at  :datetime
 #
+
+# A deal is a sale or a purchase between a client and a supplier.
 class Deal < ActiveRecord::Base
+  extend Enumerize
   belongs_to :client, class_name: 'Participant'
   belongs_to :supplier, class_name: 'Participant'
   has_many :items, class_name: 'DealItem'
+  enumerize :state, in: [:draft, :invoice], default: :draft
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, allow_nil: true
   validates_presence_of :client, :supplier
   #]VALIDATORS]
 
+  accepts_nested_attributes_for :items
 
   before_validation do
     self.amount = self.items.sum(:amount)
@@ -46,5 +51,5 @@ class Deal < ActiveRecord::Base
     self.state ||= 'draft'
     self.amount ||= 0
   end
-  accepts_nested_attributes_for :items
+
 end

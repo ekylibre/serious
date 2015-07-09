@@ -1,63 +1,58 @@
 /* Set-up pour les cubes*/
 
-$width-cube: 218px;
-$height-cube: 165px;
+$cube-width: 200px;
+$cube-height: 200px;
 
 $widthImg: 215px;
 $heightImg: 215px;
 
-$backgroundColorFlip: rgb(247, 247, 247);
+$background-color-flip: rgb(247, 247, 247);
 $borderColor: #77220b;
-$backgroundColorFlop1: rgba(105, 108, 109, .3);
-$backgroundColorFlop2: rgba(208, 223, 226, .4);
+$background-color-flop1: rgba(105, 108, 109, .3);
+$background-color-flop2: rgba(208, 223, 226, .4);
 
 $present-actor-color: #425000;
 
-.container{
-  margin-top: 51px;
-}
-
 .cube {
   display: inline-block;
-  width: $width-cube;
-  height: $height-cube; //Hauteur de basculement
+  width: $cube-width;
+  //Hauteur de basculement
+  height: $cube-height;
   text-align: left;
-  margin-left: 43px;
-  padding-left: 1px;
+  border: 1px solid red;
 
-  -webkit-transition: -webkit-transform .20s;
-  transition: transform .20s; /* Animate the transform properties */
+  @include transition(transform 2.20s);
 
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d; /* <-NB */
 
   %extend {
-    height: $height-cube; //Hauteur du cube de base
-    background: $backgroundColorFlip;
-    border: 1px solid $borderColor;
-    border-radius: 5px;
-    box-shadow: 0 5px 20px $backgroundColorFlop1, 0 0 8px 5px $backgroundColorFlop2 inset;
+    //Hauteur du cube de base
+    width: $cube-width;
+    height: $cube-height;
+    background: $background-color-flip;
+    // border: 1px solid $borderColor;
+    // border-radius: 5px;
+    // box-shadow: 0 5px 20px $background-color-flop1, 0 0 8px 5px $background-color-flop2 inset;
   }
 
   /* Position the faces */
   .flip {
     @extend %extend;
-    -webkit-transform: translateZ(50px);
-    transform: translateZ(50px);
+    transform: rotateX(0deg);
 
     img {
-      max-width: 100%;
-      height: 163px;
+      width: 100%;
+      height: $cube-height;
       border-radius: 2%;
-  }
-
+    }
   }
 
   .flop {
     @extend %extend;
-    padding-left: 10px;
-    -webkit-transform: rotateX(-90deg) translateZ(-50px);
-    transform: rotateX(-90deg) translateZ(-50px);
+    transform-origin: center center;
+    //-webkit-transform: rotateX(-90deg) translateZ(-1 * $cube-height / 2);
+    transform: rotateX(-90deg) translateZ(-1 * $cube-height / 2 - 20px);
 
     .stand-event{
       margin-top: 10px;
@@ -74,12 +69,12 @@ $present-actor-color: #425000;
 
   &.with-stand{
   }
+  &:hover {
+    -webkit-transform: rotateX(90deg);
+    transform: rotateX(90deg);
+  }
 }
 
-.cube:hover {
-  -webkit-transform: rotateX(90deg);
-  transform: rotateX(90deg);
-}
 
 /* Curve */
 .curve  {
@@ -100,7 +95,6 @@ $white_50: rgba(255, 255, 255, 0.5);
 
 .carousel{
   background-color: mix($brand-primary, white, 10%);
-  margin-top: 51px;
 
   .row{
     width: 100%;
@@ -152,10 +146,6 @@ $white_50: rgba(255, 255, 255, 0.5);
   #withoutBackground {
     background-image: linear-gradient(to right, transparent 100%, rgba(255, 255, 255, 0.5) 100%);
   }
-}
-
-#world{
-  margin-top: 1px;
 }
 
 

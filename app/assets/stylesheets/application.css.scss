@@ -54,7 +54,8 @@ body.public {
 }
 
 body.game {
- //overflow: hidden;
+  //overflow: hidden;
+  margin-top: $navbar-height;
   #map-wrap {
     //overflow: hidden;
     #map-toolbar {
