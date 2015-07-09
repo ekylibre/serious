@@ -1,7 +1,7 @@
 # coding: utf-8
 class ParticipantsController < BaseController
   before_action :authenticate_user!
-  layout 'participant'
+  layout 'game'
 
   def show
     @participation = Participation.find_by( participant_id: params[:id] )
@@ -15,11 +15,11 @@ class ParticipantsController < BaseController
     #@curve = ScenarioCurve.find(1)
 
     if @participant.is_a?(Actor)
-      @purchases = Deal.joins(:supplier).where(client: current_participant, supplier: @participant, state: 'invoice')
-      @sales = Deal.joins(:client).where(supplier: current_participant, client: @participant, state: 'invoice')
+      @purchases = Deal.joins(:supplier).where(customer: current_participant, supplier: @participant, state: 'invoice')
+      @sales = Deal.joins(:customer).where(supplier: current_participant, customer: @participant, state: 'invoice')
     else
-      @purchases = Deal.joins(:supplier).where(client: current_participant, state: 'invoice')
-      @sales = Deal.joins(:client).where(supplier: current_participant, state: 'invoice')
+      @purchases = Deal.joins(:supplier).where(customer: current_participant, state: 'invoice')
+      @sales = Deal.joins(:customer).where(supplier: current_participant, state: 'invoice')
     end
   end
 
@@ -28,7 +28,7 @@ class ParticipantsController < BaseController
 
   protected
 
-  def find_name_client(purchase)
+  def find_name_customer(purchase)
     Participant.find(purchase.supplier_id).name
   end
 

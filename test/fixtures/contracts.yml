@@ -21,11 +21,11 @@
 # == Table: contracts
 #
 #  amount           :decimal(19, 4)   not null
+#  contractor_id    :integer          not null
 #  created_at       :datetime
 #  delivery_turn    :integer          not null
 #  description      :text
 #  id               :integer          not null, primary key
-#  originator_id    :integer          not null
 #  quantity         :decimal(19, 4)   not null
 #  release_turn     :integer          not null
 #  subcontractor_id :integer
@@ -37,8 +37,8 @@
 #
 # contracts_001:
 #   amount: 0
+#   contractor: contractors_001
 #   delivery_turn: 0
-#   originator: originators_001
 #   quantity: 0
 #   release_turn: 0
 #

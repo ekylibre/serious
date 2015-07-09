@@ -48,14 +48,17 @@ class ShopsController < BaseController
   protected
 
   def find_deal
-    @deal = Deal.find_or_create_by!(client: @current_participant, supplier: @participant, state: 'draft')
+    @deal = Deal.find_or_create_by!(customer: @current_participant, supplier: @participant, state: 'draft')
   end
 
   def init
     @catalog_item = CatalogItem.where( participant_id: params[:id] )
     @participant = Participant.find( params[:id] )
     participation =  Participation.find_by(user_id: current_user.id)
-    @current_participant = Participant.find(participation.participant_id)
+    unless @current_participant = participation.participant
+      redirect_to controller: :games, action: :show, id: participation.game_id, alert: "Need a participation"
+      return false
+    end
   end
 
 end

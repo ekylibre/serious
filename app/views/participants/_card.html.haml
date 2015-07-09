@@ -1,0 +1,21 @@
+.participant-card
+  .participant-logo= participant_logo(participant)
+  .participant-details
+    - if participant.present
+      .participant-stand-number= participant.stand_number
+    .participant-title
+      = options[:title] || participant.name
+    - if content
+      = content
+    - else
+      .participant-labels
+        %span.label.label-primary= participant.class.model_name.human
+        - [:contractor, :subcontractor, :supplier, :customer, :lender, :borrower].each do |state|
+          - if participant.send(state)
+            %span.label.label-success= Participant.human_attribute_name(state)
+      = link_to('Partie', {controller: :games, action: :show, id: participant.game_id}, class: "btn btn-default")
+      - if current_participant and !participant.present
+        = link_to('Acheter', {controller: :shops, action: :show, id: participant.id}, class: "btn btn-default")
+        = link_to('Emprunter', {controller: :loans, action: :new, lender_id: participant.id}, class: "btn btn-default")
+      - else
+        .participant-info= "#{participant.name} est présent à l'événement, vous pouvez le retrouver à l'emplacement : #{participant.stand_number}"

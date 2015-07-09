@@ -21,10 +21,10 @@
 # == Table: participants
 #
 #  borrower          :boolean          default(FALSE), not null
-#  client            :boolean          default(FALSE), not null
 #  code              :string           not null
 #  contractor        :boolean          default(FALSE), not null
 #  created_at        :datetime
+#  customer          :boolean          default(FALSE), not null
 #  game_id           :integer          not null
 #  historic_id       :integer
 #  id                :integer          not null, primary key
@@ -51,16 +51,16 @@ class Participant < ActiveRecord::Base
   has_many :participations
   has_many :users, through: :participations
   has_many :sales,      class_name: "Deal", foreign_key: :supplier_id
-  has_many :purchases,  class_name: "Deal", foreign_key: :client_id
+  has_many :purchases,  class_name: "Deal", foreign_key: :customer_id
   has_many :borrowings, class_name: "Loan", foreign_key: :borrower_id
   has_many :lendings,   class_name: "Loan", foreign_key: :lender_id
-  has_many :subcontractings, class_name: "Contract", foreign_key: :originator_id
+  has_many :subcontractings, class_name: "Contract", foreign_key: :contractor_id
   has_many :contractings,    class_name: "Contract", foreign_key: :subcontractor_id
   has_attached_file :logo
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :logo_updated_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
   validates_numericality_of :logo_file_size, :zone_height, :zone_width, :zone_x, :zone_y, allow_nil: true, only_integer: true
-  validates_inclusion_of :borrower, :client, :contractor, :lender, :present, :subcontractor, :supplier, in: [true, false]
+  validates_inclusion_of :borrower, :contractor, :customer, :lender, :present, :subcontractor, :supplier, in: [true, false]
   validates_presence_of :code, :game, :name
   #]VALIDATORS]
   validates_uniqueness_of :name, scope: :game_id
@@ -69,6 +69,25 @@ class Participant < ActiveRecord::Base
 
   def unique_name
     "serious_#{id}"
+  end
+
+  def number
+    I18n.transliterate(self.name.mb_chars.downcase).gsub(/[^a-zA-Z0-9]/, '').to_i(36)
+  end
+
+  def color
+    val = number
+    k, l, m, offset = 10, 16, self.id, 64
+    r, g, b = 17, 13, 23
+    c = ""
+    c << ((val * r / m).modulo(k) * l + offset).to_s(16).rjust(2, '0')
+    c << ((val * g / m).modulo(k) * l + offset).to_s(16).rjust(2, '0')
+    c << ((val * b / m).modulo(k) * l + offset).to_s(16).rjust(2, '0')
+    return c
+  end
+
+  def abbreviation
+    I18n.transliterate(self.name).gsub(/[^a-zA-Z0-9@\s]/, '').split(/\s+/).delete_if{|w| %w(de des du la le les au aux).include?(w)}[0..1].map{|w| w[0..0] }.join.upcase
   end
 
 end

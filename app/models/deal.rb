@@ -21,24 +21,24 @@
 # == Table: deals
 #
 #  amount      :decimal(19, 4)
-#  client_id   :integer          not null
 #  created_at  :datetime
+#  customer_id :integer          not null
 #  id          :integer          not null, primary key
 #  state       :string
 #  supplier_id :integer          not null
 #  updated_at  :datetime
 #
 
-# A deal is a sale or a purchase between a client and a supplier.
+# A deal is a sale or a purchase between a customer and a supplier.
 class Deal < ActiveRecord::Base
   extend Enumerize
-  belongs_to :client, class_name: 'Participant'
+  belongs_to :customer, class_name: 'Participant'
   belongs_to :supplier, class_name: 'Participant'
   has_many :items, class_name: 'DealItem'
   enumerize :state, in: [:draft, :invoice], default: :draft
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, allow_nil: true
-  validates_presence_of :client, :supplier
+  validates_presence_of :customer, :supplier
   #]VALIDATORS]
 
   accepts_nested_attributes_for :items

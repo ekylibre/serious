@@ -17,7 +17,7 @@
 $font-family-sans-serif: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $navbar-height: 50px;
 $brand-primary: #77220b; // #4f1607; // #50a145
-
+$brand-secondary: #50a145; // #425000;
 $navbar-inverse-color: lighten(#DDD, 15%);
 $navbar-inverse-bg: $brand-primary; // #222
 $navbar-inverse-border: darken($navbar-inverse-bg, 10%);
@@ -37,12 +37,17 @@ $navbar-inverse-toggle-border-color: $navbar-inverse-toggle-hover-bg;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "mixins";
 @import "games";
 @import "participant";
 @import "shops";
 
 .btn-toolbox {
   margin-bottom: $padding-base-vertical;
+}
+
+html, body {
+  background: #F9F9F9;
 }
 
 body.backend {

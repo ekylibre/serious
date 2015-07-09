@@ -1,42 +1,41 @@
 - if @broadcasts.any?
   #carousel.carousel.slide{data: {ride: 'carousel'}}
-    .row
-      .col-xs-offset-2.col-xs-8
-        .carousel-inner
-          - @broadcasts.each_with_index do |broadcast, index|
-            - classes = []
-            - classes << "active" if index.zero?
-            .item{class: classes}
-              .carousel-content
-                %div
-                  %h4= truncate(broadcast.name, length: 70)
-                  %p.ellipsis= broadcast.content
+    .carousel-inner
+      - @broadcasts.each_with_index do |broadcast, index|
+        - classes = []
+        - classes << "active" if index.zero?
+        .item{class: classes}
+          .carousel-content
+            %div
+              %h4= truncate(broadcast.name, length: 70)
+              %p= truncate(broadcast.content, length: 250)
 
     - if @broadcasts.count > 1
-      = link_to("#carousel", class: "without-background left carousel-control", data: {slide: 'prev'}) do
+      = link_to("#carousel", class: "left carousel-control", data: {slide: 'prev'}) do
         %span.glyphicon.glyphicon-chevron-left
 
-      = link_to('#carousel', class: 'without-background right carousel-control', data: {slide: 'next'}) do
+      = link_to('#carousel', class: 'right carousel-control', data: {slide: 'next'}) do
         %span.glyphicon.glyphicon-chevron-right
 
 #world.container
   %h1= @game.name
-
   - if current_participant
-    = link_to('Vers ma page', {controller: :actors, action: :show, id: @participant.id}, class: "btn btn-default")
-  - @game.participants.order(:name).each do |participant|
-    - next unless current_participation.can_see?(participant)
-    - classes = []
-    - classes << 'with-stand' if actor.present
-    .participant.box-scene{class: classes}
-      .box
-        .partipant-front.front.face
-          = image_tag('http://placehold.it/350x350')
-          .participant-caption= participant.name
-        .partipant-back.side.face
-          - if participant.present
-            .stand-number
-              = participant.stand_number
-          %h3= link_to(participant.name, {controller: participant.class.name.tableize, action: :show, id: participant.id})
-
+    = link_to('Vers ma page', {controller: current_participant.class.name.tableize, action: :show, id: current_participant.id}, class: "btn btn-default")
+  #participants
+    - @game.participants.order(:name).each do |participant|
+      - next unless current_participation.can_see?(participant)
+      - classes = []
+      - classes << 'with-stand' if participant.present
+      .participant.box-scene{class: classes}
+        - side = [:right, :left, :top, :bottom][participant.code.to_i(36).modulo(4)]
+        .box{class: "hover-on-#{side}"}
+          - url = {controller: participant.class.name.tableize, action: :show, id: participant.id}
+          = link_to(url, class: "participant-front face face-front") do
+            - if participant.present
+              .stand-number
+                = participant.stand_number
+            = participant_logo(participant)
+            .participant-caption= participant.name
+          .participant-details.face{class: "face-#{side}"}
+            %h3= link_to(participant.name, url)
   -#= render 'curve'

@@ -4,69 +4,89 @@ name: Test
 scenario: random
 farms:
   F01:
-    name: Ferme Lenoir (1)
+    name: Leblanc
     historic: SL47
     stand_number: SF01
+    present: true
   F02:
-    name: Ferme Parent (2)
+    name: Ribeiro
     historic: SL47
     stand_number: SF02
+    present: true
   F03:
-    name: Ferme Lambert (3)
+    name: Gautier
     historic: SL47
     stand_number: SF03
+    present: true
   F04:
-    name: Ferme Leclerc (4)
+    name: Maury
     historic: SL47
     stand_number: SF04
+    present: true
   F05:
-    name: Ferme Chretien (5)
+    name: Lacroix
     historic: SL47
     stand_number: SF05
+    present: true
   F06:
-    name: Ferme Evrard (6)
+    name: Hardy
     historic: SL47
     stand_number: SF06
+    present: true
   F07:
-    name: Ferme Guibert (7)
+    name: Marin
     historic: SL47
     stand_number: SF07
+    present: true
   F08:
-    name: Ferme Bonnet (8)
+    name: Chretien
     historic: SL47
     stand_number: SF08
+    present: true
   F09:
-    name: Ferme Martel (9)
+    name: Lebon
     historic: SL47
     stand_number: SF09
+    present: true
   F10:
-    name: Ferme Bruneau (10)
+    name: Pichon
     historic: SL47
     stand_number: SF10
+    present: true
   F11:
-    name: Ferme Lesage (11)
+    name: Rousset
     historic: SL47
     stand_number: SF11
+    present: true
   F12:
-    name: Ferme Normand (12)
+    name: Munoz
     historic: SL47
     stand_number: SF12
+    present: true
   F13:
-    name: Ferme Bigot (13)
+    name: Maury (2)
     historic: SL47
     stand_number: SF13
+    present: true
   F14:
-    name: Ferme Lebon (14)
+    name: Antoine
     historic: SL47
     stand_number: SF14
+    present: true
   F15:
-    name: Ferme Gonzalez (15)
+    name: Collin
     historic: SL47
     stand_number: SF15
+    present: true
 actors:
   A01:
     name: Crédit Agricole
     stand_number: SA01
+    present: true
+    contractor: true
+    supplier: false
+    customer: false
+    lender: true
     catalog_items:
     - variant: accommodation_travel
       quota: 2
@@ -101,6 +121,11 @@ actors:
   A02:
     name: Groupama
     stand_number: SA02
+    present: false
+    contractor: true
+    supplier: true
+    customer: true
+    lender: false
     catalog_items:
     - variant: accommodation_travel
       quota: 4
@@ -135,6 +160,11 @@ actors:
   A03:
     name: Unicoque
     stand_number: SA03
+    present: false
+    contractor: false
+    supplier: false
+    customer: false
+    lender: true
     catalog_items:
     - variant: accommodation_travel
       quota: 3
@@ -169,6 +199,11 @@ actors:
   A04:
     name: Terre du Sud
     stand_number: SA04
+    present: true
+    contractor: true
+    supplier: true
+    customer: false
+    lender: false
     catalog_items:
     - variant: accommodation_travel
       quota: 7
@@ -203,6 +238,11 @@ actors:
   A05:
     name: Razol
     stand_number: SA05
+    present: true
+    contractor: true
+    supplier: true
+    customer: false
+    lender: false
     catalog_items:
     - variant: accommodation_travel
       quota: 6
@@ -237,6 +277,11 @@ actors:
   A06:
     name: CER
     stand_number: SA06
+    present: false
+    contractor: true
+    supplier: false
+    customer: false
+    lender: true
     catalog_items:
     - variant: accommodation_travel
       quota: 5
@@ -271,6 +316,11 @@ actors:
   A07:
     name: "@com"
     stand_number: SA07
+    present: false
+    contractor: false
+    supplier: false
+    customer: false
+    lender: true
     catalog_items:
     - variant: accommodation_travel
       quota: 1
@@ -305,6 +355,11 @@ actors:
   A08:
     name: MSA
     stand_number: SA08
+    present: true
+    contractor: false
+    supplier: false
+    customer: false
+    lender: true
     catalog_items:
     - variant: accommodation_travel
       quota: 5
@@ -339,235 +394,235 @@ actors:
 participations:
 - user: admin@ekylibre.org
   nature: :organizer
-- user: gregoire.becker@ankunding.info
+- user: agathe.simon@dietrich.biz
   nature: :organizer
-- user: robert.garnier@stracke.name
+- user: michelle.guichard@heller.us
   nature: :organizer
 - participant: F01
-  user: danielle.laporte@bashirian.info
+  user: celina.barthelemy@ebert.com
   nature: :player
 - participant: F01
-  user: maggie.navarro@bradtke.name
+  user: elodie.rodrigues@daugherty.com
   nature: :player
 - participant: F01
-  user: alex.rossi@rogahndicki.info
+  user: aurelie.camus@mills.biz
   nature: :player
 - participant: F01
-  user: penelope.mathieu@faymayer.com
+  user: eric.leblanc@beahan.ca
   nature: :player
 - participant: F02
-  user: michel.duhamel@kling.us
+  user: jules.bousquet@franeckiwunsch.name
   nature: :player
 - participant: F02
-  user: juliette.marques@bernhard.com
+  user: benjamin.aubry@johnston.co.uk
   nature: :player
 - participant: F02
-  user: david.rocher@oreilly.co.uk
-  nature: :player
-- participant: F02
-  user: nicolas.maury@dubuquehirthe.biz
-  nature: :player
-- participant: F03
-  user: henri.martineau@rolfson.name
-  nature: :player
-- participant: F03
-  user: luce.guillaume@quigley.co.uk
-  nature: :player
-- participant: F03
-  user: xavier.deschamps@stoltenberg.biz
-  nature: :player
-- participant: F03
-  user: corinne.joseph@hermann.us
-  nature: :player
-- participant: F04
-  user: christiane.begue@marks.biz
-  nature: :player
-- participant: F04
-  user: luc.adam@kuhicreichel.ca
-  nature: :player
-- participant: F04
-  user: martine.diaz@ullrichgleichner.info
-  nature: :player
-- participant: F04
-  user: aimee.ollivier@jenkins.ca
-  nature: :player
-- participant: F05
-  user: anne.munoz@ankundingschmitt.com
-  nature: :player
-- participant: F05
-  user: marianne.lombard@grady.biz
-  nature: :player
-- participant: F05
-  user: valerie.rousset@gulgowski.name
-  nature: :player
-- participant: F05
-  user: michelle.guichard@heller.us
-  nature: :player
-- participant: F06
-  user: christelle.lebon@trantow.info
-  nature: :player
-- participant: F06
-  user: olivie.munoz@russelkoch.info
-  nature: :player
-- participant: F06
-  user: daniel.rousset@blanda.name
-  nature: :player
-- participant: F06
-  user: madeleine.martineau@steuber.biz
-  nature: :player
-- participant: F07
-  user: bernadette.roy@walterwitting.us
-  nature: :player
-- participant: F07
-  user: antoinette.buisson@schmitt.info
-  nature: :player
-- participant: F07
-  user: susanne.aubry@barton.name
-  nature: :player
-- participant: F07
-  user: theodore.martinez@thompsonnitzsche.us
-  nature: :player
-- participant: F08
-  user: isaac.diaz@auer.name
-  nature: :player
-- participant: F08
-  user: camille.gautier@jacobi.us
-  nature: :player
-- participant: F08
-  user: bernard.ribeiro@bailey.name
-  nature: :player
-- participant: F08
-  user: margaux.lesage@baumbach.co.uk
-  nature: :player
-- participant: F09
-  user: odette.guibert@mcglynn.name
-  nature: :player
-- participant: F09
-  user: georges.boucher@luettgenhirthe.com
-  nature: :player
-- participant: F09
-  user: claude.hardy@erdman.name
-  nature: :player
-- participant: F09
-  user: emilie.roche@bahringer.ca
-  nature: :player
-- participant: F10
   user: martin.goff@herzog.name
   nature: :player
-- participant: F10
-  user: valentine.barthelemy@quitzon.us
+- participant: F02
+  user: bernard.ribeiro@bailey.name
   nature: :player
-- participant: F10
-  user: david.guibert@jacobsonlarson.co.uk
+- participant: F03
+  user: margaret.coulon@cruickshankcollins.co.uk
   nature: :player
-- participant: F10
-  user: corinne.girard@king.biz
+- participant: F03
+  user: christelle.labbe@conroy.co.uk
   nature: :player
-- participant: F11
-  user: adele.foucher@bartonbeier.biz
+- participant: F03
+  user: hortense.moreau@dachconroy.com
   nature: :player
-- participant: F11
-  user: christine.labbe@gaylord.info
+- participant: F03
+  user: camille.gautier@jacobi.us
   nature: :player
-- participant: F11
-  user: benoit.levy@bernhard.com
+- participant: F04
+  user: zacharie.bonnin@howegoldner.ca
   nature: :player
-- participant: F11
-  user: edouard.guillaume@will.com
+- participant: F04
+  user: sebastien.bouchet@renner.ca
   nature: :player
-- participant: F12
-  user: bertrand.maury@jaskolskihodkiewicz.com
+- participant: F04
+  user: monique.jacquot@treutel.us
   nature: :player
-- participant: F12
-  user: julie.coste@wisozkparisian.name
+- participant: F04
+  user: nicolas.maury@dubuquehirthe.biz
   nature: :player
-- participant: F12
-  user: auguste.lesage@botsfordeichmann.info
+- participant: F05
+  user: franck.garcia@jewesswehner.info
   nature: :player
-- participant: F12
-  user: helene.charrier@goyette.biz
+- participant: F05
+  user: louis.hamon@mraz.name
   nature: :player
-- participant: F13
-  user: constance.bazin@russel.com
+- participant: F05
+  user: emilie.roche@bahringer.ca
   nature: :player
-- participant: F13
-  user: alex.francois@heller.name
+- participant: F05
+  user: pauline.lacroix@roob.ca
   nature: :player
-- participant: F13
-  user: hugues.bourgeois@daniel.biz
+- participant: F06
+  user: maryse.monnier@greenholt.co.uk
   nature: :player
-- participant: F13
-  user: marianne.munoz@kiehn.ca
+- participant: F06
+  user: gregoire.becker@ankunding.info
   nature: :player
-- participant: F14
-  user: georges.gallet@carroll.us
+- participant: F06
+  user: diane.bertin@terry.biz
   nature: :player
-- participant: F14
-  user: antoinette.samson@goyettehomenick.co.uk
+- participant: F06
+  user: claude.hardy@erdman.name
   nature: :player
-- participant: F14
-  user: julie.traore@gulgowski.ca
+- participant: F07
+  user: alix.levy@crooks.ca
   nature: :player
-- participant: F14
-  user: martin.le@shanahancassin.co.uk
+- participant: F07
+  user: victoire.peltier@ward.name
   nature: :player
-- participant: F15
-  user: henriette.valentin@rowebarrows.ca
+- participant: F07
+  user: celine.lebrun@wyman.us
   nature: :player
-- participant: F15
-  user: thomas.barbier@runte.ca
-  nature: :player
-- participant: F15
-  user: thomas.georges@beier.biz
-  nature: :player
-- participant: F15
+- participant: F07
   user: christophe.marin@mantekuhic.us
   nature: :player
-- participant: A01
+- participant: F08
+  user: celina.cordier@fisher.biz
+  nature: :player
+- participant: F08
+  user: pauline.brun@fahey.com
+  nature: :player
+- participant: F08
+  user: madeleine.martineau@steuber.biz
+  nature: :player
+- participant: F08
+  user: celine.chretien@stanton.co.uk
+  nature: :player
+- participant: F09
+  user: genevieve.jacques@denesik.us
+  nature: :player
+- participant: F09
+  user: elodie.vincent@zieme.us
+  nature: :player
+- participant: F09
+  user: laetitia.da@boyer.info
+  nature: :player
+- participant: F09
+  user: penelope.lebon@kerluke.name
+  nature: :player
+- participant: F10
+  user: constance.bazin@russel.com
+  nature: :player
+- participant: F10
   user: andre.gimenez@mcglynn.co.uk
+  nature: :player
+- participant: F10
+  user: eric.lelievre@gerlachjohnston.info
+  nature: :player
+- participant: F10
+  user: franck.pichon@ledner.com
+  nature: :player
+- participant: F11
+  user: lucy.traore@kirlin.biz
+  nature: :player
+- participant: F11
+  user: charles.lambert@macejkovic.biz
+  nature: :player
+- participant: F11
+  user: susanne.aubry@barton.name
+  nature: :player
+- participant: F11
+  user: daniel.rousset@blanda.name
+  nature: :player
+- participant: F12
+  user: francoise.begue@wintheiser.name
+  nature: :player
+- participant: F12
+  user: marianne.lombard@grady.biz
+  nature: :player
+- participant: F12
+  user: thomas.georges@beier.biz
+  nature: :player
+- participant: F12
+  user: anne.munoz@ankundingschmitt.com
+  nature: :player
+- participant: F13
+  user: anne.normand@mcglynn.info
+  nature: :player
+- participant: F13
+  user: antoinette.buisson@schmitt.info
+  nature: :player
+- participant: F13
+  user: astrid.leroy@abbottlynch.ca
+  nature: :player
+- participant: F13
+  user: frederic.maury@goodwinkerluke.us
+  nature: :player
+- participant: F14
+  user: alice.thomas@kemmer.info
+  nature: :player
+- participant: F14
+  user: theodore.roux@kozey.info
+  nature: :player
+- participant: F14
+  user: michelle.diaz@barrows.info
+  nature: :player
+- participant: F14
+  user: eric.antoine@brakus.co.uk
+  nature: :player
+- participant: F15
+  user: aimee.pineau@mcculloughhamill.us
+  nature: :player
+- participant: F15
+  user: adrien.francois@dietrich.ca
+  nature: :player
+- participant: F15
+  user: elodie.giraud@torphy.co.uk
+  nature: :player
+- participant: F15
+  user: bernadette.collin@conn.com
+  nature: :player
+- participant: A01
+  user: alice.maury@cummings.com
   nature: :player
 - participant: A01
   user: daisy.nicolas@spinka.us
   nature: :player
 - participant: A01
-  user: odette.lemoine@terry.ca
+  user: denis.becker@swaniawski.biz
   nature: :player
 - participant: A02
-  user: alexandrie.bouvier@jacobson.name
+  user: benoit.levy@bernhard.com
   nature: :player
 - participant: A02
-  user: daisy.lemonnier@jenkins.name
+  user: sabine.de@auerborer.com
   nature: :player
 - participant: A03
-  user: astrid.leroy@abbottlynch.ca
+  user: theophile.coste@brakus.us
   nature: :player
 - participant: A03
-  user: josephine.gall@rueckerfranecki.name
+  user: aimee.ollivier@jenkins.ca
   nature: :player
 - participant: A03
-  user: bernard.michel@goldner.biz
+  user: andre.petit@romaguerarunolfsdottir.com
   nature: :player
 - participant: A04
-  user: claire.lacombe@faheypredovic.ca
+  user: francoise.tessier@krislangworth.com
   nature: :player
 - participant: A04
-  user: lucy.traore@kirlin.biz
+  user: pauline.coulon@grimes.ca
   nature: :player
 - participant: A04
-  user: henriette.jacob@hayesrogahn.biz
+  user: david.rocher@oreilly.co.uk
   nature: :player
 - participant: A05
-  user: victoire.peltier@ward.name
+  user: david.guibert@jacobsonlarson.co.uk
   nature: :player
 - participant: A06
-  user: franck.pichon@ledner.com
-  nature: :player
-- participant: A07
   user: roland.martin@hodkiewicz.us
   nature: :player
-- participant: A08
-  user: caroline.guillot@stoltenberg.info
+- participant: A07
+  user: marianne.munoz@kiehn.ca
   nature: :player
 - participant: A08
-  user: agathe.samson@gorczany.ca
+  user: remy.gall@aufderharsmitham.ca
+  nature: :player
+- participant: A08
+  user: genevieve.bailly@zulauf.co.uk
   nature: :player

@@ -21,21 +21,26 @@
 # == Table: contracts
 #
 #  amount           :decimal(19, 4)   not null
+#  contractor_id    :integer          not null
 #  created_at       :datetime
 #  delivery_turn    :integer          not null
 #  description      :text
 #  id               :integer          not null, primary key
-#  originator_id    :integer          not null
 #  quantity         :decimal(19, 4)   not null
 #  release_turn     :integer          not null
 #  subcontractor_id :integer
 #  updated_at       :datetime
 #  variant          :string
 #
+
+# A contract is used between a contractor who propose the contract and
+# the subcontractor who accepts to execute the contract.
 class Contract < ActiveRecord::Base
+  belongs_to :contractor, class_name: "Participant"
+  belongs_to :subcontractor, class_name: "Participant"
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :delivery_turn, :release_turn, allow_nil: true, only_integer: true
   validates_numericality_of :amount, :quantity, allow_nil: true
-  validates_presence_of :amount, :delivery_turn, :quantity, :release_turn
+  validates_presence_of :amount, :contractor, :delivery_turn, :quantity, :release_turn
   #]VALIDATORS]
 end

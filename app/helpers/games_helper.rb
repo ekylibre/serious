@@ -1,5 +1,18 @@
 module GamesHelper
 
+  def participant_card(participant, options = {}, &block)
+    content = capture(participant, &block) if block_given?
+    render "participants/card", participant: participant, options: options, content: content
+  end
+
+  def participant_logo(participant)
+    if participant.logo.file?
+      return image_tag(participant.logo.url(:identity))
+    else
+      return content_tag(:div, participant.abbreviation, class: "participant-abbreviation", style: "background-color: ##{participant.color}")
+    end
+  end
+
   # Returns current_participation if any
   # Need to refactor that with a preference or equivalent
   # method

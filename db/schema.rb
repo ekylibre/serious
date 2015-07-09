@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150630125434) do
   add_index "catalog_items", ["variant"], name: "index_catalog_items_on_variant"
 
   create_table "contracts", force: :cascade do |t|
-    t.integer  "originator_id",                             null: false
+    t.integer  "contractor_id",                             null: false
     t.integer  "subcontractor_id"
     t.string   "variant"
     t.decimal  "amount",           precision: 19, scale: 4, null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.datetime "updated_at"
   end
 
-  add_index "contracts", ["originator_id"], name: "index_contracts_on_originator_id"
+  add_index "contracts", ["contractor_id"], name: "index_contracts_on_contractor_id"
   add_index "contracts", ["subcontractor_id"], name: "index_contracts_on_subcontractor_id"
 
   create_table "deal_items", force: :cascade do |t|
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20150630125434) do
   end
 
   create_table "deals", force: :cascade do |t|
-    t.integer  "client_id",                            null: false
+    t.integer  "customer_id",                          null: false
     t.integer  "supplier_id",                          null: false
     t.decimal  "amount",      precision: 19, scale: 4
     t.datetime "created_at"
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.integer  "zone_width"
     t.integer  "zone_height"
     t.integer  "historic_id"
-    t.boolean  "client",            default: false, null: false
+    t.boolean  "customer",          default: false, null: false
     t.boolean  "supplier",          default: false, null: false
     t.boolean  "lender",            default: false, null: false
     t.boolean  "borrower",          default: false, null: false

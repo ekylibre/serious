@@ -21,10 +21,10 @@
 # == Table: participants
 #
 #  borrower          :boolean          default(FALSE), not null
-#  client            :boolean          default(FALSE), not null
 #  code              :string           not null
 #  contractor        :boolean          default(FALSE), not null
 #  created_at        :datetime
+#  customer          :boolean          default(FALSE), not null
 #  game_id           :integer          not null
 #  historic_id       :integer
 #  id                :integer          not null, primary key
@@ -50,9 +50,9 @@
 #
 # participants_001:
 #   borrower: true
-#   client: true
 #   code: "Lorem ipsum"
 #   contractor: true
+#   customer: true
 #   game: games_001
 #   lender: true
 #   name: "Lorem ipsum"

@@ -40,9 +40,12 @@ class Game < ActiveRecord::Base
   belongs_to :scenario
   has_many :actors
   has_many :farms
+  has_many :organizer_participations, -> { where(nature: :organizer) }, class_name: "Participation"
+  has_many :organizers, through: :organizer_participations, source: :user
   has_many :participations
   has_many :participants
   has_many :turns, class_name: "GameTurn"
+  has_many :users, through: :participations
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :planned_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
   validates_numericality_of :map_height, :map_width, :turn_duration, allow_nil: true, only_integer: true
@@ -68,11 +71,11 @@ class Game < ActiveRecord::Base
 
       hash[:farms].each do |code, farm|
         historic = farm[:historic].blank? ? nil : Historic.find_by(code: farm[:historic])
-        game.farms.create! farm.slice(:name, :borrower, :lender, :client, :supplier, :subcontractor, :contractor, :zone_x, :zone_y, :zone_width, :zone_height).merge(code: code, historic: historic)
+        game.farms.create! farm.slice(:name, :borrower, :lender, :customer, :supplier, :subcontractor, :contractor, :zone_x, :zone_y, :zone_width, :zone_height, :present, :stand_number).merge(code: code, historic: historic)
       end
 
       hash[:actors].each do |code, actor|
-        attributes = actor.slice(:name, :borrower, :lender, :client, :supplier, :subcontractor, :contractor, :zone_x, :zone_y, :zone_width, :zone_height).merge(code: code)
+        attributes = actor.slice(:name, :borrower, :lender, :customer, :supplier, :subcontractor, :contractor, :zone_x, :zone_y, :zone_width, :zone_height, :present, :stand_number).merge(code: code)
         attributes[:catalog_items_attributes] = actor[:catalog_items] if actor[:catalog_items]
         game.actors.create! attributes
       end

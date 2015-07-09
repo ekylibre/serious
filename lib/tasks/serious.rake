@@ -61,7 +61,6 @@ namespace :serious do
     # variants
     VARIANTS.each do |v|
       value = v.to_s.to_i(36)
-      puts value.inspect
       curves[v] = {
         name: v.humanize,
         nature: "variant",
@@ -91,7 +90,11 @@ namespace :serious do
 
     here = Pathname.new(__FILE__).dirname
 
-    users = YAML.load_file(Rails.root.join("db", "users.yml")).collect{|u| u["email"]}
+    users_hash = YAML.load_file(Rails.root.join("db", "users.yml")).inject({}) do |hash, user|
+      hash[user["email"]] = user.symbolize_keys
+      hash
+    end
+    users = users_hash.keys
 
     game = {}
     game[:code] = ENV["GAME"] || FFaker::LoremFR.words.join(" ").parameterize
@@ -102,18 +105,26 @@ namespace :serious do
 
     participations << {user: "admin@ekylibre.org", nature: :organizer}
     2.times do
-      user = users.delete(users.sample)
+      user = users.shift
       participations << {user: user, nature: :organizer}
     end
 
     farms = {}
     15.times do |index|
       code = "F#{(index + 1).to_s.rjust(2, '0')}"
-      farms[code] = {name: "Ferme #{FFaker::NameFR.last_name} (#{index + 1})", historic: "SL47", stand_number: "S" + code}
       4.times do
-        user = users.delete(users.sample)
+        user = users.shift
         participations << {participant: code, user: user, nature: :player}
       end
+      name = users_hash[participations.last[:user]][:last_name].humanize
+      root_name = name
+      i = 1
+      while farms.values.detect{|f| f[:name] == name}
+        i += 1
+        name = root_name+ " (#{i})"
+      end
+      value = I18n.transliterate(name.mb_chars.downcase).to_i(36)
+      farms[code] = {name: name, historic: "SL47", stand_number: "S" + code, present: (value.modulo(20) > 1)}
     end
     game[:farms] = farms
 
@@ -121,7 +132,9 @@ namespace :serious do
     ["Crédit Agricole", "Groupama", "Unicoque", "Terre du Sud", "Razol", "CER", "@com", "MSA"].each_with_index do |name, index|
       value = I18n.transliterate(name.mb_chars.downcase).to_i(36)
       code = "A#{(index + 1).to_s.rjust(2, '0')}"
-      actors[code] = {name: name, stand_number: "S" + code}
+      supplier = (value.modulo(10) > 3)
+      customer = (value.modulo(25) > 15)
+      actors[code] = {name: name, stand_number: "S" + code, present: (value.modulo(30) > 6), contractor: (value.modulo(21) > 6), supplier: supplier, customer: customer, lender: !(supplier or customer)}
       items = []
       15.times do |index|
         items << {variant: VARIANTS[(index*value).modulo(VARIANTS.size)], quota: 1 + value.modulo(7)}

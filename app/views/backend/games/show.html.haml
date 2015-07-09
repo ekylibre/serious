@@ -1,5 +1,11 @@
-- unless resource.description.blank?
-  .well= resource.description
+.well
+  %p= resource.description
+  %p
+    :ruby
+      organizers = resource.organizers.collect do |user|
+        link_to(user.name, backend_user_path(user))
+      end
+    %span= h("Organisateurs : ") + organizers.to_sentence.html_safe
 
 .btn-group.btn-toolbox
   = link_to(:edit.ta, edit_backend_game_path(resource), class: 'btn btn-default')

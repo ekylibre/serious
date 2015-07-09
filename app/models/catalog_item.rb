@@ -48,4 +48,8 @@ class CatalogItem < ActiveRecord::Base
     8
   end
 
+  def variant_name
+    self.variant.to_s.humanize
+  end
+
 end

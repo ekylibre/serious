@@ -1,0 +1,30 @@
+@mixin transform-style($expr) {
+  -webkit-transform-style: $expr;
+  -moz-transform-style: $expr;
+  -ms-transform-style: $expr;
+  -o-transform-style: $expr;
+  transform-style: $expr;
+}
+
+@mixin transform($expr) {
+  -webkit-transform: $expr;
+  -moz-transform: $expr;
+  -ms-transform: $expr;
+  -o-transform: $expr;
+  transform: $expr;
+}
+
+@mixin framebox {
+  margin: $font-size-base 0;
+  @include box-shadow(1px 1px 3px rgba(black, 0.4));
+  background: white;
+  & > h3 {
+    margin: 0;
+    padding: $font-size-base;
+    background: $brand-secondary;
+    color: white;
+  }
+  & > .items-list {
+    padding: $font-size-base;
+  }
+}

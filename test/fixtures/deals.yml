@@ -21,8 +21,8 @@
 # == Table: deals
 #
 #  amount      :decimal(19, 4)
-#  client_id   :integer          not null
 #  created_at  :datetime
+#  customer_id :integer          not null
 #  id          :integer          not null, primary key
 #  state       :string
 #  supplier_id :integer          not null
@@ -32,7 +32,7 @@
 # == Fixture: deals
 #
 # deals_001:
-#   client: clients_001
+#   customer: customers_001
 #   supplier: suppliers_001
 #
 

@@ -1,56 +1,47 @@
 .container
+
+  = participant_card(@participant)
+
   .row
-    .col-md-4
-      .logo
-        = image_tag('http://placehold.it/350')
-    .col-md-4
-      %h1= @participant.name
-  .row
-    -if @participant.is_a?(Actor)
-      - if !@participant.present
-        .col-md-4
-          = link_to( 'Boutique', {controller: :shops, action: :show, id: @participant.id}, class: "btn btn-default")
-          = link_to( 'Souscrire un emprunt', {controller: :loans, action: :new, lender_id: @participant.id}, class: "btn btn-default")
-      - else
-        %h3= "<b>L'acteur est présent à l'événement, vous pouvez le retrouver à l'emplacement : #{@participant.stand_number} </b>".html_safe
+    - if current_participant and current_participant.purchases.where(supplier: @participant).any?
+      .col-md-6
+        .items-block
+          %h3 Mes achats
+          .items-list
+            - current_participant.purchases.where(supplier: @participant).each do |purchase|
+              .items-item
+                %h4= "#{purchase.supplier.name} - <i> #{purchase.updated_at.l}</i>".html_safe
+                - purchase.items.each do |item|
+                  = "- #{item.variant} - #{item.amount}€ <br/>".html_safe
 
-  .saleBuyInterface
-    %h3 Achats
-    .cubeSalesBuy
-      - @purchases.each do |purchase|
-        .sale
-          %h4= "#{purchase.supplier.name} - <i> #{purchase.updated_at.strftime('%d/%m/%Y')}</i>".html_safe
-          - purchase.items.each do |item|
-            = "- #{item.variant} - #{item.amount}€ <br/>".html_safe
+    - if current_participant and current_participant.sales.where(customer: @participant).any?
+      .col-md-6
+        .items-block
+          %h3 Mes ventes
+          .items-list
+            - current_participant.sales.where(customer: @participant).each do |sale|
+              .items-item
+                %h4= "#{sale.customer.name} - <i> #{sale.updated_at.l}</i>".html_safe
+                - sale.items.each do |item|
+                  = "- #{item.variant} - #{item.amount}€ <br/>".html_safe
 
-  .saleBuyInterface
-    %h3 Ventes
-    .cubeSalesBuy
-      - @sales.each do |sale|
-        .sale
-          %h4= "#{@sales.client.name} - <i> #{sale.updated_at.strftime('%d/%m/%Y')}</i>".html_safe
-          - sale.items.each do |item|
-            = "- #{item.variant} - #{item.amount}€ <br/>".html_safe
+    - if current_participant and current_participant.contractings.where(contractor: @participant).any?
+      .col-md-6
+        .items-block
+          %h3 Mes contrats
+          .items-list
+            - current_participant.contractings.where(contractor: @participant).each do |contracting|
+              .items-item
+                %h4= "#{contracting.contractor.name} - <i> #{contracting.updated_at.l}</i>".html_safe
 
-  - if @participant.is_a?(Farm)
-    .saleBuyInterface
-      %h3 Mes contrats
-      .cubeSalesBuy
-        - 2.times do
-          .sale
-            %h4 Achat 1
-            %p
-              test test test test test test
-              %b 33€
-    .saleBuyInterface
-      %h3 Mes emprunts
-      .cubeSalesBuy
-        - 3.times do
-          .sale
-            %h4 Achat 1
-            %p
-              test test test test test test
-              %b 33€
+    - if current_participant and current_participant.borrowings.where(lender: @participant).any?
+      .col-md-6
+        .items-block
+          %h3 Mes emprunts
+          .items-list
+            - current_participant.borrowings.where(lender: @participant).each do |borrowing|
+              .items-item
+                %h4= "#{borrowing.lender.name} - <i> #{borrowing.updated_at.l}</i>".html_safe
 
 
 

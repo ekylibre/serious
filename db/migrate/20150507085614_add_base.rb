@@ -99,7 +99,7 @@ class AddBase < ActiveRecord::Migration
       t.integer    :zone_width
       t.integer    :zone_height
       t.references :historic,                    index: true
-      t.boolean    :client,         null: false, default: false
+      t.boolean    :customer,       null: false, default: false
       t.boolean    :supplier,       null: false, default: false
       t.boolean    :lender,         null: false, default: false
       t.boolean    :borrower,       null: false, default: false
@@ -109,7 +109,7 @@ class AddBase < ActiveRecord::Migration
     end
 
     create_table :contracts do |t|
-      t.references :originator,     null: false, index: true
+      t.references :contractor,     null: false, index: true
       t.references :subcontractor,               index: true
       t.string     :variant
       t.decimal    :amount,   precision: 19, scale: 4, null: false
@@ -121,7 +121,7 @@ class AddBase < ActiveRecord::Migration
     end
 
     create_table :deals do |t|
-      t.references :client,      null: false, index: false
+      t.references :customer,    null: false, index: false
       t.references :supplier,    null: false, index: false
       t.decimal    :amount,      precision: 19, scale: 4
       t.timestamps

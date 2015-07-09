@@ -1,4 +1,10 @@
-= link_to(:edit.ta, edit_backend_user_path(resource), class: "btn btn-default")
+.well
+  %p= resource.email
+  %p= resource.role.text
+
+.btn-group.btn-toolbox
+  = link_to(:edit.ta, edit_backend_user_path(resource), class: "btn btn-default")
+
 
 -# %h2= User.human_attribute_name(:things)
 -# .btn-group.btn-toolbox{role: "group"}

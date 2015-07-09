@@ -4,8 +4,6 @@ class Backend::BaseController < BaseController
   before_action :authorize_user!
   layout 'backend'
 
-  attr_reader :current_participation, :current_participant
-
   protected
 
   def authorize_user!

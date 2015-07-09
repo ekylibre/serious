@@ -39,7 +39,10 @@ class DealItem < ActiveRecord::Base
   validates_presence_of :deal
   #]VALIDATORS]
 
-  after_initialize :init
+  after_initialize do
+    self.quantity ||= 0
+    self.unit_amount ||= 0
+  end
 
   before_validation do
     self.amount = self.unit_amount * self.quantity
@@ -53,8 +56,8 @@ class DealItem < ActiveRecord::Base
     self.deal.save
   end
 
-  def init
-    self.quantity ||= 0
-    self.unit_amount ||= 0
+  def variant_name
+    self.variant.to_s.humanize
   end
+
 end
