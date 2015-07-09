@@ -39,18 +39,6 @@
 
   -if @current_participant.is_a?(Farm)
     %h2 Liste des acteurs
-    -# @actors.each do |actor|
-      - classes = []
-      - classes << 'with-stand' if actor.present
-      .cube{class: classes}
-        .flip
-          = image_tag('http://placehold.it/350x163')
-        .flop
-          - if actor.present
-            .stand-event
-              = actor.stand_number
-          %h3= actor.name
-          = link_to('Voir les contrats', {controller: :actors, action: :show, id: actor.id})
 
     - @actors.each do |actor|
       - classes = []

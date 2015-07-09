@@ -13,56 +13,6 @@ $background-color-flop2: rgba(208, 223, 226, .4);
 
 $present-actor-color: #425000;
 
-.cube {
-  display: inline-block;
-  width: $cube-width;
-  //Hauteur de basculement
-  height: $cube-height;
-  text-align: left;
-  border: 1px solid red;
-
-  -webkit-transition: -webkit-transform 1s;
-  transition: transform 1s; /* Animate the transform properties */
-
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d; /* <-NB */
-
-  %extend {
-    //Hauteur du cube de base
-    width: $cube-width;
-    height: $cube-height;
-    background: $background-color-flip;
-    border: 1px solid $borderColor;
-    border-radius: 5px;
-    box-shadow: 0 5px 20px $background-color-flop1, 0 0 8px 5px $background-color-flop2 inset;
-  }
-
-  /* Position the faces */
-  .flip {
-    @extend %extend;
-
-    -webkit-transform: translateZ(100px);
-    transform: translateZ(100px);
-
-
-  }
-
-  .flop {
-    @extend %extend;
-    transform-origin: center center;
-    //-webkit-transform: rotateX(-90deg) translateZ(-1 * $cube-height / 2);
-    transform: rotateX(-90deg) translateZ(-1 * $cube-height / 2 - 20px);
-
-  }
-  &.with-stand {
-  }
-  &:hover {
-    -webkit-transform: rotateX(90deg);
-    transform: rotateX(90deg);
-  }
-}
-
-
 /* Curve */
 .curve  {
   width: 48%;
