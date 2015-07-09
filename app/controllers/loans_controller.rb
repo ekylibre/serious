@@ -21,9 +21,10 @@ class LoansController < BaseController
       else
         format.html { render :new }
         format.json { render json: @loan.errors, status: :unprocessable_entity }
-      endle
+      end
     end
   end
+
 
   private
   def loan_params
