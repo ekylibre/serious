@@ -91,6 +91,10 @@ class Game < ActiveRecord::Base
     Time.now >= self.planned_at
   end
 
+  def current_turn
+    self.turns.find_by(number: 5) || self.turns.create!(number: 5, started_at: Time.now - 30.minutes, stopped_at: Time.now + 65.minutes)
+  end
+
   # Launch the game
   # Creates Ekylibre instances and load them with their historics
   def load

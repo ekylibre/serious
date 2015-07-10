@@ -36,4 +36,10 @@ class GameTurn < ActiveRecord::Base
   validates_numericality_of :duration, :number, allow_nil: true, only_integer: true
   validates_presence_of :duration, :game, :number
   #]VALIDATORS]
+
+  before_validation do
+    if self.started_at && self.stopped_at
+      self.duration = (self.stopped_at - self.started_at).to_i
+    end
+  end
 end

@@ -4,13 +4,16 @@
     .list-group
       - @games.each do |game|
         = link_to(game_path(game), class: 'list-group-item') do
-          %h4.list-group-item-heading= game.name
-          - unless game.description.blank?
-            %p.list-group-item-text= game.description
-          - if game.started?
-            %p= 'Rejoindre la partie maintenant'
+          - participation = Participation.find_by(game_id: game.id, user_id: @current_user.id)
+          - if participation.organizer?
+            %h4.list-group-item-heading= "#{game.name} - Organisateur"
           - else
-            %p= 'La partie commence dans ' + distance_of_time_in_words_to_now(game.planned_at)
+            %h4.list-group-item-heading= "#{game.name} - #{participation.participant.name}"
+            .countdown
+              - if game.started?
+                %h4= game.current_turn.stopped_at - Time.now
+              - else
+                %p= 'La partie commence dans ' + distance_of_time_in_words_to_now(game.planned_at)
       = link_to(new_backend_game_path, class: 'list-group-item list-group-item-info') do
         %h4 Nouvelle partie
   - else

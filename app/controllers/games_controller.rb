@@ -3,6 +3,7 @@ class GamesController < BaseController
 
   def index
     @games = current_user.games
+    @current_user = current_user
   end
 
   def show
