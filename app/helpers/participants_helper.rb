@@ -33,5 +33,5 @@ module ParticipantsHelper
       end
     end
   end
-  
+
 end

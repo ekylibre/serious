@@ -36,6 +36,7 @@
 #
 class Game < ActiveRecord::Base
   extend Enumerize
+  enumerize :state, in: [:planned, :running, :paused, :finished], default: :planned, predicates: true
   enumerize :turn_nature, in: [:month], default: :month
   belongs_to :scenario
   has_many :actors
@@ -44,20 +45,36 @@ class Game < ActiveRecord::Base
   has_many :organizers, through: :organizer_participations, source: :user
   has_many :participations
   has_many :participants
-  has_many :turns, class_name: "GameTurn"
+  has_many :turns, class_name: "GameTurn", dependent: :destroy, counter_cache: false
   has_many :users, through: :participations
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :planned_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
   validates_numericality_of :map_height, :map_width, :turn_duration, allow_nil: true, only_integer: true
   validates_presence_of :name
   #]VALIDATORS]
-  validates_presence_of :planned_at
+  validates_presence_of :planned_at, :turn_duration, :turn_nature, :state
 
   accepts_nested_attributes_for :farms
   accepts_nested_attributes_for :actors
 
   before_validation do
     self.planned_at ||= Time.now
+    if self.scenario
+      self.turn_nature = self.scenario.turn_nature
+      self.turns_count = self.scenario.turns_count
+    end
+  end
+
+  after_save do
+    self.turns.clear
+    if self.turns_count
+      started_at = self.planned_at
+      self.turns_count.times do |index|
+        stopped_at = started_at + self.turn_duration.minutes
+        self.turns.create!(number: index + 1, started_at: started_at, stopped_at: stopped_at)
+        started_at = stopped_at
+      end
+    end
   end
 
   class << self
@@ -66,6 +83,9 @@ class Game < ActiveRecord::Base
       hash = YAML.load_file(file).deep_symbolize_keys
       attributes = hash.slice(:name, :description, :planned_at, :turns_count, :turn_nature, :turn_duration, :map_width, :map_height)
       # puts Scenario.find_by(code: hash[:scenario]).inspect
+      attributes[:planned_at] ||= Time.now
+      attributes[:turn_duration] ||= 30
+      attributes[:turn_nature] ||= :month
       attributes[:scenario] = Scenario.find_by(code: hash[:scenario]) if hash[:scenario]
       game = create!(attributes)
 
@@ -91,8 +111,10 @@ class Game < ActiveRecord::Base
     Time.now >= self.planned_at
   end
 
-  def current_turn
-    self.turns.find_by(number: 5) || self.turns.create!(number: 5, started_at: Time.now - 30.minutes, stopped_at: Time.now + 65.minutes)
+  # Returns current turn from now
+  def current_turn(at = nil)
+    at ||= Time.now
+    self.turns.at(at).first
   end
 
   # Launch the game
