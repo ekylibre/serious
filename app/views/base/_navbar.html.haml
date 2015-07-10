@@ -12,4 +12,10 @@
           %ul.nav.navbar-nav
 
         %ul.nav.navbar-nav.navbar-right
-          %li= link_to('Se déconnecter', destroy_user_session_path, method: :delete)
+          %li.dropdown
+            %a.dropdown-toggle
+              Mon compte
+              .caret
+            %ul.dropdown-menu
+              %li Action
+              %li= link_to('Se déconnecter', destroy_user_session_path, method: :delete)

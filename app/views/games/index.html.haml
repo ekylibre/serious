@@ -11,7 +11,7 @@
             %h4.list-group-item-heading= "#{game.name} - #{participation.participant.name}"
             .countdown
               - if game.started?
-                %h4= distance_of_time_in_words(game.current_turn.stopped_at, Time.now )
+                //%h4= distance_of_time_in_words(game.current_turn.stopped_at, Time.now )
               - else
                 %p= 'La partie commence dans ' + distance_of_time_in_words_to_now(game.planned_at)
       = link_to(new_backend_game_path, class: 'list-group-item list-group-item-info') do
