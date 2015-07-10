@@ -1,0 +1,12 @@
+.user-card
+  = link_to(user_logo(user), user_path(user), class: "user-logo")
+  .user-details
+    .user-title
+      = user.name
+    - if current_user.administrator?
+      .user-email= current_user.email
+    - if content
+      = content
+    - else
+      .user-labels
+        %span.label.label-primary= user.role.humanize

@@ -28,3 +28,51 @@
     padding: $font-size-base;
   }
 }
+
+
+@mixin card($base) {
+  @include framebox;
+  min-height: $cube-height;
+  .#{$base}-logo {
+    float: left;
+    margin-right: $font-size-base;
+    img {
+      width: $cube-width;
+      height: $cube-height;
+    }
+    &, * {
+    cursor: pointer;
+      text-decoration: none;
+    }
+  }
+  .#{$base}-details {
+    padding: $font-size-base;
+    .#{$base}-stand-number {
+      display: block;
+      float: right;
+      padding: $padding-base-vertical $padding-base-horizontal;
+      background-color: rgba(black, 0.3);
+      color: white;
+      border-bottom-left-radius: $border-radius-small;
+      text-transform: uppercase;
+      font-size: larger;
+    }
+    .#{$base}-title {
+      font-size: $font-size-h1;
+    }
+    .#{$base}-labels {
+      font-size: $font-size-h4;
+      margin-bottom: $font-size-base;
+    }
+    .#{$base}-info {
+      font-size: $font-size-h4;
+      color: $brand-info;
+    }
+    .deal-amount {
+      font-size: $font-size-h1;
+      float: right;
+      padding: 0 $font-size-h1;
+      background: #EEE;
+    }
+  }
+}

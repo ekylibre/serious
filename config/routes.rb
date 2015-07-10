@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       put :checkout
     end
   end
+  resources :users
 
   root to: 'games#index'
 end

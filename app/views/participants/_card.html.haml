@@ -19,3 +19,9 @@
         = link_to('Emprunter', {controller: :loans, action: :new, lender_id: participant.id}, class: "btn btn-default")
       - else
         .participant-info= "#{participant.name} est présent à l'événement, vous pouvez le retrouver à l'emplacement : #{participant.stand_number}"
+      :ruby
+        users = participant.participations.where.not(user_id: nil).order(:id).map do |participation|
+          user = participation.user
+          link_to(user.name, user_path(user.id))
+        end
+      = h("Membres : ") + users.to_sentence.html_safe
