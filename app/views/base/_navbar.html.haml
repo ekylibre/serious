@@ -14,19 +14,29 @@
         %ul.nav.navbar-nav.navbar-right
           - if current_participation
             - if current_participant
-              %li
-                = link_to("javascript: alert('En cours')") do
-                  %i.glyphicon.glyphicon-transfer
+              - if current_participant.is_a?(Farm)
+                %li
+                  = link_to("javascript: alert('Lien vers Ekylibre en cours de construction')") do
+                    %i.glyphicon.glyphicon-transfer
               %li
                 = link_to(participant_path(current_participant)) do
-                  %i.glyphicon.glyphicon-grain
+                  %i.glyphicon.glyphicon-home
             %li
               = link_to(game_path(current_participation.game)) do
                 %i.glyphicon.glyphicon-th-large
-          %li.dropdown
-            %a.dropdown-toggle
-              Mon compte
-              .caret
-            %ul.dropdown-menu
-              %li Action
-              %li= link_to('Se déconnecter', destroy_user_session_path, method: :delete)
+          - if current_user
+            %li.dropdown
+              = link_to("#", class: "dropdown-toggle", data: {toggle: "dropdown"}, role: "button", aria: {haspopup: "true", expanded: "false"}) do
+                %i.glyphicon.glyphicon-user
+                - if current_participant
+                  = current_participant.name
+                %span.caret
+              %ul.dropdown-menu
+                - current_user.active_games.each do |game|
+                  %li.dropdown-header= game.name
+                  - game.participations.where(user_id: current_user.id).sort{|a,b| a.name <=> b.name }.each do |participation|
+                    - classes = []
+                    - classes << :disabled if current_participation == participation
+                    %li{class: classes}= link_to(participation.name, participation_path(participation))
+                  %li.divider{role: "separator"}
+                %li= link_to('Se déconnecter', destroy_user_session_path, method: :delete)

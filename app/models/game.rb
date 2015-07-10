@@ -40,6 +40,7 @@ class Game < ActiveRecord::Base
   enumerize :turn_nature, in: [:month], default: :month
   belongs_to :scenario
   has_many :actors
+  has_many :broadcasts, through: :scenario
   has_many :farms
   has_many :organizer_participations, -> { where(nature: :organizer) }, class_name: "Participation"
   has_many :organizers, through: :organizer_participations, source: :user
@@ -53,6 +54,8 @@ class Game < ActiveRecord::Base
   validates_presence_of :name
   #]VALIDATORS]
   validates_presence_of :planned_at, :turn_duration, :turn_nature, :state
+
+  scope :active, -> { where(state: "running") }
 
   accepts_nested_attributes_for :farms
   accepts_nested_attributes_for :actors
@@ -83,7 +86,10 @@ class Game < ActiveRecord::Base
       hash = YAML.load_file(file).deep_symbolize_keys
       attributes = hash.slice(:name, :description, :planned_at, :turns_count, :turn_nature, :turn_duration, :map_width, :map_height)
       # puts Scenario.find_by(code: hash[:scenario]).inspect
-      attributes[:planned_at] ||= Time.now
+      unless attributes[:planned_at]
+        attributes[:planned_at] = Time.now
+        attributes[:state] ||= :running
+      end
       attributes[:turn_duration] ||= 30
       attributes[:turn_nature] ||= :month
       attributes[:scenario] = Scenario.find_by(code: hash[:scenario]) if hash[:scenario]

@@ -1,0 +1,10 @@
+- game = participation.game
+.count-down{class: (game.started? ? "running" : "not-running")}
+  - if game.started?
+    = "Fin du tour : #{distance_of_time_in_words_to_now(game.current_turn.stopped_at)}"
+  - else
+    = "Pas encore lancée (dans #{distance_of_time_in_words_to_now(game.planned_at)})"
+%h4.list-group-item-heading
+  = game.name
+  = " &mdash; ".html_safe
+  = participation.name

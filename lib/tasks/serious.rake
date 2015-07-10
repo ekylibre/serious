@@ -125,6 +125,9 @@ namespace :serious do
       end
       value = I18n.transliterate(name.mb_chars.downcase).to_i(36)
       farms[code] = {name: name, historic: "SL47", stand_number: "S" + code, present: (value.modulo(20) > 1)}
+      if value.modulo(10) > 6
+        participations << {participant: code, user:"admin@ekylibre.org", nature: :player}
+      end
     end
     game[:farms] = farms
 
@@ -141,8 +144,10 @@ namespace :serious do
       end
       actors[code][:catalog_items] = items
       (1 + value.modulo(3)).times do
-        user = users.delete(users.sample)
-        participations << {participant: code, user: user, nature: :player}
+        participations << {participant: code, user: users.shift, nature: :player}
+      end
+      if value.modulo(10) > 5
+        participations << {participant: code, user:"admin@ekylibre.org", nature: :player}
       end
     end
     game[:actors] = actors

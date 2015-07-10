@@ -40,9 +40,11 @@
 class User < ActiveRecord::Base
   extend Enumerize
   enumerize :role, in: [:player, :organizer, :administrator], default: :player, predicates: true
+  has_many :active_participations, -> { joins(:game).where(games: {state: "running"}) }, class_name: "Participation"
   has_many :participations
   has_many :participants, through: :participations
-  has_many :games, through: :participations
+  # has_many :games, through: :participations
+  has_many :active_games, through: :active_participations, class_name: "Game", source: :game
 
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :current_sign_in_at, :last_sign_in_at, :remember_created_at, :reset_password_sent_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
@@ -65,6 +67,14 @@ class User < ActiveRecord::Base
     hash = Digest::MD5.hexdigest(self.email)
     options[:default] = :retro unless options.has_key? :default
     return "https://secure.gravatar.com/avatar/#{hash}?size=#{size}&d=#{options[:default]}"
+  end
+
+  def games
+    Game.where(id: self.participations.pluck(:game_id))
+  end
+
+  def active_games
+    games.active
   end
 
   def can_organize?

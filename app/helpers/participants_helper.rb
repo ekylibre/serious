@@ -2,8 +2,8 @@ module ParticipantsHelper
 
   # Show a participant card with logo and minimal infos
   def participant_card(participant, options = {}, &block)
-    content = capture(participant, &block) if block_given?
-    render "participants/card", participant: participant, options: options, content: content
+    options[:content] = capture(participant, &block) if block_given?
+    render "participants/card", participant: participant, content: options.delete(:content), options: options
   end
 
   # Show a participant logo

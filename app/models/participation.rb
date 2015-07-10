@@ -42,6 +42,8 @@ class Participation < ActiveRecord::Base
   #]VALIDATORS]
   validates_presence_of :participant, if: :player?
 
+  delegate :name, to: :participant, prefix: true
+
   before_validation do
     if self.organizer?
       self.participant = nil
@@ -54,6 +56,14 @@ class Participation < ActiveRecord::Base
   validate do
     if self.game and self.participant
       errors.add(:game, :invalid) if self.game != self.participant.game
+    end
+  end
+
+  def name
+    if self.organizer?
+      self.nature.text
+    else
+      self.participant_name
     end
   end
 

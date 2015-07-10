@@ -1,20 +1,20 @@
 .container
+
+  #logo
+
   %h1 Mes parties
   - if @games.any? or current_user.can_organize?
     .list-group
       - @games.each do |game|
-        - participation = Participation.find_by(game_id: game.id, user_id: @current_user.id)
-        = link_to(participation_path(participation), class: 'list-group-item') do
-          - if participation.organizer?
-            %h4.list-group-item-heading= "#{game.name} - Organisateur"
+        - game.participations.where(user_id: current_user.id).each do |participation|
+          - if game.started?
+            = link_to(participation_path(participation), class: 'list-group-item') do
+              = render "participation", participation: participation
           - else
-            %h4.list-group-item-heading= "#{game.name} - #{participation.participant.name}"
-            .countdown
-              - if game.started?
-                //%h4= distance_of_time_in_words(game.current_turn.stopped_at, Time.now )
-              - else
-                %p= 'La partie commence dans ' + distance_of_time_in_words_to_now(game.planned_at)
-      = link_to(new_backend_game_path, class: 'list-group-item list-group-item-info') do
-        %h4 Nouvelle partie
+            .list-group-item
+              = render "participation", participation: participation
+      - if current_user.can_organize?
+        = link_to(new_backend_game_path, class: 'list-group-item list-group-item-info') do
+          %h4 Nouvelle partie
   - else
     %p Aucune partie en cours ou en attente

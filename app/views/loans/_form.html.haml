@@ -1,13 +1,8 @@
-.row
-  .col-md-5
-    .logo
-      = image_tag('http://placehold.it/350')
-  .col-md-4
-    %h2= @participant.name
+= participant_card(@participant, content: false)
 .row
   .col-md-3
-  .col-md-6
     = f.input :turns_count, label: 'Nombres de tours'
+  .col-md-3
     = f.input :amount, label: "Montant de l'emprunt"
     = f.association :lender, as: :hidden
     - if @current_participant == @participant

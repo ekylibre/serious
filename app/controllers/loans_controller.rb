@@ -1,14 +1,10 @@
 class LoansController < BaseController
-  layout 'loan'
 
   def new
     @participant = Participant.find(params[:lender_id])
-    @current_participation = Participation.find_by(user_id: current_user.id)
-    @current_participant = Participant.find(@current_participation.participant_id)
-    #@current_participant = Participant.find(16)
 
     @loan = Loan.new
-    @loan.borrower = @current_participant
+    @loan.borrower = current_participant
     @loan.lender = @participant
   end
 

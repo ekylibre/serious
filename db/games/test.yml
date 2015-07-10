@@ -434,6 +434,9 @@ participations:
 - participant: F03
   user: camille.gautier@jacobi.us
   nature: :player
+- participant: F03
+  user: admin@ekylibre.org
+  nature: :player
 - participant: F04
   user: zacharie.bonnin@howegoldner.ca
   nature: :player
@@ -445,6 +448,9 @@ participations:
   nature: :player
 - participant: F04
   user: nicolas.maury@dubuquehirthe.biz
+  nature: :player
+- participant: F04
+  user: admin@ekylibre.org
   nature: :player
 - participant: F05
   user: franck.garcia@jewesswehner.info
@@ -494,6 +500,9 @@ participations:
 - participant: F08
   user: celine.chretien@stanton.co.uk
   nature: :player
+- participant: F08
+  user: admin@ekylibre.org
+  nature: :player
 - participant: F09
   user: genevieve.jacques@denesik.us
   nature: :player
@@ -517,6 +526,9 @@ participations:
   nature: :player
 - participant: F10
   user: franck.pichon@ledner.com
+  nature: :player
+- participant: F10
+  user: admin@ekylibre.org
   nature: :player
 - participant: F11
   user: lucy.traore@kirlin.biz
@@ -542,6 +554,9 @@ participations:
 - participant: F12
   user: anne.munoz@ankundingschmitt.com
   nature: :player
+- participant: F12
+  user: admin@ekylibre.org
+  nature: :player
 - participant: F13
   user: anne.normand@mcglynn.info
   nature: :player
@@ -553,6 +568,9 @@ participations:
   nature: :player
 - participant: F13
   user: frederic.maury@goodwinkerluke.us
+  nature: :player
+- participant: F13
+  user: admin@ekylibre.org
   nature: :player
 - participant: F14
   user: alice.thomas@kemmer.info
@@ -578,51 +596,60 @@ participations:
 - participant: F15
   user: bernadette.collin@conn.com
   nature: :player
-- participant: A01
-  user: alice.maury@cummings.com
+- participant: F15
+  user: admin@ekylibre.org
   nature: :player
 - participant: A01
-  user: daisy.nicolas@spinka.us
+  user: juliette.marques@bernhard.com
   nature: :player
 - participant: A01
-  user: denis.becker@swaniawski.biz
+  user: pierre.mathieu@conroy.us
+  nature: :player
+- participant: A01
+  user: jacques.chauvin@watersnicolas.com
   nature: :player
 - participant: A02
-  user: benoit.levy@bernhard.com
+  user: valentine.benard@quitzon.us
   nature: :player
 - participant: A02
-  user: sabine.de@auerborer.com
+  user: helene.charrier@goyette.biz
   nature: :player
 - participant: A03
-  user: theophile.coste@brakus.us
+  user: odette.guibert@mcglynn.name
   nature: :player
 - participant: A03
-  user: aimee.ollivier@jenkins.ca
+  user: josephine.durand@ferrysatterfield.co.uk
   nature: :player
 - participant: A03
-  user: andre.petit@romaguerarunolfsdottir.com
-  nature: :player
-- participant: A04
-  user: francoise.tessier@krislangworth.com
-  nature: :player
-- participant: A04
-  user: pauline.coulon@grimes.ca
-  nature: :player
-- participant: A04
-  user: david.rocher@oreilly.co.uk
-  nature: :player
-- participant: A05
-  user: david.guibert@jacobsonlarson.co.uk
-  nature: :player
-- participant: A06
-  user: roland.martin@hodkiewicz.us
-  nature: :player
-- participant: A07
   user: marianne.munoz@kiehn.ca
   nature: :player
-- participant: A08
-  user: remy.gall@aufderharsmitham.ca
+- participant: A04
+  user: thomas.richard@fadel.name
+  nature: :player
+- participant: A04
+  user: mathilde.moreno@hauck.com
+  nature: :player
+- participant: A04
+  user: benoit.levy@bernhard.com
+  nature: :player
+- participant: A04
+  user: admin@ekylibre.org
+  nature: :player
+- participant: A05
+  user: christelle.lebon@trantow.info
+  nature: :player
+- participant: A05
+  user: admin@ekylibre.org
+  nature: :player
+- participant: A06
+  user: julien.richard@muller.com
+  nature: :player
+- participant: A07
+  user: laure.guillet@bashirian.ca
   nature: :player
 - participant: A08
-  user: genevieve.bailly@zulauf.co.uk
+  user: caroline.guillot@stoltenberg.info
+  nature: :player
+- participant: A08
+  user: danielle.gillet@schambergermurphy.co.uk
   nature: :player

@@ -7,21 +7,20 @@
       = options[:title] || participant.name
     - if content
       = content
-    - else
+    - elsif !content.is_a?(FalseClass)
       .participant-labels
         %span.label.label-primary= participant.class.model_name.human
         - [:contractor, :subcontractor, :supplier, :customer, :lender, :borrower].each do |state|
           - if participant.send(state)
             %span.label.label-success= Participant.human_attribute_name(state)
-      = link_to('Partie', {controller: :games, action: :show, id: participant.game_id}, class: "btn btn-default")
-      - if current_participant and !participant.present
+      - if participant.present
+        .participant-info= "#{participant.name} est présent à l'événement, vous pouvez le retrouver à l'emplacement : #{participant.stand_number}"
+      - elsif current_participant
         = link_to('Acheter', {controller: :shops, action: :show, id: participant.id}, class: "btn btn-default")
         = link_to('Emprunter', {controller: :loans, action: :new, lender_id: participant.id}, class: "btn btn-default")
-      - else
-        .participant-info= "#{participant.name} est présent à l'événement, vous pouvez le retrouver à l'emplacement : #{participant.stand_number}"
       :ruby
         users = participant.participations.where.not(user_id: nil).order(:id).map do |participation|
           user = participation.user
           link_to(user.name, user_path(user.id))
         end
-      = h("Membres : ") + users.to_sentence.html_safe
+      .participant-members= h("Membres : ") + users.to_sentence.html_safe

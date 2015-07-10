@@ -1,7 +1,7 @@
-- if @broadcasts.any?
+- if @game.broadcasts.any?
   #carousel.carousel.slide{data: {ride: 'carousel'}}
     .carousel-inner
-      - @broadcasts.each_with_index do |broadcast, index|
+      - @game.broadcasts.each_with_index do |broadcast, index|
         - classes = []
         - classes << "active" if index.zero?
         .item{class: classes}
@@ -10,7 +10,7 @@
               %h4= truncate(broadcast.name, length: 70)
               %p= truncate(broadcast.content, length: 250)
 
-    - if @broadcasts.count > 1
+    - if @game.broadcasts.count > 1
       = link_to("#carousel", class: "left carousel-control", data: {slide: 'prev'}) do
         %span.glyphicon.glyphicon-chevron-left
 
@@ -19,8 +19,6 @@
 
 #world.container
   %h1= @game.name
-  - if current_participant
-    = link_to('Vers ma page', {controller: current_participant.class.name.tableize, action: :show, id: current_participant.id}, class: "btn btn-default")
   #participants
     - @game.participants.order(:name).each do |participant|
       - next unless current_participation.can_see?(participant)
