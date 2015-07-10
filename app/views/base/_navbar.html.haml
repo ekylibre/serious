@@ -12,6 +12,17 @@
           %ul.nav.navbar-nav
 
         %ul.nav.navbar-nav.navbar-right
+          - if current_participation
+            - if current_participant
+              %li
+                = link_to("javascript: alert('En cours')") do
+                  %i.glyphicon.glyphicon-transfer
+              %li
+                = link_to(participant_path(current_participant)) do
+                  %i.glyphicon.glyphicon-grain
+            %li
+              = link_to(game_path(current_participation.game)) do
+                %i.glyphicon.glyphicon-th-large
           %li.dropdown
             %a.dropdown-toggle
               Mon compte

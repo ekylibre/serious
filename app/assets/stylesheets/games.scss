@@ -75,6 +75,11 @@ $white_50: rgba(255, 255, 255, 0.5);
     margin: round(0.1 * $cube-width);
     z-index: 999;
     .participant-front {
+      &:hover {
+        &, * {
+          text-decoration: none;
+        }
+      }
       @include box-shadow(1px 1px 3px rgba(black, 0.4));
       background: white;
       .stand-number {
@@ -108,6 +113,16 @@ $white_50: rgba(255, 255, 255, 0.5);
       @include box-shadow(1px 1px 3px rgba(black, 0.4));
       text-align: center;
       background: $background-color-flip;
+      &:hover {
+        &, * {
+          text-decoration: none;
+        }
+      }
+      .label {
+        display: inline-block;
+        margin: 3px 1px;
+        font-size: $font-size-base;
+      }
     }
 
   }

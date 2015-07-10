@@ -36,6 +36,11 @@
                 = participant.stand_number
             = participant_logo(participant)
             .participant-caption= participant.name
-          .participant-details.face{class: "face-#{side}"}
-            %h3= link_to(participant.name, url)
+          = link_to(url, class: "participant-details face face-#{side}") do
+            %h3= participant.name
+            %span.label.label-primary= participant.class.model_name.human
+            - [:contractor, :subcontractor, :supplier, :customer, :lender, :borrower].each do |state|
+              - if participant.send(state)
+                %span.label.label-success= Participant.human_attribute_name(state)
+
   -#= render 'curve'
