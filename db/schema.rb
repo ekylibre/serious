@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150630125434) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "catalog_items", force: :cascade do |t|
     t.integer  "participant_id",                                                    null: false
     t.string   "variant",                                                           null: false
@@ -25,8 +28,8 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.string   "tax"
   end
 
-  add_index "catalog_items", ["participant_id"], name: "index_catalog_items_on_participant_id"
-  add_index "catalog_items", ["variant"], name: "index_catalog_items_on_variant"
+  add_index "catalog_items", ["participant_id"], name: "index_catalog_items_on_participant_id", using: :btree
+  add_index "catalog_items", ["variant"], name: "index_catalog_items_on_variant", using: :btree
 
   create_table "contracts", force: :cascade do |t|
     t.integer  "contractor_id",                             null: false
@@ -41,8 +44,8 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.datetime "updated_at"
   end
 
-  add_index "contracts", ["contractor_id"], name: "index_contracts_on_contractor_id"
-  add_index "contracts", ["subcontractor_id"], name: "index_contracts_on_subcontractor_id"
+  add_index "contracts", ["contractor_id"], name: "index_contracts_on_contractor_id", using: :btree
+  add_index "contracts", ["subcontractor_id"], name: "index_contracts_on_subcontractor_id", using: :btree
 
   create_table "deal_items", force: :cascade do |t|
     t.integer  "deal_id",                                     null: false
@@ -76,7 +79,7 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.datetime "updated_at"
   end
 
-  add_index "game_turns", ["game_id"], name: "index_game_turns_on_game_id"
+  add_index "game_turns", ["game_id"], name: "index_game_turns_on_game_id", using: :btree
 
   create_table "games", force: :cascade do |t|
     t.string   "name",          null: false
@@ -139,8 +142,8 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.string   "stand_number"
   end
 
-  add_index "participants", ["game_id"], name: "index_participants_on_game_id"
-  add_index "participants", ["historic_id"], name: "index_participants_on_historic_id"
+  add_index "participants", ["game_id"], name: "index_participants_on_game_id", using: :btree
+  add_index "participants", ["historic_id"], name: "index_participants_on_historic_id", using: :btree
 
   create_table "participations", force: :cascade do |t|
     t.integer  "game_id",        null: false
@@ -151,9 +154,9 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.datetime "updated_at"
   end
 
-  add_index "participations", ["game_id"], name: "index_participations_on_game_id"
-  add_index "participations", ["participant_id"], name: "index_participations_on_participant_id"
-  add_index "participations", ["user_id"], name: "index_participations_on_user_id"
+  add_index "participations", ["game_id"], name: "index_participations_on_game_id", using: :btree
+  add_index "participations", ["participant_id"], name: "index_participations_on_participant_id", using: :btree
+  add_index "participations", ["user_id"], name: "index_participations_on_user_id", using: :btree
 
   create_table "scenario_broadcasts", force: :cascade do |t|
     t.integer  "scenario_id",  null: false
@@ -164,7 +167,7 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.datetime "updated_at"
   end
 
-  add_index "scenario_broadcasts", ["scenario_id"], name: "index_scenario_broadcasts_on_scenario_id"
+  add_index "scenario_broadcasts", ["scenario_id"], name: "index_scenario_broadcasts_on_scenario_id", using: :btree
 
   create_table "scenario_curve_steps", force: :cascade do |t|
     t.integer  "curve_id",                            null: false
@@ -174,7 +177,7 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.datetime "updated_at"
   end
 
-  add_index "scenario_curve_steps", ["curve_id"], name: "index_scenario_curve_steps_on_curve_id"
+  add_index "scenario_curve_steps", ["curve_id"], name: "index_scenario_curve_steps_on_curve_id", using: :btree
 
   create_table "scenario_curves", force: :cascade do |t|
     t.integer  "scenario_id",                                                   null: false
@@ -197,8 +200,8 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.datetime "updated_at"
   end
 
-  add_index "scenario_curves", ["reference_id"], name: "index_scenario_curves_on_reference_id"
-  add_index "scenario_curves", ["scenario_id"], name: "index_scenario_curves_on_scenario_id"
+  add_index "scenario_curves", ["reference_id"], name: "index_scenario_curves_on_reference_id", using: :btree
+  add_index "scenario_curves", ["scenario_id"], name: "index_scenario_curves_on_scenario_id", using: :btree
 
   create_table "scenarios", force: :cascade do |t|
     t.string   "name",        null: false
@@ -229,7 +232,7 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
