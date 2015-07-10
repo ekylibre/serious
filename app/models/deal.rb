@@ -41,6 +41,9 @@ class Deal < ActiveRecord::Base
   validates_presence_of :customer, :supplier
   #]VALIDATORS]
 
+  delegate :name, to: :supplier, prefix: true
+  delegate :name, to: :customer, prefix: true
+
   accepts_nested_attributes_for :items
 
   before_validation do

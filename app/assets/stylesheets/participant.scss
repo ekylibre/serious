@@ -42,3 +42,62 @@ $backgroundColor: rgb(247, 247, 247);
 }
 
 
+.participant-abbreviation {
+  display: block;
+  text-align: center;
+  line-height: $cube-height * 0.9;
+  font-size: round($cube-height * 0.6);
+  color: white;
+  font-weight: lighter;
+  width: $cube-width;
+  height: $cube-height;
+  @include user-select(none);
+  cursor: default;
+}
+
+.participant-card {
+  @include framebox;
+  min-height: $cube-height;
+  .participant-logo {
+    float: left;
+    margin-right: $font-size-base;
+    &, * {
+    cursor: pointer;
+      text-decoration: none;
+    }
+  }
+  .participant-details {
+    padding: $font-size-base;
+    .participant-stand-number {
+      display: block;
+      float: right;
+      padding: $padding-base-vertical $padding-base-horizontal;
+      background-color: rgba(black, 0.3);
+      color: white;
+      border-bottom-left-radius: $border-radius-small;
+      text-transform: uppercase;
+      font-size: larger;
+    }
+    .participant-title {
+      font-size: $font-size-h1;
+    }
+    .participant-labels {
+      font-size: $font-size-h4;
+      margin-bottom: $font-size-base;
+    }
+    .participant-info {
+      font-size: $font-size-h4;
+      color: $brand-info;
+    }
+    .deal-amount {
+      font-size: $font-size-h1;
+      float: right;
+      padding: 0 $font-size-h1;
+      background: #EEE;
+    }
+  }
+}
+
+.items-block {
+  @include framebox;
+}

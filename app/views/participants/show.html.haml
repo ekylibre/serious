@@ -3,45 +3,10 @@
   = participant_card(@participant)
 
   .row
-    - if current_participant and current_participant.purchases.where(supplier: @participant).any?
-      .col-md-6
-        .items-block
-          %h3 Mes achats
-          .items-list
-            - current_participant.purchases.where(supplier: @participant).each do |purchase|
-              .items-item
-                %h4= "#{purchase.supplier.name} - <i> #{purchase.updated_at.l}</i>".html_safe
-                - purchase.items.each do |item|
-                  = "- #{item.variant} - #{item.amount}€ <br/>".html_safe
-
-    - if current_participant and current_participant.sales.where(customer: @participant).any?
-      .col-md-6
-        .items-block
-          %h3 Mes ventes
-          .items-list
-            - current_participant.sales.where(customer: @participant).each do |sale|
-              .items-item
-                %h4= "#{sale.customer.name} - <i> #{sale.updated_at.l}</i>".html_safe
-                - sale.items.each do |item|
-                  = "- #{item.variant} - #{item.amount}€ <br/>".html_safe
-
-    - if current_participant and current_participant.contractings.where(contractor: @participant).any?
-      .col-md-6
-        .items-block
-          %h3 Mes contrats
-          .items-list
-            - current_participant.contractings.where(contractor: @participant).each do |contracting|
-              .items-item
-                %h4= "#{contracting.contractor.name} - <i> #{contracting.updated_at.l}</i>".html_safe
-
-    - if current_participant and current_participant.borrowings.where(lender: @participant).any?
-      .col-md-6
-        .items-block
-          %h3 Mes emprunts
-          .items-list
-            - current_participant.borrowings.where(lender: @participant).each do |borrowing|
-              .items-item
-                %h4= "#{borrowing.lender.name} - <i> #{borrowing.updated_at.l}</i>".html_safe
-
-
-
+    - if current_participant
+      = items_block(current_participant, :purchases, relative_to: @participant, as: :supplier)
+      = items_block(current_participant, :sales,     relative_to: @participant, as: :customer)
+      = items_block(current_participant, :contractings,    relative_to: @participant, as: :contractor)
+      = items_block(current_participant, :subcontractings, relative_to: @participant, as: :subcontractor)
+      = items_block(current_participant, :lendings,   relative_to: @participant, as: :borrower)
+      = items_block(current_participant, :borrowings, relative_to: @participant, as: :lender)

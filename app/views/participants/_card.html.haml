@@ -1,5 +1,5 @@
 .participant-card
-  .participant-logo= participant_logo(participant)
+  = link_to(participant_logo(participant), participant_path(participant), class: "participant-logo")
   .participant-details
     - if participant.present
       .participant-stand-number= participant.stand_number

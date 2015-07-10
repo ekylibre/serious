@@ -25,6 +25,12 @@ fr:
     are_you_sure: "Êtes-vous sûr(e)\_?"
     close: "Fermer"
     minutes: "Minutes"
+    my_purchases: "Mes achats"
+    my_sales: "Mes ventes"
+    my_contractings: "Mes contrats"
+    my_subcontractings: "Mes missions"
+    my_lendings: "Mes prêts"
+    my_borrowings: "Mes emprunts"
     value: "Valeur"
   rest:
     actions:

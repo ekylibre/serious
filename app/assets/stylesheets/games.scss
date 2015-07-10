@@ -6,7 +6,7 @@ $cube-height: $cube-width;
 $image-width: 215px;
 $image-height: 215px;
 
-$background-color-flip: rgb(240, 240, 240);
+$background-color-flip: rgb(247, 247, 247);
 $border-color: #77220b;
 $background-color-flop1: rgba(105, 108, 109, .3);
 $background-color-flop2: rgba(208, 223, 226, .4);
@@ -31,7 +31,7 @@ $black: black;
 $white_50: rgba(255, 255, 255, 0.5);
 
 .carousel{
-  background: #F7F7F7;
+  background: #F2F2F2;
   border-bottom: 1px solid $btn-default-border;
   .carousel-inner {
     margin: 0 auto;
@@ -65,63 +65,6 @@ $white_50: rgba(255, 255, 255, 0.5);
 }
 
 
-.participant-abbreviation {
-  display: block;
-  text-align: center;
-  line-height: $cube-height * 0.9;
-  font-size: round($cube-height * 0.6);
-  color: white;
-  font-weight: lighter;
-  width: $cube-width;
-  height: $cube-height;
-  @include user-select(none);
-  cursor: default;
-}
-
-
-
-.participant-card {
-  @include framebox;
-  min-height: $cube-height;
-  .participant-logo {
-    float: left;
-    margin-right: $font-size-base;
-  }
-  .participant-details {
-    padding: $font-size-base;
-    .participant-stand-number {
-      display: block;
-      float: right;
-      padding: $padding-base-vertical $padding-base-horizontal;
-      background-color: rgba(black, 0.3);
-      color: white;
-      border-bottom-left-radius: $border-radius-small;
-      text-transform: uppercase;
-      font-size: larger;
-    }
-    .participant-title {
-      font-size: $font-size-h1;
-    }
-    .participant-labels {
-      font-size: $font-size-h4;
-      margin-bottom: $font-size-base;
-    }
-    .participant-info {
-      font-size: $font-size-h4;
-      color: $brand-info;
-    }
-    .deal-amount {
-      font-size: $font-size-h1;
-      float: right;
-      padding: 0 $font-size-h1;
-      background: #EEE;
-    }
-  }
-}
-
-.items-block {
-  @include framebox;
-}
 
 
 #participants {

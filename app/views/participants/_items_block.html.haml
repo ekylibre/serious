@@ -1,0 +1,5 @@
+.items-block
+  %h3= "my_#{reflection}".tl
+  .items-list
+    - collection.each do |item|
+      .items-item= render item_partial, item: item
