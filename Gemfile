@@ -93,3 +93,4 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'rails_12factor'
