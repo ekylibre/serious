@@ -7,4 +7,5 @@
 %h4.list-group-item-heading
   = game.name
   = " &mdash; ".html_safe
+  %span.glyphicon{class: "glyphicon-#{participation.organizer? ? :king : participation.participant.is_a?(Farm) ? :grain : :briefcase}"}
   = participation.name
