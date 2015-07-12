@@ -34,7 +34,10 @@
   - if participants.any?
     %h2
       %i.glyphicon.glyphicon-briefcase
-      Partenaires
+      - if current_participation.organizer?
+        Participants          
+      - else          
+        Partenaires
     #participants
       - @game.participants.order(:name).each do |participant|
         - next unless current_participation.can_see?(participant)
@@ -50,7 +53,7 @@
                   = participant.stand_number
               = participant_logo(participant)
               .participant-caption
-                - if count = current_participant.affairs_with(participant).count and count > 0
+                - if current_participant and count = current_participant.affairs_with(participant).count and count > 0
                   %span.affairs-count
                     %span.glyphicon.glyphicon-briefcase
                     = count
