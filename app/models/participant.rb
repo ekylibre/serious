@@ -90,4 +90,15 @@ class Participant < ActiveRecord::Base
     I18n.transliterate(self.name).gsub(/[^a-zA-Z0-9@\s]/, '').split(/\s+/).delete_if{|w| %w(de des du la le les au aux).include?(w)}[0..1].map{|w| w[0..0] }.join.upcase
   end
 
+  def affairs_with(other)
+    list = []
+    list += self.sales.where(customer: other).to_a
+    list += self.purchases.where(supplier: other).to_a
+    list += self.borrowings.where(lender: other).to_a
+    list += self.lendings.where(borrower: other).to_a
+    list += self.subcontractings.where(subcontractor: other).to_a
+    list += self.contractings.where(contractor: other).to_a
+    return list
+  end
+
 end

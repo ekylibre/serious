@@ -15,14 +15,13 @@ $present-actor-color: #425000;
 
 /* Curve */
 #curves {
-  text-align: center;
   .curve {
     @include framebox;
     width: 45%;
     display: inline-block;
-    margin: $font-size-base;
+    margin: $font-size-base 2%;
     @media screen and (max-width: 767px){
-      width: 90%;
+      width: 97%;
     }
   }
 }
@@ -117,6 +116,9 @@ $white_50: rgba(255, 255, 255, 0.5);
         //border-radius: 2%;
       }
       .participant-caption {
+        .affairs-count {
+          float: right;
+        }
         display: block;
         bottom: 0;
         position: absolute;

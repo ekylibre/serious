@@ -49,7 +49,12 @@
                 .stand-number
                   = participant.stand_number
               = participant_logo(participant)
-              .participant-caption= participant.name
+              .participant-caption
+                - if count = current_participant.affairs_with(participant).count and count > 0
+                  %span.affairs-count
+                    %span.glyphicon.glyphicon-briefcase
+                    = count
+                = participant.name
             = link_to(url, class: "participant-details face face-#{side}") do
               %h3= participant.name
               %span.label.label-primary= participant.class.model_name.human
