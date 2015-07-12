@@ -11,6 +11,11 @@
   = link_to(:edit.ta, edit_backend_game_path(resource), class: 'btn btn-default')
   = link_to('Partie', game_path(resource), class: 'btn btn-default')
 
+%h2= Game.human_attribute_name(:turns)
+%ol
+  - @game.turns.order(:number).each do |turn|
+    %li.game-turn= "du #{turn.started_at.l} au #{turn.stopped_at.l}"
+
 %h2= Game.human_attribute_name(:farms)
 .btn-group.btn-toolbox{role: 'group'}
   = link_to(:new.ta, new_backend_farm_path(game_id: resource.id), class: 'btn btn-default')

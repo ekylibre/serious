@@ -35,8 +35,8 @@
     %h2
       %i.glyphicon.glyphicon-briefcase
       - if current_participation.organizer?
-        Participants          
-      - else          
+        Participants
+      - else
         Partenaires
     #participants
       - @game.participants.order(:name).each do |participant|

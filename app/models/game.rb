@@ -63,13 +63,14 @@ class Game < ActiveRecord::Base
   before_validation do
     self.planned_at ||= Time.now
     if self.scenario
-      self.turn_nature = self.scenario.turn_nature
-      self.turns_count = self.scenario.turns_count
+      self.turn_nature ||= self.scenario.turn_nature
+      self.turns_count ||= self.scenario.turns_count
     end
   end
 
   after_save do
-    self.turns.clear
+    # Prevents counter_cache use
+    GameTurn.destroy_all(game_id: self.id)
     if self.turns_count
       started_at = self.planned_at
       self.turns_count.times do |index|

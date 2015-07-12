@@ -24,10 +24,11 @@
             %li
               = link_to(game_path(current_participation.game)) do
                 %i.glyphicon.glyphicon-th
-            %li
-              %p.navbar-text
-                %span.glyphicon.glyphicon-hourglass
-                = distance_of_time_in_words_to_now(current_game.current_turn.stopped_at)
+            - if turn = current_game.current_turn
+              %li
+                %p.navbar-text{title: turn.stopped_at.l}
+                  %span.glyphicon.glyphicon-hourglass
+                  = distance_of_time_in_words_to_now(turn.stopped_at)
           - if current_user
             %li.dropdown
               = link_to("#", class: "dropdown-toggle", data: {toggle: "dropdown"}, role: "button", aria: {haspopup: "true", expanded: "false"}) do
