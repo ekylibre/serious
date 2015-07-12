@@ -41,8 +41,11 @@
                   %li.dropdown-header= game.name
                   - game.participations.where(user_id: current_user.id).sort{|a,b| a.name <=> b.name }.each do |participation|
                     - classes = []
-                    - classes << :disabled if current_participation == participation
-                    %li{class: classes}= link_to(participation.name, participation_path(participation))
+                    - classes << :active if current_participation == participation
+                    %li{class: classes}
+                      = link_to(participation_path(participation)) do
+                        %span.glyphicon{class: "glyphicon-#{participation.organizer? ? :king : participation.participant.is_a?(Farm) ? :grain : :briefcase}"}
+                        = participation.name
                   %li.divider{role: "separator"}
                 %li= link_to('Mon compte', user_path(current_user))
                 %li= link_to('Se déconnecter', destroy_user_session_path, method: :delete)
