@@ -2,6 +2,7 @@
 name: Game of Thrones
 map_width: 40
 map_height: 40
+scenario: random
 farms:
   baratheon:
     name: Barathéon

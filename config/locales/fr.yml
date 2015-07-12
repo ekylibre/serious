@@ -21,6 +21,27 @@ fr:
       index: "Utilisateurs"
       new: "Nouvel utilisateur"
       show: "Utilisateur\_: %{first_name} %{last_name}"
+  activerecord:
+    models:
+      actor: Partenaire
+      farm: Ferme
+  attributes:
+    borrower: Emprunteur
+    contractor: Contracteur
+    customer: Acheteur
+    lender: Prêteur
+    subcontractor: Sous-traitant
+    supplier: Vendeur
+  enumerize:
+    participation:
+      nature:
+        organizer: Organisateur
+        player: Joueur
+    user:
+      role:
+        administrator: Administrateur
+        organizer: Organisateur
+        player: Joueur
   labels:
     are_you_sure: "Êtes-vous sûr(e)\_?"
     close: "Fermer"

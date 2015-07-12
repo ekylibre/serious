@@ -77,7 +77,7 @@ class Participant < ActiveRecord::Base
 
   def color
     val = number
-    k, l, m, offset = 10, 16, self.id, 64
+    k, l, m, offset = 10, 16, 2, 64
     r, g, b = 17, 13, 23
     c = ""
     c << ((val * r / m).modulo(k) * l + offset).to_s(16).rjust(2, '0')

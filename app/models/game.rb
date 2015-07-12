@@ -123,6 +123,11 @@ class Game < ActiveRecord::Base
     self.turns.at(at).first
   end
 
+
+  def reference_curves
+    self.scenario.curves.where(nature: "reference")
+  end
+
   # Launch the game
   # Creates Ekylibre instances and load them with their historics
   def load

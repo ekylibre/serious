@@ -14,14 +14,16 @@ $background-color-flop2: rgba(208, 223, 226, .4);
 $present-actor-color: #425000;
 
 /* Curve */
-.curve  {
-  width: 48%;
-  display: block;
-  float: left;
-  margin-right: 10px;
-
-  @media screen and (max-width: 767px){
-    width: 100%;
+#curves {
+  text-align: center;
+  .curve {
+    @include framebox;
+    width: 45%;
+    display: inline-block;
+    margin: $font-size-base;
+    @media screen and (max-width: 767px){
+      width: 90%;
+    }
   }
 }
 
@@ -37,18 +39,28 @@ $black: black;
 $white_50: rgba(255, 255, 255, 0.5);
 
 .carousel{
-  background: #F2F2F2;
-  border-bottom: 1px solid $btn-default-border;
+  @include framebox;
+  $control-color: mix(#777, $brand-primary);
+  // border-bottom: 1px solid $btn-default-border;
+  min-height: 160px;
+  .carousel-indicators {
+    li {
+      border-color: $control-color;
+      &.active {
+        background-color: $control-color;
+      }
+    }
+  }
   .carousel-inner {
     margin: 0 auto;
     width: 70%;
     .carousel-content {
+
       min-height: 2 * $navbar-height;
       color:$black;
       display:block;
       align-items:center;
-      padding-top: 5px;
-      padding-bottom: 5px;
+      padding: $font-size-base;
       h4, p {
         @media screen and (max-width: 727px) {
           white-space: nowrap;
@@ -59,13 +71,13 @@ $white_50: rgba(255, 255, 255, 0.5);
     }
   }
   .carousel-control {
-    background: none;
+    background: #F7F7F7;
+    opacity: 0.6;
     span {
-      color: black;
-      opacity: 0.6;
-      &:hover {
-        opacity: 1;
-      }
+      color: $control-color;
+    }
+    &:hover {
+      opacity: 1;
     }
   }
 }

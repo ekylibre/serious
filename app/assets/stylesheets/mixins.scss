@@ -20,9 +20,11 @@
   background: white;
   & > h3 {
     margin: 0;
-    padding: $font-size-base;
+    padding: $font-size-small;
+    font-size: $font-size-base;
     background: $brand-secondary;
     color: white;
+    text-transform: uppercase
   }
   & > .items-list {
     padding: $font-size-base;

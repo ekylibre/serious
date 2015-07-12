@@ -2,6 +2,7 @@
 name: Sainte-Livrade
 map_width: 40
 map_height: 40
+scenario: random
 farms:
   F01:
     name: Ferme Barthelemy
