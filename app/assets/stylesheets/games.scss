@@ -13,7 +13,6 @@ $background-color-flop2: rgba(208, 223, 226, .4);
 
 $present-actor-color: #425000;
 
-/* Curve */
 #curves {
   .curve {
     @include framebox;
@@ -32,8 +31,6 @@ $present-actor-color: #425000;
   }
 }
 
-
-/* news */
 $black: black;
 $white_50: rgba(255, 255, 255, 0.5);
 
@@ -81,9 +78,6 @@ $white_50: rgba(255, 255, 255, 0.5);
   }
 }
 
-
-
-
 #participants {
   text-align: center;
   padding: $font-size-base;
@@ -113,7 +107,6 @@ $white_50: rgba(255, 255, 255, 0.5);
       img {
         width: 100%;
         height: auto;
-        //border-radius: 2%;
       }
       .participant-caption {
         .affairs-count {
@@ -147,7 +140,6 @@ $white_50: rgba(255, 255, 255, 0.5);
 
   }
 }
-
 
 .box-scene {
   display: block;

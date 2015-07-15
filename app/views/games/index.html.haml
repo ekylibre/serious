@@ -9,10 +9,10 @@
         - game.participations.where(user_id: current_user.id).each do |participation|
           - if game.started?
             = link_to(participation_path(participation), class: 'list-group-item') do
-              = render "participation", participation: participation
+              = render 'participation', participation: participation
           - else
-            .list-group-item
-              = render "participation", participation: participation
+            .list-group-item.disabled
+              = render 'participation', participation: participation
       - if current_user.can_organize?
         = link_to(new_backend_game_path, class: 'list-group-item list-group-item-info') do
           %h4 Nouvelle partie

@@ -1,21 +1,21 @@
 .container
-  %h1= h("Partie ") + content_tag(:strong, @game.name)
+  %h1= h('Partie ') + content_tag(:strong, @game.name)
   %p= @game.description
 
-  - if @game.current_turn and broadcasts = @game.broadcasts.where(release_turn: @game.current_turn.number) and broadcasts.any?
+  - if @game.current_turn and (broadcasts = @game.broadcasts.where(release_turn: @game.current_turn.number)) and broadcasts.any?
     %h2
       %i.glyphicon.glyphicon-bullhorn
       News
     #carousel.carousel.slide{data: {ride: 'carousel'}}
       %ol.carousel-indicators
-        - broadcasts.each_with_index do |broadcast, index|
+        - broadcasts.each_with_index do |_, index|
           - classes = []
-          - classes << "active" if index.zero?
-          %li{data: {target: "#carousel", slide_to: index}, class: classes}
+          - classes << 'active' if index.zero?
+          %li{data: {target: '#carousel', slide_to: index}, class: classes}
       .carousel-inner
         - broadcasts.each_with_index do |broadcast, index|
           - classes = []
-          - classes << "active" if index.zero?
+          - classes << 'active' if index.zero?
           .item{class: classes}
             .carousel-content
               %div
@@ -23,7 +23,7 @@
                 %p= truncate(broadcast.content, length: 200)
 
       - if broadcasts.count > 1
-        = link_to("#carousel", class: "left carousel-control", data: {slide: 'prev'}) do
+        = link_to('#carousel', class: 'left carousel-control', data: {slide: 'prev'}) do
           %span.glyphicon.glyphicon-chevron-left
 
         = link_to('#carousel', class: 'right carousel-control', data: {slide: 'next'}) do
@@ -47,13 +47,13 @@
           - side = [:right, :left, :top, :bottom][participant.code.to_i(36).modulo(4)]
           .box{class: "hover-on-#{side}"}
             - url = {controller: participant.class.name.tableize, action: :show, id: participant.id}
-            = link_to(url, class: "participant-front face face-front") do
+            = link_to(url, class: 'participant-front face face-front') do
               - if participant.present
                 .stand-number
                   = participant.stand_number
               = participant_logo(participant)
               .participant-caption
-                - if current_participant and count = current_participant.affairs_with(participant).count and count > 0
+                - if current_participant and (count = current_participant.affairs_with(participant).count) and count > 0
                   %span.affairs-count
                     %span.glyphicon.glyphicon-briefcase
                     = count

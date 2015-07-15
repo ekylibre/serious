@@ -38,7 +38,7 @@ class GameTurn < ActiveRecord::Base
   #]VALIDATORS]
   validates_numericality_of :number, greater_than: 0
 
-  scope :at, lambda { |at| where("started_at <= ? AND ? < stopped_at", at, at) }
+  scope :at, lambda { |at| where('started_at <= ? AND ? < stopped_at', at, at) }
 
   before_validation do
     if self.started_at && self.stopped_at

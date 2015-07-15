@@ -24,21 +24,25 @@
             %li
               = link_to(game_path(current_participation.game)) do
                 %i.glyphicon.glyphicon-th
-            - if turn = current_game.current_turn
+            - if (turn = current_game.current_turn)
               %li
                 %p.navbar-text{title: turn.stopped_at.l}
                   %span.glyphicon.glyphicon-hourglass
                   = distance_of_time_in_words_to_now(turn.stopped_at)
           - if current_user
             %li.dropdown
-              = link_to("#", class: "dropdown-toggle", data: {toggle: "dropdown"}, role: "button", aria: {haspopup: "true", expanded: "false"}) do
+              = link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}, role: 'button', aria: {haspopup: 'true', expanded: 'false'}) do
                 %i.glyphicon{class: "glyphicon-#{!current_participation ? :user : current_participation.organizer? ? :king : current_participation.participant.is_a?(Farm) ? :grain : :briefcase}"}
                 - if current_participant
                   = current_participant.name
                 %span.caret
               %ul.dropdown-menu
                 - current_user.active_games.each do |game|
-                  %li.dropdown-header= game.name
+                  -if game.current_turn.nil?
+                    - Time.now > game.last_turn.stopped_at ? turn_info = 'Partie terminée' :  turn_info = 'La partie est en pause'
+                  - else
+                    - turn_info = "#{game.current_turn.number}/#{game.turns_count}"
+                  %li.dropdown-header= "#{game.name} (#{turn_info})"
                   - game.participations.where(user_id: current_user.id).sort{|a,b| a.name <=> b.name }.each do |participation|
                     - classes = []
                     - classes << :active if current_participation == participation
@@ -46,6 +50,6 @@
                       = link_to(participation_path(participation)) do
                         %span.glyphicon{class: "glyphicon-#{participation.organizer? ? :king : participation.participant.is_a?(Farm) ? :grain : :briefcase}"}
                         = participation.name
-                  %li.divider{role: "separator"}
+                  %li.divider{role: 'separator'}
                 %li= link_to('Mon compte', user_path(current_user))
                 %li= link_to('Se déconnecter', destroy_user_session_path, method: :delete)

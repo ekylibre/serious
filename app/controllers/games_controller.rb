@@ -5,9 +5,8 @@ class GamesController < BaseController
   end
 
   def show
-    unless @game = Game.find_by(id: params[:id])
+    unless (@game = Game.find_by(id: params[:id]))
       redirect_to :index
-      return
     end
   end
 

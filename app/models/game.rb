@@ -42,11 +42,11 @@ class Game < ActiveRecord::Base
   has_many :actors
   has_many :broadcasts, through: :scenario
   has_many :farms
-  has_many :organizer_participations, -> { where(nature: :organizer) }, class_name: "Participation"
+  has_many :organizer_participations, -> { where(nature: :organizer) }, class_name: 'Participation'
   has_many :organizers, through: :organizer_participations, source: :user
   has_many :participations
   has_many :participants
-  has_many :turns, class_name: "GameTurn", dependent: :destroy, counter_cache: false
+  has_many :turns, class_name: 'GameTurn', dependent: :destroy, counter_cache: false
   has_many :users, through: :participations
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :planned_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
@@ -55,7 +55,7 @@ class Game < ActiveRecord::Base
   #]VALIDATORS]
   validates_presence_of :planned_at, :turn_duration, :turn_nature, :state
 
-  scope :active, -> { where(state: "running") }
+  scope :active, -> { where(state: 'running') }
 
   accepts_nested_attributes_for :farms
   accepts_nested_attributes_for :actors
@@ -124,9 +124,12 @@ class Game < ActiveRecord::Base
     self.turns.at(at).first
   end
 
+  def last_turn
+    self.turns.last
+  end
 
   def reference_curves
-    self.scenario.curves.where(nature: "reference")
+    self.scenario.curves.where(nature: 'reference')
   end
 
   # Launch the game
@@ -136,5 +139,4 @@ class Game < ActiveRecord::Base
       participant.load
     end
   end
-
 end
