@@ -23,7 +23,7 @@ class ShopsController < BaseController
 
   def decrement
     item_catalog = @participant.catalog_items.find_by(variant: params[:variant])
-    if item = @deal.items.find_by(variant: item_catalog.variant)
+    if (item = @deal.items.find_by(variant: item_catalog.variant))
       if item.quantity - 1 > 0
         item.quantity -= 1
         item.save!
@@ -43,13 +43,13 @@ class ShopsController < BaseController
   protected
 
   def find_records
-    if @participant = Participant.find(params[:id])
+    if (@participant = Participant.find(params[:id]))
       unless current_participant
-        redirect_to params[:redirect] || {controller: :participants, action: :show, id: @participant.id}, alert: "Cannot go to shop without participant"
+        redirect_to params[:redirect] || {controller: :participants, action: :show, id: @participant.id}, alert: 'Cannot go to shop without participant'
       end
       @deal = Deal.find_or_create_by!(customer: current_participant, supplier: @participant, state: 'draft')
     else
-      redirect_to params[:redirect] || {controller: :participants, action: :index}, alert: "Participant not found"
+      redirect_to params[:redirect] || {controller: :participants, action: :index}, alert: 'Participant not found'
     end
   end
 

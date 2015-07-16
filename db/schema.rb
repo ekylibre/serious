@@ -31,20 +31,32 @@ ActiveRecord::Schema.define(version: 20150630125434) do
   add_index "catalog_items", ["participant_id"], name: "index_catalog_items_on_participant_id", using: :btree
   add_index "catalog_items", ["variant"], name: "index_catalog_items_on_variant", using: :btree
 
+  create_table "contract_natures", force: :cascade do |t|
+    t.integer "contractor_id",                           null: false
+    t.string  "title"
+    t.string  "variant"
+    t.decimal "amount",         precision: 19, scale: 4, null: false
+    t.integer "release_turn",                            null: false
+    t.text    "description"
+    t.integer "contract_count"
+    t.integer "contract_quota"
+  end
+
+  add_index "contract_natures", ["contractor_id"], name: "index_contract_natures_on_contractor_id", using: :btree
+
   create_table "contracts", force: :cascade do |t|
-    t.integer  "contractor_id",                             null: false
+    t.integer  "contractor_id",                                  null: false
     t.integer  "subcontractor_id"
-    t.string   "variant"
-    t.decimal  "amount",           precision: 19, scale: 4, null: false
-    t.decimal  "quantity",         precision: 19, scale: 4, null: false
-    t.integer  "release_turn",                              null: false
-    t.integer  "delivery_turn",                             null: false
-    t.text     "description"
+    t.integer  "id_contract_nature_id",                          null: false
+    t.integer  "delivery_turn",                                  null: false
+    t.decimal  "quantity",              precision: 19, scale: 4, null: false
+    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "contracts", ["contractor_id"], name: "index_contracts_on_contractor_id", using: :btree
+  add_index "contracts", ["id_contract_nature_id"], name: "index_contracts_on_id_contract_nature_id", using: :btree
   add_index "contracts", ["subcontractor_id"], name: "index_contracts_on_subcontractor_id", using: :btree
 
   create_table "deal_items", force: :cascade do |t|

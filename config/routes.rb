@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :actors
   resources :loans
   resources :participations
+  resources :contracts
   resources :shops do
     member do
       post :add

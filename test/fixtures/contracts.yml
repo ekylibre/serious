@@ -20,27 +20,24 @@
 #
 # == Table: contracts
 #
-#  amount           :decimal(19, 4)   not null
-#  contractor_id    :integer          not null
-#  created_at       :datetime
-#  delivery_turn    :integer          not null
-#  description      :text
-#  id               :integer          not null, primary key
-#  quantity         :decimal(19, 4)   not null
-#  release_turn     :integer          not null
-#  subcontractor_id :integer
-#  updated_at       :datetime
-#  variant          :string
+#  contractor_id         :integer          not null
+#  created_at            :datetime
+#  delivery_turn         :integer          not null
+#  id                    :integer          not null, primary key
+#  id_contract_nature_id :integer          not null
+#  quantity              :decimal(19, 4)   not null
+#  state                 :string
+#  subcontractor_id      :integer
+#  updated_at            :datetime
 #
 #
 # == Fixture: contracts
 #
 # contracts_001:
-#   amount: 0
 #   contractor: contractors_001
 #   delivery_turn: 0
+#   id_contract_nature: id_contract_natures_001
 #   quantity: 0
-#   release_turn: 0
 #
 
 # This model initially had no columns defined.  If you add columns to the

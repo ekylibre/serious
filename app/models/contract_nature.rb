@@ -18,23 +18,24 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses.
 #
-# == Table: catalog_items
+# == Table: contract_natures
 #
-#  created_at                 :datetime
-#  id                         :integer          not null, primary key
-#  nature                     :string
-#  negative_margin_percentage :decimal(19, 4)   default(0), not null
-#  participant_id             :integer          not null
-#  positive_margin_percentage :decimal(19, 4)   default(0), not null
-#  quota                      :decimal(19, 4)   not null
-#  tax                        :string
-#  updated_at                 :datetime
-#  variant                    :string           not null
+#  amount         :decimal(19, 4)   not null
+#  contract_count :integer
+#  contract_quota :integer
+#  contractor_id  :integer          not null
+#  description    :text
+#  id             :integer          not null, primary key
+#  release_turn   :integer          not null
+#  title          :string
+#  variant        :string
 #
-require 'test_helper'
-
-class CatalogItemTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class ContractNature < ActiveRecord::Base
+  has_many :contracts
+  belongs_to :contractor
+  #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  validates_numericality_of :contract_quota, :release_turn, allow_nil: true, only_integer: true
+  validates_numericality_of :amount, allow_nil: true
+  validates_presence_of :amount, :release_turn
+  #]VALIDATORS]
 end

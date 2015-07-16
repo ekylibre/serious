@@ -50,12 +50,14 @@ class Participant < ActiveRecord::Base
   has_many :catalog_items
   has_many :participations
   has_many :users, through: :participations
-  has_many :sales,      class_name: "Deal", foreign_key: :supplier_id
-  has_many :purchases,  class_name: "Deal", foreign_key: :customer_id
-  has_many :borrowings, class_name: "Loan", foreign_key: :borrower_id
-  has_many :lendings,   class_name: "Loan", foreign_key: :lender_id
-  has_many :subcontractings, class_name: "Contract", foreign_key: :contractor_id
-  has_many :contractings,    class_name: "Contract", foreign_key: :subcontractor_id
+  has_many :sales,      class_name: 'Deal', foreign_key: :supplier_id
+  has_many :purchases,  class_name: 'Deal', foreign_key: :customer_id
+  has_many :borrowings, class_name: 'Loan', foreign_key: :borrower_id
+  has_many :lendings,   class_name: 'Loan', foreign_key: :lender_id
+  has_many :subcontractings, class_name: 'Contract', foreign_key: :contractor_id
+  has_many :contractings,    class_name: 'Contract', foreign_key: :subcontractor_id
+  has_many :contractings_nature, class_name: 'ContractNature', foreign_key: :contractor_id
+
   has_attached_file :logo
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :logo_updated_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
@@ -79,7 +81,7 @@ class Participant < ActiveRecord::Base
     val = number
     k, l, m, offset = 10, 16, 2, 64
     r, g, b = 17, 13, 23
-    c = ""
+    c = ''
     c << ((val * r / m).modulo(k) * l + offset).to_s(16).rjust(2, '0')
     c << ((val * g / m).modulo(k) * l + offset).to_s(16).rjust(2, '0')
     c << ((val * b / m).modulo(k) * l + offset).to_s(16).rjust(2, '0')
