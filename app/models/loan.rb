@@ -38,6 +38,8 @@ class Loan < ActiveRecord::Base
   validates_presence_of :borrower, :insurance_percentage, :interest_percentage, :lender
   #]VALIDATORS]
 
+
+
   after_initialize :init
 
   before_validation do

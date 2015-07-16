@@ -14,34 +14,6 @@ $backgroundColor: rgb(247, 247, 247);
 }
 
 
-.saleBuyInterface{
-  display: inline-block;
-  float: left;
-  //margin-right: 80px;
-  margin-left: 150px;
-
-  .cubeSalesBuy{
-    border: 1.7px solid $borderColor;
-    width: 300px;
-    height: auto;
-    background-color: $backgroundColor;
-    // box-shadow: 0 5px 20px $backgroundColorFlop1, 0 0 8px 5px $backgroundColorFlop2 inset;
-    padding: 4%;
-
-    .sale {
-      display: block;
-      //float: right;
-      margin-right: 30px;
-
-      b{
-        text-align: right;
-      }
-
-    }
-  }
-}
-
-
 .participant-abbreviation {
   display: block;
   text-align: center;
@@ -61,4 +33,17 @@ $backgroundColor: rgb(247, 247, 247);
 
 .items-block {
   @include framebox;
+}
+
+.items-block {
+  @include framebox;
+}
+
+.items-block-contract {
+  @include framebox;
+  &{
+    width: 250px;
+    float: left;
+    margin: 14px;
+  }
 }

@@ -1,9 +1,9 @@
 .container
   = participant_card(@participant, title: "Boutique #{@participant.name}") do |participant|
     .deal-amount= @deal.amount.l(currency: :EUR)
-    = link_to('Partie', {controller: :games, action: :show, id: participant.game_id}, class: "btn btn-default")
+    = link_to('Partie', {controller: :games, action: :show, id: participant.game_id}, class: 'btn btn-default')
     - if @deal.items.any?
-      = link_to('Valider la commande', {controller: :shops, action: :checkout}, method: :put, class: "btn btn-primary")
+      = link_to('Valider la commande', {controller: :shops, action: :checkout}, method: :put, class: 'btn btn-primary')
       %table.table
         %thead
           %tr
@@ -19,23 +19,7 @@
               %td
                 = link_to({controller: :shops, action: :remove, variant: item.variant}, method: :delete) do
                   %i.glyphicon.glyphicon-remove
-    -#.dropdown
-      %button#dropdownMenu1.btn.btn-default.dropdown-toggle{'aria-expanded' => 'true', 'aria-haspopup' => 'true','data-toggle' => 'dropdown', :type => 'button'}
-        = "Total : #{@deal.amount} €"
-        %span.caret
-      %ul.dropdown-menu
-        - if @deal.items.count == 0
-          %li Vous n'avez rien dans votre panier
-        - else
-          - @deal.items.each do |item|
-            .article
-              %li= "<b>#{item.variant}</b> x #{item.quantity} = <b>#{item.amount} € </b>".html_safe
-              = link_to options= {controller: :shops, action: :remove, variant: item.variant}, method: :delete do
-                %span.glyphicon.glyphicon-remove
-                Supprimer
-          %li
-          = link_to options= {controller: :shops, action: :checkout}, method: :put do
-            Valider la commande
+
   %h2 Liste des items
   .row
     - @participant.catalog_items.each do |catalog_item|
@@ -50,8 +34,8 @@
               - if (item = @deal.items.find_by(variant: catalog_item.variant))
                 - quantity = item.quantity
               .btn-group
-                = link_to({controller: :shops, action: :add, variant: catalog_item.variant}, method: :post, class: "btn btn-default") do
+                = link_to({controller: :shops, action: :add, variant: catalog_item.variant}, method: :post, class: 'btn btn-default') do
                   %i.glyphicon.glyphicon-plus
                 %span.btn.btn-default= quantity
-                = link_to({controller: :shops, action: :decrement, variant: catalog_item.variant}, method: :patch, class: "btn btn-default") do
+                = link_to({controller: :shops, action: :decrement, variant: catalog_item.variant}, method: :patch, class: 'btn btn-default') do
                   %i.glyphicon.glyphicon-minus

@@ -9,8 +9,8 @@ class ParticipantsController < BaseController
   end
 
   def show
-    unless @participant = Participant.find_by(id: params[:id])
-      redirect_to :index, alert: "Participant not found"
+    unless (@participant = Participant.find_by(id: params[:id]))
+      redirect_to :index, alert: 'Participant not found'
     end
   end
 

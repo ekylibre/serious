@@ -10,3 +10,11 @@
       = items_block(current_participant, :subcontractings, relative_to: @participant, as: :subcontractor)
       = items_block(current_participant, :lendings,   relative_to: @participant, as: :borrower)
       = items_block(current_participant, :borrowings, relative_to: @participant, as: :lender)
+
+  %h2 Les contracts disponibles
+  - @participant.contracting_natures.each do |contract|
+    .items-block-contract
+      %h3= contract.title
+      .items-list
+        .items-item= contract.amount.l(currency: :EUR)
+        .items-item= link_to( 'Voir le contrat', {controller: :contracts, action: :show, id: contract})

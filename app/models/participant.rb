@@ -56,9 +56,10 @@ class Participant < ActiveRecord::Base
   has_many :lendings,   class_name: 'Loan', foreign_key: :lender_id
   has_many :subcontractings, class_name: 'Contract', foreign_key: :contractor_id
   has_many :contractings,    class_name: 'Contract', foreign_key: :subcontractor_id
-  has_many :contractings_nature, class_name: 'ContractNature', foreign_key: :contractor_id
+  has_many :contracting_natures, class_name: 'ContractNature', foreign_key: :contractor_id
 
   has_attached_file :logo
+
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :logo_updated_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
   validates_numericality_of :logo_file_size, :zone_height, :zone_width, :zone_x, :zone_y, allow_nil: true, only_integer: true
