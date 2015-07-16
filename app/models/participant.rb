@@ -74,6 +74,10 @@ class Participant < ActiveRecord::Base
     "serious_#{id}"
   end
 
+  def unique_id
+    "s#{id.to_s(36)}"
+  end
+
   def number
     I18n.transliterate(self.name.mb_chars.downcase).gsub(/[^a-zA-Z0-9]/, '').to_i(36)
   end
@@ -102,6 +106,10 @@ class Participant < ActiveRecord::Base
     list += self.subcontractings.where(subcontractor: other).to_a
     list += self.contractings.where(contractor: other).to_a
     return list
+  end
+
+  def url
+    "https://ekylibre.game-of-farms/#{self.unique_id}/"
   end
 
 end

@@ -16,7 +16,7 @@
             - if current_participant
               - if current_participant.is_a?(Farm)
                 %li
-                  = link_to("javascript: alert('Lien vers Ekylibre en cours de construction')") do
+                  = link_to(current_participant.url) do
                     %i.glyphicon.glyphicon-transfer
               %li
                 = link_to(participant_path(current_participant)) do
