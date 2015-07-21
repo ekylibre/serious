@@ -17,7 +17,6 @@
 #
 
 class UsersController < BaseController
-  layout 'game'
 
   def show
     @user = User.find(params[:id])

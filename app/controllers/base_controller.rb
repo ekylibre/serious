@@ -5,7 +5,7 @@ class BaseController < ApplicationController
   before_action :authenticate_user!
   before_action :set_participation
 
-  layout "game"
+  layout 'game'
 
   protected
 

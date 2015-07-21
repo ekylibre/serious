@@ -4,7 +4,7 @@
     - if game.current_turn.nil?
       - Time.now > game.last_turn.stopped_at ? turn_info = 'Partie terminée' : turn_info = 'La partie est en pause'
     - else
-      - turn_info = " Fin du tour(#{game.current_turn.number}/#{game.turns_count}) : #{distance_of_time_in_words_to_now(game.current_turn.stopped_at)}"
+      - turn_info = h("Fin du tour (#{game.current_turn.number}/#{game.turns_count}) : ") + content_tag(:span, nil, data: {countdown: game.current_turn.stopped_at.utc.l(format: '%Y-%m-%dT%H:%M:%S')})
     = turn_info
   - else
     = "Pas encore lancée (dans #{distance_of_time_in_words_to_now(game.planned_at)})"

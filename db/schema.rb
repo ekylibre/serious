@@ -45,18 +45,18 @@ ActiveRecord::Schema.define(version: 20150630125434) do
   add_index "contract_natures", ["contractor_id"], name: "index_contract_natures_on_contractor_id", using: :btree
 
   create_table "contracts", force: :cascade do |t|
-    t.integer  "contractor_id",                                  null: false
+    t.integer  "contractor_id",                             null: false
     t.integer  "subcontractor_id"
-    t.integer  "id_contract_nature_id",                          null: false
-    t.integer  "delivery_turn",                                  null: false
-    t.decimal  "quantity",              precision: 19, scale: 4, null: false
+    t.integer  "nature_id",                                 null: false
+    t.integer  "delivery_turn",                             null: false
+    t.decimal  "quantity",         precision: 19, scale: 4, null: false
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "contracts", ["contractor_id"], name: "index_contracts_on_contractor_id", using: :btree
-  add_index "contracts", ["id_contract_nature_id"], name: "index_contracts_on_id_contract_nature_id", using: :btree
+  add_index "contracts", ["nature_id"], name: "index_contracts_on_nature_id", using: :btree
   add_index "contracts", ["subcontractor_id"], name: "index_contracts_on_subcontractor_id", using: :btree
 
   create_table "deal_items", force: :cascade do |t|
