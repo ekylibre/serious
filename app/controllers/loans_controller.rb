@@ -10,9 +10,10 @@ class LoansController < BaseController
 
   def create
     @loan = Loan.new(loan_params)
+    @participant = Participant.find(@loan.lender_id)
     respond_to do |format|
       if @loan.save
-        format.html { redirect_to @loan, notice: 'Loan was successfully created.' }
+        format.html { redirect_to @participant, notice: 'Loan was successfully created.' }
         format.json { render :show, status: :created, location: @loan }
       else
         format.html { render :new }

@@ -1,8 +1,7 @@
 (($) ->
   'use strict'
   $.countdown =
-    render: (element)->
-      date_end_turn = new Date(element.data('countdown'))
+    render: (element, date_end_turn)->
       difference = (date_end_turn - Date.now())/1000
       duration =
         days: 0
@@ -11,7 +10,10 @@
         sec: 0
 
       if difference <= 0
+        console.log date_end_turn
         $.countdown.stop(element)
+        console.log('after stop')
+        $.countdown.start(element)
         return duration
 
       if difference >= 86400
@@ -40,7 +42,9 @@
 
     start: (element, delay = 1000) ->
       @tab_element.push element
-      element.prop('interval', setInterval($.countdown.render.bind(null, element), delay))
+      date_end_turn = new Date(element.data('countdown'))
+      console.log(date_end_turn)
+      element.prop('interval', setInterval($.countdown.render.bind(null, element, date_end_turn), delay))
 
     stop:(element) ->
       window.clearInterval(element.prop('interval'))
