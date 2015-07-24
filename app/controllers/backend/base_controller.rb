@@ -12,5 +12,4 @@ class Backend::BaseController < BaseController
       return false
     end
   end
-
 end

@@ -77,8 +77,8 @@ module RestfullyManageable
         while parents.last.superclass < ActionController::Base
           parents << parents.last.superclass
         end
-        lookup = Rails.root.join("app", "views", "{#{parents.map(&:controller_path).join(',')}}")
-        if Dir.glob(lookup.join("show.*")).any?
+        lookup = Rails.root.join('app', 'views', "{#{parents.map(&:controller_path).join(',')}}")
+        if Dir.glob(lookup.join('show.*')).any?
           if options[:subclass_inheritance]
             code << "  if @#{record_name}.type and @#{record_name}.type != '#{model_name}'\n"
             code << "    redirect_to controller: @#{record_name}.type.tableize, action: :show, id: @#{record_name}.id\n"
@@ -95,7 +95,7 @@ module RestfullyManageable
           code << "    format.xml  { render xml:  @#{record_name} }\n"
           code << "    format.json { render json: @#{record_name} }\n"
           code << "  end\n"
-        elsif Dir.glob(lookup.join("index.*")).any?
+        elsif Dir.glob(lookup.join('index.*')).any?
           code << "  redirect_to action: :index, '#{name}-id' => @#{record_name}.id\n"
         else
           raise StandardError, "Cannot build a default show action without view for show or index actions in #{parents.map(&:controller_path).to_sentence(locale: :eng)} (#{lookup.join('show.*')})."
@@ -142,7 +142,7 @@ module RestfullyManageable
         end.merge(defaults).collect{|k,v| "#{k}: (#{v.inspect})"}.join(", ")
         code << "  @#{record_name} = resource_model.new(#{values})\n"
         # code << "  @#{record_name} = resource_model.new(permitted_params)\n"
-        if xhr = options[:xhr]
+        if (xhr = options[:xhr])
           code << "  if request.xhr?\n"
           code << "    render partial: #{xhr.is_a?(String) ? xhr.inspect : 'detail_form'.inspect}\n"
           code << "  else\n"
@@ -218,9 +218,9 @@ module RestfullyManageable
 
       # code.split("\n").each_with_index{|l, x| puts((x+1).to_s.rjust(4)+": "+l)}
       unless Rails.env.production?
-        file = Rails.root.join("tmp", "code", "manage_restfully", "#{controller_path}.rb")
+        file = Rails.root.join('tmp', 'code', 'manage_restfully', "#{controller_path}.rb")
         FileUtils.mkdir_p(file.dirname)
-        File.open(file, "wb") do |f|
+        File.open(file, 'wb') do |f|
           f.write code
         end
       end
@@ -252,14 +252,14 @@ module RestfullyManageable
       code << "def up\n"
       code << "  return unless #{record_name} = find_and_check\n"
       code << "  #{record_name}.move_higher\n"
-      code << sort.gsub(/^/, "  ")
+      code << sort.gsub(/^/, '  ')
       code << "  redirect_to_back\n"
       code << "end\n"
 
       code << "def down\n"
       code << "  return unless #{record_name} = find_and_check\n"
       code << "  #{record_name}.move_lower\n"
-      code << sort.gsub(/^/, "  ")
+      code << sort.gsub(/^/, '  ')
       code << "  redirect_to_back\n"
       code << "end\n"
 
@@ -281,7 +281,7 @@ module RestfullyManageable
       values = columns.inject({}) do |hash, attr|
         hash[attr] = "params[:#{attr}]".c unless attr.blank? or attr.to_s.match(/_attributes$/)
         hash
-      end.collect{|k,v| "#{k}: (#{v.inspect})"}.join(", ")
+      end.collect{|k,v| "#{k}: (#{v.inspect})"}.join(', ')
       code << "def pick\n"
       code << "  @#{record_name} = resource_model.new(#{values})\n"
       code << "  already_imported_records = #{model}.select(:reference_name).collect(&:reference_name)\n"

@@ -18,4 +18,8 @@
 
 class Backend::GamesController < Backend::BaseController
   manage_restfully grids: [:actors, :farms]
+
+  def index
+    @collection_grid = initialize_grid(Game)
+  end
 end

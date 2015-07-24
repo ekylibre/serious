@@ -1,5 +1,4 @@
 class ParticipationsController < BaseController
-
   def show
     participation = Participation.find(params[:id])
     session[:current_participation_id] = participation.id
@@ -9,5 +8,4 @@ class ParticipationsController < BaseController
     #   redirect_to(controller: :participants, action: :show, id: participation.participant_id)
     # end
   end
-
 end

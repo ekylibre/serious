@@ -1,4 +1,4 @@
-= grid(collection_grid) do |g|
+= grid(@collection_grid) do |g|
 
   - g.column name: Game.human_attribute_name(:name) do |item|
     - link_to(item.name, backend_game_path(item))

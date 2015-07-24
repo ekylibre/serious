@@ -40,23 +40,27 @@ class GameTurn < ActiveRecord::Base
 
   scope :at, lambda { |at| where('started_at <= ? AND ? < stopped_at', at, at) }
 
+  before_update do
+    self.stopped_at = self.started_at + self.game.turn_duration.minutes
+  end
+
   before_validation do
     if self.started_at && self.stopped_at
       self.duration = (self.stopped_at - self.started_at).to_i
     end
   end
 
-  validate do
-    if self.others.at(self.started_at).any?
-      errors.add(:started_at, :invalid)
-    end
-    if self.others.at(self.stopped_at).any?
-      errors.add(:stopped_at, :invalid)
-    end
-  end
+  # validate do
+  #   if self.others.at(self.started_at).any?
+  #     errors.add(:started_at, :invalid)
+  #   end
+  #   if self.others.at(self.stopped_at).any?
+  #     errors.add(:stopped_at, :invalid)
+  #   end
+  # end
 
   def others
-    self.game.turns.where("id != ?", self.id || 0)
+    self.game.turns.where('id != ?', self.id || 0)
   end
 
 end

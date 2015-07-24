@@ -68,6 +68,17 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def update_turn(turn)
+    started_at = turn.stopped_at
+    (turn.number + 1 .. turns_count).each { |i|
+      stopped_at = started_at + self.turn_duration.minutes
+      change_turn = self.turns.find_by(number: i)
+      change_turn.update!(started_at: started_at)
+      change_turn.update!(stopped_at: stopped_at)
+      started_at = stopped_at
+    }
+  end
+
   after_save do
     # Prevents counter_cache use
     GameTurn.destroy_all(game_id: self.id)

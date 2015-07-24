@@ -5,7 +5,7 @@
       organizers = resource.organizers.collect do |user|
         link_to(user.name, backend_user_path(user))
       end
-    %span= h("Organisateurs : ") + organizers.to_sentence.html_safe
+    %span= h('Organisateurs : ') + organizers.to_sentence.html_safe
 
 .btn-group.btn-toolbox
   = link_to(:edit.ta, edit_backend_game_path(resource), class: 'btn btn-default')
@@ -15,6 +15,7 @@
 %ol
   - @game.turns.order(:number).each do |turn|
     %li.game-turn= "du #{turn.started_at.l} au #{turn.stopped_at.l}"
+    = link_to('Modifier', edit_backend_game_turn_path(turn), class: 'btn btn-default')
 
 %h2= Game.human_attribute_name(:farms)
 .btn-group.btn-toolbox{role: 'group'}

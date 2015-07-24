@@ -16,7 +16,7 @@ module ApplicationHelper
     options = args.extract_options!
     legend = args.shift || options[:legend]
     content_tag(:fieldset) do
-      html = "".html_safe
+      html = ''.html_safe
       html << content_tag(:legend, legend) if legend
       html << capture(&block)
       html
@@ -24,7 +24,7 @@ module ApplicationHelper
   end
 
   def show_grid(name = nil)
-    render((name ? "#{name}_grid" : "grid"), collection_grid: instance_variable_get("@#{name}_grid"))
+    render((name ? "#{name}_grid" : 'grid'), collection_grid: instance_variable_get("@#{name}_grid"))
   end
 
   def action_title
@@ -33,7 +33,7 @@ module ApplicationHelper
     end
     options = @title_interpolations || {}
     options[:default] = []
-    options[:default] << (action_name == "index" ? controller_name.to_s.humanize : action_name == "new" ? "New #{controller_name.to_s.singularize}" : "#{action_name.humanize}: %{name}")
+    options[:default] << (action_name == "index" ? controller_name.to_s.humanize : action_name == "new" ? "New #{controller_name.to_s.singularize}" : "#{action_name.humanize}: %{name}" ? "Edit #{controller_name.to_s.singularize}" : "#{action_name.humanize}: %{name}" )
     I18n.translate("actions.#{controller_path}.#{action_name}", options)
   end
 

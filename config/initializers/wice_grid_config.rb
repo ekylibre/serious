@@ -98,7 +98,7 @@ if defined?(Wice::Defaults)
   # If number of all queries is more than this value, the user will be given a warning message
   Wice::Defaults::START_SHOWING_WARNING_FROM = 100
 
-
+  Wice::Defaults::ALLOW_SHOWING_ALL_RECORDS = true
   # Hide the "show all" link if the number of all records is more than...
   # set to nil to shows it always
   Wice::Defaults::HIDE_ALL_LINK_FROM = nil
