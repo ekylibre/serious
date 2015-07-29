@@ -16,7 +16,15 @@ Rails.application.routes.draw do
     root to: 'scenarios#index'
   end
 
-  resources :games
+  resources :games do
+    member do
+      get :current_turn, to: 'games#show_current_turn', path: 'current-turn'
+    end
+
+    collection do
+      get :current_turn, to:  'games#show_current_turn', path: 'current-turn'
+    end
+  end
   resources :participants
   resources :farms
   resources :actors

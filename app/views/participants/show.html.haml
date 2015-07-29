@@ -11,7 +11,7 @@
       = items_block(current_participant, :lendings,   relative_to: @participant, as: :borrower)
       = items_block(current_participant, :borrowings, relative_to: @participant, as: :lender)
 
-  %h2 Les contracts disponibles
+  %h2 Les contrats disponibles
   - @participant.contracting_natures.each do |contract|
     .items-block-contract
       %h3= contract.title

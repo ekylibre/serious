@@ -50,6 +50,14 @@ class GameTurn < ActiveRecord::Base
     end
   end
 
+  def finished_on
+    (Date.civil(2015, 9, 30) >> (self.number - 1)).end_of_month
+  end
+
+  def name
+    self.finished_on.l(format: '%m/%Y')
+  end
+
   # validate do
   #   if self.others.at(self.started_at).any?
   #     errors.add(:started_at, :invalid)
