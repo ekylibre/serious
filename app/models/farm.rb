@@ -48,6 +48,13 @@
 class Farm < Participant
   has_one :historic, through: :game
 
+  before_validation do
+    self.borrower = true
+    self.subcontractor = true
+    self.customer = true
+    # self.insured = true
+  end
+
   validate do
     errors.add(:lender, :invalid) if self.lender
   end

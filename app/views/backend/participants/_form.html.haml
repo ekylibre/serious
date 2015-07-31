@@ -1,9 +1,11 @@
 = field_set do
-  = f.input :name
-  = f.input :code
-  = f.input :present
-  = f.input :application_url
-  = f.input :logo
+  .row
+    .col-md-6= f.input :name
+    .col-md-3= f.input :code
+    .col-md-3= f.input :present
+  .row
+    .col-md-6= f.input :application_url
+    .col-md-6= f.input :logo
   .row
     .col-md-3= f.input :supplier
     .col-md-3= f.input :customer

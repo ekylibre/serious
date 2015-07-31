@@ -24,7 +24,7 @@ module ParticipantsHelper
       collection = collection.where(options[:as] => options[:relative_to])
     end
     if collection.any?
-      html = render 'participants/items_block', reflection: reflection, collection: collection, item_partial: "item_#{reflection.to_s.singularize}"
+      html = render 'participants/items_block', reflection: reflection, collection: collection, item_partial: "participants/item_#{reflection.to_s.singularize}"
       return html if options[:wrap].is_a? FalseClass
       if options[:wrap].is_a?(Hash)
         return content_tag(:div, html, options[:wrap])

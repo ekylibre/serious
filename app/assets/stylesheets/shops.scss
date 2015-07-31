@@ -59,6 +59,10 @@ $borderColor: #77220b;
 
 $catalog-logo-size: 2 * $navbar-height;
 
+.catalog {
+  @include listbox;
+}
+
 .catalog-item {
   @include framebox;
   min-height: $catalog-logo-size;
@@ -86,5 +90,19 @@ $catalog-logo-size: 2 * $navbar-height;
     .catalog-item-quantity {
       clear: right;
     }
+  }
+}
+
+.cart {
+  @include titlebox;
+  .cart-content {
+    @include framebox;
+    margin-top: 0;
+    padding: $font-size-base;
+    .deal-amount {
+      font-size: $font-size-h2;
+      text-align: right;
+    }
+    @include clearfix;
   }
 }

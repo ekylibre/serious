@@ -1,13 +1,14 @@
 = participant_card(@participant, content: false)
+- if current_participant == @participant
+  .row
+    .col-md-6= f.association :borrower
+    .col-md-3= f.input :interest_percentage
+    .col-md-3= f.input :insurance_percentage
+- else
+  = f.association :borrower, as: :hidden
+= f.association :lender, as: :hidden
 .row
   .col-md-3
-    = f.input :turns_count, label: 'Nombres de tours'
+    = f.input :turns_count
   .col-md-3
-    = f.input :amount, label: "Montant de l'emprunt"
-    = f.association :lender, as: :hidden
-    - if @current_participant == @participant
-      = f.association :borrower, label: 'Emprunteur'
-      = f.input :interest_percentage, label: "Pourcentage de l'intéret"
-      = f.input :insurance_percentage, label: "Pourcentage de l'assurance"
-    - else
-      = f.association :borrower, as: :hidden
+    = f.input :amount

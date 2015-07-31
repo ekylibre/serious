@@ -594,11 +594,17 @@ participations:
 - participant: A01
   user: jacques.chauvin@watersnicolas.com
   nature: :player
+- participant: A01
+  user: admin@ekylibre.org
+  nature: :player
 - participant: A02
   user: valentine.benard@quitzon.us
   nature: :player
 - participant: A02
   user: helene.charrier@goyette.biz
+  nature: :player
+- participant: A02
+  user: admin@ekylibre.org
   nature: :player
 - participant: A03
   user: odette.guibert@mcglynn.name
@@ -608,6 +614,9 @@ participations:
   nature: :player
 - participant: A03
   user: marianne.munoz@kiehn.ca
+  nature: :player
+- participant: A03
+  user: admin@ekylibre.org
   nature: :player
 - participant: A04
   user: thomas.richard@fadel.name
@@ -630,12 +639,21 @@ participations:
 - participant: A06
   user: julien.richard@muller.com
   nature: :player
+- participant: A06
+  user: admin@ekylibre.org
+  nature: :player
 - participant: A07
   user: laure.guillet@bashirian.ca
+  nature: :player
+- participant: A07
+  user: admin@ekylibre.org
   nature: :player
 - participant: A08
   user: caroline.guillot@stoltenberg.info
   nature: :player
 - participant: A08
   user: danielle.gillet@schambergermurphy.co.uk
+  nature: :player
+- participant: A08
+  user: admin@ekylibre.org
   nature: :player

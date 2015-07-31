@@ -1,5 +1,5 @@
 - game = participation.game
-.countdown.simple-countdown{class: game.state}
+.countdown.simple-countdown.label.label-info{class: game.state}
   - if game.running?
     - if game.current_turn.nil?
       - turn_info = (Time.now > game.last_turn.stopped_at ? 'Partie terminée' : 'La partie est en pause')
@@ -8,7 +8,8 @@
     = turn_info
   - else
     = "Pas encore lancée (dans #{distance_of_time_in_words_to_now(game.planned_at)})"
-%h4.list-group-item-heading
+-# %h4.list-group-item-heading
+%span
   = game.name
   = ' &mdash; '.html_safe
   %span.glyphicon{class: "glyphicon-#{participation.organizer? ? :king : participation.participant.is_a?(Farm) ? :grain : :briefcase}"}

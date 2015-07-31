@@ -2,19 +2,21 @@
 
   #logo
 
-  %h1 Mes parties
   - if @games.any? or current_user.can_organize?
-    .list-group
-      - @games.each do |game|
-        - game.participations.where(user_id: current_user.id).each do |participation|
-          - if game.running? or participation.organizer?
-            = link_to(participation_path(participation), class: 'list-group-item') do
-              = render 'participation', participation: participation
-          - else
-            .list-group-item.disabled
-              = render 'participation', participation: participation
-      - if current_user.can_organize?
-        = link_to(new_backend_game_path, class: 'list-group-item list-group-item-info') do
-          %h4 Nouvelle partie
+    #my-games.items-block
+      %h3 Mes parties
+      .items-list
+        - @games.each do |game|
+          - game.participations.where(user_id: current_user.id).each do |participation|
+            - if game.running? or participation.organizer?
+              = link_to(participation_path(participation), class: 'items-item') do
+                = render 'participation', participation: participation
+            - else
+              .items-item.disabled
+                = render 'participation', participation: participation
+        - if current_user.can_organize?
+          = link_to(new_backend_game_path, class: 'items-item list-group-item-info') do
+            %span Nouvelle partie
   - else
-    %p Aucune partie en cours ou en attente
+    .help-block
+      .help-content Aucune partie en cours ou en attente

@@ -148,7 +148,7 @@ namespace :serious do
         (1 + value.modulo(3)).times do
           participations << {participant: code, user: users.shift, nature: :player}
         end
-        if value.modulo(10) > 5
+        if true # value.modulo(10) > 5
           participations << {participant: code, user:"admin@ekylibre.org", nature: :player}
         end
       end
@@ -189,8 +189,8 @@ namespace :serious do
     ENV['SCENARIO'] ||= 'random'
     ENV['GAME'] ||= 'test'
     ENV['TURNS'] ||= '12'
-    Rake::Task["serious:scenario"].invoke
-    Rake::Task["serious:game"].invoke
+    Rake::Task["serious:fake:scenario"].invoke
+    Rake::Task["serious:fake:game"].invoke
   end
 
 end

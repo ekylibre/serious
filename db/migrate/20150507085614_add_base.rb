@@ -110,14 +110,14 @@ class AddBase < ActiveRecord::Migration
     end
 
     create_table :contract_natures do |t|
-      t.references :contractor,     null: false, index: true
-      t.string     :title
+      t.references :contractor,    null: false, index: true
+      t.string     :name
       t.string     :variant
-      t.decimal    :amount,   precision: 19, scale: 4, null: false
+      t.decimal    :amount,        precision: 19, scale: 4, null: false
       t.integer    :release_turn,  null: false
       t.text       :description
-      t.integer    :contract_count
-      t.integer    :contract_quota
+      t.integer    :contracts_count
+      t.integer    :contracts_quota
     end
 
     create_table :contracts do |t|

@@ -38,24 +38,25 @@ class Loan < ActiveRecord::Base
   validates_presence_of :borrower, :insurance_percentage, :interest_percentage, :lender
   #]VALIDATORS]
 
-
-
-  after_initialize :init
+  delegate :name, to: :lender, prefix: true
+  delegate :name, to: :borrower, prefix: true
 
   before_validation do
+    self.interest_percentage  ||= 3
+    self.insurance_percentage ||= 0.3
+
     percentage_interest = self.interest_percentage / 100 + 1
     percentage_insurance = self.insurance_percentage / 100
     amount_total = self.amount * percentage_interest + self.amount * percentage_insurance
-
     self.turns_count = amount_total / 10000
-    if amount_total % 10000 !=0
+    if amount_total % 10000 != 0
       self.turns_count += 1
     end
   end
 
-  def init
-    self.interest_percentage ||= 3
-    self.insurance_percentage ||= 0.3
-
+  def number
+    "L#{self.id}"
   end
+
+
 end

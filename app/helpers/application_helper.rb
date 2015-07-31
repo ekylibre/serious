@@ -33,7 +33,7 @@ module ApplicationHelper
     end
     options = @title_interpolations || {}
     options[:default] = []
-    options[:default] << (action_name == "index" ? controller_name.to_s.humanize : action_name == "new" ? "New #{controller_name.to_s.singularize}" : "#{action_name.humanize}: %{name}" ? "Edit #{controller_name.to_s.singularize}" : "#{action_name.humanize}: %{name}" )
+    options[:default] << (action_name == "index" ? controller_name.to_s.humanize : (action_name == "new") ? "New #{controller_name.to_s.singularize}" : "#{action_name.humanize}: %{name}")
     I18n.translate("actions.#{controller_path}.#{action_name}", options)
   end
 

@@ -22,17 +22,28 @@ fr:
       new: "Nouvel utilisateur"
       show: "Utilisateur\_: %{first_name} %{last_name}"
   activerecord:
+    attributes:
+      loan:
+        turns_count: "Durée (en mois)"
     models:
       actor: Partenaire
       farm: Ferme
   attributes:
+    amount: "Montant"
     borrower: Emprunteur
     contractor: Contracteur
     customer: Acheteur
+    insurance_percentage: "Taux d'assurance (%)"
+    interest_percentage: "Taux d'intérêt (%)"
     lender: Prêteur
     subcontractor: Sous-traitant
     supplier: Vendeur
+    turns_count: "Nombre de tours"
   enumerize:
+    deal:
+      state:
+        draft: "Devis"
+        invoice: "Facture"
     participation:
       nature:
         organizer: Organisateur
@@ -44,6 +55,7 @@ fr:
         player: Joueur
   labels:
     are_you_sure: "Êtes-vous sûr(e)\_?"
+    cart: "Panier"
     close: "Fermer"
     minutes: "Minutes"
     my_purchases: "Mes achats"

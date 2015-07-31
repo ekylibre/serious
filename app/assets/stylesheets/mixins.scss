@@ -18,16 +18,48 @@
   margin: $font-size-base 0;
   @include box-shadow(1px 1px 3px rgba(black, 0.4));
   background: white;
+}
+
+@mixin titlebox {
   & > h3 {
     margin: 0;
     padding: $font-size-small;
-    font-size: $font-size-base;
-    background: $brand-secondary;
-    color: white;
+    font-size: $font-size-h4;
+    //font-weight: bold;
+    // background: #F3F3F3; // $brand-secondary;
+    color: #777;
     text-transform: uppercase
   }
+  & > .box-content {
+    @include framebox;
+    margin-top: 0;
+  }
+}
+
+@mixin listbox {
+  @include titlebox;
   & > .items-list {
-    padding: $font-size-base;
+    @include framebox;
+    margin-top: 0;
+    $pad: round(0.6 * $font-size-small);
+    //max-height: 400px;
+    //overflow:auto;
+    // padding: 0 $pad;
+    & > .items-item {
+      display: block;
+      padding: $font-size-small;
+      border-top: 1px solid #DDD;
+      &:first-child {
+        border-top: none;
+      }
+    }
+    & > a.items-item {
+      &:hover {
+        &, * {
+          text-decoration: none;
+        }
+      }
+    }
   }
 }
 
@@ -68,12 +100,6 @@
     .#{$base}-info {
       font-size: $font-size-h4;
       color: $brand-info;
-    }
-    .deal-amount {
-      font-size: $font-size-h1;
-      float: right;
-      padding: 0 $font-size-h1;
-      background: #EEE;
     }
   }
 }

@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :actors
   resources :loans
   resources :participations
-  resources :contracts
+  resources :contract_natures, path: 'contract-natures'
   resources :shops do
     member do
       post :add

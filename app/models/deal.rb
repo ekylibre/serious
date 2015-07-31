@@ -55,4 +55,8 @@ class Deal < ActiveRecord::Base
     self.amount ||= 0
   end
 
+  def number
+    "D#{self.id}"
+  end
+
 end

@@ -34,7 +34,7 @@
 # A contract is used between a contractor who propose the contract and
 # the subcontractor who accepts to execute the contract.
 class Contract < ActiveRecord::Base
-  belongs_to :contractor, class_name: 'Participant'
+  belongs_to :contractor,    class_name: 'Participant'
   belongs_to :subcontractor, class_name: 'Participant'
   belongs_to :nature, class_name: 'ContractNature'
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.

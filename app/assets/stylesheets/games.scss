@@ -15,7 +15,7 @@ $present-actor-color: #425000;
 
 #curves {
   .curve {
-    @include framebox;
+    @include titlebox;
     width: 45%;
     display: inline-block;
     margin: $font-size-base 2%;
@@ -201,18 +201,31 @@ $white_50: rgba(255, 255, 255, 0.5);
   }
 }
 
-.countdown {
-  float: right;
-  color: white;
-  display: block;
-  padding: $padding-small-vertical $padding-small-horizontal;
-  text-transform: uppercase;
-  font-size: $font-size-small;
-  border-radius: $border-radius-small;
-  background: rgba(#AAA, 0.5);
-  &.running {
-    background: rgba($brand-secondary, 0.5);
+#my-games {
+  .items-item {
+    font-size: $font-size-h4;
+    .countdown {
+      float: right;
+    }
   }
 }
 
+
+/* .countdown { */
+/*   float: right; */
+/*   color: white; */
+/*   display: block; */
+/*   padding: $padding-small-vertical $padding-small-horizontal; */
+/*   text-transform: uppercase; */
+/*   font-size: $font-size-small; */
+/*   border-radius: $border-radius-small; */
+/*   background: rgba(#AAA, 0.5); */
+/*   &.running { */
+/*     background: rgba($brand-secondary, 0.5); */
+/*   } */
+/* } */
+
+.decimal {
+  text-align: right;
+}
 

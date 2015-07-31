@@ -94,3 +94,16 @@ body.game {
   background-size: auto 100%;
   margin: 30px auto;
 }
+
+.help-block {
+  @include titlebox;
+  & > .help-content {
+    @include framebox;
+    margin-top: 0;
+    background: $label-info-bg;
+    padding: $font-size-base;
+    text-align: center;
+    font-size: $font-size-h3;
+    color: $label-color;
+  }
+}

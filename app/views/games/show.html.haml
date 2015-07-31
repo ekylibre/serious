@@ -85,4 +85,4 @@
             elsif curve.interpolation_method_following?
               serie[:step] = 'right'
             end
-          .items-list= line_chart([serie],chart: {height: 150}, y_axis: {title: {text: "#{:value.tl} (#{curve.unit_name})"}})
+          .box-content= line_chart([serie],chart: {height: 150}, y_axis: {title: {text: "#{:value.tl} (#{curve.unit_name})"}})

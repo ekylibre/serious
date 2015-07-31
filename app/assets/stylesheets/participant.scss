@@ -32,16 +32,12 @@ $backgroundColor: rgb(247, 247, 247);
 }
 
 .items-block {
-  @include framebox;
-}
-
-.items-block {
-  @include framebox;
+  @include listbox;
 }
 
 .items-block-contract {
   @include framebox;
-  &{
+  & {
     width: 250px;
     float: left;
     margin: 14px;
