@@ -4,19 +4,19 @@ class AddBase < ActiveRecord::Migration
     # Start of everything: 01/09/2015
 
     create_table :historics do |t|
-      t.string     :name,        null: false
-      t.string     :code,        null: false
-      t.string     :currency,    null: false
+      t.string     :name,         null: false
+      t.string     :code,         null: false
+      t.string     :currency,     null: false
       t.text       :description
       t.timestamps
     end
 
     create_table :scenarios do |t|
-      t.string     :name,        null: false
-      t.string     :code,        null: false
-      t.string     :currency,    null: false
-      t.string     :turn_nature              # month
-      t.string     :turns_count, null: false # 12 seems to be minimum
+      t.string     :name,         null: false
+      t.string     :code,         null: false
+      t.string     :currency,     null: false
+      t.string     :turn_nature               # month
+      t.string     :turns_count,  null: false # 12 seems to be minimum
       t.text       :description
       t.timestamps
     end
@@ -58,7 +58,7 @@ class AddBase < ActiveRecord::Migration
     end
 
     create_table :games do |t|
-      t.string     :name,        null: false
+      t.string     :name,          null: false
       t.datetime   :planned_at
       t.string     :state
       t.string     :turn_nature   # month (later, other could come: week, bimester, trimester, quater, semester)
@@ -66,7 +66,8 @@ class AddBase < ActiveRecord::Migration
       t.integer    :turns_count
       t.integer    :map_width
       t.integer    :map_height
-      t.references :scenario
+      t.references :scenario,                    index: true
+      t.references :historic,                    index: true
       t.text       :description
       t.timestamps
     end
@@ -94,11 +95,11 @@ class AddBase < ActiveRecord::Migration
       t.string     :code,           null: false
       t.attachment :logo
       t.string     :type
+      t.string     :application_url
       t.integer    :zone_x
       t.integer    :zone_y
       t.integer    :zone_width
       t.integer    :zone_height
-      t.references :historic,                    index: true
       t.boolean    :customer,       null: false, default: false
       t.boolean    :supplier,       null: false, default: false
       t.boolean    :lender,         null: false, default: false
@@ -122,22 +123,22 @@ class AddBase < ActiveRecord::Migration
     create_table :contracts do |t|
       t.references :contractor,     null: false, index: true
       t.references :subcontractor,               index: true
-      t.references :nature, null: false, index: true
-      t.integer    :delivery_turn, null: false
+      t.references :nature,         null: false, index: true
+      t.integer    :delivery_turn,  null: false
       t.decimal    :quantity, precision: 19, scale: 4, null: false
       t.string     :state
       t.timestamps
     end
 
     create_table :deals do |t|
-      t.references :customer,    null: false, index: false
-      t.references :supplier,    null: false, index: false
+      t.references :customer,    null: false, index: true
+      t.references :supplier,    null: false, index: true
       t.decimal    :amount,      precision: 19, scale: 4
       t.timestamps
     end
 
     create_table :deal_items do |t|
-      t.references :deal,        null: false, index: false
+      t.references :deal,        null: false, index: true
       t.string     :variant
       t.string     :tax
       t.decimal    :quantity,           precision: 19, scale: 4
@@ -149,8 +150,8 @@ class AddBase < ActiveRecord::Migration
     end
 
     create_table :loans do |t|
-      t.references :borrower,    null: false, index: false
-      t.references :lender,      null: false, index: false
+      t.references :borrower,    null: false, index: true
+      t.references :lender,      null: false, index: true
       t.decimal    :amount,      precision: 19, scale: 4
       t.integer    :turns_count, null: false
       t.decimal    :interest_percentage,  precision: 19, scale: 4, null: false

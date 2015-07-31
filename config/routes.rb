@@ -17,12 +17,12 @@ Rails.application.routes.draw do
   end
 
   resources :games do
-    member do
+    collection do
       get :current_turn, to: 'games#show_current_turn', path: 'current-turn'
     end
-
-    collection do
-      get :current_turn, to:  'games#show_current_turn', path: 'current-turn'
+    member do
+      get :current_turn, to: 'games#show_current_turn', path: 'current-turn'
+      post :run
     end
   end
   resources :participants

@@ -1,2 +1,16 @@
 = field_set do
   = f.input :name
+  = f.input :code
+  = f.input :present
+  = f.input :application_url
+  = f.input :logo
+  .row
+    .col-md-3= f.input :supplier
+    .col-md-3= f.input :customer
+    .col-md-3= f.input :lender
+    .col-md-3= f.input :borrower
+  .row
+    .col-md-3= f.input :contractor
+    .col-md-3= f.input :subcontractor
+    -# .col-md-3= f.input :insurer
+    -# .col-md-3= f.input :insured

@@ -20,15 +20,15 @@
 #
 # == Table: contracts
 #
-#  contractor_id         :integer          not null
-#  created_at            :datetime
-#  delivery_turn         :integer          not null
-#  id                    :integer          not null, primary key
-#  id_contract_nature_id :integer          not null
-#  quantity              :decimal(19, 4)   not null
-#  state                 :string
-#  subcontractor_id      :integer
-#  updated_at            :datetime
+#  contractor_id    :integer          not null
+#  created_at       :datetime
+#  delivery_turn    :integer          not null
+#  id               :integer          not null, primary key
+#  nature_id        :integer          not null
+#  quantity         :decimal(19, 4)   not null
+#  state            :string
+#  subcontractor_id :integer
+#  updated_at       :datetime
 #
 require 'test_helper'
 

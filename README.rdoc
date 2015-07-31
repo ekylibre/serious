@@ -2,14 +2,14 @@
 
 === Ruby version
 
-Ruby 2.2 or later is needed.
+Ruby 2.2.1 is needed.
 +rbenv+ (https://github.com/sstephenson/rbenv) is recommended to manage many ruby versions.
 
 === System dependencies
 
-For now, it uses SQlite DB, but the system will migrate on PostgreSQL database
+For now, the system uses PostgreSQL database (with PostGIS)
 
-  sudo apt-get install graphicsmagick postgresql
+  sudo apt-get install graphicsmagick postgresql postgresql-9.4-postgis-2.1 bind nginx
 
 === Configuration
 
@@ -37,6 +37,19 @@ The seeds are generated from existing scenarios, historics and games soted in +d
   rake test
 
 === Services (job queues, cache servers, search engines, etc.)
+
+Nginx is needed to develop or deploy app.
+
+  apt-get install nginx
+
+In dev mode, we need to configure nginx and bind:
+
+  sudo rake install
+
+
+Launch ekylibre:
+
+  ELEVATOR=header rails s -p 3001
 
 
 === Deployment instructions

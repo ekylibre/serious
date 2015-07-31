@@ -20,13 +20,13 @@
 #
 # == Table: participants
 #
+#  application_url   :string
 #  borrower          :boolean          default(FALSE), not null
 #  code              :string           not null
 #  contractor        :boolean          default(FALSE), not null
 #  created_at        :datetime
 #  customer          :boolean          default(FALSE), not null
 #  game_id           :integer          not null
-#  historic_id       :integer
 #  id                :integer          not null, primary key
 #  lender            :boolean          default(FALSE), not null
 #  logo_content_type :string
@@ -46,15 +46,25 @@
 #  zone_y            :integer
 #
 class Farm < Participant
-  belongs_to :historic
+  has_one :historic, through: :game
 
-
-  def load
-    if Serious::Tenant.exist?(self.unique_name)
-      Serious::Tenant.drop(self.unique_name)
-    end
-    Serious::Tenant.create(self.unique_name)
-    # Serious::Tenant.load_fixtures(self.unique_name)
+  validate do
+    errors.add(:lender, :invalid) if self.lender
   end
+
+  # after_save :configure
+  # after_destroy :configure
+
+  # def create_instance
+  #   if Serious::Tenant.exist?(self.unique_name)
+  #     Serious::Tenant.drop(self.unique_name)
+  #   end
+  #   Serious::Tenant.create(self.unique_name)
+  #   # Serious::Tenant.load_fixtures(self.unique_name)
+  # end
+
+  # def configure
+  #   self.game.configure
+  # end
 
 end

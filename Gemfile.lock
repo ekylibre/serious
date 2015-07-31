@@ -39,7 +39,7 @@ GEM
     acts_as_list (0.7.2)
       activerecord (>= 3.0)
     arel (6.0.2)
-    autoprefixer-rails (5.2.1)
+    autoprefixer-rails (5.2.1.1)
       execjs
       json
     awesome_nested_set (3.0.2)

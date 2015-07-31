@@ -14,9 +14,9 @@
         %ul.nav.navbar-nav.navbar-right
           - if current_participation
             - if current_participant
-              - if current_participant.is_a?(Farm)
+              - if current_participant.application_url
                 %li
-                  = link_to(current_participant.url) do
+                  = link_to(current_participant.application_url) do
                     %i.glyphicon.glyphicon-transfer
               %li
                 = link_to(participant_path(current_participant)) do

@@ -22,6 +22,7 @@
 #
 #  created_at    :datetime
 #  description   :text
+#  historic_id   :integer
 #  id            :integer          not null, primary key
 #  map_height    :integer
 #  map_width     :integer

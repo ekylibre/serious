@@ -20,15 +20,15 @@
 #
 # == Table: contracts
 #
-#  contractor_id         :integer          not null
-#  created_at            :datetime
-#  delivery_turn         :integer          not null
-#  id                    :integer          not null, primary key
-#  id_contract_nature_id :integer          not null
-#  quantity              :decimal(19, 4)   not null
-#  state                 :string
-#  subcontractor_id      :integer
-#  updated_at            :datetime
+#  contractor_id    :integer          not null
+#  created_at       :datetime
+#  delivery_turn    :integer          not null
+#  id               :integer          not null, primary key
+#  nature_id        :integer          not null
+#  quantity         :decimal(19, 4)   not null
+#  state            :string
+#  subcontractor_id :integer
+#  updated_at       :datetime
 #
 #
 # == Fixture: contracts
@@ -36,7 +36,7 @@
 # contracts_001:
 #   contractor: contractors_001
 #   delivery_turn: 0
-#   id_contract_nature: id_contract_natures_001
+#   nature: natures_001
 #   quantity: 0
 #
 

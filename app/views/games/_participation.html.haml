@@ -1,10 +1,9 @@
 - game = participation.game
-.turns.count-down{class: (game.started? ? 'running' : 'not-running')}
+.turns.count-down{class: game.state}
   - if game.running?
     - if game.current_turn.nil?
-      - Time.now > game.last_turn.stopped_at ? turn_info = 'Partie terminée' : turn_info = 'La partie est en pause'
+      - turn_info = (Time.now > game.last_turn.stopped_at ? 'Partie terminée' : 'La partie est en pause')
     - else
-      -# turn_info = h("Fin du tour (#{game.current_turn.number}/#{game.turns_count}) : ") + content_tag(:span, nil, data: {countdown: game.current_turn.stopped_at.utc.l(format: '%Y-%m-%dT%H:%M:%S')})
       - turn_info = h('Fin du tour (') + content_tag(:span, game.current_turn.number, {data:{number_turn: game.current_turn.number}, class: 'turn-number'}) + '/' + content_tag(:span, game.turns_count, {data:{all_turns: game.turns_count}, class:'turns-count'}) + ')&nbsp;: '.html_safe + content_tag(:span, nil, data: {countdown: game.current_turn.stopped_at.utc.l(format: '%Y-%m-%dT%H:%M:%S'), countdown_restart: current_turn_game_path(game) })
     = turn_info
   - else

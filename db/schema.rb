@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.datetime "updated_at"
   end
 
+  add_index "deal_items", ["deal_id"], name: "index_deal_items_on_deal_id", using: :btree
+
   create_table "deals", force: :cascade do |t|
     t.integer  "customer_id",                          null: false
     t.integer  "supplier_id",                          null: false
@@ -80,6 +82,9 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.datetime "updated_at"
     t.string   "state"
   end
+
+  add_index "deals", ["customer_id"], name: "index_deals_on_customer_id", using: :btree
+  add_index "deals", ["supplier_id"], name: "index_deals_on_supplier_id", using: :btree
 
   create_table "game_turns", force: :cascade do |t|
     t.integer  "game_id",    null: false
@@ -103,10 +108,14 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.integer  "map_width"
     t.integer  "map_height"
     t.integer  "scenario_id"
+    t.integer  "historic_id"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "games", ["historic_id"], name: "index_games_on_historic_id", using: :btree
+  add_index "games", ["scenario_id"], name: "index_games_on_scenario_id", using: :btree
 
   create_table "historics", force: :cascade do |t|
     t.string   "name",        null: false
@@ -128,6 +137,9 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.datetime "updated_at"
   end
 
+  add_index "loans", ["borrower_id"], name: "index_loans_on_borrower_id", using: :btree
+  add_index "loans", ["lender_id"], name: "index_loans_on_lender_id", using: :btree
+
   create_table "participants", force: :cascade do |t|
     t.integer  "game_id",                           null: false
     t.string   "name",                              null: false
@@ -137,11 +149,11 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "type"
+    t.string   "application_url"
     t.integer  "zone_x"
     t.integer  "zone_y"
     t.integer  "zone_width"
     t.integer  "zone_height"
-    t.integer  "historic_id"
     t.boolean  "customer",          default: false, null: false
     t.boolean  "supplier",          default: false, null: false
     t.boolean  "lender",            default: false, null: false
@@ -155,7 +167,6 @@ ActiveRecord::Schema.define(version: 20150630125434) do
   end
 
   add_index "participants", ["game_id"], name: "index_participants_on_game_id", using: :btree
-  add_index "participants", ["historic_id"], name: "index_participants_on_historic_id", using: :btree
 
   create_table "participations", force: :cascade do |t|
     t.integer  "game_id",        null: false

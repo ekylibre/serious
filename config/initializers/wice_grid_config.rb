@@ -53,7 +53,7 @@ if defined?(Wice::Defaults)
   # when you connect to two databases one of which is MySQL and the other is Postgresql.
   # If the key for an adapter is missing it will fall back to Wice::Defaults::STRING_MATCHING_OPERATOR
   Wice::Defaults::STRING_MATCHING_OPERATORS = {
-    'ActiveRecord::ConnectionAdapters::MysqlAdapter' => 'LIKE',
+    'ActiveRecord::ConnectionAdapters::MysqlAdapter'      => 'LIKE',
     'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter' => 'ILIKE'
   }
 
@@ -90,18 +90,22 @@ if defined?(Wice::Defaults)
 
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-  #                              Showing All Queries                          #
+  #                              Showing All Records                          #
 
   # Enable or disable showing all records (non-paginated table)
-  Wice::Defaults::ALLOW_SHOWING_ALL_QUERIES = true
+  Wice::Defaults::ALLOW_SHOWING_ALL_RECORDS = true
 
   # If number of all queries is more than this value, the user will be given a warning message
   Wice::Defaults::START_SHOWING_WARNING_FROM = 100
 
-  Wice::Defaults::ALLOW_SHOWING_ALL_RECORDS = true
   # Hide the "show all" link if the number of all records is more than...
-  # set to nil to shows it always
-  Wice::Defaults::HIDE_ALL_LINK_FROM = nil
+  # Force-resets back to pagination starting from this value.
+  # Set to nil to always show it
+  Wice::Defaults::SHOW_ALL_ALLOWED_UP_TO = nil
+
+  #
+  # set to nil to skip the check
+  Wice::Defaults::SWITCH_BACK_TO_PAGINATION_FROM = nil
 
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -119,6 +123,7 @@ if defined?(Wice::Defaults)
   # * <tt>:calendar</tt> - JS calendar
   # * <tt>:html5</tt> - HTML5 date input field
   # * <tt>:standard</tt> - standard Rails date and datetime helpers
+  # * <tt>:bootstrap</tt> - Bootstrap datepicker helper
   Wice::Defaults::HELPER_STYLE = :calendar
 
   # Format of the datetime displayed.
@@ -132,6 +137,11 @@ if defined?(Wice::Defaults)
   # Format of the date displayed in jQuery's Datepicker
   # If you change the format, make sure to check if +DATE_PARSER+ can still parse this string.
   Wice::Defaults::DATE_FORMAT_JQUERY     =  "yy-mm-dd"
+
+
+  # Format of the date displayed in Bootstrap's Datepicker
+  # If you change the format, make sure to check if +DATE_PARSER+ can still parse this string.
+  Wice::Defaults::DATE_FORMAT_BOOTSTRAP     =  "yyyy-mm-dd"
 
 
   # With Calendar helpers enabled the parameter sent is the string displayed. This lambda will be given a date string in the
@@ -162,7 +172,11 @@ if defined?(Wice::Defaults)
     if date_string.blank?
       nil
     else
-      Date.parse(date_string)
+      begin
+        Date.parse(date_string)
+      rescue ArgumentError
+        nil
+      end
     end
   }
 

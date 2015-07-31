@@ -5,20 +5,21 @@ class GamesController < BaseController
   end
 
   def show
-    unless (@game = Game.find_by(id: params[:id]))
+    unless @game = Game.find_by(id: params[:id])
       redirect_to :index
     end
   end
 
+
   def show_current_turn
-    if (id_game = params[:id])
-      game = Game.find(id_game)
+    if (game_id = params[:id])
+      game = Game.find(game_id)
       turn = game.current_turn
     elsif current_game
       game = current_game
       turn = game.turns.find_by(number: current_turn)
     else
-      raise('erreur')
+      raise "Cannot return turn without current game"
     end
     if game.current_turn.nil?
       render json: {state: 'finished'}
@@ -27,4 +28,15 @@ class GamesController < BaseController
     end
 
   end
+
+  # Run a game
+  def run
+    unless @game = Game.find_by(id: params[:id])
+      redirect_to :index
+      return
+    end
+    @game.run! true
+    redirect_to game_path(@game)
+  end
+
 end

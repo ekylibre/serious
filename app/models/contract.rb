@@ -20,15 +20,15 @@
 #
 # == Table: contracts
 #
-#  contractor_id         :integer          not null
-#  created_at            :datetime
-#  delivery_turn         :integer          not null
-#  id                    :integer          not null, primary key
-#  id_contract_nature_id :integer          not null
-#  quantity              :decimal(19, 4)   not null
-#  state                 :string
-#  subcontractor_id      :integer
-#  updated_at            :datetime
+#  contractor_id    :integer          not null
+#  created_at       :datetime
+#  delivery_turn    :integer          not null
+#  id               :integer          not null, primary key
+#  nature_id        :integer          not null
+#  quantity         :decimal(19, 4)   not null
+#  state            :string
+#  subcontractor_id :integer
+#  updated_at       :datetime
 #
 
 # A contract is used between a contractor who propose the contract and
@@ -40,6 +40,6 @@ class Contract < ActiveRecord::Base
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :delivery_turn, allow_nil: true, only_integer: true
   validates_numericality_of :quantity, allow_nil: true
-  validates_presence_of :contractor, :delivery_turn, :quantity
+  validates_presence_of :contractor, :delivery_turn, :nature, :quantity
   #]VALIDATORS]
 end

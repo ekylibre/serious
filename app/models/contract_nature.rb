@@ -36,7 +36,7 @@ class ContractNature < ActiveRecord::Base
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :contract_quota, :release_turn, allow_nil: true, only_integer: true
   validates_numericality_of :amount, allow_nil: true
-  validates_presence_of :amount, :release_turn
+  validates_presence_of :amount, :contractor, :release_turn
   #]VALIDATORS]
   delegate :name, to: :contractor, prefix: true
 end

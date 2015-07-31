@@ -22,6 +22,7 @@
 #
 #  created_at    :datetime
 #  description   :text
+#  historic_id   :integer
 #  id            :integer          not null, primary key
 #  map_height    :integer
 #  map_width     :integer
@@ -36,9 +37,10 @@
 #
 class Game < ActiveRecord::Base
   extend Enumerize
-  enumerize :state, in: [:planned, :running, :paused, :finished], default: :planned, predicates: true
+  enumerize :state, in: [:planned, :loading, :ready, :running, :finished], default: :planned, predicates: true
   enumerize :turn_nature, in: [:month], default: :month
   belongs_to :scenario
+  belongs_to :historic
   has_many :actors
   has_many :broadcasts, through: :scenario
   has_many :farms
@@ -46,7 +48,7 @@ class Game < ActiveRecord::Base
   has_many :organizers, through: :organizer_participations, source: :user
   has_many :participations
   has_many :participants
-  has_many :turns, class_name: 'GameTurn', dependent: :destroy, counter_cache: false
+  has_many :turns, -> { order(:number) }, class_name: 'GameTurn', dependent: :destroy, counter_cache: false
   has_many :users, through: :participations
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :planned_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
@@ -100,16 +102,16 @@ class Game < ActiveRecord::Base
       # puts Scenario.find_by(code: hash[:scenario]).inspect
       unless attributes[:planned_at]
         attributes[:planned_at] = Time.now
-        attributes[:state] ||= :running
+        attributes[:state] ||= :planned
       end
       attributes[:turn_duration] ||= 30
       attributes[:turn_nature] ||= :month
       attributes[:scenario] = Scenario.find_by(code: hash[:scenario]) if hash[:scenario]
+      attributes[:historic] = Historic.find_by(code: hash[:historic]) if hash[:historic]
       game = create!(attributes)
 
       hash[:farms].each do |code, farm|
-        historic = farm[:historic].blank? ? nil : Historic.find_by(code: farm[:historic])
-        game.farms.create! farm.slice(:name, :borrower, :lender, :customer, :supplier, :subcontractor, :contractor, :zone_x, :zone_y, :zone_width, :zone_height, :present, :stand_number).merge(code: code, historic: historic)
+        game.farms.create! farm.slice(:name, :borrower, :lender, :customer, :supplier, :subcontractor, :contractor, :zone_x, :zone_y, :zone_width, :zone_height, :present, :stand_number).merge(code: code)
       end
 
       hash[:actors].each do |code, actor|
@@ -123,10 +125,6 @@ class Game < ActiveRecord::Base
       end if hash[:participations]
     end
 
-  end
-
-  def started?
-    Time.now >= self.planned_at
   end
 
   # Returns current turn from now
@@ -143,11 +141,40 @@ class Game < ActiveRecord::Base
     self.scenario.curves.where(nature: 'reference')
   end
 
-  # Launch the game
-  # Creates Ekylibre instances and load them with their historics
-  def load
-    self.participants.each do |participant|
-      participant.load
-    end
+  def can_run?
+    self.ready? or self.planned?
   end
+
+  # Launch the game
+  def run!(force = false)
+    if state.planned? or force
+      self.load!
+    end
+    unless self.ready? or force
+      raise "Cannot run this game"
+    end
+    self.update_column(:state, :running)
+  end
+
+  # Creates Ekylibre instances and load them with their historics
+  def load!
+    self.update_column(:state, :loading)
+    hash = self.farms.inject({}) do |h, farm|
+      h[farm.unique_name] = {}
+      h
+    end
+    # Serious::Tenant.create_instances(hash)
+    self.update_column(:state, :ready)
+  end
+
+  # #
+  # def configure
+  #   instances = self.farms.inject({}) do |hash, farm|
+  #     hash[farm.unique_id] = farm.attributes
+  #     hash
+  #   end
+  #   Serious::Tenant.write_nginx_snippet(instances)
+  # end
+
+
 end

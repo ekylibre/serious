@@ -20,13 +20,13 @@
 #
 # == Table: participants
 #
+#  application_url   :string
 #  borrower          :boolean          default(FALSE), not null
 #  code              :string           not null
 #  contractor        :boolean          default(FALSE), not null
 #  created_at        :datetime
 #  customer          :boolean          default(FALSE), not null
 #  game_id           :integer          not null
-#  historic_id       :integer
 #  id                :integer          not null, primary key
 #  lender            :boolean          default(FALSE), not null
 #  logo_content_type :string
@@ -75,7 +75,7 @@ class Participant < ActiveRecord::Base
   end
 
   def unique_id
-    "s#{id.to_s(36)}"
+    "s#{self.id.to_s(36)}"
   end
 
   def number

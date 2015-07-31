@@ -2,80 +2,66 @@
 code: test
 name: Test
 scenario: random
+historic: generix
 farms:
   F01:
     name: Leblanc
-    historic: SL47
     stand_number: SF01
     present: true
   F02:
     name: Ribeiro
-    historic: SL47
     stand_number: SF02
     present: true
   F03:
     name: Gautier
-    historic: SL47
     stand_number: SF03
     present: true
   F04:
     name: Maury
-    historic: SL47
     stand_number: SF04
     present: true
   F05:
     name: Lacroix
-    historic: SL47
     stand_number: SF05
     present: true
   F06:
     name: Hardy
-    historic: SL47
     stand_number: SF06
     present: true
   F07:
     name: Marin
-    historic: SL47
     stand_number: SF07
     present: true
   F08:
     name: Chretien
-    historic: SL47
     stand_number: SF08
     present: true
   F09:
     name: Lebon
-    historic: SL47
     stand_number: SF09
     present: true
   F10:
     name: Pichon
-    historic: SL47
     stand_number: SF10
     present: true
   F11:
     name: Rousset
-    historic: SL47
     stand_number: SF11
     present: true
   F12:
     name: Munoz
-    historic: SL47
     stand_number: SF12
     present: true
   F13:
     name: Maury (2)
-    historic: SL47
     stand_number: SF13
     present: true
   F14:
     name: Antoine
-    historic: SL47
     stand_number: SF14
     present: true
   F15:
     name: Collin
-    historic: SL47
     stand_number: SF15
     present: true
 actors:
