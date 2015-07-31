@@ -1,5 +1,5 @@
 - game = participation.game
-.turns.count-down{class: game.state}
+.countdown.simple-countdown{class: game.state}
   - if game.running?
     - if game.current_turn.nil?
       - turn_info = (Time.now > game.last_turn.stopped_at ? 'Partie terminée' : 'La partie est en pause')

@@ -1,8 +1,9 @@
 (($) ->
   'use strict'
+
   $.countdown =
-    render: (element, date_end_turn)->
-      difference = (date_end_turn - Date.now())/1000
+    render: (element, stopped_at)->
+      difference = (stopped_at - Date.now()) / 1000
       duration =
         days: 0
         hours: 0
@@ -18,9 +19,7 @@
       if difference >= 60
         duration.min = Math.floor(difference / 60)
         difference -= duration.min * 60
-
       duration.sec = Math.floor(difference)
-
 
       if duration.days > 0
         html = "#{duration.days}j #{duration.hours}h"
@@ -34,26 +33,26 @@
 
       if difference <= 0
         $.countdown.stop(element)
+        element.trigger('countdown:finished')
 
+    # Start countdown clearing the interval
+    start: (element, delay = 1000, stopped_at = null) ->
+      stopped_at ?= new Date(element.data('countdown'))
+      console.log "Start countdown from #{new Date(Date.now())} to #{stopped_at}"
+      $.countdown.stop(element)
+      $.countdown.render(element, stopped_at)
+      element.prop('interval', setInterval($.countdown.render.bind(null, element, stopped_at), delay))
 
-    start: (element, delay = 1000, date_end_turn = null) ->
-      @tab_element.push element
-      date_end_turn ?= new Date(element.data('countdown'))
-      $.countdown.render(element,date_end_turn)
-      element.prop('interval', setInterval($.countdown.render.bind(null, element, date_end_turn), delay))
-
+    # Stop countdown clearing the interval
     stop:(element) ->
-      window.clearInterval(element.prop('interval'))
-      element.trigger('countdown:finished')
+      if element.prop('interval')
+        window.clearInterval(element.prop('interval'))
 
   $(document).ready ->
-    $.countdown.tab_element = []
     $('*[data-countdown]').each ->
       $.countdown.start($(this))
 
   $(document).on "page:load", ->
-    for tab in $.countdown.tab_element
-      $.countdown.stop(tab)
     $('*[data-countdown]').each ->
       $.countdown.start($(this))
 
@@ -61,20 +60,24 @@
     $.ajax
       url: $(this).data('countdown-restart')
       datatype: 'JSON'
-      error: (textStatus) ->
-        console.error(textStatus)
-      success: (data, textStatus) =>
-        if data.state == 'running'
+      error: (request, status, error) =>
+        console.error(error)
+        $.countdown.stop($(this))
+      success: (data, status, request) =>
+        if data.name isnt null
           $(this).trigger('countdown:restart', data)
           $.countdown.start($(this), 1000, new Date(data.stopped_at))
         else if data.state == 'finished'
-          $(this).html('partie terminée')
+          $(this).html('Partie terminée')
+        else
+          $(this).html('Partie inactive')
 
   $(document).on 'countdown:restart', '#main-countdown', (event, turn) ->
     $('#turn-name').html(turn.name)
 
-  $(document).on 'countdown:restart','.turns', (event, data) ->
-    $(this).closest('.count-down').find('.turn-number').html(data.number_turn)
-    $(this).closest('.count-down').find('.turns-count').html(data.turn_count)
+  $(document).on 'countdown:restart','.simple-countdown', (event, turn) ->
+    countdown = $(this).closest('.countdown')
+    countdown.find('.turn-number').html(turn.number)
+    countdown.find('.turns-count').html(turn.turns_count)
 
 ) jQuery
