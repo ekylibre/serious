@@ -139,7 +139,7 @@ namespace :serious do
         code = "A#{(index + 1).to_s.rjust(2, '0')}"
         supplier = (value.modulo(10) > 3)
         customer = (value.modulo(25) > 15)
-        actors[code] = {name: name, stand_number: "S" + code, present: (value.modulo(30) > 6), contractor: (value.modulo(21) > 6), supplier: supplier, customer: customer, lender: !(supplier or customer)}
+        actors[code] = {name: name, stand_number: "S" + code, present: (value.modulo(30) > 6), insurer: (value.modulo(21) > 9), contractor: (value.modulo(21) > 6), supplier: supplier, customer: customer, lender: !(supplier or customer)}
         items = []
         15.times do |index|
           items << {variant: VARIANTS[(index*value).modulo(VARIANTS.size)], quota: 1 + value.modulo(7)}

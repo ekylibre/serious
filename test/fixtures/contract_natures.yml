@@ -20,15 +20,15 @@
 #
 # == Table: contract_natures
 #
-#  amount         :decimal(19, 4)   not null
-#  contract_count :integer
-#  contract_quota :integer
-#  contractor_id  :integer          not null
-#  description    :text
-#  id             :integer          not null, primary key
-#  release_turn   :integer          not null
-#  title          :string
-#  variant        :string
+#  amount          :decimal(19, 4)   not null
+#  contractor_id   :integer          not null
+#  contracts_count :integer
+#  contracts_quota :integer
+#  description     :text
+#  id              :integer          not null, primary key
+#  name            :string
+#  release_turn    :integer          not null
+#  variant         :string
 #
 #
 # == Fixture: contract_natures

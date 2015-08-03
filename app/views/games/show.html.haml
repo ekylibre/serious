@@ -64,7 +64,7 @@
             = link_to(url, class: "participant-details face face-#{side}") do
               %h3= participant.name
               %span.label.label-primary= participant.class.model_name.human
-              - [:contractor, :subcontractor, :supplier, :customer, :lender, :borrower].each do |state|
+              - [:contractor, :subcontractor, :supplier, :customer, :lender, :borrower, :insurer, :insured].each do |state|
                 - if participant.send(state)
                   %span.label.label-success= Participant.human_attribute_name(state)
 

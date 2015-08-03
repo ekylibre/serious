@@ -85,7 +85,7 @@ GEM
       warden (~> 1.2.3)
     devise-bootstrap-views (0.0.5)
     devise-i18n-views (0.3.4)
-    enumerize (0.11.0)
+    enumerize (1.0.0)
       activesupport (>= 3.2)
     erubis (2.7.0)
     eventmachine (1.0.7)
@@ -289,4 +289,4 @@ DEPENDENCIES
   wice_grid
 
 BUNDLED WITH
-   1.10.5
+   1.10.6

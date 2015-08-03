@@ -54,7 +54,7 @@ class Farm < Participant
     self.borrower = true
     self.subcontractor = true
     self.customer = true
-    # self.insured = true
+    self.insured = true
   end
 
   validate do

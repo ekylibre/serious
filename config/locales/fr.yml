@@ -34,6 +34,8 @@ fr:
     contractor: Contracteur
     customer: Acheteur
     insurance_percentage: "Taux d'assurance (%)"
+    insured: "Assuré"
+    insurer: "Assureur"
     interest_percentage: "Taux d'intérêt (%)"
     lender: Prêteur
     subcontractor: Sous-traitant

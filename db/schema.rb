@@ -33,14 +33,14 @@ ActiveRecord::Schema.define(version: 20150731090623) do
   add_index "catalog_items", ["variant"], name: "index_catalog_items_on_variant", using: :btree
 
   create_table "contract_natures", force: :cascade do |t|
-    t.integer "contractor_id",                           null: false
-    t.string  "title"
+    t.integer "contractor_id",                            null: false
+    t.string  "name"
     t.string  "variant"
-    t.decimal "amount",         precision: 19, scale: 4, null: false
-    t.integer "release_turn",                            null: false
+    t.decimal "amount",          precision: 19, scale: 4, null: false
+    t.integer "release_turn",                             null: false
     t.text    "description"
-    t.integer "contract_count"
-    t.integer "contract_quota"
+    t.integer "contracts_count"
+    t.integer "contracts_quota"
   end
 
   add_index "contract_natures", ["contractor_id"], name: "index_contract_natures_on_contractor_id", using: :btree
