@@ -57,6 +57,41 @@ class AddBase < ActiveRecord::Migration
       t.timestamps
     end
 
+    create_table :scenario_issues do |t|
+      t.references    :scenario,         null: false, index: true
+      t.string        :name,             null: false
+      t.string        :description,      null: false
+      t.integer       :turn,             null: false
+      t.string        :nature,           null: false
+      t.string        :variety,          null: false
+      t.integer       :trigger_turn,     null: false
+      t.multi_polygon :shape
+      t.decimal       :destruction_percentage, precision: 19, scale: 4
+      t.integer       :minimal_age
+      t.integer       :maximal_age
+      t.string        :impact_indicator_name
+      t.decimal       :impact_indicator_value #?
+    end
+
+    create_table :insurances do |t|
+      t.string      :nature,                  null: false
+      t.decimal     :unit_pretax_amount ,     null: false
+      t.decimal     :pretax_amount,           null: false
+      t.decimal     :unit_refundable_amount,  null: false
+      t.references  :insurer,                 null: false
+      t.references  :insured,                 null: false
+      t.decimal     :quantity_value
+      t.string      :quantity_unit
+      t.decimal     :tax
+      t.decimal     :amount
+    end
+
+    create_table :insurance_indemnifications do |t|
+      t.references :insurance_id, null:false
+      t.decimal    :montant, null: false
+      t.date       :paid_on, null: false
+    end
+
     create_table :games do |t|
       t.string     :name,          null: false
       t.datetime   :planned_at
@@ -106,6 +141,8 @@ class AddBase < ActiveRecord::Migration
       t.boolean    :borrower,       null: false, default: false
       t.boolean    :contractor,     null: false, default: false
       t.boolean    :subcontractor,  null: false, default: false
+      t.boolean    :insurer,        null: true, default: false
+      t.boolean    :insured,        null: true, default: false
       t.timestamps
     end
 

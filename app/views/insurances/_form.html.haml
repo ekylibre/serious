@@ -1,0 +1,18 @@
+= participant_card(@participant, content: false)
+.row
+  .col-md-3
+  .col-md-3
+    = f.input :nature, label: "Nature de l'assurance"
+    = f.association :insured, label: 'Ferme à assurer'
+    = f.input :quantity_unit, label: 'Unité de assuré'
+    = f.input :amount, label: "Prix de l'assurance"
+
+  .col-md-3
+    = f.input :unit_pretax_amount, label: 'Montant unitaire hors taxe'
+    = f.input :tax, label: 'Tax'
+    = f.input :quantity_value, label: 'Quantité de assuré'
+    = f.input :excess_amount, label: 'Franchise'
+    = f.association :insurer, as: :hidden
+
+
+

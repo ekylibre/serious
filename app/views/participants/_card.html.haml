@@ -26,6 +26,11 @@
           = link_to('Prêter',    {controller: :loans, action: :new, lender_id: current_participant.id, borrower_id: participant.id}, class: 'btn btn-default')
         - if current_participant.borrower and participant.lender
           = link_to('Emprunter', {controller: :loans, action: :new, lender_id: participant.id, borrower_id: current_participant.id}, class: 'btn btn-default')
+        -#Insurance
+        - if current_participant.insurer and participant.insured
+          = link_to('Assurer',    {controller: :insurances, action: :new, insurer_id: current_participant.id, insured_id: participant.id}, class: 'btn btn-default')
+        - if current_participant.insured and participant.insurer
+          = link_to("S'assurer", {controller: :insurances, action: :new, insurer_id: participant.id, insured_id: current_participant.id}, class: 'btn btn-default')
       :ruby
         users = participant.participations.where.not(user_id: nil).order(:id).map do |participation|
           user = participation.user

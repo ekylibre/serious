@@ -28,6 +28,8 @@
 #  customer          :boolean          default(FALSE), not null
 #  game_id           :integer          not null
 #  id                :integer          not null, primary key
+#  insured           :boolean          default(FALSE)
+#  insurer           :boolean          default(FALSE)
 #  lender            :boolean          default(FALSE), not null
 #  logo_content_type :string
 #  logo_file_name    :string

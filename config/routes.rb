@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     end
   end
   resources :users
+  resources :insurances
 
   root to: 'games#index'
 end

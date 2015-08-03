@@ -36,8 +36,8 @@ class Scenario < ActiveRecord::Base
   extend Enumerize
   enumerize :currency, in: [:EUR], default: :EUR
   enumerize :turn_nature, in: [:month], default: :month
-  has_many :broadcasts, -> { order(:release_turn) }, class_name: "ScenarioBroadcast"
-  has_many :curves, class_name: "ScenarioCurve"
+  has_many :broadcasts, -> { order(:release_turn) }, class_name: 'ScenarioBroadcast'
+  has_many :curves, class_name: 'ScenarioCurve'
   has_many :games
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_presence_of :code, :currency, :name

@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630125434) do
+ActiveRecord::Schema.define(version: 20150731090623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "catalog_items", force: :cascade do |t|
     t.integer  "participant_id",                                                    null: false
@@ -126,6 +127,26 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.datetime "updated_at"
   end
 
+  create_table "insurance_indemnifications", force: :cascade do |t|
+    t.integer "insurance_id_id", null: false
+    t.decimal "montant",         null: false
+    t.date    "paid_on",         null: false
+  end
+
+  create_table "insurances", force: :cascade do |t|
+    t.string  "nature",                 null: false
+    t.decimal "unit_pretax_amount",     null: false
+    t.decimal "pretax_amount",          null: false
+    t.decimal "unit_refundable_amount", null: false
+    t.integer "insurer_id",             null: false
+    t.integer "insured_id",             null: false
+    t.decimal "quantity_value"
+    t.string  "quantity_unit"
+    t.decimal "tax"
+    t.decimal "amount"
+    t.decimal "excess_amount"
+  end
+
   create_table "loans", force: :cascade do |t|
     t.integer  "borrower_id",                                   null: false
     t.integer  "lender_id",                                     null: false
@@ -160,6 +181,8 @@ ActiveRecord::Schema.define(version: 20150630125434) do
     t.boolean  "borrower",          default: false, null: false
     t.boolean  "contractor",        default: false, null: false
     t.boolean  "subcontractor",     default: false, null: false
+    t.boolean  "insurer",           default: false
+    t.boolean  "insured",           default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "present",           default: false, null: false
@@ -225,6 +248,24 @@ ActiveRecord::Schema.define(version: 20150630125434) do
 
   add_index "scenario_curves", ["reference_id"], name: "index_scenario_curves_on_reference_id", using: :btree
   add_index "scenario_curves", ["scenario_id"], name: "index_scenario_curves_on_scenario_id", using: :btree
+
+  create_table "scenario_issues", force: :cascade do |t|
+    t.integer  "scenario_id",                                                                                null: false
+    t.string   "name",                                                                                       null: false
+    t.string   "description",                                                                                null: false
+    t.integer  "turn",                                                                                       null: false
+    t.string   "nature",                                                                                     null: false
+    t.string   "variety",                                                                                    null: false
+    t.integer  "trigger_turn",                                                                               null: false
+    t.geometry "shape",                  limit: {:srid=>0, :type=>"multi_polygon"}
+    t.decimal  "destruction_percentage",                                            precision: 19, scale: 4
+    t.integer  "minimal_age"
+    t.integer  "maximal_age"
+    t.string   "impact_indicator_name"
+    t.decimal  "impact_indicator_value"
+  end
+
+  add_index "scenario_issues", ["scenario_id"], name: "index_scenario_issues_on_scenario_id", using: :btree
 
   create_table "scenarios", force: :cascade do |t|
     t.string   "name",        null: false
