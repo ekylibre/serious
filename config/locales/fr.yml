@@ -55,6 +55,10 @@ fr:
         administrator: Administrateur
         organizer: Organisateur
         player: Joueur
+    insurance:
+      nature:
+        harvest: "Récolte"
+
   labels:
     are_you_sure: "Êtes-vous sûr(e)\_?"
     cart: "Panier"

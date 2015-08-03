@@ -70,25 +70,25 @@ class AddBase < ActiveRecord::Migration
       t.integer       :minimal_age
       t.integer       :maximal_age
       t.string        :impact_indicator_name
-      t.decimal       :impact_indicator_value #?
+      t.decimal       :impact_indicator_value, precision: 19, scale: 4
     end
 
     create_table :insurances do |t|
       t.string      :nature,                  null: false
-      t.decimal     :unit_pretax_amount ,     null: false
-      t.decimal     :pretax_amount,           null: false
-      t.decimal     :unit_refundable_amount,  null: false
+      t.decimal     :unit_pretax_amount ,     null: false, precision: 19, scale: 4
+      t.decimal     :pretax_amount,           null: false, precision: 19, scale: 4
+      t.decimal     :unit_refundable_amount,  null: false, precision: 19, scale: 4
       t.references  :insurer,                 null: false
       t.references  :insured,                 null: false
-      t.decimal     :quantity_value
+      t.decimal     :quantity_value, precision: 19, scale: 4
       t.string      :quantity_unit
-      t.decimal     :tax
-      t.decimal     :amount
+      t.decimal     :tax_percentage, precision: 19, scale: 4
+      t.decimal     :amount, precision: 19, scale: 4
     end
 
     create_table :insurance_indemnifications do |t|
       t.references :insurance_id, null:false
-      t.decimal    :montant, null: false
+      t.decimal    :sum, null: false, precision: 19, scale: 4
       t.date       :paid_on, null: false
     end
 

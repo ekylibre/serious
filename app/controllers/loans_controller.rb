@@ -2,10 +2,8 @@ class LoansController < BaseController
 
   def new
     @participant = Participant.find(params[:lender_id])
-
     @loan = Loan.new(interest_percentage: 3, insurance_percentage: 0.3)
     @loan.borrower = current_participant
-
     @loan.lender = @participant
   end
 
@@ -23,6 +21,8 @@ class LoansController < BaseController
     end
   end
 
+  def show
+  end
 
   private
   def loan_params

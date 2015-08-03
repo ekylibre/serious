@@ -24,7 +24,7 @@
 #  destruction_percentage :decimal(19, 4)
 #  id                     :integer          not null, primary key
 #  impact_indicator_name  :string
-#  impact_indicator_value :decimal(, )
+#  impact_indicator_value :decimal(19, 4)
 #  maximal_age            :integer
 #  minimal_age            :integer
 #  name                   :string           not null

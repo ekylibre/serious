@@ -20,18 +20,18 @@
 #
 # == Table: insurances
 #
-#  amount                 :decimal(, )
-#  excess_amount          :decimal(, )
+#  amount                 :decimal(19, 4)
+#  excess_amount          :decimal(19, 4)
 #  id                     :integer          not null, primary key
 #  insured_id             :integer          not null
 #  insurer_id             :integer          not null
 #  nature                 :string           not null
-#  pretax_amount          :decimal(, )      not null
+#  pretax_amount          :decimal(19, 4)   not null
 #  quantity_unit          :string
-#  quantity_value         :decimal(, )
-#  tax                    :decimal(, )
-#  unit_pretax_amount     :decimal(, )      not null
-#  unit_refundable_amount :decimal(, )      not null
+#  quantity_value         :decimal(19, 4)
+#  tax_percentage         :decimal(19, 4)
+#  unit_pretax_amount     :decimal(19, 4)   not null
+#  unit_refundable_amount :decimal(19, 4)   not null
 #
 #
 # == Fixture: insurances

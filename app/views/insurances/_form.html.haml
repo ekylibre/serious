@@ -1,18 +1,10 @@
 = participant_card(@participant, content: false)
-.row
-  .col-md-3
-  .col-md-3
-    = f.input :nature, label: "Nature de l'assurance"
-    = f.association :insured, label: 'Ferme à assurer'
-    = f.input :quantity_unit, label: 'Unité de assuré'
-    = f.input :amount, label: "Prix de l'assurance"
+= f.association :insurer, as: :hidden
+= f.association :insured, as: :hidden
+= render partial: 'base_form', locals: {is_disabled: @is_disabled, f: f, is_hidden: nil}
 
-  .col-md-3
-    = f.input :unit_pretax_amount, label: 'Montant unitaire hors taxe'
-    = f.input :tax, label: 'Tax'
-    = f.input :quantity_value, label: 'Quantité de assuré'
-    = f.input :excess_amount, label: 'Franchise'
-    = f.association :insurer, as: :hidden
+- if @is_disabled
+  = render partial: 'base_form', locals: {is_disabled: false, f: f, is_hidden: 'hidden'}
 
-
+= f.object.errors.inspect
 

@@ -128,23 +128,23 @@ ActiveRecord::Schema.define(version: 20150731090623) do
   end
 
   create_table "insurance_indemnifications", force: :cascade do |t|
-    t.integer "insurance_id_id", null: false
-    t.decimal "montant",         null: false
-    t.date    "paid_on",         null: false
+    t.integer "insurance_id_id",                          null: false
+    t.decimal "sum",             precision: 19, scale: 4, null: false
+    t.date    "paid_on",                                  null: false
   end
 
   create_table "insurances", force: :cascade do |t|
-    t.string  "nature",                 null: false
-    t.decimal "unit_pretax_amount",     null: false
-    t.decimal "pretax_amount",          null: false
-    t.decimal "unit_refundable_amount", null: false
-    t.integer "insurer_id",             null: false
-    t.integer "insured_id",             null: false
-    t.decimal "quantity_value"
+    t.string  "nature",                                          null: false
+    t.decimal "unit_pretax_amount",     precision: 19, scale: 4, null: false
+    t.decimal "pretax_amount",          precision: 19, scale: 4, null: false
+    t.decimal "unit_refundable_amount", precision: 19, scale: 4, null: false
+    t.integer "insurer_id",                                      null: false
+    t.integer "insured_id",                                      null: false
+    t.decimal "quantity_value",         precision: 19, scale: 4
     t.string  "quantity_unit"
-    t.decimal "tax"
-    t.decimal "amount"
-    t.decimal "excess_amount"
+    t.decimal "tax_percentage",         precision: 19, scale: 4
+    t.decimal "amount",                 precision: 19, scale: 4
+    t.decimal "excess_amount",          precision: 19, scale: 4
   end
 
   create_table "loans", force: :cascade do |t|
@@ -262,7 +262,7 @@ ActiveRecord::Schema.define(version: 20150731090623) do
     t.integer  "minimal_age"
     t.integer  "maximal_age"
     t.string   "impact_indicator_name"
-    t.decimal  "impact_indicator_value"
+    t.decimal  "impact_indicator_value",                                            precision: 19, scale: 4
   end
 
   add_index "scenario_issues", ["scenario_id"], name: "index_scenario_issues_on_scenario_id", using: :btree

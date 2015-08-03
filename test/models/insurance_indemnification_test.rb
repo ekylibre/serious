@@ -22,8 +22,8 @@
 #
 #  id              :integer          not null, primary key
 #  insurance_id_id :integer          not null
-#  montant         :decimal(, )      not null
 #  paid_on         :date             not null
+#  sum             :decimal(19, 4)   not null
 #
 require 'test_helper'
 

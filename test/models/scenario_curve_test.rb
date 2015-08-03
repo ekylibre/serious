@@ -21,7 +21,7 @@
 # == Table: scenario_curves
 #
 #  amount_round           :integer
-#  amplitude_factor       :decimal(19, 4)   default(1.0), not null
+#  amplitude_factor       :decimal(19, 4)   default(1), not null
 #  code                   :string           not null
 #  created_at             :datetime
 #  description            :text
@@ -30,9 +30,9 @@
 #  interpolation_method   :string
 #  name                   :string           not null
 #  nature                 :string           not null
-#  negative_alea_amount   :decimal(19, 4)   default(0.0), not null
-#  offset_amount          :decimal(19, 4)   default(0.0), not null
-#  positive_alea_amount   :decimal(19, 4)   default(0.0), not null
+#  negative_alea_amount   :decimal(19, 4)   default(0), not null
+#  offset_amount          :decimal(19, 4)   default(0), not null
+#  positive_alea_amount   :decimal(19, 4)   default(0), not null
 #  reference_id           :integer
 #  scenario_id            :integer          not null
 #  unit_name              :string

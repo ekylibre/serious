@@ -36,6 +36,7 @@ class Deal < ActiveRecord::Base
   belongs_to :supplier, class_name: 'Participant'
   has_many :items, class_name: 'DealItem'
   enumerize :state, in: [:draft, :invoice], default: :draft
+
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, allow_nil: true
   validates_presence_of :customer, :supplier

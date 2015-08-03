@@ -22,13 +22,13 @@
 #
 #  id              :integer          not null, primary key
 #  insurance_id_id :integer          not null
-#  montant         :decimal(, )      not null
 #  paid_on         :date             not null
+#  sum             :decimal(19, 4)   not null
 #
 class InsuranceIndemnification < ActiveRecord::Base
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_date :paid_on, allow_blank: true, on_or_after: Date.civil(1, 1, 1)
-  validates_numericality_of :montant, allow_nil: true
-  validates_presence_of :montant, :paid_on
+  validates_numericality_of :sum, allow_nil: true
+  validates_presence_of :paid_on, :sum
   #]VALIDATORS]
 end

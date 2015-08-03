@@ -22,16 +22,16 @@
 #
 #  id              :integer          not null, primary key
 #  insurance_id_id :integer          not null
-#  montant         :decimal(, )      not null
 #  paid_on         :date             not null
+#  sum             :decimal(19, 4)   not null
 #
 #
 # == Fixture: insurance_indemnifications
 #
 # insurance_indemnifications_001:
 #   insurance_id: insurance_ids_001
-#   montant: 0
 #   paid_on: 2014-11-27
+#   sum: 0
 #
 
 # This model initially had no columns defined.  If you add columns to the
