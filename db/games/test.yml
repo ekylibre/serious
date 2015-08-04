@@ -2,7 +2,6 @@
 code: test
 name: Test
 scenario: random
-historic: generix
 farms:
   F01:
     name: Leblanc

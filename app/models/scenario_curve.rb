@@ -44,16 +44,16 @@
 # Code must contain variant name if nature is variant.
 class ScenarioCurve < ActiveRecord::Base
   extend Enumerize
-  enumerize :interpolation_method, in: [:linear, :previous, :following], default: :linear, predicates: {prefix: true}
-  enumerize :nature, in: [:variant, :loan_interest, :reference], predicates: {prefix: true}
+  enumerize :interpolation_method, in: [:linear, :previous, :following], default: :linear, predicates: { prefix: true }
+  enumerize :nature, in: [:variant, :loan_interest, :reference], predicates: { prefix: true }
   belongs_to :reference, class_name: 'ScenarioCurve'
   belongs_to :scenario
   has_many :steps, class_name: 'ScenarioCurveStep', foreign_key: :curve_id, dependent: :delete_all
-  #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount_round, allow_nil: true, only_integer: true
   validates_numericality_of :amplitude_factor, :initial_amount, :negative_alea_amount, :offset_amount, :positive_alea_amount, allow_nil: true
   validates_presence_of :amplitude_factor, :code, :name, :nature, :negative_alea_amount, :offset_amount, :positive_alea_amount, :scenario
-  #]VALIDATORS]
+  # ]VALIDATORS]
   validates_presence_of :positive_alea_amount, :negative_alea_amount, :amplitude_factor, :offset_amount, :reference, if: :nature_variant?
   validates_uniqueness_of :name, :code, scope: :scenario_id
 
@@ -61,35 +61,35 @@ class ScenarioCurve < ActiveRecord::Base
 
   before_validation do
     self.amount_round ||= 2
-    if self.reference and self.amplitude_factor
+    if reference && amplitude_factor
       self.offset_amount ||= 0
-      self.positive_alea_amount ||= self.reference.initial_amount * self.amplitude_factor * 0.03
+      self.positive_alea_amount ||= reference.initial_amount * amplitude_factor * 0.03
       self.negative_alea_amount ||= self.positive_alea_amount
     end
   end
 
   def generate!
-    self.steps.clear
-    if self.nature_variant? and reference = self.reference
-      self.scenario.turns_count.to_i.times do |index|
+    steps.clear
+    if self.nature_variant? && reference = self.reference
+      scenario.turns_count.to_i.times do |index|
         turn = index + 1
-        amount = reference.turn_amount(turn) * self.amplitude_factor + self.offset_amount + rand * (self.positive_alea_amount + self.negative_alea_amount) - self.negative_alea_amount
-        self.steps.create!(turn: turn, amount: amount.round(self.amount_round))
+        amount = reference.turn_amount(turn) * amplitude_factor + self.offset_amount + rand * (self.positive_alea_amount + self.negative_alea_amount) - self.negative_alea_amount
+        steps.create!(turn: turn, amount: amount.round(self.amount_round))
       end
     end
   end
 
   def turn_amount(turn)
-    if step = self.steps.find_by(turn: turn)
+    if step = steps.find_by(turn: turn)
       return step.amount
     else # Interpolate
-      previous  = self.steps.where('turn < ?', turn).order(turn: :desc).first
-      following = self.steps.where('turn > ?', turn).order(:turn).first
-      unless previous or following
-        raise 'Cannot interpolate amount with no steps...'
+      previous  = steps.where('turn < ?', turn).order(turn: :desc).first
+      following = steps.where('turn > ?', turn).order(:turn).first
+      unless previous || following
+        fail 'Cannot interpolate amount with no steps...'
       end
       if self.interpolation_method_linear?
-        if previous and following
+        if previous && following
           # y = a * x + b
           a = (following.amount - previous.amount) / (following.turn - previous.turn)
           b = previous.amount - a * previous.turn
@@ -104,5 +104,4 @@ class ScenarioCurve < ActiveRecord::Base
       end
     end
   end
-
 end

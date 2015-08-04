@@ -6,7 +6,6 @@ class ::Symbol
   def ta(*args)
     ::I18n.t("rest.actions.#{self}", *args)
   end
-
 end
 
 class ::String

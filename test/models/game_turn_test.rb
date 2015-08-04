@@ -25,6 +25,7 @@
 #  game_id    :integer          not null
 #  id         :integer          not null, primary key
 #  number     :integer          not null
+#  shift      :integer          default(0), not null
 #  started_at :datetime
 #  stopped_at :datetime
 #  updated_at :datetime

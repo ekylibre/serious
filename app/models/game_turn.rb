@@ -25,37 +25,36 @@
 #  game_id    :integer          not null
 #  id         :integer          not null, primary key
 #  number     :integer          not null
+#  shift      :integer          default(0), not null
 #  started_at :datetime
 #  stopped_at :datetime
 #  updated_at :datetime
 #
 class GameTurn < ActiveRecord::Base
   belongs_to :game
-  #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :started_at, :stopped_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
-  validates_numericality_of :duration, :number, allow_nil: true, only_integer: true
-  validates_presence_of :duration, :game, :number
-  #]VALIDATORS]
+  validates_numericality_of :duration, :number, :shift, allow_nil: true, only_integer: true
+  validates_presence_of :duration, :game, :number, :shift
+  # ]VALIDATORS]
   validates_numericality_of :number, greater_than: 0
 
-  scope :at, lambda { |at| where('started_at <= ? AND ? < stopped_at', at, at) }
+  scope :at, ->(at) { where('started_at <= ? AND ? < stopped_at', at, at) }
 
   before_update do
-    self.stopped_at = self.started_at + self.game.turn_duration.minutes
+    self.stopped_at = started_at + game.turn_duration.minutes
   end
 
   before_validation do
-    if self.started_at && self.stopped_at
-      self.duration = (self.stopped_at - self.started_at).to_i
-    end
+    self.duration = (stopped_at - started_at).to_i if started_at && stopped_at
   end
 
   def finished_on
-    (Date.civil(2015, 9, 30) >> (self.number - 1)).end_of_month
+    (Date.civil(2015, 9, 30) >> (number - 1)).end_of_month
   end
 
   def name
-    self.finished_on.l(format: '%m/%Y')
+    finished_on.l(format: '%m/%Y')
   end
 
   # validate do
@@ -68,7 +67,6 @@ class GameTurn < ActiveRecord::Base
   # end
 
   def others
-    self.game.turns.where('id != ?', self.id || 0)
+    game.turns.where('id != ?', id || 0)
   end
-
 end

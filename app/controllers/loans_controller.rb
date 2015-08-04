@@ -1,5 +1,4 @@
 class LoansController < BaseController
-
   def new
     @participant = Participant.find(params[:lender_id])
     @loan = Loan.new(interest_percentage: 3, insurance_percentage: 0.3)
@@ -25,6 +24,7 @@ class LoansController < BaseController
   end
 
   private
+
   def loan_params
     params.require(:loan).permit(:borrower_id, :lender_id, :amount, :turns_count, :interest_percentage, :insurance_percentage)
   end

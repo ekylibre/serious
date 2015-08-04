@@ -34,10 +34,10 @@
 class CatalogItem < ActiveRecord::Base
   extend Enumerize
   enumerize :nature, in: [:product, :loan], default: :product, predicates: true
-  #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :negative_margin_percentage, :positive_margin_percentage, :quota, allow_nil: true
   validates_presence_of :negative_margin_percentage, :positive_margin_percentage, :quota, :variant
-  #]VALIDATORS]
+  # ]VALIDATORS]
   validates_presence_of :nature
 
   def amount
@@ -49,7 +49,6 @@ class CatalogItem < ActiveRecord::Base
   end
 
   def variant_name
-    self.variant.to_s.humanize
+    variant.to_s.humanize
   end
-
 end

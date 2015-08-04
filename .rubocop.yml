@@ -1,0 +1,10 @@
+AllCops:
+  RunRailsCops: true
+  Exclude:
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'plugins/**/*'
+    - 'db/schema.rb'
+
+Metrics/LineLength:
+  Enabled: false

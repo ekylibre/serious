@@ -6,105 +6,90 @@ scenario: random
 farms:
   F01:
     name: Ferme Barthelemy
-    historic: SL47
     zone_x: 0
     zone_y: 0
     zone_width: 4
     zone_height: 6
   F02:
     name: Ferme Monnier
-    historic: SL47
     zone_x: 4
     zone_y: 0
     zone_width: 6
     zone_height: 4
   F03:
     name: Ferme Renaud
-    historic: SL47
     zone_x: 10
     zone_y: 0
     zone_width: 6
     zone_height: 4
   F04:
     name: Ferme Mendes
-    historic: SL47
     zone_x: 16
     zone_y: 0
     zone_width: 6
     zone_height: 4
   F05:
     name: Ferme Poirier
-    historic: SL47
     zone_x: 0
     zone_y: 8
     zone_width: 6
     zone_height: 4
   F06:
     name: Ferme Fouquet
-    historic: SL47
     zone_x: 6
     zone_y: 6
     zone_width: 4
     zone_height: 6
   F07:
     name: Ferme Michaud
-    historic: SL47
     zone_x: 12
     zone_y: 6
     zone_width: 4
     zone_height: 6
   F08:
     name: Ferme Ramos
-    historic: SL47
     zone_x: 18
     zone_y: 4
     zone_width: 4
     zone_height: 6
   F09:
     name: Ferme Wagner
-    historic: SL47
     zone_x: 22
     zone_y: 6
     zone_width: 6
     zone_height: 4
   F10:
     name: Les winners
-    historic: SL47
     zone_x: 22
     zone_y: 0
     zone_width: 4
     zone_height: 6
   F11:
     name: Ferme Leclercq
-    historic: SL47
     zone_x: 0
     zone_y: 12
     zone_width: 4
     zone_height: 6
   F12:
     name: Ferme Brunel
-    historic: SL47
     zone_x: 4
     zone_y: 14
     zone_width: 6
     zone_height: 4
   F13:
     name: Ferme Colin
-    historic: SL47
     zone_x: 0
     zone_y: 18
     zone_width: 6
     zone_height: 4
   F14:
     name: Ferme Valette
-    historic: SL47
     zone_x: 6
     zone_y: 18
     zone_width: 6
     zone_height: 4
   F15:
     name: Ferme Ferreira
-    historic: SL47
     zone_x: 12
     zone_y: 12
     zone_width: 6

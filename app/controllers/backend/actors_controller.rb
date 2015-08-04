@@ -18,6 +18,7 @@
 
 class Backend::ActorsController < Backend::ParticipantsController
   before_action 'init'
+
   protected
 
   def init

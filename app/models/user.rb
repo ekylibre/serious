@@ -40,16 +40,16 @@
 class User < ActiveRecord::Base
   extend Enumerize
   enumerize :role, in: [:player, :organizer, :administrator], default: :player, predicates: true
-  has_many :active_participations, -> { joins(:game).where(games: {state: "running"}) }, class_name: "Participation"
+  has_many :active_participations, -> { joins(:game).where(games: { state: 'running' }) }, class_name: 'Participation'
   has_many :participations
   has_many :participants, through: :participations
   # has_many :games, through: :participations
-  has_many :active_games, through: :active_participations, class_name: "Game", source: :game
+  has_many :active_games, through: :active_participations, class_name: 'Game', source: :game
 
-  #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :current_sign_in_at, :last_sign_in_at, :remember_created_at, :reset_password_sent_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
   validates_presence_of :email, :encrypted_password, :role
-  #]VALIDATORS]
+  # ]VALIDATORS]
   validates_presence_of :first_name, :last_name
 
   # Include default devise modules. Others available are:
@@ -58,19 +58,19 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def name
-    "#{self.first_name} #{self.last_name}"
+    "#{first_name} #{last_name}"
   end
 
   # Returns the URL of the avatar of the user
   def avatar_url(options = {})
     size = options[:size] || 200
-    hash = Digest::MD5.hexdigest(self.email)
-    options[:default] = :retro unless options.has_key? :default
-    return "https://secure.gravatar.com/avatar/#{hash}?size=#{size}&d=#{options[:default]}"
+    hash = Digest::MD5.hexdigest(email)
+    options[:default] = :retro unless options.key? :default
+    "https://secure.gravatar.com/avatar/#{hash}?size=#{size}&d=#{options[:default]}"
   end
 
   def games
-    Game.where(id: self.participations.pluck(:game_id))
+    Game.where(id: participations.pluck(:game_id))
   end
 
   def active_games
@@ -78,7 +78,6 @@ class User < ActiveRecord::Base
   end
 
   def can_organize?
-    self.organizer? or self.administrator?
+    self.organizer? || self.administrator?
   end
-
 end

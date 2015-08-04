@@ -1,5 +1,4 @@
 class InsurancesController < BaseController
-
   def new
     @is_disabled = false
     @participant = Participant.find(params[:insurer_id])
@@ -7,7 +6,7 @@ class InsurancesController < BaseController
     @insurance.insurer = @participant
     @insurance.insured = Participant.find(params[:insured_id])
 
-    if current_participant.insured and @participant.insurer
+    if current_participant.insured && @participant.insurer
       @insurance.nature = 'harvest'
       @insurance.quantity_unit = 'hectare'
       @insurance.quantity_value = 200
@@ -35,11 +34,11 @@ class InsurancesController < BaseController
     end
   end
 
-
   def show
   end
 
   private
+
   def insurance_params
     params.require(:insurance).permit(:insurer_id, :insured_id, :nature, :quantity_unit, :amount, :unit_pretax_amount, :tax_percentage, :quantity_value, :excess_amount)
   end

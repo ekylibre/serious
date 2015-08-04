@@ -1,25 +1,20 @@
 namespace :serious do
-
   namespace :install do
-
-    desc "Install in dev mode"
+    desc 'Install in dev mode'
     task :development do
-      raise 'Must run as root' unless Process.uid == 0
+      fail 'Must run as root' unless Process.uid == 0
     end
 
-
-    desc "Install base file for production installation"
+    desc 'Install base file for production installation'
     task :production do
-      raise 'Must run as root' unless Process.uid == 0
-      game_name  = ENV["GAME_NAME"] || "game"
-      farms_name = ENV["FARMS_NAME"] || "farms"
-      app_name = "serious"
-      domain   = ENV["DOMAIN"] || "#{app_name}.lan"
+      fail 'Must run as root' unless Process.uid == 0
+      game_name  = ENV['GAME_NAME'] || 'game'
+      farms_name = ENV['FARMS_NAME'] || 'farms'
+      app_name = 'serious'
+      domain   = ENV['DOMAIN'] || "#{app_name}.lan"
 
       ssl = false
-      if Rails.env.production?
-        ssl = true
-      end
+      ssl = true if Rails.env.production?
 
       game_domain = "#{game_name}.#{domain}"
       # /etc/nginx/site-availables/serious.conf
@@ -72,7 +67,6 @@ namespace :serious do
 
       conf << "}\n\n"
 
-
       farms_domain = "#{farms_name}.#{domain}"
 
       conf << "upstream #{app_name}_#{farms_name} {\n"
@@ -111,9 +105,5 @@ namespace :serious do
 
       conf << "}\n\n"
     end
-
-
   end
-
-
 end

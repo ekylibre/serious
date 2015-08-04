@@ -1,10 +1,8 @@
 module Serious
   module Tenant
-
     mattr_accessor :ekylibre_path
 
     class << self
-
       # Test if a tenant already exist
       def exist?(name)
         list.include?(name.to_s)
@@ -12,8 +10,8 @@ module Serious
 
       # Test if a tenant already exist
       def list
-        l = execute_command("bin/rake tenant:list")
-        return l.strip.split(/[\s\,]+/)
+        l = execute_command('bin/rake tenant:list')
+        l.strip.split(/[\s\,]+/)
       end
 
       # Drop tenant
@@ -33,27 +31,24 @@ module Serious
       def create_instances(instances)
         existings = list
 
-        instances.each do |name, details|
-          if existings.include?(name)
-            drop(name)
-          end
+        instances.each do |name, _details|
+          drop(name) if existings.include?(name)
           create(name)
         end
-
       end
 
       def write_nginx_snippet(instances, options = {})
-        upstream = options[:upstream] || "serious"
-        name = "serious_farms.conf"
+        upstream = options[:upstream] || 'serious'
+        name = 'serious_farms.conf'
 
         # /etc/nginx/snippets/<upstream>_instances.conf
-        root = Rails.env.development? ? Rails.root.join("config", "environments", "development") : Pathname.new('/')
-        file = options[:file] || root.join("etc", "nginx", "snippets", name)
+        root = Rails.env.development? ? Rails.root.join('config', 'environments', 'development') : Pathname.new('/')
+        file = options[:file] || root.join('etc', 'nginx', 'snippets', name)
 
         conf  = "# Config for Serious Game\n"
         conf << "# Generated automatically.\n"
         conf << "# Include this file in your Ekylibre server\n"
-        instances.each do |name, details|
+        instances.each do |name, _details|
           conf << "location /#{name} {\n"
           # conf << "  error_page 404              /404.html;\n"
           # conf << "  error_page 422              /422.html;\n"
@@ -78,10 +73,7 @@ module Serious
         end
 
         File.write(file, conf)
-
       end
-
     end
-
   end
 end

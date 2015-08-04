@@ -6,7 +6,7 @@ class ShopsController < BaseController
 
   def add
     item_catalog = @participant.catalog_items.find_by(variant: params[:variant])
-    item = @deal.items.find_or_initialize_by( variant: params[:variant] )
+    item = @deal.items.find_or_initialize_by(variant: params[:variant])
     item.quantity += 1
 
     item.unit_pretax_amount = item_catalog.pretax_amount
@@ -45,12 +45,11 @@ class ShopsController < BaseController
   def find_records
     if (@participant = Participant.find(params[:id]))
       unless current_participant
-        redirect_to params[:redirect] || {controller: :participants, action: :show, id: @participant.id}, alert: 'Cannot go to shop without participant'
+        redirect_to params[:redirect] || { controller: :participants, action: :show, id: @participant.id }, alert: 'Cannot go to shop without participant'
       end
       @deal = Deal.find_or_create_by!(customer: current_participant, supplier: @participant, state: 'draft')
     else
-      redirect_to params[:redirect] || {controller: :participants, action: :index}, alert: 'Participant not found'
+      redirect_to params[:redirect] || { controller: :participants, action: :index }, alert: 'Participant not found'
     end
   end
-
 end

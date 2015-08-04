@@ -37,9 +37,9 @@ class Contract < ActiveRecord::Base
   belongs_to :contractor,    class_name: 'Participant'
   belongs_to :subcontractor, class_name: 'Participant'
   belongs_to :nature, class_name: 'ContractNature'
-  #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :delivery_turn, allow_nil: true, only_integer: true
   validates_numericality_of :quantity, allow_nil: true
   validates_presence_of :contractor, :delivery_turn, :nature, :quantity
-  #]VALIDATORS]
+  # ]VALIDATORS]
 end

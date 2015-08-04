@@ -50,7 +50,5 @@
 require 'test_helper'
 
 class FarmTest < ActiveSupport::TestCase
-
   test_fixtures
-
 end

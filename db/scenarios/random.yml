@@ -875,25 +875,25 @@ curves:
     - turn: 1
       amount: 2712.0
     - turn: 2
-      amount: 2764.39
+      amount: 2668.29
     - turn: 3
-      amount: 2763.24
+      amount: 2656.89
     - turn: 4
-      amount: 2715.69
+      amount: 2670.45
     - turn: 5
-      amount: 2666.68
+      amount: 2681.22
     - turn: 6
-      amount: 2598.17
+      amount: 2692.69
     - turn: 7
-      amount: 2508.51
+      amount: 2710.47
     - turn: 8
-      amount: 2481.91
+      amount: 2773.91
     - turn: 9
-      amount: 2481.89
+      amount: 2840.54
     - turn: 10
-      amount: 2486.39
+      amount: 2884.64
     - turn: 11
-      amount: 2483.52
+      amount: 2925.2
   usd:
     name: Dollar américain (USD)
     description: Cours du dollar américain en euros
@@ -904,25 +904,25 @@ curves:
     - turn: 1
       amount: 0.8911
     - turn: 2
-      amount: 0.8911
+      amount: 0.8735
     - turn: 3
-      amount: 0.893
+      amount: 0.8398
     - turn: 4
-      amount: 0.9152
+      amount: 0.8223
     - turn: 5
-      amount: 0.9376
+      amount: 0.8092
     - turn: 6
-      amount: 0.9733
+      amount: 0.7835
     - turn: 7
-      amount: 1.0026
+      amount: 0.7485
     - turn: 8
-      amount: 1.0539
+      amount: 0.7184
     - turn: 9
-      amount: 1.0888
+      amount: 0.6882
     - turn: 10
-      amount: 1.1391
+      amount: 0.6517
     - turn: 11
-      amount: 1.1756
+      amount: 0.6195
   common_wheat:
     name: Blé panifiable
     description: Cours de la tonne de blé panifiable à Paris
@@ -933,25 +933,25 @@ curves:
     - turn: 1
       amount: 163.27
     - turn: 2
-      amount: 164.5599
+      amount: 164.946
     - turn: 3
-      amount: 164.6178
+      amount: 166.0025
     - turn: 4
-      amount: 166.7396
+      amount: 168.874
     - turn: 5
-      amount: 169.1017
+      amount: 169.0514
     - turn: 6
-      amount: 169.1762
+      amount: 172.3179
     - turn: 7
-      amount: 165.7244
+      amount: 177.776
     - turn: 8
-      amount: 161.2963
+      amount: 183.1387
     - turn: 9
-      amount: 154.2101
+      amount: 185.6382
     - turn: 10
-      amount: 142.8005
+      amount: 186.8347
     - turn: 11
-      amount: 134.2467
+      amount: 187.6982
   petroleum:
     name: Pétrole
     description: Cours du baril de pétrole en dollar américain (USD)
@@ -962,25 +962,25 @@ curves:
     - turn: 1
       amount: 59.41
     - turn: 2
-      amount: 58.99
+      amount: 60.49
     - turn: 3
-      amount: 59.36
+      amount: 61.02
     - turn: 4
-      amount: 60.62
+      amount: 61.65
     - turn: 5
-      amount: 61.82
+      amount: 61.95
     - turn: 6
-      amount: 63.2
+      amount: 62.89
     - turn: 7
-      amount: 64.88
+      amount: 63.5
     - turn: 8
-      amount: 67.14
+      amount: 62.56
     - turn: 9
-      amount: 69.26
+      amount: 60.67
     - turn: 10
-      amount: 70.01
+      amount: 58.74
     - turn: 11
-      amount: 69.81
+      amount: 57.85
   gold:
     name: Or
     description: Cours de l'or
@@ -991,25 +991,25 @@ curves:
     - turn: 1
       amount: 34135.93
     - turn: 2
-      amount: 33629.61
+      amount: 33904.12
     - turn: 3
-      amount: 33273.99
+      amount: 34263.77
     - turn: 4
-      amount: 32718.43
+      amount: 35246.44
     - turn: 5
-      amount: 32397.93
+      amount: 35625.25
     - turn: 6
-      amount: 31481.28
+      amount: 35378.7
     - turn: 7
-      amount: 30288.86
+      amount: 35106.06
     - turn: 8
-      amount: 28702.99
+      amount: 35055.7
     - turn: 9
-      amount: 26484.02
+      amount: 35721.3
     - turn: 10
-      amount: 24156.55
+      amount: 36596.88
     - turn: 11
-      amount: 21871.17
+      amount: 37637.52
   copper:
     name: Cuivre
     description: Cours du cuivre
@@ -1020,25 +1020,25 @@ curves:
     - turn: 1
       amount: 6436.12
     - turn: 2
-      amount: 6400.9
+      amount: 6469.23
     - turn: 3
-      amount: 6384.02
+      amount: 6574.41
     - turn: 4
-      amount: 6358.6
+      amount: 6724.91
     - turn: 5
-      amount: 6417.5
+      amount: 6939.05
     - turn: 6
-      amount: 6516.28
+      amount: 7201.31
     - turn: 7
-      amount: 6612.56
+      amount: 7372.59
     - turn: 8
-      amount: 6645.51
+      amount: 7661.18
     - turn: 9
-      amount: 6584.92
+      amount: 7993.69
     - turn: 10
-      amount: 6499.75
+      amount: 8311.57
     - turn: 11
-      amount: 6279.83
+      amount: 8499.16
   world_population:
     name: Population mondiale
     description: Nombre d'habitants sur Terre (en millions)
@@ -1049,25 +1049,25 @@ curves:
     - turn: 1
       amount: 7125
     - turn: 2
-      amount: 7133
+      amount: 7178
     - turn: 3
-      amount: 7160
+      amount: 7251
     - turn: 4
-      amount: 7153
+      amount: 7324
     - turn: 5
-      amount: 7169
+      amount: 7436
     - turn: 6
-      amount: 7209
+      amount: 7544
     - turn: 7
-      amount: 7278
+      amount: 7672
     - turn: 8
-      amount: 7401
+      amount: 7836
     - turn: 9
-      amount: 7501
+      amount: 8008
     - turn: 10
-      amount: 7575
+      amount: 8228
     - turn: 11
-      amount: 7676
+      amount: 8459
   accommodation_travel:
     name: Accommodation travel
     nature: variant

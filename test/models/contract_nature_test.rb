@@ -33,7 +33,5 @@
 require 'test_helper'
 
 class ContractNatureTest < ActiveSupport::TestCase
-
   test_fixtures
-
 end

@@ -48,7 +48,6 @@
 #  zone_y            :integer
 #
 class Farm < Participant
-  has_one :historic, through: :game
 
   before_validation do
     self.borrower = true
@@ -58,7 +57,7 @@ class Farm < Participant
   end
 
   validate do
-    errors.add(:lender, :invalid) if self.lender
+    errors.add(:lender, :invalid) if lender
   end
 
   # after_save :configure
@@ -75,5 +74,4 @@ class Farm < Participant
   # def configure
   #   self.game.configure
   # end
-
 end

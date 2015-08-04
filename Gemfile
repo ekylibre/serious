@@ -60,7 +60,7 @@ gem 'devise-bootstrap-views'
 gem 'rails-i18n'
 gem 'i18n-complements'
 
-gem 'color'
+gem 'colored'
 
 # gem 'active_list'
 gem 'wice_grid'
@@ -78,12 +78,12 @@ group :development do
   # gem 'rack-mini-profiler'
 
   # Project management
-  gem 'rails_best_practices'
+  gem 'rails_best_practices', require: false
+  gem 'rubocop', require: false
 
   # Webservers
   gem 'thin'
 end
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -96,4 +96,6 @@ group :development, :test do
   gem 'spring'
 end
 
-gem 'rails_12factor'
+group :production do
+  gem 'rails_12factor'
+end

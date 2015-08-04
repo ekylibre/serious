@@ -1,14 +1,13 @@
 namespace :clean do
-
-  desc "Removes end spaces"
+  desc 'Removes end spaces'
   task :code do
-    print " - White spaces: "
+    print ' - White spaces: '
     files  = []
-    dirs = "{app,bin,config,db,doc,lib,plugins,public,test}"
+    dirs = '{app,bin,config,db,doc,lib,plugins,public,test}'
     Dir.chdir(Rails.root) do
-      files += Dir["Gemfile*"]
-      files += Dir["Rakefile"]
-      files += Dir["bin/*"]
+      files += Dir['Gemfile*']
+      files += Dir['Rakefile']
+      files += Dir['bin/*']
       files += Dir["#{dirs}/**/*.ru"]
       files += Dir["#{dirs}/**/*.rb"]
       files += Dir["#{dirs}/**/*.rake"]
@@ -24,7 +23,7 @@ namespace :clean do
       files += Dir["#{dirs}/**/*.sass"]
       files += Dir["#{dirs}/**/*.css"]
     end
-    log = File.open(Rails.root.join("log", "clean-code.log"), "wb")
+    log = File.open(Rails.root.join('log', 'clean-code.log'), 'wb')
     log.write "White spaces:\n"
     count = 0
     files.sort!
@@ -50,5 +49,4 @@ namespace :clean do
     log.close
     puts "#{count.to_s.rjust(3)} files updated"
   end
-
 end

@@ -3,10 +3,6 @@
   - g.column name: Farm.human_attribute_name(:name) do |item|
     - link_to(item.name, backend_farm_path(item))
 
-  - g.column name: Farm.human_attribute_name(:historic) do |item|
-    - if historic = item.historic
-      - link_to(historic.name, backend_historic_path(historic))
-
   - g.column name: Farm.human_attribute_name(:users) do |item|
     :ruby
       item.users.map do |user|

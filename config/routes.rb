@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     resources :farms
     resources :games
     resources :game_turns
-    resources :historics
     resources :participants
     resources :scenarios
     resources :scenario_broadcasts

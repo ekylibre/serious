@@ -34,10 +34,10 @@
 #
 class DealItem < ActiveRecord::Base
   belongs_to :deal
-  #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, :pretax_amount, :quantity, :unit_amount, :unit_pretax_amount, allow_nil: true
   validates_presence_of :deal
-  #]VALIDATORS]
+  # ]VALIDATORS]
 
   after_initialize do
     self.quantity ||= 0
@@ -49,15 +49,14 @@ class DealItem < ActiveRecord::Base
   end
 
   after_save do
-    self.deal.save
+    deal.save
   end
 
   after_destroy do
-    self.deal.save
+    deal.save
   end
 
   def variant_name
-    self.variant.to_s.humanize
+    variant.to_s.humanize
   end
-
 end

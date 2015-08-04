@@ -2,12 +2,10 @@ module RestfullyManageable
   extend ActiveSupport::Concern
 
   module ClassMethods
-
-
     # Build standard RESTful actions to manage records of a model
     def manage_restfully(defaults = {})
-      name = self.controller_name
-      path = self.controller_path
+      name = controller_name
+      path = controller_path
       options = defaults.extract!(:t3e, :redirect_to, :xhr, :destroy_to, :subclass_inheritance, :partial, :multipart, :except, :only, :grids)
       after_save_url    = options[:redirect_to]
       after_destroy_url = options[:destroy_to] || :index
@@ -20,7 +18,7 @@ module RestfullyManageable
       model = model_name.constantize
 
       if after_save_url.blank?
-        if instance_methods(true).include?(:show) or actions.include?(:show)
+        if instance_methods(true).include?(:show) || actions.include?(:show)
           after_save_url = :show
         else
           after_save_url = :index
@@ -30,21 +28,19 @@ module RestfullyManageable
       if after_save_url == :show
         after_save_url = "{action: :show, id: @#{record_name}.id}".c
       elsif after_save_url == :index
-        after_save_url = "{action: :index}".c
+        after_save_url = '{action: :index}'.c
       elsif after_save_url.is_a?(CodeString)
         after_save_url.gsub!(/RECORD/, "@#{record_name}")
       elsif after_save_url.is_a?(Hash)
         after_save_url = after_save_url.inspect.gsub(/RECORD/, "@#{record_name}")
       end
 
-
-
       render_form_options = []
       render_form_options << "partial: '#{options[:partial]}'" if options[:partial]
-      render_form_options << "multipart: true" if options[:multipart]
-      render_form = "render(" + render_form_options.join(", ") + ")"
+      render_form_options << 'multipart: true' if options[:multipart]
+      render_form = 'render(' + render_form_options.join(', ') + ')'
 
-      t3e_code = ""
+      t3e_code = ''
       # t3e_code = "t3e(@#{record_name}.attributes"
       # if t3e = options[:t3e]
       #   t3e_code << ".merge(" + t3e.collect{|k,v|
@@ -98,7 +94,7 @@ module RestfullyManageable
         elsif Dir.glob(lookup.join('index.*')).any?
           code << "  redirect_to action: :index, '#{name}-id' => @#{record_name}.id\n"
         else
-          raise StandardError, "Cannot build a default show action without view for show or index actions in #{parents.map(&:controller_path).to_sentence(locale: :eng)} (#{lookup.join('show.*')})."
+          fail StandardError, "Cannot build a default show action without view for show or index actions in #{parents.map(&:controller_path).to_sentence(locale: :eng)} (#{lookup.join('show.*')})."
         end
         code << "end\n"
       end
@@ -109,7 +105,6 @@ module RestfullyManageable
       code << "  end\n"
       code << "  return record\n"
       code << "end\n"
-
 
       code << "def resource_model\n"
       code << "  #{model_name}\n"
@@ -125,7 +120,7 @@ module RestfullyManageable
       if options[:subclass_inheritance]
         if self != Backend::BaseController
           code << "def self.inherited(subclass)\n"
-          # TODO inherit from superclass parameters (superclass.manage_restfully_options)
+          # TODO: inherit from superclass parameters (superclass.manage_restfully_options)
           code << "  subclass.manage_restfully(#{options.inspect})\n"
           code << "end\n"
         end
@@ -135,11 +130,11 @@ module RestfullyManageable
         code << "def new\n"
         # values = model.accessible_attributes.to_a.inject({}) do |hash, attr|
         columns = model.columns_hash.keys
-        columns = columns.delete_if{|c| [:depth, :rgt, :lft, :id, :lock_version, :updated_at, :updater_id, :creator_id, :created_at].include?(c.to_sym) }
+        columns = columns.delete_if { |c| [:depth, :rgt, :lft, :id, :lock_version, :updated_at, :updater_id, :creator_id, :created_at].include?(c.to_sym) }
         values = columns.map(&:to_sym).uniq.inject({}) do |hash, attr|
-          hash[attr] = "params[:#{attr}]".c unless attr.blank? or attr.to_s.match(/_attributes$/)
+          hash[attr] = "params[:#{attr}]".c unless attr.blank? || attr.to_s.match(/_attributes$/)
           hash
-        end.merge(defaults).collect{|k,v| "#{k}: (#{v.inspect})"}.join(", ")
+        end.merge(defaults).collect { |k, v| "#{k}: (#{v.inspect})" }.join(', ')
         code << "  @#{record_name} = resource_model.new(#{values})\n"
         # code << "  @#{record_name} = resource_model.new(permitted_params)\n"
         if (xhr = options[:xhr])
@@ -228,18 +223,18 @@ module RestfullyManageable
       class_eval(code)
     end
 
-
     # Build standard actions to manage records of a model
     def manage_restfully_list(order_by = :id)
-      name = self.controller_name
+      name = controller_name
       record_name = name.to_s.singularize
       model = name.to_s.singularize.classify.constantize
       records = model.name.underscore.pluralize
-      raise ArgumentError.new("Unknown column for #{model.name}") unless model.columns_hash[order_by]
+      fail ArgumentError.new("Unknown column for #{model.name}") unless model.columns_hash[order_by]
       code = ''
 
-      sort = ""
-      position, conditions = "#{record_name}_position_column", "#{record_name}_conditions"
+      sort = ''
+      position = "#{record_name}_position_column"
+      conditions = "#{record_name}_conditions"
       sort << "#{position}, #{conditions} = #{record_name}.position_column, #{record_name}.scope_condition\n"
       sort << "#{records} = #{model.name}.where(#{conditions}).order(#{position}+', #{order_by}')\n"
       sort << "#{records}_count = #{records}.count(#{position})\n"
@@ -267,21 +262,20 @@ module RestfullyManageable
       class_eval(code)
     end
 
-
     # Build standard actions to manage records of a model
     def manage_restfully_incorporation
-      name = self.controller_name
+      name = controller_name
       record_name = name.to_s.singularize
       model = name.to_s.singularize.classify.constantize
       records = model.name.underscore.pluralize
       code = ''
 
       columns = model.columns_hash.keys
-      columns = columns.delete_if{|c| [:depth, :rgt, :lft, :id, :lock_version, :updated_at, :updater_id, :creator_id, :created_at].include?(c.to_sym) }
+      columns = columns.delete_if { |c| [:depth, :rgt, :lft, :id, :lock_version, :updated_at, :updater_id, :creator_id, :created_at].include?(c.to_sym) }
       values = columns.inject({}) do |hash, attr|
-        hash[attr] = "params[:#{attr}]".c unless attr.blank? or attr.to_s.match(/_attributes$/)
+        hash[attr] = "params[:#{attr}]".c unless attr.blank? || attr.to_s.match(/_attributes$/)
         hash
-      end.collect{|k,v| "#{k}: (#{v.inspect})"}.join(', ')
+      end.collect { |k, v| "#{k}: (#{v.inspect})" }.join(', ')
       code << "def pick\n"
       code << "  @#{record_name} = resource_model.new(#{values})\n"
       code << "  already_imported_records = #{model}.select(:reference_name).collect(&:reference_name)\n"
@@ -310,10 +304,9 @@ module RestfullyManageable
       class_eval(code)
     end
 
-
     #
     def manage_restfully_picture
-      name = self.controller_name
+      name = controller_name
       record_name = name.to_s.singularize
       code = ''
       code << "def picture\n"
@@ -326,8 +319,5 @@ module RestfullyManageable
       code << "end\n"
       class_eval(code)
     end
-
-
   end
-
 end

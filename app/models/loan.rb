@@ -33,30 +33,26 @@
 class Loan < ActiveRecord::Base
   belongs_to :borrower, class_name: 'Participant'
   belongs_to :lender, class_name: 'Participant'
-  #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, :insurance_percentage, :interest_percentage, allow_nil: true
   validates_presence_of :borrower, :insurance_percentage, :interest_percentage, :lender
-  #]VALIDATORS]
+  # ]VALIDATORS]
 
   delegate :name, to: :lender, prefix: true
   delegate :name, to: :borrower, prefix: true
 
   before_validation do
-    self.interest_percentage  ||= 3
+    self.interest_percentage ||= 3
     self.insurance_percentage ||= 0.3
 
     percentage_interest = self.interest_percentage / 100 + 1
     percentage_insurance = self.insurance_percentage / 100
-    amount_total = self.amount * percentage_interest + self.amount * percentage_insurance
-    self.turns_count = amount_total / 10000
-    if amount_total % 10000 != 0
-      self.turns_count += 1
-    end
+    amount_total = amount * percentage_interest + amount * percentage_insurance
+    self.turns_count = amount_total / 10_000
+    self.turns_count += 1 if amount_total % 10_000 != 0
   end
 
   def number
-    "L#{self.id}"
+    "L#{id}"
   end
-
-
 end

@@ -1,5 +1,4 @@
 module ParticipantsHelper
-
   # Show a participant card with logo and minimal infos
   def participant_card(participant, options = {}, &block)
     options[:content] = capture(participant, &block) if block_given?
@@ -17,10 +16,8 @@ module ParticipantsHelper
 
   def items_block(participant, reflection, options = {})
     collection = participant.send(reflection)
-    if options[:relative_to] and options[:relative_to] != participant
-      unless options[:as]
-        raise "Options :as is needed for #{reflection}"
-      end
+    if options[:relative_to] && options[:relative_to] != participant
+      fail "Options :as is needed for #{reflection}" unless options[:as]
       collection = collection.where(options[:as] => options[:relative_to])
     end
     if collection.any?
@@ -33,5 +30,4 @@ module ParticipantsHelper
       end
     end
   end
-
 end

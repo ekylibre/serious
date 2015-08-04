@@ -1,5 +1,4 @@
 class Backend::GameTurnsController < Backend::BaseController
-
   def edit
     @game_turn = GameTurn.find(params[:id])
   end
@@ -12,6 +11,7 @@ class Backend::GameTurnsController < Backend::BaseController
   end
 
   private
+
   def game_turn_params
     params.require(:game_turn).permit(:started_at, :stopped_at)
   end

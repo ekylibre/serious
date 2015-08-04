@@ -25,6 +25,7 @@
 #  game_id    :integer          not null
 #  id         :integer          not null, primary key
 #  number     :integer          not null
+#  shift      :integer          default(0), not null
 #  started_at :datetime
 #  stopped_at :datetime
 #  updated_at :datetime
@@ -36,6 +37,7 @@
 #   duration: 0
 #   game: games_001
 #   number: 0
+#   shift: 0
 #
 
 # This model initially had no columns defined.  If you add columns to the

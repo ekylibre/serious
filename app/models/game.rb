@@ -22,7 +22,6 @@
 #
 #  created_at    :datetime
 #  description   :text
-#  historic_id   :integer
 #  id            :integer          not null, primary key
 #  map_height    :integer
 #  map_width     :integer
@@ -40,7 +39,6 @@ class Game < ActiveRecord::Base
   enumerize :state, in: [:planned, :loading, :ready, :running, :finished], default: :planned, predicates: true
   enumerize :turn_nature, in: [:month], default: :month
   belongs_to :scenario
-  belongs_to :historic
   has_many :actors
   has_many :broadcasts, through: :scenario
   has_many :farms
@@ -50,11 +48,11 @@ class Game < ActiveRecord::Base
   has_many :participants
   has_many :turns, -> { order(:number) }, class_name: 'GameTurn', dependent: :destroy, counter_cache: false
   has_many :users, through: :participations
-  #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :planned_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
   validates_numericality_of :map_height, :map_width, :turn_duration, allow_nil: true, only_integer: true
   validates_presence_of :name
-  #]VALIDATORS]
+  # ]VALIDATORS]
   validates_presence_of :planned_at, :turn_duration, :turn_nature, :state
 
   scope :active, -> { where(state: 'running') }
@@ -64,38 +62,37 @@ class Game < ActiveRecord::Base
 
   before_validation do
     self.planned_at ||= Time.now
-    if self.scenario
-      self.turn_nature ||= self.scenario.turn_nature
-      self.turns_count ||= self.scenario.turns_count
+    if scenario
+      self.turn_nature ||= scenario.turn_nature
+      self.turns_count ||= scenario.turns_count
     end
   end
 
   def update_turn(turn)
     started_at = turn.stopped_at
-    (turn.number + 1 .. turns_count).each { |i|
-      stopped_at = started_at + self.turn_duration.minutes
-      change_turn = self.turns.find_by(number: i)
+    (turn.number + 1..turns_count).each do |i|
+      stopped_at = started_at + turn_duration.minutes
+      change_turn = turns.find_by(number: i)
       change_turn.update!(started_at: started_at)
       change_turn.update!(stopped_at: stopped_at)
       started_at = stopped_at
-    }
+    end
   end
 
   after_save do
     # Prevents counter_cache use
-    GameTurn.destroy_all(game_id: self.id)
+    GameTurn.destroy_all(game_id: id)
     if self.turns_count
       started_at = self.planned_at
       self.turns_count.times do |index|
-        stopped_at = started_at + self.turn_duration.minutes
-        self.turns.create!(number: index + 1, started_at: started_at, stopped_at: stopped_at)
+        stopped_at = started_at + turn_duration.minutes
+        turns.create!(number: index + 1, started_at: started_at, stopped_at: stopped_at)
         started_at = stopped_at
       end
     end
   end
 
   class << self
-
     def import(file)
       hash = YAML.load_file(file).deep_symbolize_keys
       attributes = hash.slice(:name, :description, :planned_at, :turns_count, :turn_nature, :turn_duration, :map_width, :map_height)
@@ -107,7 +104,6 @@ class Game < ActiveRecord::Base
       attributes[:turn_duration] ||= 30
       attributes[:turn_nature] ||= :month
       attributes[:scenario] = Scenario.find_by(code: hash[:scenario]) if hash[:scenario]
-      attributes[:historic] = Historic.find_by(code: hash[:historic]) if hash[:historic]
       game = create!(attributes)
 
       hash[:farms].each do |code, farm|
@@ -124,47 +120,42 @@ class Game < ActiveRecord::Base
         game.participations.create!(participation.merge(participant: game.participants.find_by(code: participation[:participant]), user: User.find_by(email: participation[:user])))
       end if hash[:participations]
     end
-
   end
 
   # Returns current turn from now
   def current_turn(at = nil)
     at ||= Time.now
-    self.turns.at(at).first
+    turns.at(at).first
   end
 
   def last_turn
-    self.turns.last
+    turns.last
   end
 
   def reference_curves
-    self.scenario.curves.where(nature: 'reference')
+    scenario.curves.where(nature: 'reference')
   end
 
   def can_run?
-    self.ready? or self.planned?
+    self.ready? || self.planned?
   end
 
   # Launch the game
   def run!(force = false)
-    if state.planned? or force
-      self.load!
-    end
-    unless self.ready? or force
-      raise "Cannot run this game"
-    end
-    self.update_column(:state, :running)
+    self.load! if state.planned? || force
+    fail 'Cannot run this game' unless self.ready? || force
+    update_column(:state, :running)
   end
 
-  # Creates Ekylibre instances and load them with their historics
+  # Creates Ekylibre instances and load them
   def load!
-    self.update_column(:state, :loading)
-    hash = self.farms.inject({}) do |h, farm|
+    update_column(:state, :loading)
+    hash = farms.inject({}) do |h, farm|
       h[farm.unique_name] = {}
       h
     end
     # Serious::Tenant.create_instances(hash)
-    self.update_column(:state, :ready)
+    update_column(:state, :ready)
   end
 
   # #
@@ -175,6 +166,4 @@ class Game < ActiveRecord::Base
   #   end
   #   Serious::Tenant.write_nginx_snippet(instances)
   # end
-
-
 end

@@ -31,7 +31,6 @@
 #  updated_at  :datetime
 #
 
-
 class Scenario < ActiveRecord::Base
   extend Enumerize
   enumerize :currency, in: [:EUR], default: :EUR
@@ -39,19 +38,18 @@ class Scenario < ActiveRecord::Base
   has_many :broadcasts, -> { order(:release_turn) }, class_name: 'ScenarioBroadcast'
   has_many :curves, class_name: 'ScenarioCurve'
   has_many :games
-  #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_presence_of :code, :currency, :name
-  #]VALIDATORS]
+  # ]VALIDATORS]
   validates_uniqueness_of :name, :code
 
   accepts_nested_attributes_for :broadcasts
   accepts_nested_attributes_for :curves
 
   class << self
-
     def import(file)
       hash = YAML.load_file(file).deep_symbolize_keys
-      return if find_by(name: hash[:name]) or find_by(code: hash[:code])
+      return if find_by(name: hash[:name]) || find_by(code: hash[:code])
       scenario = create!(hash.slice(:code, :name, :description, :turn_nature, :turns_count, :currency))
       if hash[:broadcasts]
         hash[:broadcasts].each do |b|
@@ -70,11 +68,9 @@ class Scenario < ActiveRecord::Base
           else
             curve.generate!
           end
-          print "#"
+          print '#'
         end
       end
     end
-
   end
-
 end

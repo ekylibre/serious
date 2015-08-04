@@ -37,42 +37,36 @@ class Participation < ActiveRecord::Base
   belongs_to :game
   belongs_to :participant
   belongs_to :user
-  #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_presence_of :game, :nature, :user
-  #]VALIDATORS]
+  # ]VALIDATORS]
   validates_presence_of :participant, if: :player?
 
   delegate :name, to: :participant, prefix: true
 
   before_validation do
-    if self.organizer?
-      self.participant = nil
-    end
-    if self.participant
-      self.game ||= self.participant.game
-    end
+    self.participant = nil if self.organizer?
+    self.game ||= participant.game if participant
   end
 
   validate do
-    if self.game and self.participant
-      errors.add(:game, :invalid) if self.game != self.participant.game
+    if self.game && participant
+      errors.add(:game, :invalid) if self.game != participant.game
     end
   end
 
   def name
     if self.organizer?
-      self.nature.text
+      nature.text
     else
-      self.participant_name
+      participant_name
     end
   end
 
-
   # Define for current participation if given participant can be seen
   def can_see?(participant)
-    self.organizer? or
-      (self.participant.is_a?(Actor) and participant.is_a?(Farm)) or
-      (self.participant.is_a?(Farm) and participant.is_a?(Actor))
+    self.organizer? ||
+      (self.participant.is_a?(Actor) && participant.is_a?(Farm)) ||
+      (self.participant.is_a?(Farm) && participant.is_a?(Actor))
   end
-
 end

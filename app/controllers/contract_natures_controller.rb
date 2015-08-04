@@ -8,6 +8,7 @@ class ContractNaturesController < BaseController
   end
 
   protected
+
   def find_resource
     unless (@contract_nature = ContractNature.find_by(id: params[:id]))
       redirect_to params[:redirect] || root_url, alert: 'Contract nature not found'

@@ -30,8 +30,8 @@
 #
 class ScenarioBroadcast < ActiveRecord::Base
   belongs_to :scenario
-  #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :release_turn, allow_nil: true, only_integer: true
   validates_presence_of :name, :release_turn, :scenario
-  #]VALIDATORS]
+  # ]VALIDATORS]
 end

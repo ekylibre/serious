@@ -1,15 +1,14 @@
 module ApplicationHelper
-
   def resource
-    instance_variable_get('@' + self.controller_name.singularize)
+    instance_variable_get('@' + controller_name.singularize)
   end
 
   def resource_model
-    self.controller_name.singularize.camelize.constantize
+    controller_name.singularize.camelize.constantize
   end
 
   def collection
-    instance_variable_get('@' + self.controller_name)
+    instance_variable_get('@' + controller_name)
   end
 
   def field_set(*args, &block)
@@ -28,26 +27,22 @@ module ApplicationHelper
   end
 
   def action_title
-    if resource
-      @title_interpolations ||= resource.attributes.symbolize_keys
-    end
+    @title_interpolations ||= resource.attributes.symbolize_keys if resource
     options = @title_interpolations || {}
     options[:default] = []
-    options[:default] << (action_name == "index" ? controller_name.to_s.humanize : (action_name == "new") ? "New #{controller_name.to_s.singularize}" : "#{action_name.humanize}: %{name}")
+    options[:default] << (action_name == 'index' ? controller_name.to_s.humanize : (action_name == 'new') ? "New #{controller_name.to_s.singularize}" : "#{action_name.humanize}: %{name}")
     I18n.translate("actions.#{controller_path}.#{action_name}", options)
   end
 
-
   def nested_fields(items, f)
     item = items.to_s.singularize
-    content_tag(:div, id: items, class: "panel") do
+    content_tag(:div, id: items, class: 'panel') do
       f.simple_fields_for(:farms) do |nested|
         render("#{item}_fields", f: nested)
       end +
-        content_tag(:div, class: "links") do
-        link_to_add_association("add_#{item}".tl, f, items)
-      end
+        content_tag(:div, class: 'links') do
+          link_to_add_association("add_#{item}".tl, f, items)
+        end
     end
   end
-
 end

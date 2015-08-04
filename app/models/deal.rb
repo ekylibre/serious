@@ -37,10 +37,10 @@ class Deal < ActiveRecord::Base
   has_many :items, class_name: 'DealItem'
   enumerize :state, in: [:draft, :invoice], default: :draft
 
-  #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, allow_nil: true
   validates_presence_of :customer, :supplier
-  #]VALIDATORS]
+  # ]VALIDATORS]
 
   delegate :name, to: :supplier, prefix: true
   delegate :name, to: :customer, prefix: true
@@ -48,7 +48,7 @@ class Deal < ActiveRecord::Base
   accepts_nested_attributes_for :items
 
   before_validation do
-    self.amount = self.items.sum(:amount)
+    self.amount = items.sum(:amount)
   end
 
   before_validation do
@@ -57,7 +57,6 @@ class Deal < ActiveRecord::Base
   end
 
   def number
-    "D#{self.id}"
+    "D#{id}"
   end
-
 end

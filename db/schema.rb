@@ -88,9 +88,10 @@ ActiveRecord::Schema.define(version: 20150731090623) do
   add_index "deals", ["supplier_id"], name: "index_deals_on_supplier_id", using: :btree
 
   create_table "game_turns", force: :cascade do |t|
-    t.integer  "game_id",    null: false
-    t.integer  "number",     null: false
-    t.integer  "duration",   null: false
+    t.integer  "game_id",                null: false
+    t.integer  "number",                 null: false
+    t.integer  "duration",               null: false
+    t.integer  "shift",      default: 0, null: false
     t.datetime "started_at"
     t.datetime "stopped_at"
     t.datetime "created_at"
@@ -109,23 +110,12 @@ ActiveRecord::Schema.define(version: 20150731090623) do
     t.integer  "map_width"
     t.integer  "map_height"
     t.integer  "scenario_id"
-    t.integer  "historic_id"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "games", ["historic_id"], name: "index_games_on_historic_id", using: :btree
   add_index "games", ["scenario_id"], name: "index_games_on_scenario_id", using: :btree
-
-  create_table "historics", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "code",        null: false
-    t.string   "currency",    null: false
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "insurance_indemnifications", force: :cascade do |t|
     t.integer "insurance_id_id",                          null: false

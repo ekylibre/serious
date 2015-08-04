@@ -17,5 +17,4 @@ class BaseController < ApplicationController
       @current_turn = @current_game.current_turn.number if @current_game.current_turn
     end
   end
-
 end

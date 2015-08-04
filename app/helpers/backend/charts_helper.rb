@@ -18,7 +18,6 @@
 #
 
 module Backend::ChartsHelper
-
   OPTIONS = [:colors, :credits, :exporting, :labels, :legend, :loading, :navigation, :pane, :plot_options, :series, :subtitle, :title, :tooltip, :x_axis, :y_axis].inject({}) do |hash, name|
     hash[name] = name.to_s.gsub('_', '-') # camelize(:lower)
     hash
@@ -30,14 +29,16 @@ module Backend::ChartsHelper
   end.freeze
 
   def ligthen(color, rate)
-    r, g, b = color[1..2].to_i(16), color[3..4].to_i(16), color[5..6].to_i(16)
-    r *= (1+rate)
-    g *= (1+rate)
-    b *= (1+rate)
+    r = color[1..2].to_i(16)
+    g = color[3..4].to_i(16)
+    b = color[5..6].to_i(16)
+    r *= (1 + rate)
+    g *= (1 + rate)
+    b *= (1 + rate)
     r = 255 if r > 255
     g = 255 if g > 255
     b = 255 if b > 255
-    return '#' + r.to_i.to_s(16).rjust(2, '0') + g.to_i.to_s(16).rjust(2, '0') + b.to_i.to_s(16).rjust(2, '0')
+    '#' + r.to_i.to_s(16).rjust(2, '0') + g.to_i.to_s(16).rjust(2, '0') + b.to_i.to_s(16).rjust(2, '0')
   end
 
   for type, absolute_type in TYPES
@@ -72,13 +73,11 @@ module Backend::ChartsHelper
     eval(code)
   end
 
-
   def normalize_serie(values, x_values, default = 0.0)
-     data = []
-     for x in x_values
-       data << (values[x] || default).to_s.to_f
-     end
-     return data
+    data = []
+    for x in x_values
+      data << (values[x] || default).to_s.to_f
+    end
+    data
   end
-
 end

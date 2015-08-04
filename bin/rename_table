@@ -14,34 +14,32 @@ STDOUT.sync = true
 
 def execute(command)
   puts "#{command.send(@simulate ? :yellow : :red)}"
-  unless @simulate
-    system(command)
-  end
+  system(command) unless @simulate
 end
 
 def update_file(file, content)
-  action = File.exist?(file) ? "update" : "write"
+  action = File.exist?(file) ? 'update' : 'write'
   puts "#{action.send(@simulate ? :yellow : :red)} #{file}"
   unless @simulate
-    File.open(file, "wb") do |f|
+    File.open(file, 'wb') do |f|
       f.write content
     end
   end
 end
 
-options = {migrate: true}
+options = { migrate: true }
 OptionParser.new do |opts|
   opts.banner = "Usage: #{$PROGRAM_NAME} [options] <old_table> <new_table>"
 
-  opts.on_tail("-h", "--help", "Show this message") do
+  opts.on_tail('-h', '--help', 'Show this message') do
     puts opts
     exit
   end
-  opts.on_tail("-s", "--simulate", "Simulate changes") do
+  opts.on_tail('-s', '--simulate', 'Simulate changes') do
     options[:simulate] = true
     @simulate = true
   end
-  opts.on_tail("-m", "--[no-]migration", "Generate migration file") do |migrate|
+  opts.on_tail('-m', '--[no-]migration', 'Generate migration file') do |migrate|
     options[:migrate] = migrate
   end
 end.parse!
@@ -60,19 +58,19 @@ old_record = old_class.underscore
 new_record = new_class.underscore
 
 unless $PROGRAM_NAME.match(/^(.\/)?bin\//)
-  puts "Script must be started from Rails root."
+  puts 'Script must be started from Rails root.'
   exit 0
 end
 
-root = Pathname.new(".")
+root = Pathname.new('.')
 
 # db/migrate
 if options[:migrate]
   name = "rename_#{old_table}_to_#{new_table}"
 
   migrations = []
-  Dir.chdir(root.join("db", "migrate")) do
-    migrations += Dir.glob("*").collect{|f| f.split(/[\_\.]/)[1..-2].join("_")}
+  Dir.chdir(root.join('db', 'migrate')) do
+    migrations += Dir.glob('*').collect { |f| f.split(/[\_\.]/)[1..-2].join('_') }
   end
 
   if migrations.include? name
@@ -80,21 +78,21 @@ if options[:migrate]
     exit 1
   end
 
-  tables = YAML.load_file(root.join("db", "tables.yml")).deep_symbolize_keys
-  file = root.join("db", "migrate", Time.now.strftime('%Y%m%d%H%M%S') + "_#{name}.rb")
+  tables = YAML.load_file(root.join('db', 'tables.yml')).deep_symbolize_keys
+  file = root.join('db', 'migrate', Time.now.strftime('%Y%m%d%H%M%S') + "_#{name}.rb")
 
   code  = "class #{name.camelcase} < ActiveRecord::Migration\n\n"
   code << "  def change\n"
   code << "    rename_table :#{old_table}, :#{new_table}\n"
 
   # Polymorphic columns
-  up_code = ""
-  down_code = ""
+  up_code = ''
+  down_code = ''
   tables.each do |table, columns|
-    columns.each do |column, attributes|
+    columns.each do |_column, attributes|
       if attributes[:references] =~ /^\~/
         col = attributes[:references].gsub(/^\~/, '')
-        up_code   << "        execute \"UPDATE \#{quote_table_name(:#{table})} SET \#{quote_column_name(:#{col})}='#{new_class}' WHERE \#{quote_column_name(:#{col})}='#{old_class}'\"\n"
+        up_code << "        execute \"UPDATE \#{quote_table_name(:#{table})} SET \#{quote_column_name(:#{col})}='#{new_class}' WHERE \#{quote_column_name(:#{col})}='#{old_class}'\"\n"
         down_code << "        execute \"UPDATE \#{quote_table_name(:#{table})} SET \#{quote_column_name(:#{col})}='#{old_class}' WHERE \#{quote_column_name(:#{col})}='#{new_class}'\"\n"
       end
     end
@@ -110,7 +108,8 @@ if options[:migrate]
   code << "    end\n"
 
   # Special columns
-  table, col = :custom_fields, :customized_type
+  table = :custom_fields
+  col = :customized_type
   code << "    # Custom fields\n"
   code << "    reversible do |dir|\n"
   code << "      dir.up do\n"
@@ -121,7 +120,8 @@ if options[:migrate]
   code << "      end\n"
   code << "    end\n"
 
-  table, col = :listings, :root_model
+  table = :listings
+  col = :root_model
   code << "    # Listings\n"
   code << "    reversible do |dir|\n"
   code << "      dir.up do\n"
@@ -143,106 +143,92 @@ if options[:migrate]
   update_file(file, code)
 end
 
-app = root.join("app")
+app = root.join('app')
 
 # app/models
-of = app.join("models", "#{old_record}.rb")
-nf = app.join("models", "#{new_record}.rb")
-if File.exist?(of)
-  execute("git mv #{of} #{nf}")
-end
+of = app.join('models', "#{old_record}.rb")
+nf = app.join('models', "#{new_record}.rb")
+execute("git mv #{of} #{nf}") if File.exist?(of)
 if File.exist?(nf)
   execute("sed -i 's/class #{old_class} /class #{new_class} /' #{nf}")
 end
 
 # app/controllers
-of = app.join("controllers", "#{old_table}_controller.rb")
-nf = app.join("controllers", "#{new_table}_controller.rb")
-if File.exist?(of)
-  execute("git mv #{of} #{nf}")
-end
+of = app.join('controllers', "#{old_table}_controller.rb")
+nf = app.join('controllers', "#{new_table}_controller.rb")
+execute("git mv #{of} #{nf}") if File.exist?(of)
 if File.exist?(nf)
   execute("sed -i 's/class #{old_controller}Controller /class #{new_controller}Controller /' #{nf}")
 end
 
 # app/controllers/backend
-of = app.join("controllers", "backend", "#{old_table}_controller.rb")
-nf = app.join("controllers", "backend", "#{new_table}_controller.rb")
-if File.exist?(of)
-  execute("git mv #{of} #{nf}")
-end
+of = app.join('controllers', 'backend', "#{old_table}_controller.rb")
+nf = app.join('controllers', 'backend', "#{new_table}_controller.rb")
+execute("git mv #{of} #{nf}") if File.exist?(of)
 if File.exist?(nf)
   execute("sed -i 's/class Backend::#{old_controller}Controller /class Backend::#{new_controller}Controller /' #{nf}")
 end
 
 # app/views
-of = app.join("views", old_table)
-nf = app.join("views", new_table)
-if File.exist?(of)
-  execute("git mv #{of} #{nf}")
-end
+of = app.join('views', old_table)
+nf = app.join('views', new_table)
+execute("git mv #{of} #{nf}") if File.exist?(of)
 
 # app/views/backend
-of = app.join("views", "backend", old_table)
-nf = app.join("views", "backend", new_table)
-if File.exist?(of)
-  execute("git mv #{of} #{nf}")
-end
+of = app.join('views', 'backend', old_table)
+nf = app.join('views', 'backend', new_table)
+execute("git mv #{of} #{nf}") if File.exist?(of)
 
 # app/helpers
-of = app.join("helpers", "#{old_table}_helper.rb")
-nf = app.join("helpers", "#{new_table}_helper.rb")
-if File.exist?(of)
-  execute("git mv #{of} #{nf}")
-end
+of = app.join('helpers', "#{old_table}_helper.rb")
+nf = app.join('helpers', "#{new_table}_helper.rb")
+execute("git mv #{of} #{nf}") if File.exist?(of)
 if File.exist?(nf)
   execute("sed -i 's/module #{old_controller}Helper/module #{new_controller}Helper/' #{nf}")
 end
 
 # app/helpers/backend
-of = app.join("helpers", "backend", "#{old_table}_helper.rb")
-nf = app.join("helpers", "backend", "#{new_table}_helper.rb")
-if File.exist?(of)
-  execute("git mv #{of} #{nf}")
-end
+of = app.join('helpers', 'backend', "#{old_table}_helper.rb")
+nf = app.join('helpers', 'backend', "#{new_table}_helper.rb")
+execute("git mv #{of} #{nf}") if File.exist?(of)
 if File.exist?(nf)
   execute("sed -i 's/module Backend::#{old_controller}Helper/module Backend::#{new_controller}Helper/' #{nf}")
 end
 
-config = root.join("config")
+config = root.join('config')
 
 # config/locales/*/models.yml
-for file in Dir[config.join("locales", "*", "{models,enumerize}.yml")].sort
+for file in Dir[config.join('locales', '*', '{models,enumerize}.yml')].sort
   lf = Pathname(file)
   tr = YAML.load_file(lf)
   locale = tr.keys.first
-  if tr[locale]["activerecord"]
-    if tr[locale]["activerecord"]["attributes"]
-      if tr[locale]["activerecord"]["attributes"][old_record]
-        tr[locale]["activerecord"]["attributes"][new_record] = tr[locale]["activerecord"]["attributes"].delete(old_record)
+  if tr[locale]['activerecord']
+    if tr[locale]['activerecord']['attributes']
+      if tr[locale]['activerecord']['attributes'][old_record]
+        tr[locale]['activerecord']['attributes'][new_record] = tr[locale]['activerecord']['attributes'].delete(old_record)
       end
     end
-    if tr[locale]["activerecord"]["errors"]
-      if tr[locale]["activerecord"]["errors"]["models"]
-        if tr[locale]["activerecord"]["errors"]["models"][old_record]
-          tr[locale]["activerecord"]["errors"]["models"][new_record] = tr[locale]["activerecord"]["errors"]["models"].delete(old_record)
+    if tr[locale]['activerecord']['errors']
+      if tr[locale]['activerecord']['errors']['models']
+        if tr[locale]['activerecord']['errors']['models'][old_record]
+          tr[locale]['activerecord']['errors']['models'][new_record] = tr[locale]['activerecord']['errors']['models'].delete(old_record)
         end
       end
     end
-    if tr[locale]["activerecord"]["models"]
-      if tr[locale]["activerecord"]["models"][old_record]
-        tr[locale]["activerecord"]["models"][new_record] = tr[locale]["activerecord"]["models"].delete(old_record)
+    if tr[locale]['activerecord']['models']
+      if tr[locale]['activerecord']['models'][old_record]
+        tr[locale]['activerecord']['models'][new_record] = tr[locale]['activerecord']['models'].delete(old_record)
       end
     end
   end
-  if tr[locale]["enumerize"]
-    if tr[locale]["enumerize"][old_record]
-      tr[locale]["enumerize"][new_record] = tr[locale]["enumerize"].delete(old_record)
+  if tr[locale]['enumerize']
+    if tr[locale]['enumerize'][old_record]
+      tr[locale]['enumerize'][new_record] = tr[locale]['enumerize'].delete(old_record)
     end
     end
-  if tr[locale]["models"]
-    if tr[locale]["models"][old_record]
-      tr[locale]["models"][new_record] = tr[locale]["models"].delete(old_record)
+  if tr[locale]['models']
+    if tr[locale]['models'][old_record]
+      tr[locale]['models'][new_record] = tr[locale]['models'].delete(old_record)
     end
   end
 
@@ -251,25 +237,24 @@ for file in Dir[config.join("locales", "*", "{models,enumerize}.yml")].sort
   update_file(lf, code)
 end
 
-
 # config/locales/*/action.yml
-for file in Dir[config.join("locales", "*", "action.yml")].sort
+for file in Dir[config.join('locales', '*', 'action.yml')].sort
   lf = Pathname(file)
   tr = YAML.load_file(lf)
   locale = tr.keys.first
-  if tr[locale]["actions"]
-    if tr[locale]["actions"]["backend/#{old_table}"]
-      tr[locale]["actions"]["backend/#{new_table}"] = tr[locale]["actions"].delete("backend/#{old_table}")
+  if tr[locale]['actions']
+    if tr[locale]['actions']["backend/#{old_table}"]
+      tr[locale]['actions']["backend/#{new_table}"] = tr[locale]['actions'].delete("backend/#{old_table}")
     end
   end
-  if tr[locale]["controllers"]
-    if tr[locale]["controllers"]["backend/#{old_table}"]
-      tr[locale]["controllers"]["backend/#{new_table}"] = tr[locale]["controllers"].delete("backend/#{old_table}")
+  if tr[locale]['controllers']
+    if tr[locale]['controllers']["backend/#{old_table}"]
+      tr[locale]['controllers']["backend/#{new_table}"] = tr[locale]['controllers'].delete("backend/#{old_table}")
     end
   end
-  if tr[locale]["unroll"]
-    if tr[locale]["unroll"]["backend/#{old_table}"]
-      tr[locale]["unroll"]["backend/#{new_table}"] = tr[locale]["unroll"].delete("backend/#{old_table}")
+  if tr[locale]['unroll']
+    if tr[locale]['unroll']["backend/#{old_table}"]
+      tr[locale]['unroll']["backend/#{new_table}"] = tr[locale]['unroll'].delete("backend/#{old_table}")
     end
   end
 
@@ -279,20 +264,19 @@ for file in Dir[config.join("locales", "*", "action.yml")].sort
 end
 
 # config/locales/*/help/
-for file in Dir[config.join("locales", "*", "help", "#{old_table}-*.txt")].sort
+for file in Dir[config.join('locales', '*', 'help', "#{old_table}-*.txt")].sort
   of = Pathname.new(file)
-  nf = of.join("..", "#{new_table}-" + of.basename.to_s.split(/[\-\.]+/)[1..-2].join('-') + ".txt")
+  nf = of.join('..', "#{new_table}-" + of.basename.to_s.split(/[\-\.]+/)[1..-2].join('-') + '.txt')
   execute("git mv #{of} #{nf}")
 end
 
-# TODO Updates links in help files
-
+# TODO: Updates links in help files
 
 # config/navigation
-nf = config.join("navigation.xml")
+nf = config.join('navigation.xml')
 if nf.exist?
   source = nil
-  File.open(nf, "rb") do |f|
+  File.open(nf, 'rb') do |f|
     source = f.read
   end
 
@@ -302,10 +286,10 @@ else
 end
 
 # config/rights
-nf = config.join("rights.yml")
+nf = config.join('rights.yml')
 if nf.exist?
   source = nil
-  File.open(nf, "rb") do |f|
+  File.open(nf, 'rb') do |f|
     source = f.read
   end
   update_file(nf, source.gsub(/(\backend\/")#{old_table}(\#)/, '\1' + new_table + '\2'))
@@ -314,108 +298,92 @@ else
 end
 
 # config/routes.rb
-nf = config.join("routes.rb")
+nf = config.join('routes.rb')
 source = nil
-File.open(nf, "rb") do |f|
+File.open(nf, 'rb') do |f|
   source = f.read
 end
 update_file(nf, source.gsub(/(resources\ )+:#{old_table}(\,|\s|$)/, '\1:' + new_table + '\2'))
 
-test = root.join("test")
+test = root.join('test')
 
 # test/fixtures
-of = test.join("fixtures", "#{old_table}.yml")
-nf = test.join("fixtures", "#{new_table}.yml")
-if File.exist?(of)
-  execute("git mv #{of} #{nf}")
-end
+of = test.join('fixtures', "#{old_table}.yml")
+nf = test.join('fixtures', "#{new_table}.yml")
+execute("git mv #{of} #{nf}") if File.exist?(of)
 if File.exist?(nf)
   unless @simulate
     source = nil
-    File.open(nf, "rb") do |f|
+    File.open(nf, 'rb') do |f|
       source = f.read
     end
-    source.gsub!(/^#{old_table}_(\d+)\:/, new_table+'_\1:')
-    File.open(nf, "wb") do |f|
+    source.gsub!(/^#{old_table}_(\d+)\:/, new_table + '_\1:')
+    File.open(nf, 'wb') do |f|
       f.write source
     end
   end
 end
 
 # test/models
-of = test.join("models", "#{old_record}_test.rb")
-nf = test.join("models", "#{new_record}_test.rb")
-if File.exist?(of)
-  execute("git mv #{of} #{nf}")
-end
+of = test.join('models', "#{old_record}_test.rb")
+nf = test.join('models', "#{new_record}_test.rb")
+execute("git mv #{of} #{nf}") if File.exist?(of)
 if File.exist?(nf)
   execute("sed -i 's/class #{old_class}Test /class #{new_class}Test /' #{nf}")
 end
 
 # test/models/backend
-of = test.join("models", "backend", "#{old_record}_test.rb")
-nf = test.join("models", "backend", "#{new_record}_test.rb")
-if File.exist?(of)
-  execute("git mv #{of} #{nf}")
-end
+of = test.join('models', 'backend', "#{old_record}_test.rb")
+nf = test.join('models', 'backend', "#{new_record}_test.rb")
+execute("git mv #{of} #{nf}") if File.exist?(of)
 if File.exist?(nf)
   execute("sed -i 's/class Backend::#{old_class}Test /class Backend::#{new_class}Test /' #{nf}")
 end
 
 # test/helpers
-of = test.join("helpers", "#{old_table}_helper_test.rb")
-nf = test.join("helpers", "#{new_table}_helper_test.rb")
-if File.exist?(of)
-  execute("git mv #{of} #{nf}")
-end
+of = test.join('helpers', "#{old_table}_helper_test.rb")
+nf = test.join('helpers', "#{new_table}_helper_test.rb")
+execute("git mv #{of} #{nf}") if File.exist?(of)
 if File.exist?(nf)
   execute("sed -i 's/class #{old_controller}HelperTest /class #{new_controller}HelperTest /' #{nf}")
 end
 
 # test/helpers/backend
-of = test.join("helpers", "backend", "#{old_table}_helper_test.rb")
-nf = test.join("helpers", "backend", "#{new_table}_helper_test.rb")
-if File.exist?(of)
-  execute("git mv #{of} #{nf}")
-end
+of = test.join('helpers', 'backend', "#{old_table}_helper_test.rb")
+nf = test.join('helpers', 'backend', "#{new_table}_helper_test.rb")
+execute("git mv #{of} #{nf}") if File.exist?(of)
 if File.exist?(nf)
   execute("sed -i 's/class Backend::#{old_controller}HelperTest /class Backend::#{new_controller}HelperTest /' #{nf}")
 end
 
 # test/controllers
-of = test.join("controllers", "#{old_table}_controller_test.rb")
-nf = test.join("controllers", "#{new_table}_controller_test.rb")
-if File.exist?(of)
-  execute("git mv #{of} #{nf}")
-end
+of = test.join('controllers', "#{old_table}_controller_test.rb")
+nf = test.join('controllers', "#{new_table}_controller_test.rb")
+execute("git mv #{of} #{nf}") if File.exist?(of)
 if File.exist?(nf)
   execute("sed -i 's/class #{old_controller}ControllerTest /class #{new_controller}ControllerTest /' #{nf}")
 end
 
 # test/controllers/backend
-of = test.join("controllers", "backend", "#{old_table}_controller_test.rb")
-nf = test.join("controllers", "backend", "#{new_table}_controller_test.rb")
-if File.exist?(of)
-  execute("git mv #{of} #{nf}")
-end
+of = test.join('controllers', 'backend', "#{old_table}_controller_test.rb")
+nf = test.join('controllers', 'backend', "#{new_table}_controller_test.rb")
+execute("git mv #{of} #{nf}") if File.exist?(of)
 if File.exist?(nf)
   execute("sed -i 's/class Backend::#{old_controller}ControllerTest /class Backend::#{new_controller}ControllerTest /' #{nf}")
 end
 
-
-
 # General replacing
-for file in Dir[app.join("**", "*.rb")] + Dir[app.join("**", "*.yml")]
+for file in Dir[app.join('**', '*.rb')] + Dir[app.join('**', '*.yml')]
   source = nil
-  File.open(file, "rb") do |f|
+  File.open(file, 'rb') do |f|
     source = f.read
   end
   ns = source.dup
   ns.gsub!(/([^a-zA-Z0-9\_]|^)#{old_class}([^a-zA-Z0-9\_]|$)/, '\1' + new_class + '\2')
   # ns.gsub!(/^(\ +)has\_many\ \:#{old_table}(\s?)$/, '\1has_many :' + old_table + ', :class_name => "'+ new_class + '"')
   # ns.gsub!(/^(\ +)belongs\_to\ \:#{old_record}(\s?)$/, '\1belongs_to :' + old_record + ', :class_name => "'+ new_class + '"')
-  ns.gsub!(/^(\ +)has\_many\ \:#{old_table}(\s?)$/, '\1has_many :' + old_table + ', class_name: "'+ new_class + '"')
-  ns.gsub!(/^(\ +)belongs\_to\ \:#{old_record}(\s?)$/, '\1belongs_to :' + old_record + ', class_name: "'+ new_class + '"')
+  ns.gsub!(/^(\ +)has\_many\ \:#{old_table}(\s?)$/, '\1has_many :' + old_table + ', class_name: "' + new_class + '"')
+  ns.gsub!(/^(\ +)belongs\_to\ \:#{old_record}(\s?)$/, '\1belongs_to :' + old_record + ', class_name: "' + new_class + '"')
   ns.gsub!(/:model\ *\=\>\ *:#{old_table}([^a-z\_]|$)/, 'model: :' + new_table + '\1')
   ns.gsub!(/:model\ *\=\>\ *:#{old_record}([^a-z\_]|$)/, 'model: :' + new_record + '\1')
   ns.gsub!(/model\:\ *:#{old_table}([^a-z\_]|$)/, 'model: :' + new_table + '\1')
@@ -433,11 +401,7 @@ for file in Dir[app.join("**", "*.rb")] + Dir[app.join("**", "*.yml")]
   # ns.gsub!(/(search\_for[\(\ ]+:)#{old_table}\s*(\)|\,|$)/, '\1:' + new_table + '\2')
   # ns.gsub!(/(search\_for[\(\ ]+:)#{old_record}\s*(\)|\,|$)/, '\1:' + new_record + '\2')
 
-  if ns != source
-    update_file(file, ns)
-  end
+  update_file(file, ns) if ns != source
 end
 
-unless @simulate
-  puts "Clean with `rake clean` at the end".green
-end
+puts 'Clean with `rake clean` at the end'.green unless @simulate

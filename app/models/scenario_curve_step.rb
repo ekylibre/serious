@@ -30,9 +30,9 @@
 class ScenarioCurveStep < ActiveRecord::Base
   belongs_to :curve, class_name: 'ScenarioCurve'
   has_one :scenario, through: :curve
-  #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :turn, allow_nil: true, only_integer: true
   validates_numericality_of :amount, allow_nil: true
   validates_presence_of :amount, :curve, :turn
-  #]VALIDATORS]
+  # ]VALIDATORS]
 end
