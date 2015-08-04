@@ -123,6 +123,8 @@ ActiveRecord::Schema.define(version: 20150731090623) do
     t.date    "paid_on",                                  null: false
   end
 
+  add_index "insurance_indemnifications", ["insurance_id_id"], name: "index_insurance_indemnifications_on_insurance_id_id", using: :btree
+
   create_table "insurances", force: :cascade do |t|
     t.string  "nature",                                          null: false
     t.decimal "unit_pretax_amount",     precision: 19, scale: 4, null: false
@@ -136,6 +138,9 @@ ActiveRecord::Schema.define(version: 20150731090623) do
     t.decimal "amount",                 precision: 19, scale: 4
     t.decimal "excess_amount",          precision: 19, scale: 4
   end
+
+  add_index "insurances", ["insured_id"], name: "index_insurances_on_insured_id", using: :btree
+  add_index "insurances", ["insurer_id"], name: "index_insurances_on_insurer_id", using: :btree
 
   create_table "loans", force: :cascade do |t|
     t.integer  "borrower_id",                                   null: false

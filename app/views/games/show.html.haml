@@ -2,7 +2,7 @@
   %h1= h('Partie ') + content_tag(:strong, @game.name)
   - if current_participation.organizer?
     - if current_participation.game.can_run?
-      = link_to("Lancer la partie", run_game_path(current_participation.game), method: :post, class: "btn btn-default")
+      = link_to('Lancer la partie', run_game_path(current_participation.game), method: :post, class: 'btn btn-default')
   %p= @game.description
 
   - if @game.current_turn and (broadcasts = @game.broadcasts.where(release_turn: @game.current_turn.number)) and broadcasts.any?

@@ -20,8 +20,6 @@ class InsurancesController < BaseController
 
   def create
     @insurance = Insurance.new(insurance_params)
-    # @insurance.pretax_amount = @insurance.quantity_value * @insurance.unit_pretax_amount
-    # @insurance.unit_refundable_amount =  @insurance.quantity_value  * (@insurance.unit_pretax_amount * (1 + @insurance.tax_percentage / 100))
     @participant = Participant.find(@insurance.insurer_id)
     respond_to do |format|
       if @insurance.save
