@@ -26,12 +26,12 @@
 #  insured_id             :integer          not null
 #  insurer_id             :integer          not null
 #  nature                 :string           not null
-#  pretax_amount          :decimal(19, 4)   not null
+#  pretax_amount          :decimal(19, 4)
 #  quantity_unit          :string
 #  quantity_value         :decimal(19, 4)
 #  tax_percentage         :decimal(19, 4)
 #  unit_pretax_amount     :decimal(19, 4)   not null
-#  unit_refundable_amount :decimal(19, 4)   not null
+#  unit_refundable_amount :decimal(19, 4)
 #
 #
 # == Fixture: insurances
@@ -40,9 +40,7 @@
 #   insured: insureds_001
 #   insurer: insurers_001
 #   nature: "Lorem ipsum"
-#   pretax_amount: 0
 #   unit_pretax_amount: 0
-#   unit_refundable_amount: 0
 #
 
 # This model initially had no columns defined.  If you add columns to the

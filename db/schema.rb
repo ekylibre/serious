@@ -136,8 +136,8 @@ ActiveRecord::Schema.define(version: 20150731090623) do
   create_table "insurances", force: :cascade do |t|
     t.string  "nature",                                          null: false
     t.decimal "unit_pretax_amount",     precision: 19, scale: 4, null: false
-    t.decimal "pretax_amount",          precision: 19, scale: 4, null: false
-    t.decimal "unit_refundable_amount", precision: 19, scale: 4, null: false
+    t.decimal "pretax_amount",          precision: 19, scale: 4
+    t.decimal "unit_refundable_amount", precision: 19, scale: 4
     t.integer "insurer_id",                                      null: false
     t.integer "insured_id",                                      null: false
     t.decimal "quantity_value",         precision: 19, scale: 4

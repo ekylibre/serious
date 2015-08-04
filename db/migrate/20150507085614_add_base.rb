@@ -76,8 +76,8 @@ class AddBase < ActiveRecord::Migration
     create_table :insurances do |t|
       t.string      :nature,                  null: false
       t.decimal     :unit_pretax_amount ,     null: false, precision: 19, scale: 4
-      t.decimal     :pretax_amount,           null: false, precision: 19, scale: 4
-      t.decimal     :unit_refundable_amount,  null: false, precision: 19, scale: 4
+      t.decimal     :pretax_amount,                        precision: 19, scale: 4
+      t.decimal     :unit_refundable_amount,               precision: 19, scale: 4
       t.references  :insurer,                 null: false
       t.references  :insured,                 null: false
       t.decimal     :quantity_value, precision: 19, scale: 4

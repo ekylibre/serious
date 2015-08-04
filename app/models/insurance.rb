@@ -26,22 +26,27 @@
 #  insured_id             :integer          not null
 #  insurer_id             :integer          not null
 #  nature                 :string           not null
-#  pretax_amount          :decimal(19, 4)   not null
+#  pretax_amount          :decimal(19, 4)
 #  quantity_unit          :string
 #  quantity_value         :decimal(19, 4)
 #  tax_percentage         :decimal(19, 4)
 #  unit_pretax_amount     :decimal(19, 4)   not null
-#  unit_refundable_amount :decimal(19, 4)   not null
+#  unit_refundable_amount :decimal(19, 4)
 #
 class Insurance < ActiveRecord::Base
   extend Enumerize
   #[VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, :excess_amount, :pretax_amount, :quantity_value, :tax_percentage, :unit_pretax_amount, :unit_refundable_amount, allow_nil: true
-  validates_presence_of :insured, :insurer, :nature, :pretax_amount, :unit_pretax_amount, :unit_refundable_amount
+  validates_presence_of :insured, :insurer, :nature, :unit_pretax_amount
   #]VALIDATORS]
   belongs_to :insured, class_name: 'Participant'
   belongs_to :insurer, class_name: 'Participant'
 
   enumerize :nature, in: [:harvest]
+
+  before_save do
+    self.pretax_amount = self.quantity_value * self.unit_pretax_amount
+    self.unit_refundable_amount =  self.quantity_value  * (self.unit_pretax_amount * (1 + self.tax_percentage / 100))
+  end
 
 end
