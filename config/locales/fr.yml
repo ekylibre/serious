@@ -4,6 +4,9 @@ fr:
       index: "Parties"
       new: "Nouvelle partie"
       show: "Partie\_: %{name}"
+    backend/game_turns:
+      new: "Nouveau tour"
+      edit: "Modifier le tour\_: %{number}"
     backend/scenarios:
       index: "Scénarios"
       new: "Nouveau scénario"
