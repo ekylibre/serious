@@ -30,8 +30,6 @@
                   %span.glyphicon.glyphicon-hourglass
                   - if @current_game.running?
                     %span#main-countdown{data: {countdown: turn.stopped_at.utc.l(format: '%Y-%m-%dT%H:%M:%S'), countdown_restart: current_turn_games_path}}
-                  - else
-                    = "Pas encore lancée (dans #{distance_of_time_in_words_to_now(@current_game.planned_at)})"
               %li
                 %p.navbar-text
                   %span.glyphicon.glyphicon-calendar

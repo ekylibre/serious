@@ -3,6 +3,7 @@
   - if current_participation.organizer?
     - if current_participation.game.can_run?
       = link_to('Lancer la partie', run_game_path(current_participation.game), method: :post, class: 'btn btn-default')
+      - current_participation.game.rebuild_turns(Time.now)
   %p= @game.description
 
   - if @game.current_turn and (broadcasts = @game.broadcasts.where(release_turn: @game.current_turn.number)) and broadcasts.any?

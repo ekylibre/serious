@@ -79,17 +79,21 @@ class Game < ActiveRecord::Base
     end
   end
 
-  after_save do
-    # Prevents counter_cache use
+  def rebuild_turns(date)
     GameTurn.destroy_all(game_id: id)
     if self.turns_count
-      started_at = self.planned_at
+      started_at = date
       self.turns_count.times do |index|
         stopped_at = started_at + turn_duration.minutes
         turns.create!(number: index + 1, started_at: started_at, stopped_at: stopped_at)
         started_at = stopped_at
       end
     end
+  end
+
+  after_save do
+    # Prevents counter_cache use
+    rebuild_turns(self.planned_at)
   end
 
   class << self
@@ -124,8 +128,12 @@ class Game < ActiveRecord::Base
 
   # Returns current turn from now
   def current_turn(at = nil)
-    at ||= Time.now
-    turns.at(at).first
+    if self.running?
+      at ||= Time.now
+      turns.at(at).first
+    else
+      turns.first
+    end
   end
 
   def last_turn

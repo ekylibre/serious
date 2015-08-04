@@ -7,7 +7,7 @@
       - turn_info = h('Fin du tour (') + content_tag(:span, game.current_turn.number, {data:{number_turn: game.current_turn.number}, class: 'turn-number'}) + '/' + content_tag(:span, game.turns_count, {data:{all_turns: game.turns_count}, class:'turns-count'}) + ')&nbsp;: '.html_safe + content_tag(:span, nil, data: {countdown: game.current_turn.stopped_at.utc.l(format: '%Y-%m-%dT%H:%M:%S'), countdown_restart: current_turn_game_path(game) })
     = turn_info
   - else
-    = "Pas encore lancée (dans #{distance_of_time_in_words_to_now(game.planned_at)})"
+    = 'Pas encore lancée'
 -# %h4.list-group-item-heading
 %span
   = game.name
