@@ -21,19 +21,19 @@
               %li
                 = link_to(participant_path(current_participant)) do
                   %i.glyphicon.glyphicon-home
-            %li
-              = link_to(game_path(current_participation.game)) do
-                %i.glyphicon.glyphicon-th
-            - if (turn = current_game.current_turn)
+            - if @current_game.running?        
               %li
-                %p.navbar-text{title: turn.stopped_at.l}
-                  %span.glyphicon.glyphicon-hourglass
-                  - if @current_game.running?
+                = link_to(game_path(current_participation.game)) do
+                  %i.glyphicon.glyphicon-th
+              - if (turn = current_game.current_turn)
+                %li
+                  %p.navbar-text{title: turn.stopped_at.l}
+                    %span.glyphicon.glyphicon-hourglass
                     %span#main-countdown{data: {countdown: turn.stopped_at.utc.l(format: '%Y-%m-%dT%H:%M:%S'), countdown_restart: current_turn_games_path}}
-              %li
-                %p.navbar-text
-                  %span.glyphicon.glyphicon-calendar
-                  %span#turn-name.date= turn.name
+                %li
+                  %p.navbar-text
+                    %span.glyphicon.glyphicon-calendar
+                    %span#turn-name.date= turn.name
 
           - if current_user
             %li.dropdown

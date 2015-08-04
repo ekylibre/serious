@@ -128,12 +128,8 @@ class Game < ActiveRecord::Base
 
   # Returns current turn from now
   def current_turn(at = nil)
-    if self.running?
-      at ||= Time.now
-      turns.at(at).first
-    else
-      turns.first
-    end
+    at ||= Time.now
+    turns.at(at).first
   end
 
   def last_turn
