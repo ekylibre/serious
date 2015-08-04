@@ -1,70 +1,85 @@
 ---
 code: test
-name: Test
+name: Development game
 scenario: random
 farms:
-  F01:
-    name: Leblanc
+  guichard:
+    name: Guichard
     stand_number: SF01
     present: true
-  F02:
-    name: Ribeiro
+    application_url: http://guichard.serious.lan:3001
+  leblanc:
+    name: Leblanc
     stand_number: SF02
     present: true
-  F03:
-    name: Gautier
+    application_url: http://leblanc.serious.lan:3001
+  ribeiro:
+    name: Ribeiro
     stand_number: SF03
     present: true
-  F04:
-    name: Maury
+    application_url: http://ribeiro.serious.lan:3001
+  gautier:
+    name: Gautier
     stand_number: SF04
     present: true
-  F05:
-    name: Lacroix
+    application_url: http://gautier.serious.lan:3001
+  maury:
+    name: Maury
     stand_number: SF05
     present: true
-  F06:
-    name: Hardy
+    application_url: http://maury.serious.lan:3001
+  lacroix:
+    name: Lacroix
     stand_number: SF06
     present: true
-  F07:
-    name: Marin
+    application_url: http://lacroix.serious.lan:3001
+  hardy:
+    name: Hardy
     stand_number: SF07
     present: true
-  F08:
-    name: Chretien
+    application_url: http://hardy.serious.lan:3001
+  marin:
+    name: Marin
     stand_number: SF08
     present: true
-  F09:
-    name: Lebon
+    application_url: http://marin.serious.lan:3001
+  chretien:
+    name: Chretien
     stand_number: SF09
     present: true
-  F10:
-    name: Pichon
+    application_url: http://chretien.serious.lan:3001
+  lebon:
+    name: Lebon
     stand_number: SF10
     present: true
-  F11:
-    name: Rousset
+    application_url: http://lebon.serious.lan:3001
+  pichon:
+    name: Pichon
     stand_number: SF11
     present: true
-  F12:
-    name: Munoz
+    application_url: http://pichon.serious.lan:3001
+  rousset:
+    name: Rousset
     stand_number: SF12
     present: true
-  F13:
-    name: Maury (2)
+    application_url: http://rousset.serious.lan:3001
+  munoz:
+    name: Munoz
     stand_number: SF13
     present: true
-  F14:
-    name: Antoine
+    application_url: http://munoz.serious.lan:3001
+  maury-2:
+    name: Maury (2)
     stand_number: SF14
     present: true
-  F15:
-    name: Collin
+    application_url: http://maury-2.serious.lan:3001
+  antoine:
+    name: Antoine
     stand_number: SF15
     present: true
+    application_url: http://antoine.serious.lan:3001
 actors:
-  A01:
+  credit-agricole:
     name: Crédit Agricole
     stand_number: SA01
     present: true
@@ -104,7 +119,7 @@ actors:
       quota: 2
     - variant: cover_implanter
       quota: 2
-  A02:
+  groupama:
     name: Groupama
     stand_number: SA02
     present: false
@@ -144,7 +159,7 @@ actors:
       quota: 4
     - variant: manager
       quota: 4
-  A03:
+  unicoque:
     name: Unicoque
     stand_number: SA03
     present: false
@@ -184,7 +199,7 @@ actors:
       quota: 3
     - variant: grain_crusher
       quota: 3
-  A04:
+  terre-du-sud:
     name: Terre du Sud
     stand_number: SA04
     present: true
@@ -224,7 +239,7 @@ actors:
       quota: 7
     - variant: implanter
       quota: 7
-  A05:
+  razol:
     name: Razol
     stand_number: SA05
     present: true
@@ -264,7 +279,7 @@ actors:
       quota: 6
     - variant: motor_oil
       quota: 6
-  A06:
+  cer:
     name: CER
     stand_number: SA06
     present: false
@@ -304,47 +319,47 @@ actors:
       quota: 5
     - variant: trailer
       quota: 5
-  A07:
-    name: "@com"
+  acom:
+    name: Acom
     stand_number: SA07
-    present: false
-    insurer: false
-    contractor: false
-    supplier: false
-    customer: false
-    lender: true
+    present: true
+    insurer: true
+    contractor: true
+    supplier: true
+    customer: true
+    lender: false
     catalog_items:
     - variant: accommodation_travel
-      quota: 1
-    - variant: accommodation_travel
-      quota: 1
-    - variant: accommodation_travel
-      quota: 1
-    - variant: accommodation_travel
-      quota: 1
-    - variant: accommodation_travel
-      quota: 1
-    - variant: accommodation_travel
-      quota: 1
-    - variant: accommodation_travel
-      quota: 1
-    - variant: accommodation_travel
-      quota: 1
-    - variant: accommodation_travel
-      quota: 1
-    - variant: accommodation_travel
-      quota: 1
-    - variant: accommodation_travel
-      quota: 1
-    - variant: accommodation_travel
-      quota: 1
-    - variant: accommodation_travel
-      quota: 1
-    - variant: accommodation_travel
-      quota: 1
-    - variant: accommodation_travel
-      quota: 1
-  A08:
+      quota: 6
+    - variant: meal_travel
+      quota: 6
+    - variant: bos_vial
+      quota: 6
+    - variant: natural_water
+      quota: 6
+    - variant: cover_implanter
+      quota: 6
+    - variant: roll
+      quota: 6
+    - variant: grape_trailer
+      quota: 6
+    - variant: sower
+      quota: 6
+    - variant: hen_guano
+      quota: 6
+    - variant: trailer
+      quota: 6
+    - variant: land_parcel
+      quota: 6
+    - variant: air_compressor
+      quota: 6
+    - variant: motor_oil
+      quota: 6
+    - variant: calf
+      quota: 6
+    - variant: portable_computer
+      quota: 6
+  msa:
     name: MSA
     stand_number: SA08
     present: true
@@ -391,276 +406,276 @@ participations:
   nature: :organizer
 - user: michelle.guichard@heller.us
   nature: :organizer
-- participant: F01
+- participant: guichard
   user: celina.barthelemy@ebert.com
   nature: :player
-- participant: F01
+- participant: guichard
   user: elodie.rodrigues@daugherty.com
   nature: :player
-- participant: F01
+- participant: guichard
   user: aurelie.camus@mills.biz
   nature: :player
-- participant: F01
+- participant: guichard
   user: eric.leblanc@beahan.ca
   nature: :player
-- participant: F02
+- participant: leblanc
   user: jules.bousquet@franeckiwunsch.name
   nature: :player
-- participant: F02
+- participant: leblanc
   user: benjamin.aubry@johnston.co.uk
   nature: :player
-- participant: F02
+- participant: leblanc
   user: martin.goff@herzog.name
   nature: :player
-- participant: F02
+- participant: leblanc
   user: bernard.ribeiro@bailey.name
   nature: :player
-- participant: F03
+- participant: ribeiro
   user: margaret.coulon@cruickshankcollins.co.uk
   nature: :player
-- participant: F03
+- participant: ribeiro
   user: christelle.labbe@conroy.co.uk
   nature: :player
-- participant: F03
+- participant: ribeiro
   user: hortense.moreau@dachconroy.com
   nature: :player
-- participant: F03
+- participant: ribeiro
   user: camille.gautier@jacobi.us
   nature: :player
-- participant: F03
+- participant: gautier
   user: admin@ekylibre.org
   nature: :player
-- participant: F04
+- participant: gautier
   user: zacharie.bonnin@howegoldner.ca
   nature: :player
-- participant: F04
+- participant: gautier
   user: sebastien.bouchet@renner.ca
   nature: :player
-- participant: F04
+- participant: gautier
   user: monique.jacquot@treutel.us
   nature: :player
-- participant: F04
+- participant: gautier
   user: nicolas.maury@dubuquehirthe.biz
   nature: :player
-- participant: F04
+- participant: maury
   user: admin@ekylibre.org
   nature: :player
-- participant: F05
+- participant: maury
   user: franck.garcia@jewesswehner.info
   nature: :player
-- participant: F05
+- participant: maury
   user: louis.hamon@mraz.name
   nature: :player
-- participant: F05
+- participant: maury
   user: emilie.roche@bahringer.ca
   nature: :player
-- participant: F05
+- participant: maury
   user: pauline.lacroix@roob.ca
   nature: :player
-- participant: F06
+- participant: lacroix
   user: maryse.monnier@greenholt.co.uk
   nature: :player
-- participant: F06
+- participant: lacroix
   user: gregoire.becker@ankunding.info
   nature: :player
-- participant: F06
+- participant: lacroix
   user: diane.bertin@terry.biz
   nature: :player
-- participant: F06
+- participant: lacroix
   user: claude.hardy@erdman.name
   nature: :player
-- participant: F07
+- participant: hardy
   user: alix.levy@crooks.ca
   nature: :player
-- participant: F07
+- participant: hardy
   user: victoire.peltier@ward.name
   nature: :player
-- participant: F07
+- participant: hardy
   user: celine.lebrun@wyman.us
   nature: :player
-- participant: F07
+- participant: hardy
   user: christophe.marin@mantekuhic.us
   nature: :player
-- participant: F08
+- participant: marin
   user: celina.cordier@fisher.biz
   nature: :player
-- participant: F08
+- participant: marin
   user: pauline.brun@fahey.com
   nature: :player
-- participant: F08
+- participant: marin
   user: madeleine.martineau@steuber.biz
   nature: :player
-- participant: F08
+- participant: marin
   user: celine.chretien@stanton.co.uk
   nature: :player
-- participant: F08
+- participant: chretien
   user: admin@ekylibre.org
   nature: :player
-- participant: F09
+- participant: chretien
   user: genevieve.jacques@denesik.us
   nature: :player
-- participant: F09
+- participant: chretien
   user: elodie.vincent@zieme.us
   nature: :player
-- participant: F09
+- participant: chretien
   user: laetitia.da@boyer.info
   nature: :player
-- participant: F09
+- participant: chretien
   user: penelope.lebon@kerluke.name
   nature: :player
-- participant: F10
+- participant: lebon
   user: constance.bazin@russel.com
   nature: :player
-- participant: F10
+- participant: lebon
   user: andre.gimenez@mcglynn.co.uk
   nature: :player
-- participant: F10
+- participant: lebon
   user: eric.lelievre@gerlachjohnston.info
   nature: :player
-- participant: F10
+- participant: lebon
   user: franck.pichon@ledner.com
   nature: :player
-- participant: F10
+- participant: pichon
   user: admin@ekylibre.org
   nature: :player
-- participant: F11
+- participant: pichon
   user: lucy.traore@kirlin.biz
   nature: :player
-- participant: F11
+- participant: pichon
   user: charles.lambert@macejkovic.biz
   nature: :player
-- participant: F11
+- participant: pichon
   user: susanne.aubry@barton.name
   nature: :player
-- participant: F11
+- participant: pichon
   user: daniel.rousset@blanda.name
   nature: :player
-- participant: F12
+- participant: rousset
   user: francoise.begue@wintheiser.name
   nature: :player
-- participant: F12
+- participant: rousset
   user: marianne.lombard@grady.biz
   nature: :player
-- participant: F12
+- participant: rousset
   user: thomas.georges@beier.biz
   nature: :player
-- participant: F12
+- participant: rousset
   user: anne.munoz@ankundingschmitt.com
   nature: :player
-- participant: F12
+- participant: munoz
   user: admin@ekylibre.org
   nature: :player
-- participant: F13
+- participant: munoz
   user: anne.normand@mcglynn.info
   nature: :player
-- participant: F13
+- participant: munoz
   user: antoinette.buisson@schmitt.info
   nature: :player
-- participant: F13
+- participant: munoz
   user: astrid.leroy@abbottlynch.ca
   nature: :player
-- participant: F13
+- participant: munoz
   user: frederic.maury@goodwinkerluke.us
   nature: :player
-- participant: F13
+- participant: maury-2
   user: admin@ekylibre.org
   nature: :player
-- participant: F14
+- participant: maury-2
   user: alice.thomas@kemmer.info
   nature: :player
-- participant: F14
+- participant: maury-2
   user: theodore.roux@kozey.info
   nature: :player
-- participant: F14
+- participant: maury-2
   user: michelle.diaz@barrows.info
   nature: :player
-- participant: F14
+- participant: maury-2
   user: eric.antoine@brakus.co.uk
   nature: :player
-- participant: F15
+- participant: antoine
   user: aimee.pineau@mcculloughhamill.us
   nature: :player
-- participant: F15
+- participant: antoine
   user: adrien.francois@dietrich.ca
   nature: :player
-- participant: F15
+- participant: antoine
   user: elodie.giraud@torphy.co.uk
   nature: :player
-- participant: F15
+- participant: antoine
   user: bernadette.collin@conn.com
   nature: :player
-- participant: F15
-  user: admin@ekylibre.org
-  nature: :player
-- participant: A01
+- participant: credit-agricole
   user: juliette.marques@bernhard.com
   nature: :player
-- participant: A01
+- participant: credit-agricole
   user: pierre.mathieu@conroy.us
   nature: :player
-- participant: A01
+- participant: credit-agricole
   user: jacques.chauvin@watersnicolas.com
   nature: :player
-- participant: A01
+- participant: credit-agricole
   user: admin@ekylibre.org
   nature: :player
-- participant: A02
+- participant: groupama
   user: valentine.benard@quitzon.us
   nature: :player
-- participant: A02
+- participant: groupama
   user: helene.charrier@goyette.biz
   nature: :player
-- participant: A02
+- participant: groupama
   user: admin@ekylibre.org
   nature: :player
-- participant: A03
+- participant: unicoque
   user: odette.guibert@mcglynn.name
   nature: :player
-- participant: A03
+- participant: unicoque
   user: josephine.durand@ferrysatterfield.co.uk
   nature: :player
-- participant: A03
+- participant: unicoque
   user: marianne.munoz@kiehn.ca
   nature: :player
-- participant: A03
+- participant: unicoque
   user: admin@ekylibre.org
   nature: :player
-- participant: A04
+- participant: terre-du-sud
   user: thomas.richard@fadel.name
   nature: :player
-- participant: A04
+- participant: terre-du-sud
   user: mathilde.moreno@hauck.com
   nature: :player
-- participant: A04
+- participant: terre-du-sud
   user: benoit.levy@bernhard.com
   nature: :player
-- participant: A04
+- participant: terre-du-sud
   user: admin@ekylibre.org
   nature: :player
-- participant: A05
+- participant: razol
   user: christelle.lebon@trantow.info
   nature: :player
-- participant: A05
+- participant: razol
   user: admin@ekylibre.org
   nature: :player
-- participant: A06
+- participant: cer
   user: julien.richard@muller.com
   nature: :player
-- participant: A06
+- participant: cer
   user: admin@ekylibre.org
   nature: :player
-- participant: A07
+- participant: acom
   user: laure.guillet@bashirian.ca
   nature: :player
-- participant: A07
-  user: admin@ekylibre.org
-  nature: :player
-- participant: A08
+- participant: acom
   user: caroline.guillot@stoltenberg.info
   nature: :player
-- participant: A08
+- participant: acom
+  user: admin@ekylibre.org
+  nature: :player
+- participant: msa
   user: danielle.gillet@schambergermurphy.co.uk
   nature: :player
-- participant: A08
+- participant: msa
+  user: robert.garnier@stracke.name
+  nature: :player
+- participant: msa
   user: admin@ekylibre.org
   nature: :player

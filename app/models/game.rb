@@ -111,7 +111,7 @@ class Game < ActiveRecord::Base
       game = create!(attributes)
 
       hash[:farms].each do |code, farm|
-        game.farms.create! farm.slice(:name, :borrower, :lender, :customer, :supplier, :insured, :insurer, :subcontractor, :contractor, :zone_x, :zone_y, :zone_width, :zone_height, :present, :stand_number).merge(code: code)
+        game.farms.create! farm.slice(:name, :borrower, :lender, :customer, :supplier, :insured, :insurer, :subcontractor, :contractor, :zone_x, :zone_y, :zone_width, :zone_height, :present, :stand_number, :application_url).merge(code: code)
       end
 
       hash[:actors].each do |code, actor|

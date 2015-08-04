@@ -107,11 +107,6 @@ namespace :serious do
 
       farms = {}
       15.times do |index|
-        code = "F#{(index + 1).to_s.rjust(2, '0')}"
-        4.times do
-          user = users.shift
-          participations << { participant: code, user: user, nature: :player }
-        end
         name = users_hash[participations.last[:user]][:last_name].humanize
         root_name = name
         i = 1
@@ -119,21 +114,26 @@ namespace :serious do
           i += 1
           name = root_name + " (#{i})"
         end
+        code = name.parameterize
         value = I18n.transliterate(name.mb_chars.downcase).to_i(36)
-        farms[code] = { name: name, stand_number: 'S' + code, present: (value.modulo(20) > 1) }
+        farms[code] = { name: name, stand_number: "SF#{(index + 1).to_s.rjust(2, '0')}", present: (value.modulo(20) > 1), application_url: "http://#{code}.serious.lan:3001" }
         if value.modulo(10) > 6
           participations << { participant: code, user: 'admin@ekylibre.org', nature: :player }
+        end
+        4.times do
+          user = users.shift
+          participations << { participant: code, user: user, nature: :player }
         end
       end
       game[:farms] = farms
 
       actors = {}
-      ['Crédit Agricole', 'Groupama', 'Unicoque', 'Terre du Sud', 'Razol', 'CER', '@com', 'MSA'].each_with_index do |name, index|
+      ['Crédit Agricole', 'Groupama', 'Unicoque', 'Terre du Sud', 'Razol', 'CER', 'Acom', 'MSA'].each_with_index do |name, index|
         value = I18n.transliterate(name.mb_chars.downcase).to_i(36)
-        code = "A#{(index + 1).to_s.rjust(2, '0')}"
+        code = name.parameterize
         supplier = (value.modulo(10) > 3)
         customer = (value.modulo(25) > 15)
-        actors[code] = { name: name, stand_number: 'S' + code, present: (value.modulo(30) > 6), insurer: (value.modulo(21) > 9), contractor: (value.modulo(21) > 6), supplier: supplier, customer: customer, lender: !(supplier or customer) }
+        actors[code] = { name: name, stand_number: "SA#{(index + 1).to_s.rjust(2, '0')}", present: (value.modulo(30) > 6), insurer: (value.modulo(21) > 9), contractor: (value.modulo(21) > 6), supplier: supplier, customer: customer, lender: !(supplier or customer) }
         items = []
         15.times do |index|
           items << { variant: VARIANTS[(index * value).modulo(VARIANTS.size)], quota: 1 + value.modulo(7) }
@@ -150,7 +150,7 @@ namespace :serious do
 
       game[:participations] = participations
 
-      path = Rails.root.join('db', 'games', game[:name].parameterize + '.yml')
+      path = Rails.root.join('db', 'games', game[:code].parameterize + '.yml')
       FileUtils.mkdir_p(path.dirname)
       File.write(path, game.deep_stringify_keys.to_yaml)
       puts "Game '#{game[:name]}' was written in #{path}".yellow
@@ -179,6 +179,7 @@ namespace :serious do
   task :fake do
     ENV['SCENARIO'] ||= 'random'
     ENV['GAME'] ||= 'test'
+    ENV['GAME_NAME'] ||= 'Development game'
     ENV['TURNS'] ||= '12'
     Rake::Task['serious:fake:scenario'].invoke
     Rake::Task['serious:fake:game'].invoke
