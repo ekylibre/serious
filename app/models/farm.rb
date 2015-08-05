@@ -48,7 +48,6 @@
 #  zone_y            :integer
 #
 class Farm < Participant
-
   before_validation do
     self.borrower = true
     self.subcontractor = true

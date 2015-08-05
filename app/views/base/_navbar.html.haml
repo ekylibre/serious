@@ -21,7 +21,7 @@
               %li
                 = link_to(participant_path(current_participant)) do
                   %i.glyphicon.glyphicon-home
-            - if @current_game.running?        
+            - if @current_game.running?
               %li
                 = link_to(game_path(current_participation.game)) do
                   %i.glyphicon.glyphicon-th

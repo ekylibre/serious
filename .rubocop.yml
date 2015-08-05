@@ -5,6 +5,9 @@ AllCops:
     - 'tmp/**/*'
     - 'plugins/**/*'
     - 'db/schema.rb'
+    - 'bin/rails'
+    - 'bin/rake'
+    - 'bin/spring'
 
 Metrics/LineLength:
   Enabled: false
