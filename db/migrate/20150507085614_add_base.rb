@@ -87,6 +87,7 @@ class AddBase < ActiveRecord::Migration
       t.string :name,          null: false
       t.datetime :planned_at
       t.string :state
+      t.string :access_token
       t.string :turn_nature   # month (later, other could come: week, bimester, trimester, quater, semester)
       t.integer :turn_duration # in minutes
       t.integer :turns_count
@@ -121,6 +122,8 @@ class AddBase < ActiveRecord::Migration
       t.string :code,           null: false
       t.attachment :logo
       t.string :type
+      t.string :tenant
+      t.string :access_token
       t.string :application_url
       t.integer :zone_x
       t.integer :zone_y

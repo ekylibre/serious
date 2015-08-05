@@ -20,6 +20,7 @@
 #
 # == Table: participants
 #
+#  access_token      :string
 #  application_url   :string
 #  borrower          :boolean          default(FALSE), not null
 #  code              :string           not null
@@ -40,6 +41,7 @@
 #  stand_number      :string
 #  subcontractor     :boolean          default(FALSE), not null
 #  supplier          :boolean          default(FALSE), not null
+#  tenant            :string
 #  type              :string
 #  updated_at        :datetime
 #  zone_height       :integer
@@ -48,29 +50,20 @@
 #  zone_y            :integer
 #
 class Farm < Participant
+
+  validates :tenant, uniqueness: true
+
   before_validation do
     self.borrower = true
     self.subcontractor = true
     self.customer = true
     self.insured = true
+    self.tenant ||= self.code
+    self.access_token ||= Devise.friendly_token
   end
 
   validate do
     errors.add(:lender, :invalid) if lender
   end
 
-  # after_save :configure
-  # after_destroy :configure
-
-  # def create_instance
-  #   if Serious::Tenant.exist?(self.unique_name)
-  #     Serious::Tenant.drop(self.unique_name)
-  #   end
-  #   Serious::Tenant.create(self.unique_name)
-  #   # Serious::Tenant.load_fixtures(self.unique_name)
-  # end
-
-  # def configure
-  #   self.game.configure
-  # end
 end

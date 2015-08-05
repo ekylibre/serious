@@ -20,6 +20,7 @@
 #
 # == Table: participants
 #
+#  access_token      :string
 #  application_url   :string
 #  borrower          :boolean          default(FALSE), not null
 #  code              :string           not null
@@ -40,6 +41,7 @@
 #  stand_number      :string
 #  subcontractor     :boolean          default(FALSE), not null
 #  supplier          :boolean          default(FALSE), not null
+#  tenant            :string
 #  type              :string
 #  updated_at        :datetime
 #  zone_height       :integer

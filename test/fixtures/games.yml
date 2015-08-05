@@ -20,6 +20,7 @@
 #
 # == Table: games
 #
+#  access_token  :string
 #  created_at    :datetime
 #  description   :text
 #  id            :integer          not null, primary key

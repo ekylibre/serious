@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20150731090623) do
     t.string   "name",          null: false
     t.datetime "planned_at"
     t.string   "state"
+    t.string   "access_token"
     t.string   "turn_nature"
     t.integer  "turn_duration"
     t.integer  "turns_count"
@@ -160,6 +161,8 @@ ActiveRecord::Schema.define(version: 20150731090623) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "type"
+    t.string   "tenant"
+    t.string   "access_token"
     t.string   "application_url"
     t.integer  "zone_x"
     t.integer  "zone_y"

@@ -20,6 +20,7 @@
 #
 # == Table: games
 #
+#  access_token  :string
 #  created_at    :datetime
 #  description   :text
 #  id            :integer          not null, primary key
@@ -62,6 +63,7 @@ class Game < ActiveRecord::Base
 
   before_validation do
     self.planned_at ||= Time.now
+    self.access_token ||= Devise.friendly_token
     if scenario
       self.turn_nature ||= scenario.turn_nature
       self.turns_count ||= scenario.turns_count
@@ -162,12 +164,31 @@ class Game < ActiveRecord::Base
     update_column(:state, :ready)
   end
 
-  # #
-  # def configure
-  #   instances = self.farms.inject({}) do |hash, farm|
-  #     hash[farm.unique_id] = farm.attributes
-  #     hash
-  #   end
-  #   Serious::Tenant.write_nginx_snippet(instances)
-  # end
+  # Produce hash of configuration information of game
+  def configuration(options = {})
+    conf = {}.merge(options)
+    conf[:name] = self.name
+    conf[:description] = self.description if self.description?
+    conf[:planned_at] = self.planned_at if self.planned_at?
+    conf[:farms] = []
+    # Farms
+    farms.includes(:users).find_each do |farm|
+      users = []
+      farm.users.find_each do |user|
+        users << {
+          first_name: user.first_name,
+          last_name: user.last_name,
+          email: user.email
+        }
+      end
+      conf[:farms] << {
+        tenant: farm.tenant,
+        name: farm.name,
+        token: farm.access_token,
+        users: users
+      }
+    end
+    # TODO : Other guys
+    conf
+  end
 end

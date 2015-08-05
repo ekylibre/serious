@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  namespace :api do
+    namespace :v1 do
+      resources :games, only: [:show]
+    end
+  end
+
   namespace :backend do
     resources :actors
     resources :farms

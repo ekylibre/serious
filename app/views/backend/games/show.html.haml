@@ -1,5 +1,6 @@
 .well
   %p= resource.description
+  %p= resource.access_token
   %p
     :ruby
       organizers = resource.organizers.collect do |user|

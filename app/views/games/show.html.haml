@@ -1,5 +1,9 @@
 .container
   %h1= h('Partie ') + content_tag(:strong, @game.name)
+  - if current_user.administrator?
+    .well
+      %p Pour configurer les fermes, veuillez executer la commande suivante dans Ekylibre
+      %pre= "rake seriously:prepare GAME_URL=#{api_v1_game_url(@game)} TOKEN=#{Shellwords.escape(@game.access_token)}"
   - if current_participation.organizer?
     - if current_participation.game.can_run?
       = link_to('Lancer la partie', run_game_path(current_participation.game), method: :post, class: 'btn btn-default')
