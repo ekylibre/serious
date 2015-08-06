@@ -45,6 +45,8 @@ gem 'code_string'
 
 gem 'haml'
 
+gem 'rest-client'
+
 # Models helpers
 gem 'acts_as_list'
 gem 'state_machine'
