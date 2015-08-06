@@ -2,7 +2,7 @@
   = participant_card(@participant, title: "Boutique #{@participant.name}")
 
   .row
-    .col-md-6
+    .col-md-8
       .catalog
         %h3 Catalogue des produits
         .items-list
@@ -21,6 +21,6 @@
                     -# %span.btn.btn-default= quantity
                     = link_to({controller: :shops, action: :decrement, variant: catalog_item.variant}, method: :patch, class: 'btn btn-xs btn-default', disabled: quantity <= 0) do
                       %i.glyphicon.glyphicon-minus
-    .col-md-6
+    .col-md-4
       #cart= render 'cart', deal: @deal
 

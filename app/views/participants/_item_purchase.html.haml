@@ -1,5 +1,5 @@
 .col-xs-2= item.number
-.col-xs-5= link_to(item.supplier_name, participant_path(item.supplier))
+.col-xs-4= link_to(item.supplier_name, participant_path(item.supplier))
 .col-xs-3
   %span.label.label-info= item.state.text
-.col-xs-2.decimal= item.amount.l(currency: :EUR)
+.col-xs-3.decimal= item.amount.l(currency: :EUR)
