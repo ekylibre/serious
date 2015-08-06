@@ -21,6 +21,7 @@
 # == Table: insurances
 #
 #  amount                 :decimal(19, 4)
+#  created_at             :datetime
 #  excess_amount          :decimal(19, 4)
 #  id                     :integer          not null, primary key
 #  insured_id             :integer          not null
@@ -32,6 +33,7 @@
 #  tax_percentage         :decimal(19, 4)
 #  unit_pretax_amount     :decimal(19, 4)   not null
 #  unit_refundable_amount :decimal(19, 4)
+#  updated_at             :datetime
 #
 class Insurance < ActiveRecord::Base
   extend Enumerize

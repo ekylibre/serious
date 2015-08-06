@@ -33,10 +33,11 @@
 #
 class CatalogItem < ActiveRecord::Base
   extend Enumerize
+  belongs_to :participant
   enumerize :nature, in: [:product, :loan], default: :product, predicates: true
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :negative_margin_percentage, :positive_margin_percentage, :quota, allow_nil: true
-  validates_presence_of :negative_margin_percentage, :positive_margin_percentage, :quota, :variant
+  validates_presence_of :negative_margin_percentage, :participant, :positive_margin_percentage, :quota, :variant
   # ]VALIDATORS]
   validates_presence_of :nature
 

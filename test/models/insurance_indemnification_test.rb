@@ -20,10 +20,12 @@
 #
 # == Table: insurance_indemnifications
 #
-#  id              :integer          not null, primary key
-#  insurance_id_id :integer          not null
-#  paid_on         :date             not null
-#  sum             :decimal(19, 4)   not null
+#  amount       :decimal(19, 4)   not null
+#  created_at   :datetime
+#  id           :integer          not null, primary key
+#  insurance_id :integer          not null
+#  paid_on      :date             not null
+#  updated_at   :datetime
 #
 require 'test_helper'
 

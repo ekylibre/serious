@@ -20,15 +20,18 @@
 #
 # == Table: insurance_indemnifications
 #
-#  id              :integer          not null, primary key
-#  insurance_id_id :integer          not null
-#  paid_on         :date             not null
-#  sum             :decimal(19, 4)   not null
+#  amount       :decimal(19, 4)   not null
+#  created_at   :datetime
+#  id           :integer          not null, primary key
+#  insurance_id :integer          not null
+#  paid_on      :date             not null
+#  updated_at   :datetime
 #
 class InsuranceIndemnification < ActiveRecord::Base
+  belongs_to :insurance
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_date :paid_on, allow_blank: true, on_or_after: Date.civil(1, 1, 1)
-  validates_numericality_of :sum, allow_nil: true
-  validates_presence_of :paid_on, :sum
+  validates_numericality_of :amount, allow_nil: true
+  validates_presence_of :amount, :insurance, :paid_on
   # ]VALIDATORS]
 end

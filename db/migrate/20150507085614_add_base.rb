@@ -62,6 +62,7 @@ class AddBase < ActiveRecord::Migration
       t.integer :maximal_age
       t.string :impact_indicator_name
       t.decimal :impact_indicator_value, precision: 19, scale: 4
+      t.timestamps
     end
 
     create_table :insurances do |t|
@@ -75,12 +76,14 @@ class AddBase < ActiveRecord::Migration
       t.string :quantity_unit
       t.decimal :tax_percentage, precision: 19, scale: 4
       t.decimal :amount, precision: 19, scale: 4
+      t.timestamps
     end
 
     create_table :insurance_indemnifications do |t|
-      t.references :insurance_id, null: false
-      t.decimal :sum, null: false, precision: 19, scale: 4
+      t.references :insurance, null: false
+      t.decimal :amount, null: false, precision: 19, scale: 4
       t.date :paid_on, null: false
+      t.timestamps
     end
 
     create_table :games do |t|
