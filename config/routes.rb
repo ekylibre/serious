@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       delete :remove
       patch :decrement
       put :checkout
+      patch :change_quantity, to: 'shops#change_quantity', path: 'change_quantity'
     end
   end
   resources :users

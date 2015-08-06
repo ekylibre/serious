@@ -74,6 +74,8 @@ fr:
     my_lendings: "Mes prêts"
     my_borrowings: "Mes emprunts"
     value: "Valeur"
+    new_quantity: "Nouvelle quantité"
+
   rest:
     actions:
       new: "Ajouter"

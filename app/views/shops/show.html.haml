@@ -2,7 +2,7 @@
   = participant_card(@participant, title: "Boutique #{@participant.name}")
 
   .row
-    .col-md-8
+    .col-md-6
       .catalog
         %h3 Catalogue des produits
         .items-list
@@ -21,35 +21,6 @@
                     -# %span.btn.btn-default= quantity
                     = link_to({controller: :shops, action: :decrement, variant: catalog_item.variant}, method: :patch, class: 'btn btn-xs btn-default', disabled: quantity <= 0) do
                       %i.glyphicon.glyphicon-minus
-    .col-md-4
-      - if @deal.items.any?
-        .cart
-          %h3= :cart.tl
-          .cart-content
-            %table.table
-              %thead
-                %tr
-                  %th Article
-                  %th Quantité
-                  %th Montant
-                  %th
-                    %span.glyphicon.glyphicon-remove
-              %tfoot
-                %tr
-                  %th.deal-amount{colspan: 2}= "Total"
-                  %th.deal-amount{colspan: 2}= @deal.amount.l(currency: :EUR)
-              %tbody
-                - @deal.items.each do |item|
-                  %tr
-                    %td= item.variant_name
-                    %td= item.quantity
-                    %td= item.amount.l(currency: :EUR)
-                    %td
-                      = link_to({controller: :shops, action: :remove, variant: item.variant}, method: :delete) do
-                        %i.glyphicon.glyphicon-remove
-            = link_to('Valider la commande', {controller: :shops, action: :checkout}, method: :put, class: 'btn btn-primary btn-block')
-      - else
-        .help-block
-          .help-content Cliquez sur les produits désirés pour les ajouter au panier.
-      = items_block(current_participant, :purchases, relative_to: @participant, as: :supplier, wrap: {})
-      = items_block(current_participant, :sales,     relative_to: @participant, as: :customer, wrap: {})
+    .col-md-6
+      #cart= render 'cart', deal: @deal
+

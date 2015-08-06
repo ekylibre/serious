@@ -40,6 +40,20 @@ class ShopsController < BaseController
     redirect_to participant_url
   end
 
+  def change_quantity
+    if params[:quantity].to_d >= 1
+      item = @deal.items.find_by(id: params[:item_id])
+      item.update_attribute(:quantity, params[:quantity])
+      item.save!
+      @deal.save!
+    else
+      @deal.items.destroy(DealItem.find_by(id: params[:item_id]))
+    end
+    if request.xhr?
+      render partial: 'cart',locals: {deal: @deal}
+    end
+  end
+
   protected
 
   def find_records

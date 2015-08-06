@@ -1,0 +1,33 @@
+- if deal.items.any?
+  .cart
+    %h3= :cart.tl
+    .cart-content
+      %table.table
+        %thead
+          %tr
+            %th Article
+            %th Quantité
+            %th Montant
+            %th
+              %span.glyphicon.glyphicon-remove
+        %tfoot
+          %tr
+            %th.deal-amount{colspan: 2}= 'Total'
+            %th.deal-amount{colspan: 2}= deal.amount.l(currency: :EUR)
+        %tbody
+          - deal.items.each do |item|
+            %tr
+              %td= item.variant_name
+              %td
+                = link_to(item.quantity, change_quantity_shop_path(@participant, item_id: item.id), remote: true, method: :patch, data: {change_quantity: :new_quantity.tl} )
+              %td= item.amount.l(currency: :EUR)
+              %td
+                = link_to({controller: :shops, action: :remove, variant: item.variant}, method: :delete) do
+                  %i.glyphicon.glyphicon-remove
+      = link_to('Valider la commande', {controller: :shops, action: :checkout}, method: :put, class: 'btn btn-primary btn-block')
+- else
+  .help-block
+    .help-content Cliquez sur les produits désirés pour les ajouter au panier.
+
+= items_block(current_participant, :purchases, relative_to: @participant, as: :supplier, wrap: {})
+= items_block(current_participant, :sales,     relative_to: @participant, as: :customer, wrap: {})
