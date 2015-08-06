@@ -46,6 +46,6 @@ class Insurance < ActiveRecord::Base
 
   before_save do
     self.pretax_amount = quantity_value * unit_pretax_amount
-    self.unit_refundable_amount =  quantity_value * (unit_pretax_amount * (1 + tax_percentage / 100))
+    self.unit_refundable_amount = quantity_value * (unit_pretax_amount * (1 + tax_percentage / 100))
   end
 end

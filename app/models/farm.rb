@@ -50,7 +50,6 @@
 #  zone_y            :integer
 #
 class Farm < Participant
-
   validates :tenant, uniqueness: true
 
   before_validation do
@@ -58,12 +57,11 @@ class Farm < Participant
     self.subcontractor = true
     self.customer = true
     self.insured = true
-    self.tenant ||= self.code
+    self.tenant ||= code
     self.access_token ||= Devise.friendly_token
   end
 
   validate do
     errors.add(:lender, :invalid) if lender
   end
-
 end

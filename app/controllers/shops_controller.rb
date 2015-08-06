@@ -48,9 +48,7 @@ class ShopsController < BaseController
     else
       @deal.items.destroy(DealItem.find_by(id: params[:item_id]))
     end
-    if request.xhr?
-      render partial: 'cart',locals: {deal: @deal}
-    end
+    render partial: 'cart', locals: { deal: @deal } if request.xhr?
   end
 
   protected

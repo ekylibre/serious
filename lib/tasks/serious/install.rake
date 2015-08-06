@@ -18,7 +18,7 @@ namespace :serious do
 
       game_domain = "#{game_name}.#{domain}"
       # /etc/nginx/site-availables/serious.conf
-      conf  = "# Config for Serious Game\n\n"
+      conf = "# Config for Serious Game\n\n"
 
       conf << "upstream #{app_name}_#{game_name} {\n"
       conf << "  server unix:/var/run/#{app_name}/#{game_name}/web.socket fail_timeout=0;\n"

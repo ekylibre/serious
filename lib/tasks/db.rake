@@ -5,7 +5,7 @@ namespace :db do
     ActiveRecord::Base.connection.execute 'CREATE EXTENSION IF NOT EXISTS postgis SCHEMA postgis;'
   end
 
-  task rebuild: ["db:drop", "db:create", "db:migrate", "db:seed"]
+  task rebuild: ['db:drop', 'db:create', 'db:migrate', 'db:seed']
 end
 
 Rake::Task['db:create'].enhance do

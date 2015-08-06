@@ -6,33 +6,33 @@ class AddBase < ActiveRecord::Migration
       t.string :name,         null: false
       t.string :code,         null: false
       t.string :currency,     null: false
-      t.string :turn_nature               # month
-      t.string :turns_count,  null: false # 12 seems to be minimum
+      t.string :turn_nature # month
+      t.string :turns_count, null: false # 12 seems to be minimum
       t.text :description
       t.timestamps
     end
 
     create_table :scenario_broadcasts do |t|
-      t.references :scenario,     null: false, index: true
-      t.string :name,         null: false
+      t.references :scenario, null: false, index: true
+      t.string :name, null: false
       t.integer :release_turn, null: false
       t.text :content
       t.timestamps
     end
 
     create_table :scenario_curves do |t|
-      t.references :scenario,    null: false, index: true
+      t.references :scenario, null: false, index: true
       t.string :nature,      null: false # variant, loan_interest, reference
       t.string :name,        null: false
       t.string :code,        null: false
       t.string :unit_name
       t.string :variant_indicator_name
       t.string :variant_indicator_unit
-      t.string :interpolation_method  # linear, previous, next
+      t.string :interpolation_method # linear, previous, next
       t.text :description
       # Curve generator
-      t.references :reference,                index: true
-      t.decimal :initial_amount,           precision: 19, scale: 4
+      t.references :reference, index: true
+      t.decimal :initial_amount, precision: 19, scale: 4
       t.integer :amount_round
       t.decimal :amplitude_factor,         precision: 19, scale: 4, null: false, default: 1
       t.decimal :offset_amount,            precision: 19, scale: 4, null: false, default: 0
@@ -42,20 +42,20 @@ class AddBase < ActiveRecord::Migration
     end
 
     create_table :scenario_curve_steps do |t|
-      t.references :curve,  null: false, index: true
+      t.references :curve, null: false, index: true
       t.integer :turn,   null: false
       t.decimal :amount, precision: 19, scale: 4, null: false
       t.timestamps
     end
 
     create_table :scenario_issues do |t|
-      t.references :scenario,         null: false, index: true
+      t.references :scenario, null: false, index: true
       t.string :name,             null: false
       t.string :description,      null: false
-      t.integer :turn,             null: false
+      t.integer :turn, null: false
       t.string :nature,           null: false
       t.string :variety,          null: false
-      t.integer :trigger_turn,     null: false
+      t.integer :trigger_turn, null: false
       t.multi_polygon :shape
       t.decimal :destruction_percentage, precision: 19, scale: 4
       t.integer :minimal_age
@@ -84,22 +84,22 @@ class AddBase < ActiveRecord::Migration
     end
 
     create_table :games do |t|
-      t.string :name,          null: false
+      t.string :name, null: false
       t.datetime :planned_at
       t.string :state
       t.string :access_token
-      t.string :turn_nature   # month (later, other could come: week, bimester, trimester, quater, semester)
+      t.string :turn_nature # month (later, other could come: week, bimester, trimester, quater, semester)
       t.integer :turn_duration # in minutes
       t.integer :turns_count
       t.integer :map_width
       t.integer :map_height
-      t.references :scenario,                    index: true
+      t.references :scenario, index: true
       t.text :description
       t.timestamps
     end
 
     create_table :game_turns do |t|
-      t.references :game,           null: false, index: true
+      t.references :game, null: false, index: true
       t.integer :number,         null: false
       t.integer :duration,       null: false # in real life
       t.integer :shift,          null: false, default: 0
@@ -111,13 +111,13 @@ class AddBase < ActiveRecord::Migration
     create_table :participations do |t|
       t.references :game,           null: false, index: true
       t.references :user,           null: false, index: true
-      t.string :nature,         null: false
-      t.references :participant,                 index: true
+      t.string :nature, null: false
+      t.references :participant, index: true
       t.timestamps
     end
 
     create_table :participants do |t|
-      t.references :game,           null: false, index: true
+      t.references :game, null: false, index: true
       t.string :name,           null: false
       t.string :code,           null: false
       t.attachment :logo
@@ -152,10 +152,10 @@ class AddBase < ActiveRecord::Migration
     end
 
     create_table :contracts do |t|
-      t.references :contractor,     null: false, index: true
-      t.references :subcontractor,               index: true
-      t.references :nature,         null: false, index: true
-      t.integer :delivery_turn,  null: false
+      t.references :contractor, null: false, index: true
+      t.references :subcontractor, index: true
+      t.references :nature, null: false, index: true
+      t.integer :delivery_turn, null: false
       t.decimal :quantity, precision: 19, scale: 4, null: false
       t.string :state
       t.timestamps
@@ -164,12 +164,12 @@ class AddBase < ActiveRecord::Migration
     create_table :deals do |t|
       t.references :customer,    null: false, index: true
       t.references :supplier,    null: false, index: true
-      t.decimal :amount,      precision: 19, scale: 4
+      t.decimal :amount, precision: 19, scale: 4
       t.timestamps
     end
 
     create_table :deal_items do |t|
-      t.references :deal,        null: false, index: true
+      t.references :deal, null: false, index: true
       t.string :variant
       t.string :tax
       t.decimal :quantity,           precision: 19, scale: 4
@@ -191,8 +191,8 @@ class AddBase < ActiveRecord::Migration
     end
 
     create_table :catalog_items do |t|
-      t.references :participant,  null: false, index: true
-      t.string :variant,      null: false, index: true
+      t.references :participant, null: false, index: true
+      t.string :variant, null: false, index: true
       t.string :nature
       t.decimal :quota,                      precision: 19, scale: 4, null: false
       t.decimal :positive_margin_percentage, precision: 19, scale: 4, null: false, default: 0

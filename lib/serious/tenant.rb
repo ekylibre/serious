@@ -45,7 +45,7 @@ module Serious
         root = Rails.env.development? ? Rails.root.join('config', 'environments', 'development') : Pathname.new('/')
         file = options[:file] || root.join('etc', 'nginx', 'snippets', name)
 
-        conf  = "# Config for Serious Game\n"
+        conf = "# Config for Serious Game\n"
         conf << "# Generated automatically.\n"
         conf << "# Include this file in your Ekylibre server\n"
         instances.each do |name, _details|

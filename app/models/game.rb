@@ -167,8 +167,8 @@ class Game < ActiveRecord::Base
   # Produce hash of configuration information of game
   def configuration(options = {})
     conf = {}.merge(options)
-    conf[:name] = self.name
-    conf[:description] = self.description if self.description?
+    conf[:name] = name
+    conf[:description] = description if self.description?
     conf[:planned_at] = self.planned_at if self.planned_at?
     conf[:farms] = []
     # Farms
