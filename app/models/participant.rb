@@ -51,7 +51,7 @@
 #
 class Participant < ActiveRecord::Base
   belongs_to :game
-  has_many :catalog_items
+  has_many :catalog_items, inverse_of: :participant
   has_many :participations
   has_many :users, through: :participations
   has_many :sales,      class_name: 'Deal', foreign_key: :supplier_id
@@ -117,7 +117,28 @@ class Participant < ActiveRecord::Base
     list
   end
 
-  def url
-    "https://ekylibre.game-of-farms/#{unique_id}/"
+  def domain
+    application_url.gsub(/^https?:\/\//, '').gsub(/\:\d+$/, '')
   end
+
+
+  # Perform a POST access on REST API of foreign app
+  def post(path, params = {}, options = {})
+    options[:content_type] ||= :json
+    options[:Authorization] = "simple-token #{self.access_token}"
+    RestClient.post(request_url(path), params.to_json, options)
+  end
+
+  # Perform a GET access on REST API of foreign app
+  def get(path, params = {}, options = {})
+    options[:accept] ||= :json
+    options[:params] = params
+    options[:Authorization] = "simple-token #{self.access_token}"
+    RestClient.get(request_url(path), options)
+  end
+
+  def request_url(path = nil)
+    "#{self.application_url}/seriously/v1#{path}"
+  end
+
 end

@@ -33,6 +33,8 @@
 #  variant            :string
 #
 class DealItem < ActiveRecord::Base
+  extend Enumerize
+  enumerize :tax, in: [:french_vat_null, :french_vat_regular_2014]
   belongs_to :deal
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, :pretax_amount, :quantity, :unit_amount, :unit_pretax_amount, allow_nil: true

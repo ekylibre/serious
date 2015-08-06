@@ -38,18 +38,9 @@ The seeds are generated from existing scenarios, historics and games soted in +d
 
 === Services (job queues, cache servers, search engines, etc.)
 
-Nginx is needed to develop or deploy app.
-
-  apt-get install nginx
-
-In dev mode, we need to configure nginx and bind:
-
-  sudo rake install
-
-
 Launch ekylibre:
 
-  ELEVATOR=header rails s -p 3001
+  rails s -p 3001
 
 
 === Deployment instructions

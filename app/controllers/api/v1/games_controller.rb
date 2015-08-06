@@ -1,8 +1,8 @@
 class Api::V1::GamesController < Api::V1::BaseController
   def show
     @game = Game.find(params[:id])
-    token = request.headers['X-Serious-Auth-Token'] || request.headers['X-Auth-Token']
-    unless @game.access_token == token
+    authorization = request.headers['Authorization'].to_s.strip.split(/\s+/)
+    unless authorization.first == "g-token" && authorization.second == @game.access_token
       head :forbidden
       return
     end

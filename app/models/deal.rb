@@ -57,9 +57,33 @@ class Deal < ActiveRecord::Base
   end
 
   def checkout
-    # TODO: JSON call to farm
-    # post_json(url, {sale: {variant: #variant_name}, client: {code:, name:} })
+    items = self.items.collect do |item|
+      item.attributes.slice(:variant, :tax, :unit_pretax_amount, :unit_amount, :pretax_amount, :amount, :quantity)
+    end
 
+    # Send data to customer
+    # For a customer, a deal is a purchase
+    if self.customer.application_url?
+      self.customer.post("/purchases", {
+                           supplier: {
+                             last_name: supplier.name,
+                             code: supplier.code
+                           },
+                           items: items
+                         })
+    end
+
+    # Send data to supplier
+    # For a supplier, a deal is a sale
+    if self.supplier.application_url?
+      self.supplier.post("/sales", {
+                           customer: {
+                             last_name: customer.name,
+                             code: customer.code
+                           },
+                           items: items
+                         })
+    end
 
     update_column(:state, :invoice)
   end
