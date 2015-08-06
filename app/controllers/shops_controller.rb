@@ -35,8 +35,7 @@ class ShopsController < BaseController
   end
 
   def checkout
-    @deal.state = 'invoice'
-    @deal.save!
+    @deal.checkout
     redirect_to participant_url
   end
 

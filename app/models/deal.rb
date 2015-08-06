@@ -56,6 +56,13 @@ class Deal < ActiveRecord::Base
     self.amount ||= 0
   end
 
+  def checkout
+    # TODO: JSON call to farm
+    # post_json(url, {sale: {}, client: {}})
+
+    update_column(:state, :invoice)
+  end
+
   def number
     "D#{id}"
   end
