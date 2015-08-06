@@ -58,7 +58,8 @@ class Deal < ActiveRecord::Base
 
   def checkout
     # TODO: JSON call to farm
-    # post_json(url, {sale: {}, client: {}})
+    # post_json(url, {sale: {variant: #variant_name}, client: {code:, name:} })
+
 
     update_column(:state, :invoice)
   end
