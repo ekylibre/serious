@@ -90,34 +90,49 @@ actors:
     lender: true
     catalog_items:
     - variant: accommodation_travel
+      tax: french_vat_normal_2014
       quota: 2
     - variant: car
+      tax: french_vat_normal_2014
       quota: 2
     - variant: grinder
+      tax: french_vat_normal_2014
       quota: 2
     - variant: irrigation_water
+      tax: french_vat_normal_2014
       quota: 2
     - variant: mower
+      tax: french_vat_normal_2014
       quota: 2
     - variant: server_rental
+      tax: french_vat_normal_2014
       quota: 2
     - variant: trailer
+      tax: french_vat_normal_2014
       quota: 2
     - variant: bos_vial
+      tax: french_vat_normal_2014
       quota: 2
     - variant: grain_crusher
+      tax: french_vat_normal_2014
       quota: 2
     - variant: hydraulic_oil
+      tax: french_vat_normal_2014
       quota: 2
     - variant: mineral_cleaner
+      tax: french_vat_normal_2014
       quota: 2
     - variant: reaper
+      tax: french_vat_normal_2014
       quota: 2
     - variant: spreader
+      tax: french_vat_normal_2014
       quota: 2
     - variant: air_compressor
+      tax: french_vat_normal_2014
       quota: 2
     - variant: cover_implanter
+      tax: french_vat_normal_2014
       quota: 2
   groupama:
     name: Groupama
@@ -130,34 +145,49 @@ actors:
     lender: false
     catalog_items:
     - variant: accommodation_travel
+      tax: french_vat_normal_2014
       quota: 4
     - variant: moving_travel
+      tax: french_vat_normal_2014
       quota: 4
     - variant: diesel
+      tax: french_vat_normal_2014
       quota: 4
     - variant: small_sticker
+      tax: french_vat_normal_2014
       quota: 4
     - variant: implanter
+      tax: french_vat_normal_2014
       quota: 4
     - variant: air_compressor
+      tax: french_vat_normal_2014
       quota: 4
     - variant: natural_water
+      tax: french_vat_normal_2014
       quota: 4
     - variant: grain_crusher
+      tax: french_vat_normal_2014
       quota: 4
     - variant: sprayer
+      tax: french_vat_normal_2014
       quota: 4
     - variant: irrigation_water
+      tax: french_vat_normal_2014
       quota: 4
     - variant: big_sticker
+      tax: french_vat_normal_2014
       quota: 4
     - variant: portable_computer
+      tax: french_vat_normal_2014
       quota: 4
     - variant: grape_trailer
+      tax: french_vat_normal_2014
       quota: 4
     - variant: spreader_trailer
+      tax: french_vat_normal_2014
       quota: 4
     - variant: manager
+      tax: french_vat_normal_2014
       quota: 4
   unicoque:
     name: Unicoque
@@ -170,34 +200,49 @@ actors:
     lender: true
     catalog_items:
     - variant: accommodation_travel
+      tax: french_vat_normal_2014
       quota: 3
     - variant: silage_distributor
+      tax: french_vat_normal_2014
       quota: 3
     - variant: moving_travel
+      tax: french_vat_normal_2014
       quota: 3
     - variant: hydraulic_oil
+      tax: french_vat_normal_2014
       quota: 3
     - variant: diesel
+      tax: french_vat_normal_2014
       quota: 3
     - variant: acetal
+      tax: french_vat_normal_2014
       quota: 3
     - variant: small_sticker
+      tax: french_vat_normal_2014
       quota: 3
     - variant: mower
+      tax: french_vat_normal_2014
       quota: 3
     - variant: implanter
+      tax: french_vat_normal_2014
       quota: 3
     - variant: forager
+      tax: french_vat_normal_2014
       quota: 3
     - variant: air_compressor
+      tax: french_vat_normal_2014
       quota: 3
     - variant: sower
+      tax: french_vat_normal_2014
       quota: 3
     - variant: natural_water
+      tax: french_vat_normal_2014
       quota: 3
     - variant: inseminator
+      tax: french_vat_normal_2014
       quota: 3
     - variant: grain_crusher
+      tax: french_vat_normal_2014
       quota: 3
   terre-du-sud:
     name: Terre du Sud
@@ -210,34 +255,49 @@ actors:
     lender: false
     catalog_items:
     - variant: accommodation_travel
+      tax: french_vat_normal_2014
       quota: 7
     - variant: roll
+      tax: french_vat_normal_2014
       quota: 7
     - variant: land_parcel
+      tax: french_vat_normal_2014
       quota: 7
     - variant: forager
+      tax: french_vat_normal_2014
       quota: 7
     - variant: water_spreader
+      tax: french_vat_normal_2014
       quota: 7
     - variant: reaper
+      tax: french_vat_normal_2014
       quota: 7
     - variant: irrigation_water
+      tax: french_vat_normal_2014
       quota: 7
     - variant: diesel
+      tax: french_vat_normal_2014
       quota: 7
     - variant: vine_residu
+      tax: french_vat_normal_2014
       quota: 7
     - variant: printer
+      tax: french_vat_normal_2014
       quota: 7
     - variant: inseminator
+      tax: french_vat_normal_2014
       quota: 7
     - variant: cover_implanter
+      tax: french_vat_normal_2014
       quota: 7
     - variant: trailer
+      tax: french_vat_normal_2014
       quota: 7
     - variant: portable_computer
+      tax: french_vat_normal_2014
       quota: 7
     - variant: implanter
+      tax: french_vat_normal_2014
       quota: 7
   razol:
     name: Razol
@@ -250,34 +310,49 @@ actors:
     lender: false
     catalog_items:
     - variant: accommodation_travel
+      tax: french_vat_normal_2014
       quota: 6
     - variant: irrigation_water
+      tax: french_vat_normal_2014
       quota: 6
     - variant: trailer
+      tax: french_vat_normal_2014
       quota: 6
     - variant: hydraulic_oil
+      tax: french_vat_normal_2014
       quota: 6
     - variant: spreader
+      tax: french_vat_normal_2014
       quota: 6
     - variant: hazel_reaper
+      tax: french_vat_normal_2014
       quota: 6
     - variant: small_sticker
+      tax: french_vat_normal_2014
       quota: 6
     - variant: grape_trailer
+      tax: french_vat_normal_2014
       quota: 6
     - variant: running_water
+      tax: french_vat_normal_2014
       quota: 6
     - variant: forager
+      tax: french_vat_normal_2014
       quota: 6
     - variant: printer
+      tax: french_vat_normal_2014
       quota: 6
     - variant: corker
+      tax: french_vat_normal_2014
       quota: 6
     - variant: natural_water
+      tax: french_vat_normal_2014
       quota: 6
     - variant: building_material
+      tax: french_vat_normal_2014
       quota: 6
     - variant: motor_oil
+      tax: french_vat_normal_2014
       quota: 6
   cer:
     name: CER
@@ -290,34 +365,49 @@ actors:
     lender: true
     catalog_items:
     - variant: accommodation_travel
+      tax: french_vat_normal_2014
       quota: 5
     - variant: hazel_reaper
+      tax: french_vat_normal_2014
       quota: 5
     - variant: printer
+      tax: french_vat_normal_2014
       quota: 5
     - variant: baler
+      tax: french_vat_normal_2014
       quota: 5
     - variant: hydraulic_oil
+      tax: french_vat_normal_2014
       quota: 5
     - variant: running_water
+      tax: french_vat_normal_2014
       quota: 5
     - variant: building_material
+      tax: french_vat_normal_2014
       quota: 5
     - variant: irrigation_water
+      tax: french_vat_normal_2014
       quota: 5
     - variant: small_sticker
+      tax: french_vat_normal_2014
       quota: 5
     - variant: corker
+      tax: french_vat_normal_2014
       quota: 5
     - variant: manual_implanter
+      tax: french_vat_normal_2014
       quota: 5
     - variant: spreader
+      tax: french_vat_normal_2014
       quota: 5
     - variant: forager
+      tax: french_vat_normal_2014
       quota: 5
     - variant: motor_oil
+      tax: french_vat_normal_2014
       quota: 5
     - variant: trailer
+      tax: french_vat_normal_2014
       quota: 5
   acom:
     name: Acom
@@ -330,34 +420,49 @@ actors:
     lender: false
     catalog_items:
     - variant: accommodation_travel
+      tax: french_vat_normal_2014
       quota: 6
     - variant: meal_travel
+      tax: french_vat_normal_2014
       quota: 6
     - variant: bos_vial
+      tax: french_vat_normal_2014
       quota: 6
     - variant: natural_water
+      tax: french_vat_normal_2014
       quota: 6
     - variant: cover_implanter
+      tax: french_vat_normal_2014
       quota: 6
     - variant: roll
+      tax: french_vat_normal_2014
       quota: 6
     - variant: grape_trailer
+      tax: french_vat_normal_2014
       quota: 6
     - variant: sower
+      tax: french_vat_normal_2014
       quota: 6
     - variant: hen_guano
+      tax: french_vat_normal_2014
       quota: 6
     - variant: trailer
+      tax: french_vat_normal_2014
       quota: 6
     - variant: land_parcel
+      tax: french_vat_normal_2014
       quota: 6
     - variant: air_compressor
+      tax: french_vat_normal_2014
       quota: 6
     - variant: motor_oil
+      tax: french_vat_normal_2014
       quota: 6
     - variant: calf
+      tax: french_vat_normal_2014
       quota: 6
     - variant: portable_computer
+      tax: french_vat_normal_2014
       quota: 6
   msa:
     name: MSA
@@ -370,34 +475,49 @@ actors:
     lender: true
     catalog_items:
     - variant: accommodation_travel
+      tax: french_vat_normal_2014
       quota: 5
     - variant: acetal
+      tax: french_vat_normal_2014
       quota: 5
     - variant: air_compressor
+      tax: french_vat_normal_2014
       quota: 5
     - variant: baler
+      tax: french_vat_normal_2014
       quota: 5
     - variant: big_sticker
+      tax: french_vat_normal_2014
       quota: 5
     - variant: bos_vial
+      tax: french_vat_normal_2014
       quota: 5
     - variant: building_material
+      tax: french_vat_normal_2014
       quota: 5
     - variant: calf
+      tax: french_vat_normal_2014
       quota: 5
     - variant: car
+      tax: french_vat_normal_2014
       quota: 5
     - variant: corker
+      tax: french_vat_normal_2014
       quota: 5
     - variant: cover_implanter
+      tax: french_vat_normal_2014
       quota: 5
     - variant: diesel
+      tax: french_vat_normal_2014
       quota: 5
     - variant: forager
+      tax: french_vat_normal_2014
       quota: 5
     - variant: grain_crusher
+      tax: french_vat_normal_2014
       quota: 5
     - variant: grape_reaper
+      tax: french_vat_normal_2014
       quota: 5
 participations:
 - user: admin@ekylibre.org

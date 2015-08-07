@@ -17,5 +17,5 @@
 #
 
 class Backend::ParticipantsController < Backend::BaseController
-  manage_restfully subclass_inheritance: true
+  manage_restfully
 end

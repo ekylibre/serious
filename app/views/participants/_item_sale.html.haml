@@ -1,4 +1,4 @@
-.col-xs-2= item.number
+.col-xs-2= link_to(item.number, deal_path(item))
 .col-xs-4= link_to(item.customer_name, participant_path(item.customer))
 .col-xs-3
   %span.label.label-info= item.state.text

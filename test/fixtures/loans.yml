@@ -20,9 +20,10 @@
 #
 # == Table: loans
 #
-#  amount               :decimal(19, 4)
+#  amount               :decimal(19, 4)   not null
 #  borrower_id          :integer          not null
 #  created_at           :datetime
+#  game_id              :integer          not null
 #  id                   :integer          not null, primary key
 #  insurance_percentage :decimal(19, 4)   not null
 #  interest_percentage  :decimal(19, 4)   not null
@@ -34,7 +35,9 @@
 # == Fixture: loans
 #
 # loans_001:
+#   amount: 0
 #   borrower: borrowers_001
+#   game: games_001
 #   insurance_percentage: 0
 #   interest_percentage: 0
 #   lender: lenders_001

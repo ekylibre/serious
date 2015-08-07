@@ -20,17 +20,18 @@
 #
 # == Table: insurances
 #
-#  amount                 :decimal(19, 4)
+#  amount                 :decimal(19, 4)   not null
 #  created_at             :datetime
-#  excess_amount          :decimal(19, 4)
+#  excess_amount          :decimal(19, 4)   default(0), not null
+#  game_id                :integer          not null
 #  id                     :integer          not null, primary key
 #  insured_id             :integer          not null
 #  insurer_id             :integer          not null
 #  nature                 :string           not null
-#  pretax_amount          :decimal(19, 4)
-#  quantity_unit          :string
-#  quantity_value         :decimal(19, 4)
-#  tax_percentage         :decimal(19, 4)
+#  pretax_amount          :decimal(19, 4)   not null
+#  quantity_unit          :string           not null
+#  quantity_value         :decimal(19, 4)   not null
+#  tax_percentage         :decimal(19, 4)   default(0), not null
 #  unit_pretax_amount     :decimal(19, 4)   not null
 #  unit_refundable_amount :decimal(19, 4)
 #  updated_at             :datetime

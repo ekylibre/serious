@@ -20,17 +20,19 @@
 #
 # == Table: deal_items
 #
-#  amount             :decimal(19, 4)
+#  amount             :decimal(19, 4)   not null
+#  catalog_item_id    :integer
 #  created_at         :datetime
 #  deal_id            :integer          not null
 #  id                 :integer          not null, primary key
-#  pretax_amount      :decimal(19, 4)
-#  quantity           :decimal(19, 4)
-#  tax                :string
-#  unit_amount        :decimal(19, 4)
-#  unit_pretax_amount :decimal(19, 4)
+#  pretax_amount      :decimal(19, 4)   not null
+#  product            :text
+#  quantity           :decimal(19, 4)   not null
+#  tax                :string           not null
+#  unit_amount        :decimal(19, 4)   not null
+#  unit_pretax_amount :decimal(19, 4)   not null
 #  updated_at         :datetime
-#  variant            :string
+#  variant            :string           not null
 #
 require 'test_helper'
 

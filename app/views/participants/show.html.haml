@@ -3,18 +3,38 @@
   = participant_card(@participant)
 
   .row
-    - if current_participant
-      = items_block(current_participant, :purchases, relative_to: @participant, as: :supplier)
-      = items_block(current_participant, :sales,     relative_to: @participant, as: :customer)
-      = items_block(current_participant, :contractings,    relative_to: @participant, as: :contractor)
-      = items_block(current_participant, :subcontractings, relative_to: @participant, as: :subcontractor)
-      = items_block(current_participant, :lendings,   relative_to: @participant, as: :borrower)
-      = items_block(current_participant, :borrowings, relative_to: @participant, as: :lender)
+    = tabbox(:participant) do |t|
+      - if @participant.catalog_items.any?
+        = t.tab :shop do
+          - deal = @participant.sales.where(customer_id: current_participant.id, state: :draft).first
+          .col-md-8
+            .catalog
+              %h3 Produits à vendre
+              .items-list
+                - @participant.catalog_items.each do |catalog_item|
+                  .items-item
+                    .row
+                      .col-md-8.catalog-item-title{title: catalog_item.variant_name}= catalog_item.variant_name
+                      .col-md-2.decimal.catalog-item-price= catalog_item.amount.l(currency: :EUR)
+                      .col-md-2.catalog-item-quantity
+                        = link_to({controller: :deals, action: :add_to_cart, customer_id: current_participant.id, supplier_id: @participant.id, catalog_item_id: catalog_item.id}, method: :post) do
+                          %i.glyphicon.glyphicon-shopping-cart
+          .col-md-4
+            #cart= render 'deals/cart', deal: deal, supplier: @participant
 
-  - if @participant.contract_natures.any?
-    %h2 Les contrats disponibles
-    - @participant.contract_natures.each do |nature|
-      .items-block
-        %h3= nature.name
-        %p= nature.amount.l(currency: :EUR)
-        %p= link_to('Voir le contrat', contract_nature_path(nature))
+      - if current_participant
+        = t.tab :documents do
+          = items_block(current_participant, :purchases, relative_to: @participant, as: :supplier)
+          = items_block(current_participant, :sales,     relative_to: @participant, as: :customer)
+          = items_block(current_participant, :contractings,    relative_to: @participant, as: :contractor)
+          = items_block(current_participant, :subcontractings, relative_to: @participant, as: :subcontractor)
+          = items_block(current_participant, :lendings,   relative_to: @participant, as: :borrower)
+          = items_block(current_participant, :borrowings, relative_to: @participant, as: :lender)
+
+      - if @participant.contract_natures.any?
+        = t.tab :contracts do
+          - @participant.contract_natures.each do |nature|
+            .items-block
+              %h3= nature.name
+              %p= nature.amount.l(currency: :EUR)
+              %p= link_to('Voir le contrat', contract_nature_path(nature))

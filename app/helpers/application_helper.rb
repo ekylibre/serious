@@ -1,3 +1,6 @@
+# coding: utf-8
+require 'ostruct'
+
 module ApplicationHelper
   def resource
     instance_variable_get('@' + controller_name.singularize)
@@ -45,4 +48,70 @@ module ApplicationHelper
         end
     end
   end
+
+  def human_date(made_on)
+    today = Date.today
+    # if made_on == today
+    #   "date.today".t
+    # elsif made_on == today - 1
+    #   "date.yesterday".t
+    # elsif made_on == today + 1
+    #   "date.tomorrow".t
+    #   els
+    if made_on - today < 1.year
+      made_on.l(format: :short)
+    else
+      made_on.l(format: :long)
+    end
+  end
+
+  def human_period(started_at, stopped_at)
+    started_on = started_at.to_date
+    stopped_on = stopped_at.to_date
+    text = ""
+    if started_on == stopped_on
+      text << human_date(started_on).strip
+      text << " de "
+      text << started_at.l(format: "%H:%M")
+      text << " à "
+      text << stopped_at.l(format: "%H:%M")
+    else
+      text << "du "
+      text << human_date(started_on).strip
+      text << " à "
+      text << started_at.l(format: "%H:%M")
+      text << " au "
+      text << human_date(stopped_on).strip
+      text << " à "
+      text << stopped_at.l(format: "%H:%M")
+    end
+    return content_tag(:span, text.html_safe, class: :date)
+  end
+
+
+  class Tabber
+    attr_reader :tabs
+
+    def initialize(id, template)
+      @id = id
+      @template = template
+      @tabs = []
+    end
+
+    def tab(name, options = {}, &block)
+      content = @template.capture(&block)
+      if options[:force] or content.present?
+        @tabs << OpenStruct.new(id: name, label: options[:label] || name.tl, content: content, active: @tabs.size.zero?)
+      end
+      return nil
+    end
+  end
+
+
+  def tabbox(id)
+    tabber = Tabber.new(id, self)
+    yield tabber
+    render("tabbox", tabber: tabber) if tabber.tabs.any?
+  end
+
 end

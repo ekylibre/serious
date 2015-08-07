@@ -1,12 +1,12 @@
 .container
-  = participant_card(@participant, title: "Boutique #{@participant.name}")
+  = participant_card(@deal.supplier, title: "Boutique #{@deal.supplier.name}")
 
   .row
     .col-md-8
       .catalog
         %h3 Catalogue des produits
         .items-list
-          - @participant.catalog_items.each do |catalog_item|
+          - @deal.supplier.catalog_items.each do |catalog_item|
             .items-item
               .row
                 .col-md-8.catalog-item-title{title: catalog_item.variant_name}= catalog_item.variant_name
@@ -16,10 +16,10 @@
                   - if (item = @deal.items.find_by(variant: catalog_item.variant))
                     - quantity = item.quantity
                   .btn-group
-                    = link_to({controller: :shops, action: :add, variant: catalog_item.variant}, method: :post, class: 'btn btn-xs btn-default') do
+                    = link_to({controller: :deals, action: :increment, catalog_item_id: catalog_item.id}, method: :post, class: 'btn btn-xs btn-default') do
                       %i.glyphicon.glyphicon-plus
                     -# %span.btn.btn-default= quantity
-                    = link_to({controller: :shops, action: :decrement, variant: catalog_item.variant}, method: :patch, class: 'btn btn-xs btn-default', disabled: quantity <= 0) do
+                    = link_to({controller: :deals, action: :decrement, catalog_item_id: catalog_item.id}, method: :patch, class: 'btn btn-xs btn-default', disabled: quantity <= 0) do
                       %i.glyphicon.glyphicon-minus
     .col-md-4
       #cart= render 'cart', deal: @deal

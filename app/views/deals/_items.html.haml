@@ -1,0 +1,25 @@
+%table.table
+  %thead
+    %tr
+      %th Article
+      %th Quantité
+      %th Montant
+      %th
+        %span.glyphicon.glyphicon-remove
+  %tfoot
+    %tr
+      %th.deal-amount{colspan: 1}= 'Total HT'
+      %th.deal-amount{colspan: 3}= deal.pretax_amount.l(currency: :EUR)
+    %tr
+      %th.deal-amount{colspan: 1}= 'Total TTC'
+      %th.deal-amount{colspan: 3}= deal.amount.l(currency: :EUR)
+  %tbody
+    - deal.items.each do |item|
+      %tr
+        %td= item.variant_name
+        %td
+          = link_to(item.quantity, change_quantity_deal_path(deal.id, item_id: item.id), remote: true, method: :patch, data: {change_quantity: :new_quantity.tl} )
+        %td= item.amount.l(currency: :EUR)
+        %td
+          = link_to(deal_item_path(item, redirect: request.fullpath), method: :delete) do
+            %i.glyphicon.glyphicon-remove

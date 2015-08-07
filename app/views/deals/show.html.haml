@@ -1,0 +1,27 @@
+.container
+  .page
+    .supplier
+      .name= @deal.supplier.name
+      %p.coordinates
+        14 avenue de la gare
+        %br
+        47000 AGEN
+        %br
+        Tel: 05 53 12 34 56
+    .customer
+      .name= @deal.customer.name
+      %p.coordinates
+        27 rue de la mairie
+        %br
+        47000 AGEN
+
+    %h1= "#{@deal.state.text} n°#{@deal.number}"
+
+    .items= render "items", deal: @deal
+
+    - if @deal.items.any?
+      = link_to("Accepter le devis", checkout_deal_path(@deal), method: :post, class: "btn btn-default")
+    - if @deal.draft?
+      = link_to("Supprimer le devis", deal_path(@deal), method: :delete, class: "btn btn-danger")
+    - elsif @deal.invoice?
+      = link_to("Annuler la facture", cancel_deal_path(@deal), method: :post, class: "btn btn-danger")

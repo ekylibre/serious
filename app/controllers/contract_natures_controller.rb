@@ -1,4 +1,5 @@
 class ContractNaturesController < BaseController
+  before_action :check_running_game
   before_action :find_resource
 
   def show

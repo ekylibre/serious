@@ -17,7 +17,7 @@ $backgroundColor: rgb(247, 247, 247);
 .participant-abbreviation {
   display: block;
   text-align: center;
-  line-height: $cube-height * 0.9;
+  line-height: $cube-height;
   font-size: round($cube-height * 0.6);
   color: white;
   font-weight: lighter;

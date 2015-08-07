@@ -66,7 +66,7 @@ class Participation < ActiveRecord::Base
   # Define for current participation if given participant can be seen
   def can_see?(participant)
     self.organizer? ||
-      (self.participant.is_a?(Actor) && participant.is_a?(Farm)) ||
-      (self.participant.is_a?(Farm) && participant.is_a?(Actor))
+      (self.participant.actor? && participant.farm?) ||
+      (self.participant.farm? && participant.actor?)
   end
 end

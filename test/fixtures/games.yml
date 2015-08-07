@@ -24,6 +24,7 @@
 #  created_at    :datetime
 #  description   :text
 #  id            :integer          not null, primary key
+#  launched_at   :datetime
 #  map_height    :integer
 #  map_width     :integer
 #  name          :string           not null

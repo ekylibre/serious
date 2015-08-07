@@ -1,2 +1,0 @@
-class ActorsController < ParticipantsController
-end

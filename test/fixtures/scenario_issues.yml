@@ -20,22 +20,21 @@
 #
 # == Table: scenario_issues
 #
-#  created_at             :datetime
-#  description            :string           not null
-#  destruction_percentage :decimal(19, 4)
-#  id                     :integer          not null, primary key
-#  impact_indicator_name  :string
-#  impact_indicator_value :decimal(19, 4)
-#  maximal_age            :integer
-#  minimal_age            :integer
-#  name                   :string           not null
-#  nature                 :string           not null
-#  scenario_id            :integer          not null
-#  shape                  :geometry({:srid=>0, :type=>"multi_polygon"})
-#  trigger_turn           :integer          not null
-#  turn                   :integer          not null
-#  updated_at             :datetime
-#  variety                :string           not null
+#  created_at               :datetime
+#  description              :string           not null
+#  destruction_percentage   :decimal(19, 4)
+#  id                       :integer          not null, primary key
+#  impacted_indicator_name  :string
+#  impacted_indicator_value :string
+#  maximal_age              :integer
+#  minimal_age              :integer
+#  name                     :string           not null
+#  nature                   :string           not null
+#  scenario_id              :integer          not null
+#  shape                    :geometry({:srid=>0, :type=>"multi_polygon"})
+#  trigger_turn             :integer          not null
+#  updated_at               :datetime
+#  variety                  :string           not null
 #
 #
 # == Fixture: scenario_issues
@@ -46,7 +45,6 @@
 #   nature: "Lorem ipsum"
 #   scenario: scenarios_001
 #   trigger_turn: 0
-#   turn: 0
 #   variety: "Lorem ipsum"
 #
 

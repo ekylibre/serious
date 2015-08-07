@@ -29,20 +29,20 @@
 #  customer          :boolean          default(FALSE), not null
 #  game_id           :integer          not null
 #  id                :integer          not null, primary key
-#  insured           :boolean          default(FALSE)
-#  insurer           :boolean          default(FALSE)
+#  insured           :boolean          default(FALSE), not null
+#  insurer           :boolean          default(FALSE), not null
 #  lender            :boolean          default(FALSE), not null
 #  logo_content_type :string
 #  logo_file_name    :string
 #  logo_file_size    :integer
 #  logo_updated_at   :datetime
 #  name              :string           not null
+#  nature            :string           not null
 #  present           :boolean          default(FALSE), not null
 #  stand_number      :string
 #  subcontractor     :boolean          default(FALSE), not null
 #  supplier          :boolean          default(FALSE), not null
 #  tenant            :string
-#  type              :string
 #  updated_at        :datetime
 #  zone_height       :integer
 #  zone_width        :integer
@@ -50,6 +50,8 @@
 #  zone_y            :integer
 #
 class Participant < ActiveRecord::Base
+  extend Enumerize
+  enumerize :nature, in: [:farm, :actor], predicates: true
   belongs_to :game
   has_many :catalog_items, inverse_of: :participant
   has_many :participations
@@ -67,12 +69,36 @@ class Participant < ActiveRecord::Base
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :logo_updated_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
   validates_numericality_of :logo_file_size, :zone_height, :zone_width, :zone_x, :zone_y, allow_nil: true, only_integer: true
-  validates_inclusion_of :borrower, :contractor, :customer, :lender, :present, :subcontractor, :supplier, in: [true, false]
-  validates_presence_of :code, :game, :name
+  validates_inclusion_of :borrower, :contractor, :customer, :insured, :insurer, :lender, :present, :subcontractor, :supplier, in: [true, false]
+  validates_presence_of :code, :game, :name, :nature
   # ]VALIDATORS]
   validates_uniqueness_of :name, scope: :game_id
+  validates :tenant, uniqueness: true, if: :farm?
+
+  scope :actor, -> { where(nature: "actor") }
+  scope :farm,  -> { where(nature: "farm") }
 
   accepts_nested_attributes_for :catalog_items, allow_destroy: true
+
+  delegate :current_date, to: :game
+
+
+  before_validation do
+    if farm?
+      self.borrower = true
+      self.subcontractor = true
+      self.customer = true
+      self.insured = true
+      self.tenant ||= code
+      self.access_token ||= Devise.friendly_token
+    end
+  end
+
+  validate do
+    if farm?
+      errors.add(:lender, :invalid) if lender
+    end
+  end
 
   def unique_name
     "serious_#{id}"

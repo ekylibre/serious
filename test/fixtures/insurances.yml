@@ -20,17 +20,18 @@
 #
 # == Table: insurances
 #
-#  amount                 :decimal(19, 4)
+#  amount                 :decimal(19, 4)   not null
 #  created_at             :datetime
-#  excess_amount          :decimal(19, 4)
+#  excess_amount          :decimal(19, 4)   default(0), not null
+#  game_id                :integer          not null
 #  id                     :integer          not null, primary key
 #  insured_id             :integer          not null
 #  insurer_id             :integer          not null
 #  nature                 :string           not null
-#  pretax_amount          :decimal(19, 4)
-#  quantity_unit          :string
-#  quantity_value         :decimal(19, 4)
-#  tax_percentage         :decimal(19, 4)
+#  pretax_amount          :decimal(19, 4)   not null
+#  quantity_unit          :string           not null
+#  quantity_value         :decimal(19, 4)   not null
+#  tax_percentage         :decimal(19, 4)   default(0), not null
 #  unit_pretax_amount     :decimal(19, 4)   not null
 #  unit_refundable_amount :decimal(19, 4)
 #  updated_at             :datetime
@@ -39,9 +40,16 @@
 # == Fixture: insurances
 #
 # insurances_001:
+#   amount: 0
+#   excess_amount: 0
+#   game: games_001
 #   insured: insureds_001
 #   insurer: insurers_001
 #   nature: "Lorem ipsum"
+#   pretax_amount: 0
+#   quantity_unit: "Lorem ipsum"
+#   quantity_value: 0
+#   tax_percentage: 0
 #   unit_pretax_amount: 0
 #
 

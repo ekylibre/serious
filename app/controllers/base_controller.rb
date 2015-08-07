@@ -17,4 +17,22 @@ class BaseController < ApplicationController
       @current_turn = @current_game.current_turn.number if @current_game.current_turn
     end
   end
+
+  # Check that game is accessible by user
+  def check_game
+    return true if current_user.administrator?
+    if current_participation
+      unless current_participation.organizer?
+        return check_running_game
+      end
+    end
+    return false
+  end
+
+  # Check that game is running
+  def check_running_game
+    return true if current_game and current_game.running? and current_game.current_turn
+    redirect_to games_url
+    return false
+  end
 end

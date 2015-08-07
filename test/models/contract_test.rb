@@ -23,11 +23,12 @@
 #  contractor_id    :integer          not null
 #  created_at       :datetime
 #  delivery_turn    :integer          not null
+#  game_id          :integer          not null
 #  id               :integer          not null, primary key
 #  nature_id        :integer          not null
 #  quantity         :decimal(19, 4)   not null
 #  state            :string
-#  subcontractor_id :integer
+#  subcontractor_id :integer          not null
 #  updated_at       :datetime
 #
 require 'test_helper'

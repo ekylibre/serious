@@ -20,26 +20,39 @@
 #
 # == Table: deal_items
 #
-#  amount             :decimal(19, 4)
+#  amount             :decimal(19, 4)   not null
+#  catalog_item_id    :integer
 #  created_at         :datetime
 #  deal_id            :integer          not null
 #  id                 :integer          not null, primary key
-#  pretax_amount      :decimal(19, 4)
-#  quantity           :decimal(19, 4)
-#  tax                :string
-#  unit_amount        :decimal(19, 4)
-#  unit_pretax_amount :decimal(19, 4)
+#  pretax_amount      :decimal(19, 4)   not null
+#  product            :text
+#  quantity           :decimal(19, 4)   not null
+#  tax                :string           not null
+#  unit_amount        :decimal(19, 4)   not null
+#  unit_pretax_amount :decimal(19, 4)   not null
 #  updated_at         :datetime
-#  variant            :string
+#  variant            :string           not null
 #
+
+require 'serious'
+
 class DealItem < ActiveRecord::Base
   extend Enumerize
-  enumerize :tax, in: [:french_vat_null, :french_vat_regular_2014]
+  enumerize :tax, in: Serious::TAXES.keys
   belongs_to :deal
+  belongs_to :catalog_item
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, :pretax_amount, :quantity, :unit_amount, :unit_pretax_amount, allow_nil: true
-  validates_presence_of :deal
+  validates_presence_of :amount, :deal, :pretax_amount, :quantity, :tax, :unit_amount, :unit_pretax_amount, :variant
   # ]VALIDATORS]
+  validates_presence_of :tax
+  serialize :product
+
+  delegate :update_totals!, to: :deal
+
+  after_save :update_totals!
+  after_destroy :update_totals!
 
   after_initialize do
     self.quantity ||= 0
@@ -47,15 +60,18 @@ class DealItem < ActiveRecord::Base
   end
 
   before_validation do
-    self.amount = self.unit_amount * self.quantity
-  end
-
-  after_save do
-    deal.save
-  end
-
-  after_destroy do
-    deal.save
+    if self.catalog_item
+      self.variant = self.catalog_item.variant
+      self.unit_amount = self.catalog_item.amount
+      self.unit_pretax_amount = self.catalog_item.pretax_amount
+      self.tax = self.catalog_item.tax
+    end
+    if Serious::TAXES[self.tax]
+      self.unit_amount = (self.unit_pretax_amount * (100 + Serious::TAXES[self.tax]) / 100.0).round(2)
+      self.pretax_amount = self.unit_pretax_amount * self.quantity
+      self.amount = (self.pretax_amount * (100 + Serious::TAXES[self.tax]) / 100.0).round(2)
+      self.pretax_amount = self.pretax_amount.round(2)
+    end
   end
 
   def variant_name

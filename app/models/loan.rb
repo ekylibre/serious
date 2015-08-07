@@ -20,9 +20,10 @@
 #
 # == Table: loans
 #
-#  amount               :decimal(19, 4)
+#  amount               :decimal(19, 4)   not null
 #  borrower_id          :integer          not null
 #  created_at           :datetime
+#  game_id              :integer          not null
 #  id                   :integer          not null, primary key
 #  insurance_percentage :decimal(19, 4)   not null
 #  interest_percentage  :decimal(19, 4)   not null
@@ -35,7 +36,7 @@ class Loan < ActiveRecord::Base
   belongs_to :lender, class_name: 'Participant'
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, :insurance_percentage, :interest_percentage, allow_nil: true
-  validates_presence_of :borrower, :insurance_percentage, :interest_percentage, :lender
+  validates_presence_of :amount, :borrower, :insurance_percentage, :interest_percentage, :lender
   # ]VALIDATORS]
 
   delegate :name, to: :lender, prefix: true

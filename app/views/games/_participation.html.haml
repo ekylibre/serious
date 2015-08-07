@@ -12,5 +12,5 @@
 %span
   = game.name
   = ' &mdash; '.html_safe
-  %span.glyphicon{class: "glyphicon-#{participation.organizer? ? :king : participation.participant.is_a?(Farm) ? :grain : :briefcase}"}
+  %span.glyphicon{class: "glyphicon-#{participation.organizer? ? :king : participation.participant.farm? ? :grain : :briefcase}"}
   = participation.name

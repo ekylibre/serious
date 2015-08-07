@@ -22,12 +22,12 @@
 #
 #  created_at                 :datetime
 #  id                         :integer          not null, primary key
-#  nature                     :string
+#  nature                     :string           not null
 #  negative_margin_percentage :decimal(19, 4)   default(0), not null
 #  participant_id             :integer          not null
 #  positive_margin_percentage :decimal(19, 4)   default(0), not null
 #  quota                      :decimal(19, 4)   not null
-#  tax                        :string
+#  tax                        :string           not null
 #  updated_at                 :datetime
 #  variant                    :string           not null
 #

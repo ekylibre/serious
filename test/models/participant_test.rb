@@ -29,20 +29,20 @@
 #  customer          :boolean          default(FALSE), not null
 #  game_id           :integer          not null
 #  id                :integer          not null, primary key
-#  insured           :boolean          default(FALSE)
-#  insurer           :boolean          default(FALSE)
+#  insured           :boolean          default(FALSE), not null
+#  insurer           :boolean          default(FALSE), not null
 #  lender            :boolean          default(FALSE), not null
 #  logo_content_type :string
 #  logo_file_name    :string
 #  logo_file_size    :integer
 #  logo_updated_at   :datetime
 #  name              :string           not null
+#  nature            :string           not null
 #  present           :boolean          default(FALSE), not null
 #  stand_number      :string
 #  subcontractor     :boolean          default(FALSE), not null
 #  supplier          :boolean          default(FALSE), not null
 #  tenant            :string
-#  type              :string
 #  updated_at        :datetime
 #  zone_height       :integer
 #  zone_width        :integer

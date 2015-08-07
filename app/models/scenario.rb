@@ -20,15 +20,19 @@
 #
 # == Table: scenarios
 #
-#  code        :string           not null
-#  created_at  :datetime
-#  currency    :string           not null
-#  description :text
-#  id          :integer          not null, primary key
-#  name        :string           not null
-#  turn_nature :string
-#  turns_count :string           not null
-#  updated_at  :datetime
+#  code                  :string           not null
+#  created_at            :datetime
+#  currency              :string           not null
+#  description           :text
+#  historic_content_type :string
+#  historic_file_name    :string
+#  historic_file_size    :integer
+#  historic_updated_at   :datetime
+#  id                    :integer          not null, primary key
+#  name                  :string           not null
+#  turn_nature           :string
+#  turns_count           :string           not null
+#  updated_at            :datetime
 #
 
 class Scenario < ActiveRecord::Base
@@ -39,6 +43,8 @@ class Scenario < ActiveRecord::Base
   has_many :curves, class_name: 'ScenarioCurve'
   has_many :games
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  validates_datetime :historic_updated_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
+  validates_numericality_of :historic_file_size, allow_nil: true, only_integer: true
   validates_presence_of :code, :currency, :name
   # ]VALIDATORS]
   validates_uniqueness_of :name, :code

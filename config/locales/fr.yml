@@ -43,7 +43,12 @@ fr:
     lender: Prêteur
     subcontractor: Sous-traitant
     supplier: Vendeur
+    turn_duration: "Durée du tour"
     turns_count: "Nombre de tours"
+  date:
+    today: "Aujourd'hui"
+    tomorrow: "Demain"
+    yesterday: "Hier"
   enumerize:
     deal:
       state:
@@ -66,6 +71,7 @@ fr:
     are_you_sure: "Êtes-vous sûr(e)\_?"
     cart: "Panier"
     close: "Fermer"
+    documents: "Documents"
     minutes: "Minutes"
     my_purchases: "Mes achats"
     my_sales: "Mes ventes"
@@ -73,9 +79,12 @@ fr:
     my_subcontractings: "Mes missions"
     my_lendings: "Mes prêts"
     my_borrowings: "Mes emprunts"
-    value: "Valeur"
     new_quantity: "Nouvelle quantité"
-
+    shop: "Boutique"
+    value: "Valeur"
+    x_minutes:
+      one: "%{count}\_minute"
+      other: "%{count}\_minutes"
   rest:
     actions:
       new: "Ajouter"

@@ -24,10 +24,12 @@
 #  contractor_id   :integer          not null
 #  contracts_count :integer
 #  contracts_quota :integer
+#  created_at      :datetime
 #  description     :text
 #  id              :integer          not null, primary key
-#  name            :string
+#  name            :string           not null
 #  release_turn    :integer          not null
+#  updated_at      :datetime
 #  variant         :string
 #
 class ContractNature < ActiveRecord::Base
@@ -36,7 +38,7 @@ class ContractNature < ActiveRecord::Base
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :contracts_quota, :release_turn, allow_nil: true, only_integer: true
   validates_numericality_of :amount, allow_nil: true
-  validates_presence_of :amount, :contractor, :release_turn
+  validates_presence_of :amount, :contractor, :name, :release_turn
   # ]VALIDATORS]
   delegate :name, to: :contractor, prefix: true
 end

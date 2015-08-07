@@ -20,15 +20,19 @@
 #
 # == Table: scenarios
 #
-#  code        :string           not null
-#  created_at  :datetime
-#  currency    :string           not null
-#  description :text
-#  id          :integer          not null, primary key
-#  name        :string           not null
-#  turn_nature :string
-#  turns_count :string           not null
-#  updated_at  :datetime
+#  code                  :string           not null
+#  created_at            :datetime
+#  currency              :string           not null
+#  description           :text
+#  historic_content_type :string
+#  historic_file_name    :string
+#  historic_file_size    :integer
+#  historic_updated_at   :datetime
+#  id                    :integer          not null, primary key
+#  name                  :string           not null
+#  turn_nature           :string
+#  turns_count           :string           not null
+#  updated_at            :datetime
 #
 #
 # == Fixture: scenarios

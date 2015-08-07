@@ -49,7 +49,7 @@ $white_50: rgba(255, 255, 255, 0.5);
   }
   .carousel-inner {
     margin: 0 auto;
-    width: 70%;
+    width: 80%;
     .carousel-content {
 
       min-height: 2 * $navbar-height;
@@ -69,6 +69,7 @@ $white_50: rgba(255, 255, 255, 0.5);
   .carousel-control {
     background: #F7F7F7;
     opacity: 0.6;
+    width: 10%;
     span {
       color: $control-color;
     }
@@ -98,7 +99,7 @@ $white_50: rgba(255, 255, 255, 0.5);
         position: absolute;
         right: 0;
         padding: $padding-base-vertical $padding-base-horizontal;
-        background-color: rgba(black, 0.2);
+        background-color: rgba(black, 0.1);
         color: white;
         border-bottom-left-radius: $border-radius-small;
         text-transform: uppercase;
@@ -115,7 +116,7 @@ $white_50: rgba(255, 255, 255, 0.5);
         display: block;
         bottom: 0;
         position: absolute;
-        background: rgba(black, 0.2);
+        background: rgba(black, 0.1);
         color: white;
         padding: $padding-base-vertical $padding-base-horizontal;
         width: 100%;
@@ -207,6 +208,43 @@ $white_50: rgba(255, 255, 255, 0.5);
     .countdown {
       float: right;
     }
+  }
+}
+
+.turns-gauge {
+  $past-color: $brand-primary;
+  $future-color: mix($past-color, $page-background, 40%);
+  $height: 6px;
+  display: block;
+  background: $future-color;
+  margin-bottom: $font-size-base;
+  position: relative;
+  top: 2 * $height;
+  .level {
+    display: block;
+    background: $past-color;
+    height: $height;
+  }
+  .bearing {
+    $radius: $height * 2;
+    position: absolute;
+    width: $radius;
+    height: $radius;
+    margin-left: -$radius/2;
+    margin-top: -$height/2;
+    border-radius: 50%;
+    display: block;
+    background: $page-background;
+    border: $height/2 solid $future-color;
+    &.past, &.active {
+      border-color: $past-color;
+      background: white;
+    }
+  }
+  .interval {
+    position: absolute;
+    height: $height;
+    display: block;
   }
 }
 

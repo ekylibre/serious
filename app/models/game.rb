@@ -24,6 +24,7 @@
 #  created_at    :datetime
 #  description   :text
 #  id            :integer          not null, primary key
+#  launched_at   :datetime
 #  map_height    :integer
 #  map_width     :integer
 #  name          :string           not null
@@ -40,9 +41,10 @@ class Game < ActiveRecord::Base
   enumerize :state, in: [:planned, :loading, :ready, :running, :finished], default: :planned, predicates: true
   enumerize :turn_nature, in: [:month], default: :month
   belongs_to :scenario
-  has_many :actors
+  has_many :actors, -> { actor }, class_name: "Participant"
   has_many :broadcasts, through: :scenario
-  has_many :farms
+  has_many :deals
+  has_many :farms, -> { farm }, class_name: "Participant"
   has_many :organizer_participations, -> { where(nature: :organizer) }, class_name: 'Participation'
   has_many :organizers, through: :organizer_participations, source: :user
   has_many :participations
@@ -50,16 +52,15 @@ class Game < ActiveRecord::Base
   has_many :turns, -> { order(:number) }, class_name: 'GameTurn', dependent: :destroy, counter_cache: false
   has_many :users, through: :participations
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
-  validates_datetime :planned_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
+  validates_datetime :launched_at, :planned_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
   validates_numericality_of :map_height, :map_width, :turn_duration, allow_nil: true, only_integer: true
   validates_presence_of :name
   # ]VALIDATORS]
-  validates_presence_of :planned_at, :turn_duration, :turn_nature, :state
+  validates_presence_of :planned_at, :turn_duration, :turns_count, :turn_nature, :state
 
   scope :active, -> { where(state: 'running') }
 
-  accepts_nested_attributes_for :farms
-  accepts_nested_attributes_for :actors
+  accepts_nested_attributes_for :participants
 
   before_validation do
     self.planned_at ||= Time.now
@@ -70,32 +71,26 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def update_turn(turn)
-    started_at = turn.stopped_at
-    (turn.number + 1..turns_count).each do |i|
-      stopped_at = started_at + turn_duration.minutes
-      change_turn = turns.find_by(number: i)
-      change_turn.update!(started_at: started_at)
-      change_turn.update!(stopped_at: stopped_at)
-      started_at = stopped_at
-    end
-  end
-
-  def rebuild_turns(date)
-    GameTurn.destroy_all(game_id: id)
-    if self.turns_count
-      started_at = date
-      self.turns_count.times do |index|
-        stopped_at = started_at + turn_duration.minutes
-        turns.create!(number: index + 1, started_at: started_at, stopped_at: stopped_at)
-        started_at = stopped_at
-      end
-    end
+  before_update do
+    old_record = self.class.find_by(id: self.id)
+    self.turns.where(duration: old_record.turn_duration).update_all(duration: self.turn_duration)
   end
 
   after_save do
-    # Prevents counter_cache use
-    rebuild_turns(self.planned_at)
+    started_at = launched_at || planned_at
+    count = self.turns_count
+    self.turns_count.times do |index|
+      turn = self.turns.find_or_initialize_by(number: index + 1)
+      turn.duration ||= self.turn_duration
+      turn.started_at = started_at
+      turn.save!
+      started_at = turn.stopped_at
+    end
+    self.turns.where("number > ?", count).destroy_all
+  end
+
+  def current_date
+    current_turn.finished_on
   end
 
   class << self
@@ -146,11 +141,23 @@ class Game < ActiveRecord::Base
     self.ready? || self.planned?
   end
 
+  def elapsed_duration
+    Time.now - self.launched_at
+  end
+
+  def total_duration
+    turns.sum(:duration) * 60
+  end
+
+
+
   # Launch the game
   def run!(force = false)
     self.load! if state.planned? || force
     fail 'Cannot run this game' unless self.ready? || force
-    update_column(:state, :running)
+    self.state = :running
+    self.launched_at = Time.now
+    self.save
   end
 
   # Creates Ekylibre instances and load them

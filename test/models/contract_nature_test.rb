@@ -24,10 +24,12 @@
 #  contractor_id   :integer          not null
 #  contracts_count :integer
 #  contracts_quota :integer
+#  created_at      :datetime
 #  description     :text
 #  id              :integer          not null, primary key
-#  name            :string
+#  name            :string           not null
 #  release_turn    :integer          not null
+#  updated_at      :datetime
 #  variant         :string
 #
 require 'test_helper'

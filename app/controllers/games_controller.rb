@@ -1,4 +1,6 @@
 class GamesController < BaseController
+  before_action :check_game, except: :index
+
   def index
     @games = current_user.games
   end

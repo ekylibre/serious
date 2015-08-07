@@ -23,11 +23,12 @@
 #  contractor_id    :integer          not null
 #  created_at       :datetime
 #  delivery_turn    :integer          not null
+#  game_id          :integer          not null
 #  id               :integer          not null, primary key
 #  nature_id        :integer          not null
 #  quantity         :decimal(19, 4)   not null
 #  state            :string
-#  subcontractor_id :integer
+#  subcontractor_id :integer          not null
 #  updated_at       :datetime
 #
 
@@ -40,6 +41,6 @@ class Contract < ActiveRecord::Base
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :delivery_turn, allow_nil: true, only_integer: true
   validates_numericality_of :quantity, allow_nil: true
-  validates_presence_of :contractor, :delivery_turn, :nature, :quantity
+  validates_presence_of :contractor, :delivery_turn, :nature, :quantity, :subcontractor
   # ]VALIDATORS]
 end

@@ -15,15 +15,14 @@
 %h2= Game.human_attribute_name(:turns)
 %ol
   - @game.turns.order(:number).each do |turn|
-    %li.game-turn= "du #{turn.started_at.l} au #{turn.stopped_at.l}"
-    = link_to('Modifier', edit_backend_game_turn_path(turn), class: 'btn btn-default')
+    %li.game-turn
+      = :x_minutes.tl(count: turn.duration)
+      - if turn.started_at and turn.stopped_at
+        = " (#{human_period(turn.started_at, turn.stopped_at)})".html_safe
+      = link_to('Modifier', edit_backend_game_turn_path(turn))
 
-%h2= Game.human_attribute_name(:farms)
+%h2= Game.human_attribute_name(:participants)
 .btn-group.btn-toolbox{role: 'group'}
-  = link_to(:new.ta, new_backend_farm_path(game_id: resource.id), class: 'btn btn-default')
-= show_grid :farms
-
-%h2= Game.human_attribute_name(:actors)
-.btn-group.btn-toolbox{role: 'group'}
-  = link_to(:new.ta, new_backend_actor_path(game_id: resource.id), class: 'btn btn-default')
-= show_grid :actors
+  = link_to(:new_farm.tl, new_backend_participant_path(game_id: resource.id, nature: :farm), class: 'btn btn-default')
+  = link_to(:new_actor.tl, new_backend_participant_path(game_id: resource.id, nature: :actor), class: 'btn btn-default')
+= show_grid :participants

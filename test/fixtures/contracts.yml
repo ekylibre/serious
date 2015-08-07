@@ -23,11 +23,12 @@
 #  contractor_id    :integer          not null
 #  created_at       :datetime
 #  delivery_turn    :integer          not null
+#  game_id          :integer          not null
 #  id               :integer          not null, primary key
 #  nature_id        :integer          not null
 #  quantity         :decimal(19, 4)   not null
 #  state            :string
-#  subcontractor_id :integer
+#  subcontractor_id :integer          not null
 #  updated_at       :datetime
 #
 #
@@ -36,8 +37,10 @@
 # contracts_001:
 #   contractor: contractors_001
 #   delivery_turn: 0
+#   game: games_001
 #   nature: natures_001
 #   quantity: 0
+#   subcontractor: subcontractors_001
 #
 
 # This model initially had no columns defined.  If you add columns to the

@@ -1,4 +1,6 @@
 class LoansController < BaseController
+  before_action :check_running_game
+
   def new
     @participant = Participant.find(params[:lender_id])
     @loan = Loan.new(interest_percentage: 3, insurance_percentage: 0.3)
@@ -7,7 +9,7 @@ class LoansController < BaseController
   end
 
   def create
-    @loan = Loan.new(loan_params)
+    @loan = Loan.new(permitted_params)
     @participant = Participant.find(@loan.lender_id)
     respond_to do |format|
       if @loan.save
@@ -25,7 +27,7 @@ class LoansController < BaseController
 
   private
 
-  def loan_params
+  def permitted_params
     params.require(:loan).permit(:borrower_id, :lender_id, :amount, :turns_count, :interest_percentage, :insurance_percentage)
   end
 end

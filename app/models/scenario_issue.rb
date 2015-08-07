@@ -20,28 +20,27 @@
 #
 # == Table: scenario_issues
 #
-#  created_at             :datetime
-#  description            :string           not null
-#  destruction_percentage :decimal(19, 4)
-#  id                     :integer          not null, primary key
-#  impact_indicator_name  :string
-#  impact_indicator_value :decimal(19, 4)
-#  maximal_age            :integer
-#  minimal_age            :integer
-#  name                   :string           not null
-#  nature                 :string           not null
-#  scenario_id            :integer          not null
-#  shape                  :geometry({:srid=>0, :type=>"multi_polygon"})
-#  trigger_turn           :integer          not null
-#  turn                   :integer          not null
-#  updated_at             :datetime
-#  variety                :string           not null
+#  created_at               :datetime
+#  description              :string           not null
+#  destruction_percentage   :decimal(19, 4)
+#  id                       :integer          not null, primary key
+#  impacted_indicator_name  :string
+#  impacted_indicator_value :string
+#  maximal_age              :integer
+#  minimal_age              :integer
+#  name                     :string           not null
+#  nature                   :string           not null
+#  scenario_id              :integer          not null
+#  shape                    :geometry({:srid=>0, :type=>"multi_polygon"})
+#  trigger_turn             :integer          not null
+#  updated_at               :datetime
+#  variety                  :string           not null
 #
 class ScenarioIssue < ActiveRecord::Base
   belongs_to :scenario, class_name: 'Scenario'
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
-  validates_numericality_of :maximal_age, :minimal_age, :trigger_turn, :turn, allow_nil: true, only_integer: true
-  validates_numericality_of :destruction_percentage, :impact_indicator_value, allow_nil: true
-  validates_presence_of :description, :name, :nature, :scenario, :trigger_turn, :turn, :variety
+  validates_numericality_of :maximal_age, :minimal_age, :trigger_turn, allow_nil: true, only_integer: true
+  validates_numericality_of :destruction_percentage, allow_nil: true
+  validates_presence_of :description, :name, :nature, :scenario, :trigger_turn, :variety
   # ]VALIDATORS]
 end

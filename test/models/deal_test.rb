@@ -20,13 +20,16 @@
 #
 # == Table: deals
 #
-#  amount      :decimal(19, 4)
-#  created_at  :datetime
-#  customer_id :integer          not null
-#  id          :integer          not null, primary key
-#  state       :string
-#  supplier_id :integer          not null
-#  updated_at  :datetime
+#  amount        :decimal(19, 4)   default(0), not null
+#  created_at    :datetime
+#  customer_id   :integer          not null
+#  game_id       :integer          not null
+#  id            :integer          not null, primary key
+#  invoiced_at   :datetime
+#  pretax_amount :decimal(19, 4)   default(0), not null
+#  state         :string           not null
+#  supplier_id   :integer          not null
+#  updated_at    :datetime
 #
 require 'test_helper'
 

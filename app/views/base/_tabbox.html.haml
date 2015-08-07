@@ -1,0 +1,8 @@
+.tabbox
+  %ul.nav.nav-tabs{role: "tablist"}
+    - tabber.tabs.each do |tab|
+      %li{role: "presentation", class: (tab.active ? 'active' : nil)}
+        = link_to(tab.label, "##{tab.id}", aria: {controls: tab.id}, role: "tab", data: {toggle: "tab"})
+  .tab-content
+    - tabber.tabs.each do |tab|
+      .tab-pane{role: "tabpanel", class: (tab.active ? 'active' : nil), id: tab.id}= tab.content

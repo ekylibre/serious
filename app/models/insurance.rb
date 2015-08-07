@@ -20,17 +20,18 @@
 #
 # == Table: insurances
 #
-#  amount                 :decimal(19, 4)
+#  amount                 :decimal(19, 4)   not null
 #  created_at             :datetime
-#  excess_amount          :decimal(19, 4)
+#  excess_amount          :decimal(19, 4)   default(0), not null
+#  game_id                :integer          not null
 #  id                     :integer          not null, primary key
 #  insured_id             :integer          not null
 #  insurer_id             :integer          not null
 #  nature                 :string           not null
-#  pretax_amount          :decimal(19, 4)
-#  quantity_unit          :string
-#  quantity_value         :decimal(19, 4)
-#  tax_percentage         :decimal(19, 4)
+#  pretax_amount          :decimal(19, 4)   not null
+#  quantity_unit          :string           not null
+#  quantity_value         :decimal(19, 4)   not null
+#  tax_percentage         :decimal(19, 4)   default(0), not null
 #  unit_pretax_amount     :decimal(19, 4)   not null
 #  unit_refundable_amount :decimal(19, 4)
 #  updated_at             :datetime
@@ -39,7 +40,7 @@ class Insurance < ActiveRecord::Base
   extend Enumerize
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, :excess_amount, :pretax_amount, :quantity_value, :tax_percentage, :unit_pretax_amount, :unit_refundable_amount, allow_nil: true
-  validates_presence_of :insured, :insurer, :nature, :unit_pretax_amount
+  validates_presence_of :amount, :excess_amount, :insured, :insurer, :nature, :pretax_amount, :quantity_unit, :quantity_value, :tax_percentage, :unit_pretax_amount
   # ]VALIDATORS]
   belongs_to :insured, class_name: 'Participant'
   belongs_to :insurer, class_name: 'Participant'

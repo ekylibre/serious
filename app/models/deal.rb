@@ -20,26 +20,31 @@
 #
 # == Table: deals
 #
-#  amount      :decimal(19, 4)
-#  created_at  :datetime
-#  customer_id :integer          not null
-#  id          :integer          not null, primary key
-#  state       :string
-#  supplier_id :integer          not null
-#  updated_at  :datetime
+#  amount        :decimal(19, 4)   default(0), not null
+#  created_at    :datetime
+#  customer_id   :integer          not null
+#  game_id       :integer          not null
+#  id            :integer          not null, primary key
+#  invoiced_at   :datetime
+#  pretax_amount :decimal(19, 4)   default(0), not null
+#  state         :string           not null
+#  supplier_id   :integer          not null
+#  updated_at    :datetime
 #
 
 # A deal is a sale or a purchase between a customer and a supplier.
 class Deal < ActiveRecord::Base
   extend Enumerize
+  belongs_to :game
   belongs_to :customer, class_name: 'Participant'
   belongs_to :supplier, class_name: 'Participant'
   has_many :items, class_name: 'DealItem'
-  enumerize :state, in: [:draft, :invoice], default: :draft
+  enumerize :state, in: [:draft, :invoice], default: :draft, predicates: true
 
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
-  validates_numericality_of :amount, allow_nil: true
-  validates_presence_of :customer, :supplier
+  validates_datetime :invoiced_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
+  validates_numericality_of :amount, :pretax_amount, allow_nil: true
+  validates_presence_of :amount, :customer, :game, :pretax_amount, :state, :supplier
   # ]VALIDATORS]
 
   delegate :name, to: :supplier, prefix: true
@@ -47,29 +52,43 @@ class Deal < ActiveRecord::Base
 
   accepts_nested_attributes_for :items
 
+  alias_attribute :number, :id
+
   before_validation do
+    update_totals
+    self.state ||= 'draft'
+  end
+
+  # Sets totals in columns without saving
+  def update_totals
+    self.pretax_amount = items.sum(:pretax_amount)
     self.amount = items.sum(:amount)
   end
 
-  before_validation do
-    self.state ||= 'draft'
-    self.amount ||= 0
+  # Update totals and save! it
+  def update_totals!
+    update_totals
+    save!
   end
 
+  # Confirm deal and transfer data to foreign apps
   def checkout
-    items = self.items.collect do |item|
-      item.attributes.slice(:variant, :tax, :unit_pretax_amount, :unit_amount, :pretax_amount, :amount, :quantity)
+    items_list = self.items.collect do |item|
+      item.attributes.symbolize_keys.slice(:variant, :tax, :unit_pretax_amount, :unit_amount, :pretax_amount, :amount, :quantity).delete_if{|k,v| v.blank?}
     end
+
+    invoiced_on = self.customer.current_date
 
     # Send data to customer
     # For a customer, a deal is a purchase
     if self.customer.application_url?
       self.customer.post("/purchases", {
+                           invoiced_on: invoiced_on,
                            supplier: {
                              last_name: supplier.name,
                              code: supplier.code
                            },
-                           items: items
+                           items: items_list
                          })
     end
 
@@ -77,18 +96,21 @@ class Deal < ActiveRecord::Base
     # For a supplier, a deal is a sale
     if self.supplier.application_url?
       self.supplier.post("/sales", {
+                           invoiced_on: invoiced_on,
                            customer: {
                              last_name: customer.name,
                              code: customer.code
                            },
-                           items: items
+                           items: items_list
                          })
     end
 
     update_column(:state, :invoice)
   end
 
-  def number
-    "D#{id}"
+  # Cancel deal and transfer order to foreign apps
+  def cancel
+    raise NotImplementedError
   end
+
 end

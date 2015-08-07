@@ -1,2 +1,0 @@
-class FarmsController < ParticipantsController
-end
