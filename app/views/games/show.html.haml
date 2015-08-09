@@ -18,6 +18,9 @@
   - if current_participation.organizer?
     - if current_participation.game.can_run?
       = link_to('Lancer la partie', run_game_path(current_participation.game), method: :post, class: 'btn btn-default')
+      - if current_user.administrator?
+        = link_to('Modifier', edit_backend_game_path(current_participation.game), class: 'btn btn-default')
+
 
   - if @game.description?
     %p= @game.description

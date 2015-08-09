@@ -1,10 +1,11 @@
 = field_set do
   .row
-    .col-md-6= f.input :name
-    .col-md-3= f.input :currency
-    .col-md-3
+    .col-md-4= f.input :name
+    .col-md-2= f.input :currency
+    .col-md-2
       = f.input :duration, wrapper: :append do
         = f.input_field :turns_count, class: 'form-control'
         = f.input_field :turn_nature, as: :hidden
         %span.input-group-addon= f.object.turn_nature.text
+    .col-md-4= f.input :historic
   = f.input :description

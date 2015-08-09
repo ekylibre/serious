@@ -42,12 +42,15 @@ class Scenario < ActiveRecord::Base
   has_many :broadcasts, -> { order(:release_turn) }, class_name: 'ScenarioBroadcast'
   has_many :curves, class_name: 'ScenarioCurve'
   has_many :games
+  has_attached_file :historic
+
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :historic_updated_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
   validates_numericality_of :historic_file_size, allow_nil: true, only_integer: true
   validates_presence_of :code, :currency, :name
   # ]VALIDATORS]
   validates_uniqueness_of :name, :code
+  validates_attachment_content_type :historic, content_type: 'application/zip'
 
   accepts_nested_attributes_for :broadcasts
   accepts_nested_attributes_for :curves

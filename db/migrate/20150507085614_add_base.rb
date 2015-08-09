@@ -60,8 +60,8 @@ class AddBase < ActiveRecord::Migration
       t.decimal :destruction_percentage, precision: 19, scale: 4
       t.integer :minimal_age
       t.integer :maximal_age
-      t.string  :impacted_indicator_name
-      t.string  :impacted_indicator_value
+      t.string :impacted_indicator_name
+      t.string :impacted_indicator_value
       t.timestamps
     end
 
@@ -107,7 +107,7 @@ class AddBase < ActiveRecord::Migration
       t.string :tenant
       t.string :access_token
       t.string :application_url
-      t.string  :stand_number
+      t.string :stand_number
       t.boolean :present,        null: false, default: false
       t.boolean :customer,       null: false, default: false
       t.boolean :supplier,       null: false, default: false
@@ -173,13 +173,13 @@ class AddBase < ActiveRecord::Migration
       t.references :deal, null: false, index: true
       t.string :variant,  null: false
       t.string :tax,      null: false
-      t.text  :product
+      t.text :product
       t.decimal :unit_pretax_amount, precision: 19, scale: 4, null: false
       t.decimal :unit_amount,        precision: 19, scale: 4, null: false
       t.decimal :quantity,           precision: 19, scale: 4, null: false
       t.decimal :pretax_amount,      precision: 19, scale: 4, null: false
       t.decimal :amount,             precision: 19, scale: 4, null: false
-      t.references :catalog_item,      index: true
+      t.references :catalog_item, index: true
       t.timestamps
     end
 
@@ -194,7 +194,6 @@ class AddBase < ActiveRecord::Migration
       t.timestamps
     end
 
-
     create_table :insurances do |t|
       t.references :insurer,     null: false, index: true
       t.references :insured,     null: false, index: true
@@ -203,7 +202,7 @@ class AddBase < ActiveRecord::Migration
       t.decimal :unit_pretax_amount,     precision: 19, scale: 4, null: false
       t.decimal :unit_refundable_amount, precision: 19, scale: 4
       t.decimal :quantity_value,         precision: 19, scale: 4, null: false
-      t.string  :quantity_unit,                                   null: false
+      t.string :quantity_unit, null: false
       t.decimal :tax_percentage,         precision: 19, scale: 4, null: false, default: 0
       t.decimal :pretax_amount,          precision: 19, scale: 4, null: false
       t.decimal :amount,                 precision: 19, scale: 4, null: false

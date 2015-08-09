@@ -17,9 +17,9 @@
     - deal.items.each do |item|
       %tr
         %td= item.variant_name
-        %td
+        %td.decimal-value
           = link_to(item.quantity, change_quantity_deal_path(deal.id, item_id: item.id), remote: true, method: :patch, data: {change_quantity: :new_quantity.tl} )
-        %td= item.amount.l(currency: :EUR)
+        %td.decimal-value= item.pretax_amount.l(currency: :EUR)
         %td
           = link_to(deal_item_path(item, redirect: request.fullpath), method: :delete) do
             %i.glyphicon.glyphicon-remove

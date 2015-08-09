@@ -60,17 +60,16 @@ class DealItem < ActiveRecord::Base
   end
 
   before_validation do
-    if self.catalog_item
-      self.variant = self.catalog_item.variant
-      self.unit_amount = self.catalog_item.amount
-      self.unit_pretax_amount = self.catalog_item.pretax_amount
-      self.tax = self.catalog_item.tax
+    if catalog_item
+      self.variant = catalog_item.variant
+      self.unit_pretax_amount = catalog_item.pretax_amount
+      self.tax = catalog_item.tax
     end
-    if Serious::TAXES[self.tax]
-      self.unit_amount = (self.unit_pretax_amount * (100 + Serious::TAXES[self.tax]) / 100.0).round(2)
-      self.pretax_amount = self.unit_pretax_amount * self.quantity
-      self.amount = (self.pretax_amount * (100 + Serious::TAXES[self.tax]) / 100.0).round(2)
-      self.pretax_amount = self.pretax_amount.round(2)
+    if Serious::TAXES[tax]
+      self.unit_amount = (unit_pretax_amount * (100 + Serious::TAXES[tax]) / 100.0).round(2)
+      self.pretax_amount = unit_pretax_amount * self.quantity
+      self.amount = (pretax_amount * (100 + Serious::TAXES[tax]) / 100.0).round(2)
+      self.pretax_amount = pretax_amount.round(2)
     end
   end
 

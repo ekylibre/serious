@@ -73,36 +73,32 @@ class Deal < ActiveRecord::Base
 
   # Confirm deal and transfer data to foreign apps
   def checkout
-    items_list = self.items.collect do |item|
-      item.attributes.symbolize_keys.slice(:variant, :tax, :unit_pretax_amount, :unit_amount, :pretax_amount, :amount, :quantity).delete_if{|k,v| v.blank?}
+    items_list = items.collect do |item|
+      item.attributes.symbolize_keys.slice(:variant, :tax, :unit_pretax_amount, :unit_amount, :pretax_amount, :amount, :quantity).delete_if { |_k, v| v.blank? }
     end
 
-    invoiced_on = self.customer.current_date
+    invoiced_on = customer.current_date
 
     # Send data to customer
     # For a customer, a deal is a purchase
-    if self.customer.application_url?
-      self.customer.post("/purchases", {
-                           invoiced_on: invoiced_on,
-                           supplier: {
-                             last_name: supplier.name,
-                             code: supplier.code
-                           },
-                           items: items_list
-                         })
+    if customer.application_url?
+      customer.post('/purchases', # invoiced_on: invoiced_on,
+                    supplier: {
+                      last_name: supplier.name,
+                      code: supplier.code
+                    },
+                    items: items_list)
     end
 
     # Send data to supplier
     # For a supplier, a deal is a sale
-    if self.supplier.application_url?
-      self.supplier.post("/sales", {
-                           invoiced_on: invoiced_on,
-                           customer: {
-                             last_name: customer.name,
-                             code: customer.code
-                           },
-                           items: items_list
-                         })
+    if supplier.application_url?
+      supplier.post('/sales', # invoiced_on: invoiced_on,
+                    customer: {
+                      last_name: customer.name,
+                      code: customer.code
+                    },
+                    items: items_list)
     end
 
     update_column(:state, :invoice)
@@ -110,7 +106,6 @@ class Deal < ActiveRecord::Base
 
   # Cancel deal and transfer order to foreign apps
   def cancel
-    raise NotImplementedError
+    fail NotImplementedError
   end
-
 end

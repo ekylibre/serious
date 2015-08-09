@@ -252,11 +252,10 @@ namespace :diagrams do
     Rails.application.eager_load!
     models = ActiveRecord::Base.descendants.delete_if do |m|
       m.superclass != ActiveRecord::Base
-    end.sort {|a,b| a.name <=> b.name }
+    end.sort { |a, b| a.name <=> b.name }
     graph = Diagrams.relational(*models, name: 'all')
     graph.write
   end
-
 
   task relational: :environment do
     {
@@ -274,7 +273,6 @@ namespace :diagrams do
       graph.write
     end
   end
-
 end
 
 desc 'Write diagram files of models'

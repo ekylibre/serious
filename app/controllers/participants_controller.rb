@@ -14,5 +14,4 @@ class ParticipantsController < BaseController
       redirect_to :index, alert: 'Participant not found'
     end
   end
-
 end

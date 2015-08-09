@@ -68,26 +68,25 @@ module ApplicationHelper
   def human_period(started_at, stopped_at)
     started_on = started_at.to_date
     stopped_on = stopped_at.to_date
-    text = ""
+    text = ''
     if started_on == stopped_on
       text << human_date(started_on).strip
-      text << " de "
-      text << started_at.l(format: "%H:%M")
-      text << " à "
-      text << stopped_at.l(format: "%H:%M")
+      text << ' de '
+      text << started_at.l(format: '%H:%M')
+      text << ' à '
+      text << stopped_at.l(format: '%H:%M')
     else
-      text << "du "
+      text << 'du '
       text << human_date(started_on).strip
-      text << " à "
-      text << started_at.l(format: "%H:%M")
-      text << " au "
+      text << ' à '
+      text << started_at.l(format: '%H:%M')
+      text << ' au '
       text << human_date(stopped_on).strip
-      text << " à "
-      text << stopped_at.l(format: "%H:%M")
+      text << ' à '
+      text << stopped_at.l(format: '%H:%M')
     end
-    return content_tag(:span, text.html_safe, class: :date)
+    content_tag(:span, text.html_safe, class: :date)
   end
-
 
   class Tabber
     attr_reader :tabs
@@ -100,18 +99,16 @@ module ApplicationHelper
 
     def tab(name, options = {}, &block)
       content = @template.capture(&block)
-      if options[:force] or content.present?
+      if options[:force] || content.present?
         @tabs << OpenStruct.new(id: name, label: options[:label] || name.tl, content: content, active: @tabs.size.zero?)
       end
-      return nil
+      nil
     end
   end
-
 
   def tabbox(id)
     tabber = Tabber.new(id, self)
     yield tabber
-    render("tabbox", tabber: tabber) if tabber.tabs.any?
+    render('tabbox', tabber: tabber) if tabber.tabs.any?
   end
-
 end

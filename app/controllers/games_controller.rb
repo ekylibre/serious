@@ -27,7 +27,7 @@ class GamesController < BaseController
       redirect_to :index
       return
     end
-    @game.run! true
+    @game.run!
     redirect_to game_path(@game)
   end
 end

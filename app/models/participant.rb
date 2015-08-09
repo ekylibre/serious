@@ -75,13 +75,12 @@ class Participant < ActiveRecord::Base
   validates_uniqueness_of :name, scope: :game_id
   validates :tenant, uniqueness: true, if: :farm?
 
-  scope :actor, -> { where(nature: "actor") }
-  scope :farm,  -> { where(nature: "farm") }
+  scope :actor, -> { where(nature: 'actor') }
+  scope :farm,  -> { where(nature: 'farm') }
 
   accepts_nested_attributes_for :catalog_items, allow_destroy: true
 
   delegate :current_date, to: :game
-
 
   before_validation do
     if farm?
@@ -95,9 +94,7 @@ class Participant < ActiveRecord::Base
   end
 
   validate do
-    if farm?
-      errors.add(:lender, :invalid) if lender
-    end
+    errors.add(:lender, :invalid) if lender if farm?
   end
 
   def unique_name
@@ -147,12 +144,18 @@ class Participant < ActiveRecord::Base
     application_url.gsub(/^https?:\/\//, '').gsub(/\:\d+$/, '')
   end
 
-
   # Perform a POST access on REST API of foreign app
   def post(path, params = {}, options = {})
     options[:content_type] ||= :json
     options[:Authorization] = "simple-token #{self.access_token}"
     RestClient.post(request_url(path), params.to_json, options)
+  end
+
+  # Perform a POST access on REST API of foreign app
+  def patch(path, params = {}, options = {})
+    options[:content_type] ||= :json
+    options[:Authorization] = "simple-token #{self.access_token}"
+    RestClient.patch(request_url(path), params.to_json, options)
   end
 
   # Perform a GET access on REST API of foreign app
@@ -164,7 +167,6 @@ class Participant < ActiveRecord::Base
   end
 
   def request_url(path = nil)
-    "#{self.application_url}/seriously/v1#{path}"
+    "#{application_url}/seriously/v1#{path}"
   end
-
 end

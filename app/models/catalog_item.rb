@@ -45,10 +45,6 @@ class CatalogItem < ActiveRecord::Base
   # ]VALIDATORS]
   validates_presence_of :nature, :tax
 
-  def amount
-    10
-  end
-
   def pretax_amount
     8
   end

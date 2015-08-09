@@ -22,17 +22,15 @@ class BaseController < ApplicationController
   def check_game
     return true if current_user.administrator?
     if current_participation
-      unless current_participation.organizer?
-        return check_running_game
-      end
+      return check_running_game unless current_participation.organizer?
     end
-    return false
+    false
   end
 
   # Check that game is running
   def check_running_game
-    return true if current_game and current_game.running? and current_game.current_turn
+    return true if current_game && current_game.running? && current_game.current_turn
     redirect_to games_url
-    return false
+    false
   end
 end

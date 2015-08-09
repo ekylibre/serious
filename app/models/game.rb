@@ -38,13 +38,13 @@
 #
 class Game < ActiveRecord::Base
   extend Enumerize
-  enumerize :state, in: [:planned, :loading, :ready, :running, :finished], default: :planned, predicates: true
+  enumerize :state, in: [:planned, :ready, :running, :finished], default: :planned, predicates: true
   enumerize :turn_nature, in: [:month], default: :month
   belongs_to :scenario
-  has_many :actors, -> { actor }, class_name: "Participant"
+  has_many :actors, -> { actor }, class_name: 'Participant'
   has_many :broadcasts, through: :scenario
   has_many :deals
-  has_many :farms, -> { farm }, class_name: "Participant"
+  has_many :farms, -> { farm }, class_name: 'Participant'
   has_many :organizer_participations, -> { where(nature: :organizer) }, class_name: 'Participation'
   has_many :organizers, through: :organizer_participations, source: :user
   has_many :participations
@@ -60,6 +60,8 @@ class Game < ActiveRecord::Base
 
   scope :active, -> { where(state: 'running') }
 
+  delegate :historic, to: :scenario
+
   accepts_nested_attributes_for :participants
 
   before_validation do
@@ -72,21 +74,25 @@ class Game < ActiveRecord::Base
   end
 
   before_update do
-    old_record = self.class.find_by(id: self.id)
-    self.turns.where(duration: old_record.turn_duration).update_all(duration: self.turn_duration)
+    old_record = self.class.find_by(id: id)
+    turns.where(duration: old_record.turn_duration).update_all(duration: turn_duration)
   end
 
   after_save do
     started_at = launched_at || planned_at
     count = self.turns_count
     self.turns_count.times do |index|
-      turn = self.turns.find_or_initialize_by(number: index + 1)
-      turn.duration ||= self.turn_duration
+      turn = turns.find_or_initialize_by(number: index + 1)
+      turn.duration ||= turn_duration
       turn.started_at = started_at
       turn.save!
       started_at = turn.stopped_at
     end
-    self.turns.where("number > ?", count).destroy_all
+    turns.where('number > ?', count).destroy_all
+  end
+
+  after_save do
+    load! if self.ready? || self.running?
   end
 
   def current_date
@@ -142,33 +148,39 @@ class Game < ActiveRecord::Base
   end
 
   def elapsed_duration
-    Time.now - self.launched_at
+    Time.now - launched_at
   end
 
   def total_duration
     turns.sum(:duration) * 60
   end
 
-
+  # Estimate delay before effective launch
+  def launch_delay
+    farms.where('LENGTH(TRIM(application_url)) > 0').count * 0.3
+  end
 
   # Launch the game
-  def run!(force = false)
-    self.load! if state.planned? || force
-    fail 'Cannot run this game' unless self.ready? || force
+  def run!
+    now = Time.now + launch_delay
+    self.launched_at = now
+    save
+    fail 'Cannot run this game' unless self.ready?
     self.state = :running
-    self.launched_at = Time.now
-    self.save
+    save
   end
 
   # Creates Ekylibre instances and load them
   def load!
-    update_column(:state, :loading)
-    hash = farms.inject({}) do |h, farm|
-      h[farm.unique_name] = {}
-      h
+    turns_list = turns.map do |turn|
+      { number: turn.number, started_at: turn.started_at, stopped_at: turn.stopped_at, frozen_at: turn.frozen_at, inside: { started_at: turn.inside_started_at, stopped_at: turn.inside_stopped_at } }
     end
-    # Serious::Tenant.create_instances(hash)
-    update_column(:state, :ready)
+    participants.find_each do |farm|
+      next unless farm.application_url?
+      farm.patch('/game',                    name: name,
+                                             id: id,
+                                             turns: turns_list)
+    end
   end
 
   # Produce hash of configuration information of game
@@ -179,13 +191,14 @@ class Game < ActiveRecord::Base
     conf[:planned_at] = self.planned_at if self.planned_at?
     conf[:farms] = []
     # Farms
-    farms.includes(:users).find_each do |farm|
+    farms.reorder(:name).includes(:users).find_each do |farm|
       users = []
       farm.users.find_each do |user|
         users << {
           first_name: user.first_name,
           last_name: user.last_name,
-          email: user.email
+          email: user.email,
+          password: (Rails.env.development? ? '12345678' : Devise.friendly_token)
         }
       end
       conf[:farms] << {

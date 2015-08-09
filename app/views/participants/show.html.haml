@@ -15,7 +15,7 @@
                   .items-item
                     .row
                       .col-md-8.catalog-item-title{title: catalog_item.variant_name}= catalog_item.variant_name
-                      .col-md-2.decimal.catalog-item-price= catalog_item.amount.l(currency: :EUR)
+                      .col-md-2.decimal.catalog-item-price= catalog_item.pretax_amount.l(currency: :EUR)+ " HT"
                       .col-md-2.catalog-item-quantity
                         = link_to({controller: :deals, action: :add_to_cart, customer_id: current_participant.id, supplier_id: @participant.id, catalog_item_id: catalog_item.id}, method: :post) do
                           %i.glyphicon.glyphicon-shopping-cart

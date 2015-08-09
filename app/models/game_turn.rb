@@ -43,11 +43,11 @@ class GameTurn < ActiveRecord::Base
   before_validation do
     if number
       if number == 1
-        self.started_at = self.game.launched_at || self.game.planned_at
+        self.started_at = game.launched_at || game.planned_at
       else
-        self.started_at ||= self.previous.stopped_at
+        self.started_at ||= previous.stopped_at
       end
-      self.stopped_at = self.started_at + self.duration * 60
+      self.stopped_at = self.started_at + duration * 60
     end
   end
 
@@ -58,16 +58,28 @@ class GameTurn < ActiveRecord::Base
       other.stopped_at += delta
       other.save!
     end
-    if other = following and other.started_at < self.stopped_at
-      delta = self.stopped_at - other.started_at
+    if other = following and other.started_at < stopped_at
+      delta = stopped_at - other.started_at
       other.started_at += delta
       other.stopped_at += delta
       other.save!
     end
   end
 
+  def inside_started_at
+    (Time.zone.local(2015, 9, 15) + (number - 1).months).beginning_of_month
+  end
+
+  def inside_stopped_at
+    (Time.zone.local(2015, 9, 15) + (number - 1).months).end_of_month
+  end
+
+  def frozen_at
+    inside_stopped_at.beginning_of_day + 14.hours
+  end
+
   def finished_on
-    (Date.civil(2015, 9, 30) >> (number - 1)).end_of_month
+    frozen_at.to_date
   end
 
   def name
@@ -84,11 +96,11 @@ class GameTurn < ActiveRecord::Base
   # end
 
   def previous
-    siblings.find_by(number: self.number - 1)
+    siblings.find_by(number: number - 1)
   end
 
   def following
-    siblings.find_by(number: self.number + 1)
+    siblings.find_by(number: number + 1)
   end
 
   def siblings
@@ -100,15 +112,14 @@ class GameTurn < ActiveRecord::Base
   end
 
   def current?
-    self.started_at <= Time.now && Time.now < self.stopped_at
+    self.started_at <= Time.now && Time.now < stopped_at
   end
 
   def past?
-    self.stopped_at < Time.now
+    stopped_at < Time.now
   end
 
   def future?
     self.started_at >= Time.now
   end
-
 end
