@@ -251,7 +251,7 @@ namespace :diagrams do
   task all: :environment do
     Rails.application.eager_load!
     models = ActiveRecord::Base.descendants.delete_if do |m|
-      m.superclass != ActiveRecord::Base
+      m.superclass != ActiveRecord::Base or m.name =~ /^WiceGrid/
     end.sort { |a, b| a.name <=> b.name }
     graph = Diagrams.relational(*models, name: 'all')
     graph.write
@@ -260,7 +260,7 @@ namespace :diagrams do
   task relational: :environment do
     {
       scenario: [Scenario, ScenarioCurve, ScenarioCurveStep, ScenarioBroadcast, ScenarioIssue],
-      game: [Game, Participant, Participation, User, CatalogItem, GameTurn, ContractNature]
+      game: [Game, Participant, Participation, User, CatalogItem, GameTurn, Deal, DealItem, Contract, ContractNature, Insurance, InsuranceIndemnification, Loan]
     }.each do |name, models|
       graph = Diagrams.relational(*models, name: "#{name}-relational")
       graph.write
@@ -268,7 +268,7 @@ namespace :diagrams do
   end
 
   task inheritance: :environment do
-    [Participant].each do |model|
+    [].each do |model|
       graph = Diagrams.inheritance(model)
       graph.write
     end
