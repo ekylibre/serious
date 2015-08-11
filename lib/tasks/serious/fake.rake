@@ -108,7 +108,7 @@ namespace :serious do
       end
 
       farms = {}
-      15.times do |index|
+      2.times do |index|
         name = users_hash[participations.last[:user]][:last_name].humanize
         root_name = name
         i = 1
