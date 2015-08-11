@@ -30,6 +30,7 @@
 #  historic_updated_at   :datetime
 #  id                    :integer          not null, primary key
 #  name                  :string           not null
+#  started_on            :date             not null
 #  turn_nature           :string
 #  turns_count           :string           not null
 #  updated_at            :datetime
@@ -45,15 +46,20 @@ class Scenario < ActiveRecord::Base
   has_attached_file :historic
 
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
+  validates_date :started_on, allow_blank: true, on_or_after: Date.civil(1, 1, 1)
   validates_datetime :historic_updated_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
   validates_numericality_of :historic_file_size, allow_nil: true, only_integer: true
-  validates_presence_of :code, :currency, :name
+  validates_presence_of :code, :currency, :name, :started_on
   # ]VALIDATORS]
   validates_uniqueness_of :name, :code
   validates_attachment_content_type :historic, content_type: 'application/zip'
 
   accepts_nested_attributes_for :broadcasts
   accepts_nested_attributes_for :curves
+
+  before_validation do
+    self.started_on ||= Date.civil(2015, 9, 1)
+  end
 
   class << self
     def import(file)
@@ -82,4 +88,5 @@ class Scenario < ActiveRecord::Base
       end
     end
   end
+
 end

@@ -7,7 +7,8 @@ class AddBase < ActiveRecord::Migration
       t.string :code,         null: false
       t.string :currency,     null: false
       t.string :turn_nature # month
-      t.string :turns_count, null: false # 12 seems to be minimum
+      t.string :turns_count,  null: false # 12 seems to be minimum
+      t.date :started_on,     null: false
       t.attachment :historic
       t.text :description
       t.timestamps

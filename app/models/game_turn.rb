@@ -67,11 +67,11 @@ class GameTurn < ActiveRecord::Base
   end
 
   def inside_started_at
-    (Time.zone.local(2015, 9, 15) + (number - 1).months).beginning_of_month
+    (game.started_on + (number - 1).months).beginning_of_month
   end
 
   def inside_stopped_at
-    (Time.zone.local(2015, 9, 15) + (number - 1).months).end_of_month
+    (game.started_on + (number - 1).months).end_of_month
   end
 
   def frozen_at

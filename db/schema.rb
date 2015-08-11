@@ -291,6 +291,7 @@ ActiveRecord::Schema.define(version: 20150507085614) do
     t.string   "currency",              null: false
     t.string   "turn_nature"
     t.string   "turns_count",           null: false
+    t.date     "started_on",            null: false
     t.string   "historic_file_name"
     t.string   "historic_content_type"
     t.integer  "historic_file_size"

@@ -30,6 +30,7 @@
 #  historic_updated_at   :datetime
 #  id                    :integer          not null, primary key
 #  name                  :string           not null
+#  started_on            :date             not null
 #  turn_nature           :string
 #  turns_count           :string           not null
 #  updated_at            :datetime

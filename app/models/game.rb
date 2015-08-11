@@ -60,7 +60,7 @@ class Game < ActiveRecord::Base
 
   scope :active, -> { where(state: 'running') }
 
-  delegate :historic, to: :scenario
+  delegate :historic, :started_on, to: :scenario
 
   accepts_nested_attributes_for :participants
 
@@ -177,9 +177,9 @@ class Game < ActiveRecord::Base
     end
     participants.find_each do |farm|
       next unless farm.application_url?
-      farm.patch('/game',                    name: name,
-                                             id: id,
-                                             turns: turns_list)
+      farm.patch('/game', name: name,
+                 id: id,
+                 turns: turns_list)
     end
   end
 
