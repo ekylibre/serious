@@ -70,7 +70,7 @@ class ScenarioCurve < ActiveRecord::Base
 
   def generate!
     steps.clear
-    if self.nature_variant? && reference = self.reference
+    if self.nature_variant? && (reference = self.reference)
       scenario.turns_count.to_i.times do |index|
         turn = index + 1
         amount = reference.turn_amount(turn) * amplitude_factor + self.offset_amount + rand * (self.positive_alea_amount + self.negative_alea_amount) - self.negative_alea_amount
@@ -80,7 +80,7 @@ class ScenarioCurve < ActiveRecord::Base
   end
 
   def turn_amount(turn)
-    if step = steps.find_by(turn: turn)
+    if (step = steps.find_by(turn: turn))
       return step.amount
     else # Interpolate
       previous  = steps.where('turn < ?', turn).order(turn: :desc).first

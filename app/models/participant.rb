@@ -93,6 +93,22 @@ class Participant < ActiveRecord::Base
     end
   end
 
+  def products
+    if self.application_url
+      #self.get('/products')
+      puts '----------------'
+      puts self.get('/products')
+      puts '----------------'
+    elsif !self.catalog_items.nil?
+      self.catalog_items
+    else
+      []
+    end
+
+
+
+  end
+
   validate do
     errors.add(:lender, :invalid) if lender if farm?
   end

@@ -61,11 +61,19 @@ class Scenario < ActiveRecord::Base
     self.started_on ||= Date.civil(2015, 9, 1)
   end
 
+  def value_of(variant, turn)
+    if (curve = self.curves.find_by(name: variant))
+      curve.steps.find_by(turn: turn).amount
+    else
+      8
+    end
+  end
+
   class << self
     def import(file)
-      hash = YAML.load_file(file).deep_symbolize_keys
+      (hash = YAML.load_file(file).deep_symbolize_keys)
       return if find_by(name: hash[:name]) || find_by(code: hash[:code])
-      scenario = create!(hash.slice(:code, :name, :description, :turn_nature, :turns_count, :currency))
+      (scenario = create!(hash.slice(:code, :name, :description, :turn_nature, :turns_count, :currency)))
       if hash[:broadcasts]
         hash[:broadcasts].each do |b|
           scenario.broadcasts.create!(b.slice(:name, :content, :release_turn))
