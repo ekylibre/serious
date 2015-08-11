@@ -78,7 +78,7 @@ GEM
     columnize (0.9.0)
     daemons (1.2.3)
     debug_inspector (0.0.2)
-    devise (3.5.1)
+    devise (3.5.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -97,7 +97,7 @@ GEM
     ffaker (2.1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    haml (4.0.6)
+    haml (4.0.7)
       tilt
     http-cookie (1.0.2)
       domain_name (~> 0.5)
