@@ -4,9 +4,9 @@
 
   .row
     = tabbox(:participant) do |t|
+      - puts @participant.products.inspect
       - if @participant.products.any?
         = t.tab :shop do
-          -  
           - deal = @participant.sales.where(customer_id: current_participant.id, state: :draft).first
           .col-md-8
             .catalog
@@ -15,10 +15,13 @@
                 - @participant.products.each do |product|
                   .items-item
                     .row
-                      .col-md-8.catalog-item-title{title: product.variant_name}= product.variant_name
-                      .col-md-2.decimal.catalog-item-price= current_turn_game.scenario.value_of(product.variant).l(currency: :EUR)+ ' HT'
+                      .col-md-8.catalog-item-title{title: product[:name].to_s.humanize}= product[:name].to_s.humanize
+                      - puts '------------'
+                      - puts @current_turn
+                      - puts '------------'
+                      .col-md-2.decimal.catalog-item-price= current_game.scenario.value_of(product[:variant] , @current_turn).l(currency: :EUR)+ ' HT'
                       .col-md-2.catalog-item-quantity
-                        = link_to({controller: :deals, action: :add_to_cart, customer_id: current_participant.id, supplier_id: @participant.id, product_id: product.id}, method: :post) do
+                        = link_to({controller: :deals, action: :add_to_cart, customer_id: current_participant.id, supplier_id: @participant.id, product_id: product[:id]}, method: :post) do
                           %i.glyphicon.glyphicon-shopping-cart
           .col-md-4
             #cart= render 'deals/cart', deal: deal, supplier: @participant

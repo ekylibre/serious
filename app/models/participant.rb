@@ -95,12 +95,15 @@ class Participant < ActiveRecord::Base
 
   def products
     if self.application_url
-      #self.get('/products')
-      puts '----------------'
-      puts self.get('/products')
-      puts '----------------'
+      self.get('/products').map(&:symbolize_keys)
     elsif !self.catalog_items.nil?
-      self.catalog_items
+      self.catalog_items.collect do |item|
+        {
+            name: item.variant_name,
+            variant: item.variant
+
+        }
+      end
     else
       []
     end
@@ -177,9 +180,10 @@ class Participant < ActiveRecord::Base
   # Perform a GET access on REST API of foreign app
   def get(path, params = {}, options = {})
     options[:accept] ||= :json
+    options[:content_type] ||= :json
     options[:params] = params
     options[:Authorization] = "simple-token #{self.access_token}"
-    RestClient.get(request_url(path), options)
+    JSON.parse RestClient.get(request_url(path), options)
   end
 
   def request_url(path = nil)
