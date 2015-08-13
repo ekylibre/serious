@@ -45,8 +45,8 @@ class CatalogItem < ActiveRecord::Base
   # ]VALIDATORS]
   validates_presence_of :nature, :tax
 
-  def pretax_amount
-    8
+  def pretax_amount(game)
+    Game.find(game.id).scenario.value_of(self.variant , game.current_turn)
   end
 
   def variant_name

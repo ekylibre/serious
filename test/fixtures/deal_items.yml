@@ -27,6 +27,7 @@
 #  id                 :integer          not null, primary key
 #  pretax_amount      :decimal(19, 4)   not null
 #  product            :text
+#  product_id         :integer
 #  quantity           :decimal(19, 4)   not null
 #  tax                :string           not null
 #  unit_amount        :decimal(19, 4)   not null

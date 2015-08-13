@@ -181,6 +181,7 @@ class AddBase < ActiveRecord::Migration
       t.decimal :pretax_amount,      precision: 19, scale: 4, null: false
       t.decimal :amount,             precision: 19, scale: 4, null: false
       t.references :catalog_item, index: true
+      t.integer :product_id, index: true
       t.timestamps
     end
 

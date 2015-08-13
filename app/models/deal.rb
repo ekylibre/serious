@@ -74,11 +74,10 @@ class Deal < ActiveRecord::Base
   # Confirm deal and transfer data to foreign apps
   def checkout
     items_list = items.collect do |item|
-      item.attributes.symbolize_keys.slice(:variant, :tax, :unit_pretax_amount, :unit_amount, :pretax_amount, :amount, :quantity).delete_if { |_k, v| v.blank? }
+      item.attributes.symbolize_keys.slice(:product_id, :variant, :tax, :unit_pretax_amount, :unit_amount, :pretax_amount, :amount, :quantity).delete_if { |_k, v| v.blank? }
     end
 
     invoiced_on = customer.current_date
-
     # Send data to customer
     # For a customer, a deal is a purchase
     if customer.application_url?

@@ -75,12 +75,14 @@ ActiveRecord::Schema.define(version: 20150507085614) do
     t.decimal  "pretax_amount",      precision: 19, scale: 4, null: false
     t.decimal  "amount",             precision: 19, scale: 4, null: false
     t.integer  "catalog_item_id"
+    t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "deal_items", ["catalog_item_id"], name: "index_deal_items_on_catalog_item_id", using: :btree
   add_index "deal_items", ["deal_id"], name: "index_deal_items_on_deal_id", using: :btree
+  add_index "deal_items", ["product_id"], name: "index_deal_items_on_product_id", using: :btree
 
   create_table "deals", force: :cascade do |t|
     t.integer  "customer_id",                                          null: false

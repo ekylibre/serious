@@ -100,8 +100,8 @@ class Participant < ActiveRecord::Base
       self.catalog_items.collect do |item|
         {
             name: item.variant_name,
-            variant: item.variant
-
+            variant: item.variant,
+            catalog_item_id: item.id
         }
       end
     else

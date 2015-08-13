@@ -28,16 +28,28 @@ class DealsController < BaseController
   def add_to_cart
     supplier = Participant.find(params[:supplier_id])
     customer = Participant.find(params[:customer_id])
-    catalog_item = CatalogItem.find(params[:catalog_item_id])
-    fail 'No way' unless supplier == current_participant || current_participant == customer
-    fail 'No way again' unless catalog_item.participant == supplier
-    unless deal = customer.purchases.where(supplier_id: supplier.id, state: :draft).order(id: :desc).first
+    # fail 'No way' unless supplier == current_participant || current_participant == customer
+    # fail 'No way again' unless catalog_item.participant == supplier
+    unless (deal = customer.purchases.where(supplier_id: supplier.id, state: :draft).order(id: :desc).first)
       deal = customer.purchases.create!(supplier: supplier, game: supplier.game)
     end
-    item = deal.items.find_or_initialize_by(catalog_item_id: catalog_item.id)
-    item.quantity += params[:quantity] || 1
-    item.save!
-    redirect_to params[:redirect] || { controller: :participants, action: :show, id: supplier.id }
+
+    if !(catalog_item_id = params[:catalog_item_id]).nil?
+      item = deal.items.find_or_initialize_by(catalog_item_id: catalog_item_id)
+    elsif !(product_id = params[:product_id]).nil?
+      item = deal.items.find_or_initialize_by(product_id: product_id, variant: params[:variant], tax: params[:tax], unit_pretax_amount: params[:unit_pretax_amount])
+    elsif !(variant = params[:variant]).nil?
+      item = deal.items.find_or_initialize_by(variant: variant)
+    else
+      item = nil
+      fail "Erreur l'item n'existe pas"
+    end
+
+    unless item.nil?
+      item.quantity += params[:quantity] || 1
+      item.save!
+      redirect_to params[:redirect] || { controller: :participants, action: :show, id: supplier.id }
+    end
   end
 
   def change_quantity

@@ -27,6 +27,7 @@
 #  id                 :integer          not null, primary key
 #  pretax_amount      :decimal(19, 4)   not null
 #  product            :text
+#  product_id         :integer
 #  quantity           :decimal(19, 4)   not null
 #  tax                :string           not null
 #  unit_amount        :decimal(19, 4)   not null
@@ -62,7 +63,7 @@ class DealItem < ActiveRecord::Base
   before_validation do
     if catalog_item
       self.variant = catalog_item.variant
-      self.unit_pretax_amount = catalog_item.pretax_amount
+      self.unit_pretax_amount = catalog_item.pretax_amount(Game.find(self.deal.game_id))
       self.tax = catalog_item.tax
     end
     if Serious::TAXES[tax]
