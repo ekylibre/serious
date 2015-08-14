@@ -34,11 +34,13 @@
 class Loan < ActiveRecord::Base
   belongs_to :borrower, class_name: 'Participant'
   belongs_to :lender, class_name: 'Participant'
+  belongs_to :game
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, :insurance_percentage, :interest_percentage, allow_nil: true
   validates_presence_of :amount, :borrower, :insurance_percentage, :interest_percentage, :lender
   # ]VALIDATORS]
 
+  validates :game, presence: true
   delegate :name, to: :lender, prefix: true
   delegate :name, to: :borrower, prefix: true
 
@@ -46,11 +48,31 @@ class Loan < ActiveRecord::Base
     self.interest_percentage ||= 3
     self.insurance_percentage ||= 0.3
 
+    self.created_at ||= Time.now
     percentage_interest = self.interest_percentage / 100 + 1
     percentage_insurance = self.insurance_percentage / 100
     amount_total = amount * percentage_interest + amount * percentage_insurance
     self.turns_count = amount_total / 10_000
     self.turns_count += 1 if amount_total % 10_000 != 0
+
+    self.game = self.lender.game
+  end
+
+  after_validation do
+    if self.borrower.application_url?
+      self.borrower.post('/loans',
+        lender: {
+                last_name: lender.name,
+                code: lender.code
+            },
+        amount: amount,
+        insurance_percentage: insurance_percentage,
+        duration: turns_count,
+        interest_percentage: insurance_percentage,
+        started_on: created_at.month + 1,
+        loan_name: " #{borrower.name} - #{amount}€ (#{created_at})"
+      )
+    end
   end
 
   def number
