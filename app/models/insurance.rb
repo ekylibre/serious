@@ -47,8 +47,8 @@ class Insurance < ActiveRecord::Base
 
   enumerize :nature, in: [:harvest]
 
-  before_save do
-    self.pretax_amount = quantity_value * unit_pretax_amount
-    self.unit_refundable_amount = quantity_value * (unit_pretax_amount * (1 + tax_percentage / 100))
+  before_validation do
+    self.pretax_amount = self.quantity_value * self.unit_pretax_amount
+    self.amount = self.pretax_amount * (1 + (self.tax_percentage / 100))
   end
 end

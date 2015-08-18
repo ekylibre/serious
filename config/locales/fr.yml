@@ -43,8 +43,12 @@ fr:
     lender: Prêteur
     subcontractor: Sous-traitant
     supplier: Vendeur
-    turn_duration: "Durée du tour"
+    turn_duration: "Durée d'un tour"
     turns_count: "Nombre de tours"
+    stand_number: "Numéro de stand"
+    application_url: "Url de la ferme dans Ekylibre"
+    name: "Nom"
+    present: "Présence"
   date:
     today: "Aujourd'hui"
     tomorrow: "Demain"
@@ -81,13 +85,21 @@ fr:
     my_borrowings: "Mes emprunts"
     new_quantity: "Nouvelle quantité"
     shop: "Boutique"
+    insurrance: "Assurance"
+    new_farm: "Ajouter une ferme"
+    new_actor: "Ajouter un acteur"
     value: "Valeur"
     x_minutes:
       one: "%{count}\_minute"
       other: "%{count}\_minutes"
   rest:
     actions:
+      create: "Créer"
       new: "Ajouter"
       edit: "Modifier"
       destroy: "Supprimer"
       add_item: "Ajouter un item"
+      update: "Mettre à jour"
+      cancel: "Annuler"
+
+

@@ -6,7 +6,7 @@
   .col-md-3
     = f.input :quantity_value, label: 'Quantité assuré', disabled: is_disabled, as: is_hidden
   .col-md-3
-    = f.input :amount, label: "Prix de l'assurance", disabled: is_disabled, as: is_hidden
+    = f.input :unit_refundable_amount, label: 'Montant remboursable', disabled: is_disabled, as: is_hidden
 
 .row
   .col-md-3
@@ -15,6 +15,7 @@
     = f.input :tax_percentage, label: 'Tax (%)', disabled: is_disabled, as: is_hidden
   .col-md-3
     = f.input :excess_amount, label: 'Franchise', disabled: is_disabled, as: is_hidden
+
 
 
 

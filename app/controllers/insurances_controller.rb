@@ -20,9 +20,10 @@ class InsurancesController < BaseController
 
   def create
     @insurance = Insurance.new(insurance_params)
-    @participant = Participant.find(@insurance.insurer_id)
+    @insurer = Participant.find(@insurance.insurer_id)
+    @insurance.game_id = @insurer.game_id
     respond_to do |format|
-      if @insurance.save
+      if @insurance.save!
         format.html { redirect_to @participant, notice: 'Insurance was successfully created.' }
         format.json { render :show, status: :created, location: @insurance }
       else
@@ -38,6 +39,7 @@ class InsurancesController < BaseController
   private
 
   def insurance_params
-    params.require(:insurance).permit(:insurer_id, :insured_id, :nature, :quantity_unit, :amount, :unit_pretax_amount, :tax_percentage, :quantity_value, :excess_amount)
+    params.require(:insurance).permit(:insurer_id, :insured_id, :nature, :quantity_unit, :unit_refundable_amount,
+                                      :unit_pretax_amount, :tax_percentage, :quantity_value, :excess_amount)
   end
 end

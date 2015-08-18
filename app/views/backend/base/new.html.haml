@@ -1,5 +1,8 @@
 = simple_form_for [:backend, resource], class: 'form' do |f|
   = render 'form', f: f
+  -#.btn-group
+  -#  = button_tag(t('.create'), class: 'btn btn-primary')
+  -#  = link_to(t('.cancel'), {action: :index}, class: 'btn btn-default')
   .btn-group
-    = button_tag(t('.create'), class: 'btn btn-primary')
-    = link_to(t('.cancel'), {action: :index}, class: 'btn btn-default')
+    = button_tag(:create.ta, class: 'btn btn-primary')
+    = link_to(:cancel.ta, {action: :index}, class: 'btn btn-default')

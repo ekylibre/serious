@@ -9,8 +9,5 @@
         = f.input_field :turn_duration, class: 'form-control'
         %span.input-group-addon= :minutes.tl
     .col-md-3
-      = f.input :turns_count, wrapper: :append do
-        = f.input_field :turns_count, class: 'form-control'
-        = f.input_field :turn_nature, as: :hidden
-        %span.input-group-addon= f.object.turn_nature.text
+
   = f.input :description

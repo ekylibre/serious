@@ -24,6 +24,16 @@
           .col-md-4
             #cart= render 'deals/cart', deal: deal, supplier: @participant
 
+      - if current_participant.insurer and @participant.insured
+        = t.tab :insurrance do
+          .col-md-8
+            .catalog
+              = link_to('Assurer la ferme',new_insurance_path(insurer_id: current_participant.id, insured_id: @participant.id), class: 'btn btn-default')
+      - if current_participant.insured and @participant.insurer
+        = t.tab :insurrance do
+          .col-md-8
+            .catalog
+              = link_to("S'assurer", new_insurance_path(insurer_id: participant.id, insured_id: current_participant.id), class: 'btn btn-default')
       - if current_participant
         = t.tab :documents do
           = items_block(current_participant, :purchases, relative_to: @participant, as: :supplier)
