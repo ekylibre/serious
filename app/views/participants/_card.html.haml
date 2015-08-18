@@ -16,16 +16,19 @@
       - if false # participant.present
         .participant-info= "#{participant.name} est présent à l'événement, vous pouvez le retrouver à l'emplacement : #{participant.stand_number}"
       - elsif current_participant and current_participant != participant
+
         -# Deals
         - if current_participant.customer and participant.supplier
           = link_to('Acheter', new_deal_path(supplier_id: participant.id, customer_id: current_participant.id), class: 'btn btn-default')
         - if current_participant.supplier and participant.customer
           = link_to('Vendre',  new_deal_path(supplier_id: current_participant.id, customer_id: participant.id), class: 'btn btn-default')
-        -# Loans
-        - if current_participant.lender and participant.borrower
-          = link_to('Prêter',    new_loan_path(lender_id: current_participant.id, borrower_id: participant.id), class: 'btn btn-default')
-        - if current_participant.borrower and participant.lender
-          = link_to('Emprunter', new_loan_path(lender_id: participant.id, borrower_id: current_participant.id), class: 'btn btn-default')
+
+        -#-# Loans
+        -#- if current_participant.lender and participant.borrower
+        -#  = link_to('Prêter',    new_loan_path(lender_id: current_participant.id, borrower_id: participant.id), class: 'btn btn-default')
+        -#- if current_participant.borrower and participant.lender
+        -#  = link_to('Emprunter', new_loan_path(lender_id: participant.id, borrower_id: current_participant.id), class: 'btn btn-default')
+
         -#Insurance
         - if current_participant.insurer and participant.insured
           = link_to('Assurer',   new_insurance_path(insurer_id: current_participant.id, insured_id: participant.id), class: 'btn btn-default')

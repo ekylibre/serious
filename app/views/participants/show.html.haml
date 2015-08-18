@@ -14,10 +14,9 @@
                 - @participant.products.each do |product|
                   .items-item
                     .row
-                      - unit_pretax_amount = current_game.scenario.value_of(product[:variant] , @current_turn)
+                      - unit_pretax_amount = current_game.scenario.value_of(product[:variant] , current_turn)
                       .col-md-8.catalog-item-title{title: product[:name].to_s.humanize}= product[:name].to_s.humanize
                       .col-md-2.decimal.catalog-item-price= unit_pretax_amount.l(currency: :EUR)+ ' HT'
-
                       .col-md-2.catalog-item-quantity
                         = link_to({controller: :deals, action: :add_to_cart, customer_id: current_participant.id, supplier_id: @participant.id, unit_pretax_amount: unit_pretax_amount, catalog_item_id: product[:catalog_item_id], product_id: product[:id], variant: product[:variant], tax: product[:tax]}, method: :post) do
                           %i.glyphicon.glyphicon-shopping-cart
@@ -33,7 +32,19 @@
         = t.tab :insurrance do
           .col-md-8
             .catalog
-              = link_to("S'assurer", new_insurance_path(insurer_id: participant.id, insured_id: current_participant.id), class: 'btn btn-default')
+              = link_to("S'assurer", new_insurance_path(insurer_id: @participant.id, insured_id: current_participant.id), class: 'btn btn-default')
+
+      - if current_participant.lender and @participant.borrower
+        = t.tab :loan do
+          .col-md-8
+            .catalog
+              = link_to('Prêter', new_loan_path(lender_id: current_participant.id, borrower_id: @participant.id), class: 'btn btn-default')
+      - elsif current_participant.borrower and @participant.lender
+        = t.tab :loan do
+          .col-md-8
+            .catalog
+              = link_to('Emprunter', new_loan_path(lender_id: @participant.id, borrower_id: current_participant.id), class: 'btn btn-default')
+
       - if current_participant
         = t.tab :documents do
           = items_block(current_participant, :purchases, relative_to: @participant, as: :supplier)
