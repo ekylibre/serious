@@ -4,5 +4,5 @@
     .col-md-5
     .col-md-3
       .btn-group
-        = button_tag(t('.create'), class: 'btn btn-primary')
-        = link_to(t('.cancel'), {action: :index}, class: 'btn btn-default')
+        = button_tag(:create.ta, class: 'btn btn-primary')
+        = link_to(:cancel.ta, {action: :index}, class: 'btn btn-default')

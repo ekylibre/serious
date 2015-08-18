@@ -2,7 +2,7 @@
   .cart
     %h3= :cart.tl
     .cart-content
-      = render "deals/items", deal: deal
+      = render 'deals/items', deal: deal
       = link_to('Valider la commande', {controller: :deals, id: deal.id, action: :checkout}, method: :post, class: 'btn btn-primary btn-block')
 - else
   .help-block
