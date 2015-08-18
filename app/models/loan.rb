@@ -48,7 +48,6 @@ class Loan < ActiveRecord::Base
     self.interest_percentage ||= 3
     self.insurance_percentage ||= 0.3
 
-    self.created_at ||= Time.now
     percentage_interest = self.interest_percentage / 100 + 1
     percentage_insurance = self.insurance_percentage / 100
     amount_total = amount * percentage_interest + amount * percentage_insurance
@@ -56,6 +55,7 @@ class Loan < ActiveRecord::Base
     self.turns_count += 1 if amount_total % 10_000 != 0
 
     self.game = self.lender.game
+    self.created_at ||= game.current_date
   end
 
   after_validation do
@@ -69,7 +69,7 @@ class Loan < ActiveRecord::Base
         insurance_percentage: insurance_percentage,
         duration: turns_count,
         interest_percentage: insurance_percentage,
-        started_on: created_at.month + 1,
+        started_on: created_at,
         loan_name: " #{borrower.name} - #{amount}€ (#{created_at})"
       )
     end

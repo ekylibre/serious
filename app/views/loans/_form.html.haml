@@ -1,5 +1,5 @@
-= participant_card(@participant, content: false)
-- if current_participant == @participant
+= participant_card(@loan.lender, content: false)
+- if current_participant == @loan.lender
   .row
     .col-md-6= f.association :borrower
     .col-md-3= f.input :interest_percentage

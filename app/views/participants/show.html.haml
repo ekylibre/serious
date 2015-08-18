@@ -28,7 +28,7 @@
           .col-md-8
             .catalog
               = link_to('Assurer la ferme',new_insurance_path(insurer_id: current_participant.id, insured_id: @participant.id), class: 'btn btn-default')
-      - if current_participant.insured and @participant.insurer
+      - elsif current_participant.insured and @participant.insurer
         = t.tab :insurrance do
           .col-md-8
             .catalog
@@ -43,7 +43,7 @@
         = t.tab :loan do
           .col-md-8
             .catalog
-              = link_to('Emprunter', new_loan_path(lender_id: @participant.id, borrower_id: current_participant.id), class: 'btn btn-default')
+              = link_to('Emprunter', new_loan_path(lender_id: @participant.id, borrower_id: current_participant.id, test: current_participant.id), class: 'btn btn-default')
 
       - if current_participant
         = t.tab :documents do

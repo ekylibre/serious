@@ -4,7 +4,7 @@ class LoansController < BaseController
   def new
     @participant = Participant.find(params[:lender_id])
     @loan = Loan.new(interest_percentage: 3, insurance_percentage: 0.3)
-    @loan.borrower = current_participant
+    @loan.borrower = Participant.find(params[:borrower_id])
     @loan.lender = @participant
   end
 
@@ -12,7 +12,7 @@ class LoansController < BaseController
     @loan = Loan.new(permitted_params)
     @participant = Participant.find(@loan.lender_id)
     respond_to do |format|
-      if @loan.save
+      if @loan.save!
         format.html { redirect_to @participant, notice: 'Loan was successfully created.' }
         format.json { render :show, status: :created, location: @loan }
       else

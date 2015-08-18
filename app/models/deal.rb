@@ -78,6 +78,7 @@ class Deal < ActiveRecord::Base
     end
 
     invoiced_on = customer.current_date
+
     # Send data to customer
     # For a customer, a deal is a purchase
     if customer.application_url?
