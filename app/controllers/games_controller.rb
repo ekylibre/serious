@@ -21,6 +21,11 @@ class GamesController < BaseController
     render json: data
   end
 
+  # trigger issue
+  def trigger_issue
+    data
+  end
+
   # Run a game
   def run
     unless (@game = Game.find_by(id: params[:id]))

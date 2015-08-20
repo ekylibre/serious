@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     member do
       get :current_turn, to: 'games#show_current_turn', path: 'current-turn'
       post :run
+      post :trigger_issue
     end
   end
   resources :participants

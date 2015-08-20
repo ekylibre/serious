@@ -39,7 +39,7 @@
         element.trigger('countdown:finished')
         return
 
-      element.html html  
+      element.html html
 
     # Start countdown clearing the interval
     start: (element, delay = 1000, stopped_at = null) ->
@@ -56,17 +56,7 @@
       if element.prop('interval')
         window.clearInterval(element.prop('interval'))
 
-#  $(document).ready ->
-#
-#    $('*[data-countdown]').each ->
-#      console.log 'ready'
-#      $.countdown.start($(this))
-#
-#  $(document).on "page:load", ->
-#    console.log 'load'
-#    $('*[data-countdown]').each ->
-#      $.countdown.start($(this))
-#
+
   $(document).on "page:before-unload",  ->
     console.log 'unload'
     $('*[data-countdown]').each  ->

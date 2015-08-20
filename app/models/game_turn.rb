@@ -51,14 +51,14 @@ class GameTurn < ActiveRecord::Base
     end
   end
 
-  after_save do
-    if (other = previous) and other.stopped_at != self.started_at
+  before_save do
+    if (other = previous) and other.stopped_at > self.started_at
       delta = self.started_at - other.stopped_at
       other.started_at += delta
       other.stopped_at += delta
       other.save!
     end
-    if (other = following) and other.started_at != stopped_at
+    if (other = following) and other.started_at < stopped_at
       delta = stopped_at - other.started_at
       other.started_at += delta
       other.stopped_at += delta
