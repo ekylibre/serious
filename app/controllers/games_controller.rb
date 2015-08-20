@@ -16,7 +16,7 @@ class GamesController < BaseController
     end
     data = { state: game.state, turns_count: game.turns_count }
     if (turn = game.current_turn)
-      data.merge!(number: turn.number, stopped_at: turn.stopped_at.l(format: '%Y-%m-%dT%H:%M:%S'), name: turn.name)
+      data.merge!(number: turn.number, stopped_at: turn.stopped_at.utc.l(format: '%Y-%m-%dT%H:%M:%S'), name: turn.name)
     end
     render json: data
   end

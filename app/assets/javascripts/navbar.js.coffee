@@ -29,11 +29,17 @@
         html = "#{duration.min}min #{duration.sec}s"
       else if duration.sec >= 0
         html = "#{duration.sec}s"
-      element.html html
 
-      if difference <= 0
+      console.log element
+      console.log difference
+
+      if difference < 0
+        console.log 'stop diff'
         $.countdown.stop(element)
         element.trigger('countdown:finished')
+        return
+
+      element.html html  
 
     # Start countdown clearing the interval
     start: (element, delay = 1000, stopped_at = null) ->
@@ -45,27 +51,45 @@
 
     # Stop countdown clearing the interval
     stop:(element) ->
+      console.log 'stopped'
+      console.log element
       if element.prop('interval')
         window.clearInterval(element.prop('interval'))
 
-  $(document).ready ->
-    $('*[data-countdown]').each ->
-      $.countdown.start($(this))
+#  $(document).ready ->
+#
+#    $('*[data-countdown]').each ->
+#      console.log 'ready'
+#      $.countdown.start($(this))
+#
+#  $(document).on "page:load", ->
+#    console.log 'load'
+#    $('*[data-countdown]').each ->
+#      $.countdown.start($(this))
+#
+  $(document).on "page:before-unload",  ->
+    console.log 'unload'
+    $('*[data-countdown]').each  ->
+      $.countdown.stop($(this))
 
-  $(document).on "page:load", ->
+  $(window).on 'page:change', ->
+    console.log 'change'
     $('*[data-countdown]').each ->
       $.countdown.start($(this))
 
   $(document).on 'countdown:finished', '*[data-countdown-restart]', ->
+    console.log 'trigger finish'
     $.ajax
       url: $(this).data('countdown-restart')
       datatype: 'JSON'
       error: (request, status, error) =>
         console.error(error)
         $.countdown.stop($(this))
+
       success: (data, status, request) =>
         if data.name isnt null
           $(this).trigger('countdown:restart', data)
+          console.log data.name
           $.countdown.start($(this), 1000, new Date(data.stopped_at))
         else if data.state == 'finished'
           $(this).html('Partie terminée')
