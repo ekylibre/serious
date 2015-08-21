@@ -6,7 +6,11 @@ class GamesController < BaseController
   end
 
   def show
-    redirect_to :index unless (@game = Game.find_by(id: params[:id]))
+    if (@game = Game.find_by(id: params[:id]))
+      @scenario_issues = ScenarioIssue.where(scenario_id: @game.scenario_id)
+    else
+      redirect_to :index
+    end
   end
 
   # Show current turn infos of a given game or current_game if none given
@@ -14,16 +18,16 @@ class GamesController < BaseController
     unless (game = (params[:id] ? Game.find(params[:id]) : current_game))
       fail 'Cannot return turn without current game'
     end
-    data = { state: game.state, turns_count: game.turns_count }
+    (data = {state: game.state, turns_count: game.turns_count})
     if (turn = game.current_turn)
-      data.merge!(number: turn.number, stopped_at: turn.stopped_at.utc.l(format: '%Y-%m-%dT%H:%M:%S'), name: turn.name)
+      data.merge!(number: turn.number, stopped_at: turn.stopped_at.utc.l(format: '%Y-%m-%dT%H:%M:%SZ'), name: turn.name) #Add z on utc for firefox
     end
     render json: data
   end
 
   # trigger issue
   def trigger_issue
-    data
+
   end
 
   # Run a game

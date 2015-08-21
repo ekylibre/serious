@@ -37,7 +37,7 @@ class Loan < ActiveRecord::Base
   belongs_to :game
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :amount, :insurance_percentage, :interest_percentage, allow_nil: true
-  validates_presence_of :amount, :borrower, :insurance_percentage, :interest_percentage, :lender
+  validates_presence_of :amount, :borrower, :game, :insurance_percentage, :interest_percentage, :lender
   # ]VALIDATORS]
 
   validates :game, presence: true

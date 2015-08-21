@@ -30,11 +30,7 @@
       else if duration.sec >= 0
         html = "#{duration.sec}s"
 
-      console.log element
-      console.log difference
-
       if difference < 0
-        console.log 'stop diff'
         $.countdown.stop(element)
         element.trigger('countdown:finished')
         return
@@ -51,24 +47,21 @@
 
     # Stop countdown clearing the interval
     stop:(element) ->
-      console.log 'stopped'
-      console.log element
       if element.prop('interval')
         window.clearInterval(element.prop('interval'))
 
 
   $(document).on "page:before-unload",  ->
-    console.log 'unload'
     $('*[data-countdown]').each  ->
       $.countdown.stop($(this))
 
-  $(window).on 'page:change', ->
-    console.log 'change'
-    $('*[data-countdown]').each ->
+  $(document).on "page:change",  ->
+#    console.log 'lol'
+    $('*[data-countdown]').each  ->
       $.countdown.start($(this))
 
+
   $(document).on 'countdown:finished', '*[data-countdown-restart]', ->
-    console.log 'trigger finish'
     $.ajax
       url: $(this).data('countdown-restart')
       datatype: 'JSON'
@@ -79,7 +72,6 @@
       success: (data, status, request) =>
         if data.name isnt null
           $(this).trigger('countdown:restart', data)
-          console.log data.name
           $.countdown.start($(this), 1000, new Date(data.stopped_at))
         else if data.state == 'finished'
           $(this).html('Partie terminée')

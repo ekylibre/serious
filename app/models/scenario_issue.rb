@@ -41,6 +41,6 @@ class ScenarioIssue < ActiveRecord::Base
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :maximal_age, :minimal_age, :trigger_turn, allow_nil: true, only_integer: true
   validates_numericality_of :destruction_percentage, allow_nil: true
-  validates_presence_of :description, :name, :nature, :scenario, :trigger_turn, :variety
+  validates_presence_of :description, :name, :nature, :scenario, :variety
   # ]VALIDATORS]
 end
