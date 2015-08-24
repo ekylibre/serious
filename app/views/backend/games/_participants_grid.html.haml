@@ -8,8 +8,8 @@
   - g.column name: Participant.human_attribute_name(:users) do |item|
     :ruby
       item.users.map do |user|
-        link_to(image_tag(user.avatar_url(size: 18)), backend_user_path(user), title: user.name)
-      end.join(" ").html_safe
+        link_to(image_tag(user.avatar_url(size: 18)), backend_user_path(user), title: user.name.tl)
+      end.join(' ').html_safe
 
   - g.column do |item|
     - link_to(:edit.ta, edit_backend_participant_path(item))

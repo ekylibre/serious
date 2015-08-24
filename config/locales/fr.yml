@@ -32,6 +32,7 @@ fr:
       actor: Partenaire
       farm: Ferme
   attributes:
+    broadcasts: "News"
     amount: "Montant"
     borrower: Emprunteur
     contractor: Contracteur
@@ -47,8 +48,20 @@ fr:
     turns_count: "Nombre de tours"
     stand_number: "Numéro de stand"
     application_url: "Url de la ferme dans Ekylibre"
+    historic: "Historique"
+    duration: "Durée d'un tour"
+    currency: "Devise"
+    release_turn: "Tour"
+    turns: "Tours"
+    users: "Utilisateurs"
+    first_name: "Prénom"
+    last_name: "Nom"
+    reference: "Référence"
+    interpolation_method: "Méthode d'interpolation"
+    description: "Description"
     name: "Nom"
     present: "Présence"
+
   date:
     today: "Aujourd'hui"
     tomorrow: "Demain"
@@ -97,6 +110,7 @@ fr:
   rest:
     actions:
       create: "Créer"
+      add: "Ajouter"
       new: "Ajouter"
       edit: "Modifier"
       destroy: "Supprimer"

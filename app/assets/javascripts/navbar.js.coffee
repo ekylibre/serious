@@ -56,7 +56,6 @@
       $.countdown.stop($(this))
 
   $(document).on "page:change",  ->
-#    console.log 'lol'
     $('*[data-countdown]').each  ->
       $.countdown.start($(this))
 
