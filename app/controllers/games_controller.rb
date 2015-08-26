@@ -1,6 +1,5 @@
 class GamesController < BaseController
   before_action :check_game, except: :index
-
   def index
     @games = current_user.games
   end
@@ -20,15 +19,22 @@ class GamesController < BaseController
     end
     (data = {state: game.state, turns_count: game.turns_count})
     if (turn = game.current_turn)
-      data.merge!(number: turn.number, stopped_at: turn.stopped_at.utc.l(format: '%Y-%m-%dT%H:%M:%SZ'), name: turn.name) #Add z on utc for firefox
+      data.merge!(number: turn.number, stopped_at: turn.stopped_at.utc.l(format: '%Y-%m-%dT%H:%M:%SZ'), name: turn.name)
     end
     render json: data
   end
 
   # trigger issue
   def trigger_issue
-
+    unless (scenario_issue = ScenarioIssue.find(params[:id]))
+      fail 'Cannot find issue n°'+ params[:id]
+    end
+    scenario_issue.trigger_turn = current_turn
+    scenario_issue.save!
+    current_game.trigger_issue(scenario_issue)
+    redirect_to game_path(current_game)
   end
+
 
   # Run a game
   def run

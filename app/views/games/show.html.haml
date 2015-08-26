@@ -20,16 +20,16 @@
       - if current_user.administrator?
         = link_to('Modifier', edit_backend_game_path(current_participation.game), class: 'btn btn-default')
     - else
-      - unless @scenario_issues.nil?
-        .dropdown
-          %button#dropdownMenu1.btn.btn-default.dropdown-toggle{'aria-expanded' => 'true', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', type: 'button'}
-            Dropdown
-            %span.c
-
-
-
-          -#= link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}, role: 'button', aria: {haspopup: 'true', expanded: 'false'}) do
-        = link_to('Lancer la grêle', trigger_issue_game_path, method: :post,  class: 'dropdown-toggle')
+      -# Dropdown scenario issue
+      - if @scenario_issues.count > 0
+        .btn-group
+          .dropdown
+            %button#dropdownMenu1.btn.btn-default.dropdown-toggle{'aria-expanded' => 'true', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', type: 'button'}
+              = :choose_issue.tl
+              %span.caret
+            %ul.dropdown-menu
+              - @scenario_issues.each do |issue|
+                %li= link_to(issue.name, trigger_issue_game_path(issue), method: :post,  class: 'dropdown-toggle')
 
   - if @game.description?
     %p= @game.description

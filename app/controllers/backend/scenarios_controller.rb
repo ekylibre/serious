@@ -18,5 +18,5 @@
 #
 
 class Backend::ScenariosController < Backend::BaseController
-  manage_restfully grids: [:broadcasts, :curves]
+  manage_restfully grids: [:broadcasts, :curves, :issues]
 end

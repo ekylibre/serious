@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :scenarios
     resources :scenario_broadcasts
     resources :scenario_curves
+    resources :scenario_issues
     resources :users
     resources :catalog_items
     root to: 'scenarios#index'

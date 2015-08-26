@@ -95,6 +95,29 @@ class Game < ActiveRecord::Base
     load! if self.ready? || self.running?
   end
 
+  def trigger_issue(scenario_issue)
+    self.participants.find_each do |participant|
+      next unless participant.application_url?
+      participant.post('/scenario_issue',
+                      name: scenario_issue.name,
+                      nature: scenario_issue.nature,
+                      description: scenario_issue.description,
+                      observed_at: self.current_date,
+                      target:{
+                        variety: scenario_issue.variety,
+                        maximal_age: scenario_issue.maximal_age,
+                        minimal_age: scenario_issue.minimal_age,
+                        shape: scenario_issue.shape
+                      },
+                      damage:{
+                          impacted_indicator_name: scenario_issue.impacted_indicator_name,
+                          impacted_indicator_value: scenario_issue.impacted_indicator_value,
+                          destruction_percentage: scenario_issue.destruction_percentage
+                      }
+      )
+    end
+  end
+
   def current_date
     current_turn.finished_on
   end

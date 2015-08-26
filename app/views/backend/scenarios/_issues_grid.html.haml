@@ -1,0 +1,13 @@
+= grid(collection_grid) do |g|
+
+  - g.column name: ScenarioIssue.human_attribute_name(:name) do |item|
+    - link_to(item.name, backend_scenario_issue_path(item))
+
+  - g.column name: ScenarioIssue.human_attribute_name(:nature)  do |item|
+    - item.nature
+
+  - g.column name: ScenarioIssue.human_attribute_name(:description) do |item|
+    - item.description
+
+  - g.column do |item|
+    - link_to(:edit.ta, edit_backend_scenario_issue_path(item))

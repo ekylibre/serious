@@ -1,0 +1,2 @@
+module Backend::ScenarioIssuesHelper
+end

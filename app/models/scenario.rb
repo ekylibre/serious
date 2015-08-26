@@ -43,6 +43,7 @@ class Scenario < ActiveRecord::Base
   has_many :broadcasts, -> { order(:release_turn) }, class_name: 'ScenarioBroadcast'
   has_many :curves, class_name: 'ScenarioCurve'
   has_many :games
+  has_many :issues, class_name: 'ScenarioIssue'
   has_attached_file :historic
 
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.

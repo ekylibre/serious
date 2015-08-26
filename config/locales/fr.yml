@@ -94,6 +94,7 @@ fr:
     my_sales: "Mes ventes"
     my_contractings: "Mes contrats"
     my_subcontractings: "Mes missions"
+    choose_issue: "Choisir un incident"
     my_lendings: "Mes prêts"
     my_borrowings: "Mes emprunts"
     new_quantity: "Nouvelle quantité"
