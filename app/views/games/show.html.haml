@@ -38,7 +38,8 @@
   - if @game.current_turn and (broadcasts = @game.broadcasts.where(release_turn: @game.current_turn.number)) and broadcasts.any?
     %h2
       %i.glyphicon.glyphicon-bullhorn
-      News
+      -#News
+      = :broadcasts.tl
     #carousel.carousel.slide{data: {ride: 'carousel'}}
       %ol.carousel-indicators
         - broadcasts.size.times do |index|

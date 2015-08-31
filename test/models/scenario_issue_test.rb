@@ -20,6 +20,7 @@
 #
 # == Table: scenario_issues
 #
+#  coordinates              :string
 #  created_at               :datetime
 #  description              :string           not null
 #  destruction_percentage   :decimal(19, 4)
@@ -32,7 +33,7 @@
 #  nature                   :string           not null
 #  scenario_id              :integer          not null
 #  shape                    :geometry({:srid=>0, :type=>"multi_polygon"})
-#  trigger_turn             :integer          not null
+#  trigger_turn             :integer
 #  updated_at               :datetime
 #  variety                  :string           not null
 #

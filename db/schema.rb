@@ -275,6 +275,7 @@ ActiveRecord::Schema.define(version: 20150507085614) do
     t.string   "nature",                                                                                       null: false
     t.string   "variety",                                                                                      null: false
     t.integer  "trigger_turn"
+    t.string   "coordinates"
     t.geometry "shape",                    limit: {:srid=>0, :type=>"multi_polygon"}
     t.decimal  "destruction_percentage",                                              precision: 19, scale: 4
     t.integer  "minimal_age"

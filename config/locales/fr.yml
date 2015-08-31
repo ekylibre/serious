@@ -32,7 +32,6 @@ fr:
       actor: Partenaire
       farm: Ferme
   attributes:
-    broadcasts: "News"
     amount: "Montant"
     borrower: Emprunteur
     contractor: Contracteur
@@ -102,6 +101,7 @@ fr:
     sale: "Vente"
     insurrance: "Assurance"
     loan: "Emprunt"
+    broadcasts: "News"
     new_farm: "Ajouter une ferme"
     new_actor: "Ajouter un acteur"
     value: "Valeur"

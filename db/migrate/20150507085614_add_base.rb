@@ -57,6 +57,7 @@ class AddBase < ActiveRecord::Migration
       t.string :nature,           null: false
       t.string :variety,          null: false
       t.integer :trigger_turn
+      t.string :coordinates
       t.multi_polygon :shape
       t.decimal :destruction_percentage, precision: 19, scale: 4
       t.integer :minimal_age

@@ -110,9 +110,13 @@ class Game < ActiveRecord::Base
                         shape: scenario_issue.shape
                       },
                       damage:{
-                          impacted_indicator_name: scenario_issue.impacted_indicator_name,
-                          impacted_indicator_value: scenario_issue.impacted_indicator_value,
-                          destruction_percentage: scenario_issue.destruction_percentage
+                        impacted_indicator_name: scenario_issue.impacted_indicator_name,
+                        impacted_indicator_value: scenario_issue.impacted_indicator_value,
+                        destruction_percentage: scenario_issue.destruction_percentage
+                      },
+                      grid:{
+                        dimensions: '10x10',
+                        coordonnees: scenario_issue.coordinates
                       }
       )
     end
