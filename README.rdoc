@@ -20,6 +20,18 @@ All default seed data are in +db/+
 * Games
 * Users (samples)
 
+=== Development installation
+
+An ekylibre app must be installed alongside Serious to get working app.
+
+In Ekylibre, you have to install plugin seriously:
+
+  cd ekylibre/
+  mkdir -p plugins
+  cd plugins
+  git clone git@forge.ekylibre.com:seriously.git
+
+
 === Database creation and initialization
 
 To initialize DB, it's possible to run this command:
