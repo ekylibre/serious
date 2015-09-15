@@ -180,7 +180,7 @@ actors:
       tax: french_vat_normal_2014
       quota: 3
   terre-du-sud:
-    name: Terre du Sud
+    name: Terres du Sud
     stand_number: SA04
     present: true
     insurer: true
