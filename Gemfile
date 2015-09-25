@@ -75,6 +75,9 @@ gem 'cocoon'
 
 gem 'treetop'
 
+gem "d3-rails"
+gem 'inline_svg'
+
 group :development do
   gem 'quiet_assets'
   # gem 'rack-mini-profiler'

@@ -18,4 +18,5 @@
 //= require wice_grid
 // require svg-pan-zoom
 //= require cocoon
+//= require d3
 //= require_tree .

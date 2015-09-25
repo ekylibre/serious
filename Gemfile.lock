@@ -74,6 +74,8 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     colored (1.2)
+    d3-rails (3.5.6)
+      railties (>= 3.1)
     daemons (1.2.3)
     debug_inspector (0.0.2)
     devise (3.5.2)
@@ -102,6 +104,10 @@ GEM
     i18n (0.7.0)
     i18n-complements (0.0.14)
       i18n (>= 0.6)
+    inline_svg (0.6.1)
+      activesupport (>= 4.0.4)
+      loofah (>= 2.0)
+      nokogiri (~> 1.6)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -279,6 +285,7 @@ DEPENDENCIES
   code_string
   coffee-rails (~> 4.1.0)
   colored
+  d3-rails
   devise
   devise-bootstrap-views
   devise-i18n-views
@@ -286,6 +293,7 @@ DEPENDENCIES
   ffaker
   haml
   i18n-complements
+  inline_svg
   jbuilder (~> 2.0)
   jc-validates_timeliness (~> 3.1.1)
   jquery-rails

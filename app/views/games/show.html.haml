@@ -34,6 +34,11 @@
   - if @game.description?
     %p= @game.description
 
+  #mapcontainer
+    #map
+      = inline_svg "base-map-gof.svg"
+      :coffee
+        initializeMap #{@game.participants.order(:name).select{|p|current_participation.can_see?(p)}.to_json}
 
   - if @game.current_turn and (broadcasts = @game.broadcasts.where(release_turn: @game.current_turn.number)) and broadcasts.any?
     %h2
