@@ -7,6 +7,8 @@ class GamesController < BaseController
   def show
     if (@game = Game.find_by(id: params[:id]))
       @scenario_issues = ScenarioIssue.where(scenario_id: @game.scenario_id)
+      @svg_gui = true
+      @html_gui = false
     else
       redirect_to :index
     end

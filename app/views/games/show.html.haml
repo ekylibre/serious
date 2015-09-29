@@ -1,45 +1,48 @@
 - if @game.running?
-  - total_duration = @game.total_duration
-  - value = 100.0 * @game.elapsed_duration / @game.total_duration
-  - value = 100.0 if value > 100.0
-  %span.turns-gauge
-    - duration = 0
-    - @game.turns.find_each do |turn|
-      - if turn.number > 1
-        %span.bearing{style: "left: #{(100.0 * duration/total_duration).round(4)}%", class: (turn.future? ? "future" : turn.current? ? "active" : "past")}
-      %span.interval{style: "left: #{(100.0 * duration/total_duration).round(4)}%; width: #{(100.0 * 60 * turn.duration/total_duration).round(4)}%", class: (turn.future? ? "future" : turn.current? ? "active" : "past"), title: turn.name + " (#{:x_minutes.tl(count: turn.duration)})", data: {toggle: "tooltip", placement: "bottom"}}
-      - duration += turn.duration * 60
-      - break if duration >= total_duration
-    %span.level{style: "width: #{value.round(4)}%"}
-
-.container
-  %h1= h('Partie ') + content_tag(:strong, @game.name)
-  - if current_participation.organizer?
-    - if current_participation.game.can_run?
-      = link_to('Lancer la partie', run_game_path(current_participation.game), method: :post, class: 'btn btn-default')
-      - if current_user.administrator?
-        = link_to('Modifier', edit_backend_game_path(current_participation.game), class: 'btn btn-default')
-    - else
-      -# Dropdown scenario issue
-      - if @scenario_issues.count > 0
-        .btn-group
-          .dropdown
-            %button#dropdownMenu1.btn.btn-default.dropdown-toggle{'aria-expanded' => 'true', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', type: 'button'}
-              = :choose_issue.tl
-              %span.caret
-            %ul.dropdown-menu
-              - @scenario_issues.each do |issue|
-                %li= link_to(issue.name, trigger_issue_game_path(issue), method: :post,  class: 'dropdown-toggle')
-
-  - if @game.description?
-    %p= @game.description
-
-  - if @game.running?
+  - if @svg_gui
     #mapcontainer
       #map
         = inline_svg "base-map-gof.svg"
         :coffee
           initializeMap #{current_participant.to_json}, #{@game.to_json}, #{@game.turns.to_json}, #{@game.participants.order(:name).select{|p|current_participation.can_see?(p)}.to_json}
+
+  - if @html_gui
+    - total_duration = @game.total_duration
+    - value = 100.0 * @game.elapsed_duration / @game.total_duration
+    - value = 100.0 if value > 100.0
+    %span.turns-gauge
+      - duration = 0
+      - @game.turns.find_each do |turn|
+        - if turn.number > 1
+          %span.bearing{style: "left: #{(100.0 * duration/total_duration).round(4)}%", class: (turn.future? ? "future" : turn.current? ? "active" : "past")}
+        %span.interval{style: "left: #{(100.0 * duration/total_duration).round(4)}%; width: #{(100.0 * 60 * turn.duration/total_duration).round(4)}%", class: (turn.future? ? "future" : turn.current? ? "active" : "past"), title: turn.name + " (#{:x_minutes.tl(count: turn.duration)})", data: {toggle: "tooltip", placement: "bottom"}}
+        - duration += turn.duration * 60
+        - break if duration >= total_duration
+      %span.level{style: "width: #{value.round(4)}%"}
+
+- if @html_gui
+  .container
+    %h1= h('Partie ') + content_tag(:strong, @game.name)
+    - if current_participation.organizer?
+      - if current_participation.game.can_run?
+        = link_to('Lancer la partie', run_game_path(current_participation.game), method: :post, class: 'btn btn-default')
+        - if current_user.administrator?
+          = link_to('Modifier', edit_backend_game_path(current_participation.game), class: 'btn btn-default')
+      - else
+        -# Dropdown scenario issue
+        - if @scenario_issues.count > 0
+          .btn-group
+            .dropdown
+              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{'aria-expanded' => 'true', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', type: 'button'}
+                = :choose_issue.tl
+                %span.caret
+              %ul.dropdown-menu
+                - @scenario_issues.each do |issue|
+                  %li= link_to(issue.name, trigger_issue_game_path(issue), method: :post,  class: 'dropdown-toggle')
+
+    - if @game.description?
+      %p= @game.description
+
 
   - if @game.current_turn and (broadcasts = @game.broadcasts.where(release_turn: @game.current_turn.number)) and broadcasts.any?
     %h2
