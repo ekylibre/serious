@@ -45,4 +45,28 @@ class GamesController < BaseController
     @game.run!
     redirect_to game_path(@game)
   end
+
+  def current_turn_broadcasts_and_curves
+    if @game = Game.find_by(id: params[:id]) and @game.current_turn and (broadcasts = @game.broadcasts.where(release_turn: @game.current_turn.number)) and broadcasts.any? and
+      (curves = @game.reference_curves) and curves.any?
+      render json: {
+        #broadcasts: broadcasts.collect{|b| {
+        #  name: truncate(b.name, length: 90),
+        #  content: truncate(b.content, length: 200)
+        #}},
+        broadcasts: broadcasts,
+        curves: curves
+      }.to_json
+    else
+      render json: 'nil'
+    end
+  end
+
+  def turns
+    if game = Game.find_by(id: params[:id]) and turns = game.turns
+      render json: turns.to_json
+    else
+      render json: 'nil'
+    end
+  end
 end

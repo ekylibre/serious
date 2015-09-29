@@ -283,3 +283,13 @@ $white_50: rgba(255, 255, 255, 0.5);
 #map .actor:hover {
   cursor: pointer;
 }
+#broadcastsWindowBody {
+  font: 14px 'sans-serif';
+  background-color: transparent;
+  p.broadcastName {
+    font-weight: bold;
+  }
+  p.broadcastContent {
+    font-size: 12px;
+  }
+}

@@ -31,11 +31,18 @@ Rails.application.routes.draw do
     end
     member do
       get :current_turn, to: 'games#show_current_turn', path: 'current-turn'
+      get :current_turn_broadcasts_and_curves
+      get :turns
       post :run
       post :trigger_issue
     end
   end
   resources :participants
+  resources :participants do
+    member do
+      get :affairs_with, to: 'participants#affairs_with', path: 'affairs_with/:other_id'
+    end
+  end
   resources :farms
   resources :actors
   resources :loans

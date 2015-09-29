@@ -15,4 +15,14 @@ class ParticipantsController < BaseController
     end
   end
 
+  def affairs_with
+    participant = Participant.find_by(id: params[:id])
+    other = Participant.find_by(id: params[:other_id])
+    if participant
+      render json: participant.affairs_with(other).to_json
+    else
+      render json: 'nil'
+    end
+  end
+
 end

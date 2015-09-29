@@ -26,7 +26,7 @@
 
 ) jQuery
 
-window.initializeMap = (actorList) ->
+window.initializeMap = (current_participant, game, turns, actorList) ->
   # MAP AUTOMATIC MOVEMENT
 
   container = d3.select "#mapcontainer"
@@ -111,24 +111,17 @@ window.initializeMap = (actorList) ->
 
   forceCenterMap()
 
+  # hide templates
+  d3.select("#templates").style "display", "none"
 
-  elementCenter = (element) ->
-    # returns the element's center coordinates
-    rect = element.node().getBoundingClientRect()
-    [
-      rect.left + rect.width/2,
-      rect.top + rect.height/2
-    ]
+  # hide placeholders
+  d3.select("#placeholders").style "display", "none"
 
-  # move the models to 0,0 (and out of the view of the users)
-  # FIXME : move these templates out of the support SVG instead
-  [ "#acteur-entrepot1", "#acteur-entrepot2" ].forEach (selector) ->
-    actor = d3.select selector
-    actorCenter = elementCenter actor
-    actor.style "transform", "translate(#{ -actorCenter[0] }px, #{ -actorCenter[1] }px)"
-
-  # hide placeholders FIXME : group them in one single group and hide the group
-  d3.select("#acteur-#{i}").style "display", "none" for i in [0..18]
+  # Game title and total duration (static data)
+  d3.select "#gameTitle"
+    .text game.name
+  d3.select "#gameTotalDuration"
+    .text game.total_duration # FIXME : not known
 
   # Initialize actors from the actorList array
   actors = map.select "svg"
@@ -137,7 +130,7 @@ window.initializeMap = (actorList) ->
       .selectAll "g.actor"
         .data actorList
 
-  # and the template
+  # clone the templates
   actors.enter()
     .append "g"
       .attr "class", "actor"
@@ -147,21 +140,74 @@ window.initializeMap = (actorList) ->
             .cloneNode true
         clone.removeAttribute "id"
         this.appendChild clone
+        $.ajax {
+          url: "/participants/#{current_participant.id}/affairs_with/#{actor.id}"
+          dataType: 'json',
+          async: true,
+          success: (affairs) ->
+            # TODO : show count
+            console.log "affairs:"
+            console.log affairs
+          error: (jqXHR, textStatus, errorThrown) ->
+            console.log textStatus + "\n" + jqXHR.responseText
+        }
       .style "transform", (actor, i) ->
         placeholder = d3.select("#acteur-" + i).select("circle")
         "translate(#{ placeholder.attr 'cx' }px, #{ placeholder.attr 'cy' }px)"
       .attr "id", (actor) -> "actor#{actor.id}"
 
-  # show its name and its stand number
+  # show actor names and stand numbers
   actors
     .select "text"
       .text (actor) ->
-        console.log actor
         actor.name + if actor.present then " " + actor.stand_number else ""
+
+  # TODO : display current game status (time progress, turn number etc.)
+  console.log turns
+
+
+  # Display news and curves for the current turn
+  broadcastContentRect = d3.select "#broadcastContent"
+  d3.select "#broadcastsWindow"
+    .append "foreignObject"
+      .attr "x", broadcastContentRect.attr "x"
+      .attr "y", broadcastContentRect.attr "y"
+      .attr "width", broadcastContentRect.attr "width"
+      .attr "height", broadcastContentRect.attr "height"
+        .append "xhtml:body"
+          .attr "id", "broadcastsWindowBody"
+  # TODO : update whenever a new turn begins (use turns[current].stopped_at to setup a timer)
+  $.ajax {
+    url: "/games/#{game.id}/current_turn_broadcasts_and_curves",
+    dataType: 'json',
+    async: true,
+    success: (broadcasts_and_curves) ->
+      broadcasts_and_curves.broadcasts.forEach (broadcast) ->
+        body = d3.select "#broadcastsWindowBody"
+        body.append "p"
+          .attr "class", "broadcastName"
+          .text broadcast.name
+        body.append "p"
+          .attr "class", "broadcastContent"
+          .text broadcast.content
+     # TODO: curves
+    error: (jqXHR, textStatus, errorThrown) ->
+      d3.select "#broadcasts"
+        .select "flowPara"
+          .text textStatus + "\n" + jqXHR.responseText
+  }
+
 
   # click on an actor to open the actor window
   actors.on "click", () ->
-    #d3.select "#actorDialog"
-    #  .attr "display" "block"
-    # TODO : display actors offer
+    clone = d3.select "#actorWindow"
+      .node()
+        .cloneNode true
+    clone.setAttribute "id", "actorWindow#{ this.getAttribute 'id' }"
+    d3.select "#map"
+      .select "svg"
+        .node()
+          .appendChild clone
+    # TODO : display actors offer (ajax)
+
     forceCenterMap()
