@@ -202,12 +202,12 @@ $white_50: rgba(255, 255, 255, 0.5);
   }
 }
 
-#my-games {
-  .items-item {
+#my-games, #new-game {
+  .items-item, .countdown {
     font-size: $font-size-h4;
-    .countdown {
-      float: right;
-    }
+  }
+  .countdown {
+    float: right;
   }
 }
 

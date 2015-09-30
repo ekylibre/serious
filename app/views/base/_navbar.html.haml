@@ -22,9 +22,13 @@
                 = link_to(participant_path(current_participant)) do
                   %i.glyphicon.glyphicon-home
             - if @current_game.running?
-              %li
-                = link_to(game_path(current_participation.game)) do
-                  %i.glyphicon.glyphicon-th
+              - if @game && controller_path == "games" && action_name == "show"
+                %li
+                  %span.navbar-text= @game.name
+              - else
+                %li
+                  = link_to(game_path(current_participation.game)) do
+                    %i.glyphicon.glyphicon-th
               - if (turn = current_game.current_turn)
                 %li
                   %p.navbar-text{title: turn.stopped_at.l}
@@ -43,8 +47,13 @@
                   = current_participant.name
                 %span.caret
               %ul.dropdown-menu
+                - if current_game && current_game.running?
+                  %li.dropdown-header= "Affichage"
+                  - [:simple, :map, :curves].each do |mode|
+                    %li{class: (mode.to_s == session[:view_mode].to_s ? 'active' : nil)}= link_to("#{mode}_view_mode".tl, {mode: mode})
+                  %li.divider{role: 'separator'}
                 - current_user.active_games.each do |game|
-                  -if game.current_turn.nil?
+                  - if game.current_turn.nil?
                     - Time.now > game.last_turn.stopped_at ? turn_info = 'Partie terminée' :  turn_info = 'La partie est en pause'
                   - else
                     - turn_info = "#{game.current_turn.number}/#{game.turns_count}"
@@ -56,11 +65,6 @@
                       = link_to(participation_path(participation)) do
                         %span.glyphicon{class: "glyphicon-#{participation.organizer? ? :king : participation.participant.farm? ? :grain : :briefcase}"}
                         = participation.name
-                  - if @game && game.running?
-                    %li.divider{role: 'separator'}
-                    %li.dropdown-header= "Affichage"
-                    - [:simple, :map].each do |mode|
-                      %li{class: (mode.to_s == session[:view_mode].to_s ? 'active' : nil)}= link_to("#{mode}_view_mode".tl, {mode: mode})
                   %li.divider{role: 'separator'}
                 %li= link_to('Mon compte', user_path(current_user))
                 %li= link_to('Se déconnecter', destroy_user_session_path, method: :delete)

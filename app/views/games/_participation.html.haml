@@ -1,16 +1,4 @@
-- game = participation.game
-.countdown.simple-countdown.label.label-info{class: game.state}
-  - if game.running?
-    - if game.current_turn.nil?
-      - turn_info = (Time.now > game.last_turn.stopped_at ? 'Partie terminée' : 'La partie est en pause')
-    - else
-      - turn_info = h('Fin du tour (') + content_tag(:span, game.current_turn.number, {data:{number_turn: game.current_turn.number}, class: 'turn-number'}) + '/' + content_tag(:span, game.turns_count, {data:{all_turns: game.turns_count}, class:'turns-count'}) + ')&nbsp;: '.html_safe + content_tag(:span, nil, data: {countdown: game.current_turn.stopped_at.utc.l(format: '%Y-%m-%dT%H:%M:%S'), countdown_restart: current_turn_game_path(game) })
-    = turn_info
-  - else
-    = 'Pas encore lancée'
 -# %h4.list-group-item-heading
 %span
-  = game.name
-  = ' &mdash; '.html_safe
   %span.glyphicon{class: "glyphicon-#{participation.organizer? ? :king : participation.participant.farm? ? :grain : :briefcase}"}
   = participation.name
