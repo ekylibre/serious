@@ -75,7 +75,7 @@ gem 'cocoon'
 
 gem 'treetop'
 
-gem "d3-rails"
+gem 'd3-rails'
 gem 'inline_svg'
 
 group :development do

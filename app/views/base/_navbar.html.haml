@@ -56,6 +56,11 @@
                       = link_to(participation_path(participation)) do
                         %span.glyphicon{class: "glyphicon-#{participation.organizer? ? :king : participation.participant.farm? ? :grain : :briefcase}"}
                         = participation.name
+                  - if @game && game.running?
+                    %li.divider{role: 'separator'}
+                    %li.dropdown-header= "Affichage"
+                    - [:simple, :map].each do |mode|
+                      %li{class: (mode.to_s == session[:view_mode].to_s ? 'active' : nil)}= link_to("#{mode}_view_mode".tl, {mode: mode})
                   %li.divider{role: 'separator'}
                 %li= link_to('Mon compte', user_path(current_user))
                 %li= link_to('Se déconnecter', destroy_user_session_path, method: :delete)

@@ -1,4 +1,8 @@
 module GamesHelper
+  def view_mode
+    session[:view_mode] || :map
+  end
+
   def strat(x, y, width, height, thickness, options = {})
     depth = options.delete(:depth) || 0
     depth += thickness

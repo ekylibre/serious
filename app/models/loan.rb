@@ -54,24 +54,24 @@ class Loan < ActiveRecord::Base
     self.turns_count = amount_total / 10_000
     self.turns_count += 1 if amount_total % 10_000 != 0
 
-    self.game = self.lender.game
+    self.game = lender.game
     self.created_at ||= game.current_date
   end
 
   after_validation do
-    if self.borrower.application_url?
-      self.borrower.post('/loans',
-        lender: {
-                last_name: lender.name,
-                code: lender.code
-            },
-        amount: amount,
-        insurance_percentage: insurance_percentage,
-        duration: turns_count,
-        interest_percentage: insurance_percentage,
-        started_on: created_at,
-        loan_name: " #{borrower.name} - #{amount}€ (#{created_at})"
-      )
+    if borrower.application_url?
+      borrower.post('/loans',
+                    lender: {
+                      last_name: lender.name,
+                      code: lender.code
+                    },
+                    amount: amount,
+                    insurance_percentage: insurance_percentage,
+                    duration: turns_count,
+                    interest_percentage: insurance_percentage,
+                    started_on: created_at,
+                    loan_name: " #{borrower.name} - #{amount}€ (#{created_at})"
+                   )
     end
   end
 

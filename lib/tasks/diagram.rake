@@ -251,7 +251,7 @@ namespace :diagrams do
   task all: :environment do
     Rails.application.eager_load!
     models = ActiveRecord::Base.descendants.delete_if do |m|
-      m.superclass != ActiveRecord::Base or m.name =~ /^WiceGrid/
+      m.superclass != ActiveRecord::Base || m.name =~ /^WiceGrid/
     end.sort { |a, b| a.name <=> b.name }
     graph = Diagrams.relational(*models, name: 'all')
     graph.write

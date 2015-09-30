@@ -88,6 +88,7 @@ fr:
     cart: "Panier"
     close: "Fermer"
     documents: "Documents"
+    map_view_mode: "Vue carte"
     minutes: "Minutes"
     my_purchases: "Mes achats"
     my_sales: "Mes ventes"
@@ -105,6 +106,7 @@ fr:
     new_farm: "Ajouter une ferme"
     new_actor: "Ajouter un acteur"
     value: "Valeur"
+    simple_view_mode: "Vue simple"
     x_minutes:
       one: "%{count}\_minute"
       other: "%{count}\_minutes"

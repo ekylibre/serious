@@ -46,7 +46,7 @@ class CatalogItem < ActiveRecord::Base
   validates_presence_of :nature, :tax
 
   def pretax_amount(game)
-    Game.find(game.id).scenario.value_of(self.variant , game.current_turn)
+    Game.find(game.id).scenario.value_of(variant, game.current_turn)
   end
 
   def variant_name

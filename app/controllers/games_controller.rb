@@ -1,3 +1,4 @@
+# coding: utf-8
 class GamesController < BaseController
   before_action :check_game, except: :index
   def index
@@ -5,10 +6,12 @@ class GamesController < BaseController
   end
 
   def show
-    if (@game = Game.find_by(id: params[:id]))
+    @game = Game.find_by(id: params[:id])
+    session[:view_mode] = params['mode'].to_s if params['mode']
+    session[:view_mode] ||= 'map'
+    session[:view_mode] = 'simple' unless @game.running?
+    if @game
       @scenario_issues = ScenarioIssue.where(scenario_id: @game.scenario_id)
-      @svg_gui = true
-      @html_gui = false
     else
       redirect_to :index
     end
@@ -19,7 +22,7 @@ class GamesController < BaseController
     unless (game = (params[:id] ? Game.find(params[:id]) : current_game))
       fail 'Cannot return turn without current game'
     end
-    (data = {state: game.state, turns_count: game.turns_count})
+    (data = { state: game.state, turns_count: game.turns_count })
     if (turn = game.current_turn)
       data.merge!(number: turn.number, stopped_at: turn.stopped_at.utc.l(format: '%Y-%m-%dT%H:%M:%SZ'), name: turn.name)
     end
@@ -29,14 +32,13 @@ class GamesController < BaseController
   # trigger issue
   def trigger_issue
     unless (scenario_issue = ScenarioIssue.find(params[:id]))
-      fail 'Cannot find issue n°'+ params[:id]
+      fail 'Cannot find issue n°' + params[:id]
     end
     scenario_issue.trigger_turn = current_turn
     scenario_issue.save!
     current_game.trigger_issue(scenario_issue)
     redirect_to game_path(current_game)
   end
-
 
   # Run a game
   def run
@@ -50,12 +52,12 @@ class GamesController < BaseController
 
   def current_turn_broadcasts_and_curves
     if @game = Game.find_by(id: params[:id]) and @game.current_turn and (broadcasts = @game.broadcasts.where(release_turn: @game.current_turn.number)) and broadcasts.any? and
-      (curves = @game.reference_curves) and curves.any?
+       (curves = @game.reference_curves) and curves.any?
       render json: {
-        #broadcasts: broadcasts.collect{|b| {
+        # broadcasts: broadcasts.collect{|b| {
         #  name: truncate(b.name, length: 90),
         #  content: truncate(b.content, length: 200)
-        #}},
+        # }},
         broadcasts: broadcasts,
         curves: curves
       }.to_json
