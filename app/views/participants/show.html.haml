@@ -2,94 +2,95 @@
 
   = participant_card(@participant)
 
-  .row
-    = tabbox(:participant) do |t|
-      -#Deals
-      - if @participant.products.any?
-        = t.tab :purchase do
-          - deal = @participant.sales.where(customer_id: current_participant.id, state: :draft).first
-          .col-md-8
-            .catalog
-              %h3 Produits à acheter
-              .items-list
-                - @participant.products.each do |product|
-                  .items-item
-                    .row
-                      - unit_pretax_amount = current_game.scenario.value_of(product[:variant] , current_turn)
-                      .col-md-8.catalog-item-title{title: product[:name].to_s.humanize}= product[:name].to_s.humanize
-                      .col-md-2.decimal.catalog-item-price= unit_pretax_amount.l(currency: :EUR)+ ' HT'
-                      .col-md-2.catalog-item-quantity
-                        = link_to({controller: :deals, action: :add_to_cart, customer_id: current_participant.id,
-                                  supplier_id: @participant.id, unit_pretax_amount: unit_pretax_amount,
-                                  catalog_item_id: product[:catalog_item_id], product_id: product[:id],
-                                   variant: product[:variant], tax: product[:tax]}, method: :post) do
-                          %i.glyphicon.glyphicon-shopping-cart
-          .col-md-4
-            #cart= render 'deals/cart', deal: deal, supplier: @participant
+  - if current_participant
+    .row
+      = tabbox(:participant) do |t|
+        -# Deals
+        - if @participant.products.any?
+          = t.tab :purchase do
+            - deal = @participant.sales.where(customer_id: current_participant.id, state: :draft).first
+            .col-md-8
+              .catalog
+                %h3 Produits à acheter
+                .items-list
+                  - @participant.products.each do |product|
+                    .items-item
+                      .row
+                        - unit_pretax_amount = current_game.scenario.value_of(product[:variant] , current_turn)
+                        .col-md-8.catalog-item-title{title: product[:name].to_s.humanize}= product[:name].to_s.humanize
+                        .col-md-2.decimal.catalog-item-price= unit_pretax_amount.l(currency: :EUR)+ ' HT'
+                        .col-md-2.catalog-item-quantity
+                          = link_to({controller: :deals, action: :add_to_cart, customer_id: current_participant.id,
+                                    supplier_id: @participant.id, unit_pretax_amount: unit_pretax_amount,
+                                    catalog_item_id: product[:catalog_item_id], product_id: product[:id],
+                                     variant: product[:variant], tax: product[:tax]}, method: :post) do
+                            %i.glyphicon.glyphicon-shopping-cart
+            .col-md-4
+              #cart= render 'deals/cart', deal: deal, supplier: @participant
 
-      - if current_participant.products.any?
-        = t.tab :sale do
-          - deal = current_participant.sales.where(customer_id: @participant.id, state: :draft).first
-          .col-md-8
-            .catalog
-              %h3 Produits à vendre
-              .items-list
-                - current_participant.products.each do |product|
-                  .items-item
-                    .row
-                      - unit_pretax_amount = current_game.scenario.value_of(product[:variant] , current_turn)
-                      .col-md-8.catalog-item-title{title: product[:name].to_s.humanize}= product[:name].to_s.humanize
-                      .col-md-2.decimal.catalog-item-price= unit_pretax_amount.l(currency: :EUR)+ ' HT'
-                      .col-md-2.catalog-item-quantity
-                        = link_to({controller: :deals, action: :add_to_cart, customer_id: @participant.id,
-                        supplier_id: current_participant.id,unit_pretax_amount: unit_pretax_amount,
-                        catalog_item_id: product[:catalog_item_id], product_id: product[:id],variant: product[:variant],
-                         tax: product[:tax]}, method: :post) do
-                          %i.glyphicon.glyphicon-shopping-cart
+        - if current_participant.products.any?
+          = t.tab :sale do
+            - deal = current_participant.sales.where(customer_id: @participant.id, state: :draft).first
+            .col-md-8
+              .catalog
+                %h3 Produits à vendre
+                .items-list
+                  - current_participant.products.each do |product|
+                    .items-item
+                      .row
+                        - unit_pretax_amount = current_game.scenario.value_of(product[:variant] , current_turn)
+                        .col-md-8.catalog-item-title{title: product[:name].to_s.humanize}= product[:name].to_s.humanize
+                        .col-md-2.decimal.catalog-item-price= unit_pretax_amount.l(currency: :EUR)+ ' HT'
+                        .col-md-2.catalog-item-quantity
+                          = link_to({controller: :deals, action: :add_to_cart, customer_id: @participant.id,
+                          supplier_id: current_participant.id,unit_pretax_amount: unit_pretax_amount,
+                          catalog_item_id: product[:catalog_item_id], product_id: product[:id],variant: product[:variant],
+                           tax: product[:tax]}, method: :post) do
+                            %i.glyphicon.glyphicon-shopping-cart
 
-          .col-md-4
-            #cart= render 'deals/cart', deal: deal, supplier: current_participant
+            .col-md-4
+              #cart= render 'deals/cart', deal: deal, supplier: current_participant
 
-      -# Insurance
-      - if current_participant.insurer and @participant.insured
-        = t.tab :insurrance do
-          .col-md-8
-            .catalog
-              = link_to('Assurer la ferme',new_insurance_path(insurer_id: current_participant.id,
-                        insured_id: @participant.id), class: 'btn btn-default')
-      - elsif current_participant.insured and @participant.insurer
-        = t.tab :insurrance do
-          .col-md-8
-            .catalog
-              = link_to("S'assurer", new_insurance_path(insurer_id: @participant.id,
-                        insured_id: current_participant.id), class: 'btn btn-default')
-      -#Loans
-      - if current_participant.lender and @participant.borrower
-        = t.tab :loan do
-          .col-md-8
-            .catalog
-              = link_to('Prêter', new_loan_path(lender_id: current_participant.id, borrower_id: @participant.id),
-                         class: 'btn btn-default')
-      - elsif current_participant.borrower and @participant.lender
-        = t.tab :loan do
-          .col-md-8
-            .catalog
-              = link_to('Emprunter', new_loan_path(lender_id: @participant.id, borrower_id: current_participant.id,
-                         test: current_participant.id), class: 'btn btn-default')
+        -# Insurance
+        - if current_participant.insurer and @participant.insured
+          = t.tab :insurrance do
+            .col-md-8
+              .catalog
+                = link_to('Assurer la ferme',new_insurance_path(insurer_id: current_participant.id,
+                          insured_id: @participant.id), class: 'btn btn-default')
+        - elsif current_participant.insured and @participant.insurer
+          = t.tab :insurrance do
+            .col-md-8
+              .catalog
+                = link_to("S'assurer", new_insurance_path(insurer_id: @participant.id,
+                          insured_id: current_participant.id), class: 'btn btn-default')
+        -#Loans
+        - if current_participant.lender and @participant.borrower
+          = t.tab :loan do
+            .col-md-8
+              .catalog
+                = link_to('Prêter', new_loan_path(lender_id: current_participant.id, borrower_id: @participant.id),
+                           class: 'btn btn-default')
+        - elsif current_participant.borrower and @participant.lender
+          = t.tab :loan do
+            .col-md-8
+              .catalog
+                = link_to('Emprunter', new_loan_path(lender_id: @participant.id, borrower_id: current_participant.id,
+                           test: current_participant.id), class: 'btn btn-default')
 
-      - if current_participant
-        = t.tab :documents do
-          = items_block(current_participant, :purchases, relative_to: @participant, as: :supplier)
-          = items_block(current_participant, :sales,     relative_to: @participant, as: :customer)
-          = items_block(current_participant, :contractings,    relative_to: @participant, as: :contractor)
-          = items_block(current_participant, :subcontractings, relative_to: @participant, as: :subcontractor)
-          = items_block(current_participant, :lendings,   relative_to: @participant, as: :borrower)
-          = items_block(current_participant, :borrowings, relative_to: @participant, as: :lender)
+        - if current_participant
+          = t.tab :documents do
+            = items_block(current_participant, :purchases, relative_to: @participant, as: :supplier)
+            = items_block(current_participant, :sales,     relative_to: @participant, as: :customer)
+            = items_block(current_participant, :contractings,    relative_to: @participant, as: :contractor)
+            = items_block(current_participant, :subcontractings, relative_to: @participant, as: :subcontractor)
+            = items_block(current_participant, :lendings,   relative_to: @participant, as: :borrower)
+            = items_block(current_participant, :borrowings, relative_to: @participant, as: :lender)
 
-      - if @participant.contract_natures.any?
-        = t.tab :contracts do
-          - @participant.contract_natures.each do |nature|
-            .items-block
-              %h3= nature.name
-              %p= nature.amount.l(currency: :EUR)
-              %p= link_to('Voir le contrat', contract_nature_path(nature))
+        - if @participant.contract_natures.any?
+          = t.tab :contracts do
+            - @participant.contract_natures.each do |nature|
+              .items-block
+                %h3= nature.name
+                %p= nature.amount.l(currency: :EUR)
+                %p= link_to('Voir le contrat', contract_nature_path(nature))

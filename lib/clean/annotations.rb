@@ -201,7 +201,11 @@ module Clean
         header << "\n\n== License\n\n"
         header << "Serious - Serious Game based on Ekylibre\nCopyright (C) 2015-#{Date.today.year} Ekylibre SAS\n\nThis program is free software: you can redistribute it and/or modify\nit under the terms of the GNU Affero General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\nany later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License\nalong with this program.  If not, see http://www.gnu.org/licenses.\n\n"
 
-        version = ActiveRecord::Migrator.current_version rescue 0
+        version = begin
+                    ActiveRecord::Migrator.current_version
+                  rescue
+                    0
+                  end
 
         errors = []
         get_model_names.each do |m|

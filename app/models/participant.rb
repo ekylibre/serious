@@ -94,22 +94,19 @@ class Participant < ActiveRecord::Base
   end
 
   def products
-    if self.application_url
-      self.get('/products').map(&:symbolize_keys)
-    elsif !self.catalog_items.nil?
-      self.catalog_items.collect do |item|
+    if application_url
+      get('/products').map(&:symbolize_keys)
+    elsif !catalog_items.nil?
+      catalog_items.collect do |item|
         {
-            name: item.variant_name,
-            variant: item.variant,
-            catalog_item_id: item.id
+          name: item.variant_name,
+          variant: item.variant,
+          catalog_item_id: item.id
         }
       end
     else
       []
     end
-
-
-
   end
 
   validate do

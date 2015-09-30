@@ -24,5 +24,4 @@ class ParticipantsController < BaseController
       render json: 'nil'
     end
   end
-
 end

@@ -48,7 +48,7 @@ class Insurance < ActiveRecord::Base
   enumerize :nature, in: [:harvest]
 
   before_validation do
-    self.pretax_amount = self.quantity_value * self.unit_pretax_amount
-    self.amount = self.pretax_amount * (1 + (self.tax_percentage / 100))
+    self.pretax_amount = quantity_value * unit_pretax_amount
+    self.amount = pretax_amount * (1 + (tax_percentage / 100))
   end
 end

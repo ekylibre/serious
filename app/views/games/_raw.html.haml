@@ -1,0 +1,39 @@
+-#%h1= @game.name
+
+
+:ruby
+  ts = 10  # tile size
+  width  = @game.map_width * ts
+  height = @game.map_height * ts
+  coeff = 1/1.223
+  thickness = 7.5*ts
+  nwidth, nheight = (height + width) * Math.cos(Math::PI/6)*coeff, (height + width) * Math.sin(Math::PI/6)*coeff
+  margin = 0.05
+#map-wrap
+  -# #map-toolbar
+    Barre d'outils
+  %svg#map{viewBox: "#{-(height *  Math.cos(Math::PI/6)*coeff + margin*nwidth).round}, #{-(margin*nheight).round - 40}, #{((1 + 2 * margin)*nwidth).round}, #{(1 + 2 * margin)*nheight.round + thickness}", fill: "#333"}
+    %g#viewport
+      %g{transform: 'matrix(0.707 0.409 -0.707 0.409 0 -0.816)'}
+        %rect{width: width, height: height, style: 'fill: #C93'}
+        = strat(0, 0, width, height, 0.2*ts, fill: '#B70')
+        = strat(0, 0, width, height, 0.4*ts, depth: 0.2*ts, fill: '#950')
+        = strat(0, 0, width, height, 0.8*ts, depth: 0.6*ts, fill: '#630')
+        = strat(0, 0, width, height, 1.2*ts, depth: 1.4*ts, fill: '#310')
+        = strat(0, 0, width, height, 0.8*ts, depth: 2.6*ts, fill: '#100')
+        - @game.farms.reorder('zone_x + zone_y').each do |farm|
+          %g.farm{title: farm.name, data: {toggle: 'modal', target: '#farm-modal'}}
+            -# %rect.farm{width: farm.zone_width * ts, height: farm.zone_height * ts, x: farm.zone_x * ts, y:  farm.zone_y * ts, style: "fill: red"}
+            = parallelo(farm.zone_x * ts, farm.zone_y * ts, farm.zone_width * ts, farm.zone_height * ts, 0.1*ts, fill: '#473')
+
+#farm-modal.modal.fade{tabindex: -1, role: :dialog}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{type: 'button', data: {dismiss: 'modal'}}
+          %span= raw '&times;'
+        %h4.modal-title Ferme
+      .modal-body
+        Info sur la ferme
+      .modal-footer
+        %button.btn.btn-default{type: 'button', data: {dismiss: 'modal'}}= :close.tl
