@@ -1,18 +1,6 @@
-- total_duration = @game.total_duration
-- value = 100.0 * @game.elapsed_duration / @game.total_duration
-- value = 100.0 if value > 100.0
-%span.turns-gauge
-  - duration = 0
-  - @game.turns.find_each do |turn|
-    - if turn.number > 1
-      %span.bearing{style: "left: #{(100.0 * duration/total_duration).round(4)}%", class: (turn.future? ? "future" : turn.current? ? "active" : "past")}
-    %span.interval{style: "left: #{(100.0 * duration/total_duration).round(4)}%; width: #{(100.0 * 60 * turn.duration/total_duration).round(4)}%", class: (turn.future? ? "future" : turn.current? ? "active" : "past"), title: turn.name + " (#{:x_minutes.tl(count: turn.duration)})", data: {toggle: "tooltip", placement: "bottom"}}
-    - duration += turn.duration * 60
-    - break if duration >= total_duration
-  %span.level{style: "width: #{value.round(4)}%"}
+= render 'turns_jauge', game: @game
 
 .container
-  %h1= h('Partie ') + content_tag(:strong, @game.name)
   - if current_participation.organizer?
     - if current_participation.game.can_run?
       = link_to('Lancer la partie', run_game_path(current_participation.game), method: :post, class: 'btn btn-default')
@@ -98,35 +86,3 @@
                 - if participant.send(state)
                   %span.label.label-success= Participant.human_attribute_name(state)
 
-
-  - curves = current_game.reference_curves
-  - if curves.any?
-    %h2
-      %i.glyphicon.glyphicon-stats
-      Cours de référence
-    #curves
-      - current_game.reference_curves.each do |curve|
-        .curve
-          %h3= curve.name
-          :ruby
-            serie = {name: curve.name, data: curve.steps.where('turn <= ?', current_turn).order(:turn).map{|s| [s.turn , s.amount.to_s.to_f]}}
-            if curve.interpolation_method_previous?
-              serie[:step] = 'left'
-            elsif curve.interpolation_method_following?
-              serie[:step] = 'right'
-            end
-          .box-content= line_chart([serie],chart: {height: 150}, y_axis: {title: {text: "#{:value.tl} (#{curve.unit_name})"}})
-
-
-
-  - if current_user.administrator?
-    %h2
-      %i.glyphicon.glyphicon-wrench
-      Installation technique
-    %p Pour configurer les fermes, veuillez executer la commande suivante dans Ekylibre
-    %pre
-      = "rake seriously:prepare GAME_URL=#{api_v1_game_url(@game)} TOKEN=#{Shellwords.escape(@game.access_token)}"
-    - if Rails.env.development?
-      %p Vous pouvez utiliser la commande suivante pour configurer localement les noms de domaines :
-      %pre
-        = "echo '127.0.0.1 #{@game.farms.map(&:domain).join(' ')}' | sudo tee --append /etc/hosts"

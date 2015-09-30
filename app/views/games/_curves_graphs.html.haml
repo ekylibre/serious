@@ -1,0 +1,12 @@
+#curves
+  - current_game.reference_curves.order(:name).each do |curve|
+    .curve
+      %h3= curve.name
+      :ruby
+        serie = {name: curve.name, data: curve.steps.where('turn <= ?', current_turn).order(:turn).map{|s| [s.turn , s.amount.to_s.to_f]}}
+        if curve.interpolation_method_previous?
+          serie[:step] = 'left'
+        elsif curve.interpolation_method_following?
+          serie[:step] = 'right'
+        end
+      .box-content= line_chart([serie],chart: {height: 150}, y_axis: {title: {text: "#{:value.tl} (#{curve.unit_name})"}})

@@ -3,20 +3,41 @@
   #logo
 
   - if @games.any? or current_user.can_organize?
-    #my-games.items-block
-      %h3 Mes parties
-      .items-list
-        - @games.each do |game|
-          - game.participations.where(user_id: current_user.id).each do |participation|
-            - if game.running? or participation.organizer?
-              = link_to(participation_path(participation), class: 'items-item') do
-                = render 'participation', participation: participation
+    #my-games      
+      - @games.each do |game|
+        .items-block
+          .countdown.simple-countdown.label.label-info{class: game.state}
+            - if game.running?
+              - if game.current_turn.nil?
+                - turn_info = (Time.now > game.last_turn.stopped_at ? 'Partie terminée' : 'La partie est en pause')
+              - else
+                - turn_info = h('Fin du tour (') + content_tag(:span, game.current_turn.number, {data:{number_turn: game.current_turn.number}, class: 'turn-number'}) + '/' + content_tag(:span, game.turns_count, {data:{all_turns: game.turns_count}, class:'turns-count'}) + ')&nbsp;: '.html_safe + content_tag(:span, nil, data: {countdown: game.current_turn.stopped_at.utc.l(format: '%Y-%m-%dT%H:%M:%S'), countdown_restart: current_turn_game_path(game) })
+              = turn_info
             - else
-              .items-item.disabled
-                = render 'participation', participation: participation
-        - if current_user.can_organize?
+              = 'Pas encore lancée'
+          %h3= game.name
+          - if current_user.administrator?
+            %p Pour configurer les fermes, veuillez executer la commande suivante dans Ekylibre
+            %pre
+              = "rake seriously:prepare GAME_URL=#{api_v1_game_url(game)} TOKEN=#{Shellwords.escape(game.access_token)}"
+            - if Rails.env.development?
+              %p Vous pouvez utiliser la commande suivante pour configurer localement les noms de domaines :
+              %pre
+                = "echo '127.0.0.1 #{game.farms.map(&:domain).join(' ')}' | sudo tee --append /etc/hosts"
+          .items-list
+            - game.participations.where(user_id: current_user.id).each do |participation|
+              - if game.running? or participation.organizer?
+                = link_to(participation_path(participation), class: 'items-item') do
+                  = render 'participation', participation: participation
+              - else
+                .items-item.disabled
+                  = render 'participation', participation: participation
+    - if current_user.can_organize?
+      #new-game.items-block
+        .items-list
           = link_to(new_backend_game_path, class: 'items-item list-group-item-info') do
             %span Nouvelle partie
   - else
     .help-block
       .help-content Aucune partie en cours ou en attente
+
