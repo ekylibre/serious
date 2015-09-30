@@ -991,96 +991,6 @@ curves:
     amplitude_factor: 2.12
     offset_amount: -280.3
     amount_round: 0
-  acetal:
-    name: Acetal
-    nature: variant
-    unit_name: unit
-    reference: copper
-    positive_alea_amount: 3.44
-    negative_alea_amount: 13.56
-    amplitude_factor: 2.65
-    offset_amount: -34.05
-    amount_round: 1
-  air_compressor:
-    name: Air compressor
-    nature: variant
-    unit_name: unit
-    reference: world_population
-    positive_alea_amount: 29.24
-    negative_alea_amount: 35.03
-    amplitude_factor: 3.18
-    offset_amount: -63.6
-    amount_round: 1
-  baler:
-    name: Baler
-    nature: variant
-    unit_name: unit
-    reference: world_population
-    positive_alea_amount: 8.6
-    negative_alea_amount: 41.81
-    amplitude_factor: 3.18
-    offset_amount: 281.15
-    amount_round: 0
-  big_sticker:
-    name: Big sticker
-    nature: variant
-    unit_name: unit
-    reference: gold
-    positive_alea_amount: 0.0
-    negative_alea_amount: 23.73
-    amplitude_factor: 2.12
-    offset_amount: -201.5
-    amount_round: 0
-  bos_vial:
-    name: Bos vial
-    nature: variant
-    unit_name: unit
-    reference: petroleum
-    positive_alea_amount: 37.84
-    negative_alea_amount: 37.29
-    amplitude_factor: 1.59
-    offset_amount: 222.05
-    amount_round: 0
-  building_material:
-    name: Building material
-    nature: variant
-    unit_name: unit
-    reference: cac40
-    positive_alea_amount: 0.0
-    negative_alea_amount: 51.98
-    amplitude_factor: 0.0
-    offset_amount: 241.75
-    amount_round: 1
-  corker:
-    name: Corker
-    nature: variant
-    unit_name: unit
-    reference: copper
-    positive_alea_amount: 0.0
-    negative_alea_amount: 1.13
-    amplitude_factor: 2.65
-    offset_amount: 64.45
-    amount_round: 1
-  cover_implanter:
-    name: Cover implanter
-    nature: variant
-    unit_name: unit
-    reference: petroleum
-    positive_alea_amount: 27.52
-    negative_alea_amount: 37.29
-    amplitude_factor: 1.59
-    offset_amount: -63.6
-    amount_round: 2
-  diesel:
-    name: Diesel
-    nature: variant
-    unit_name: unit
-    reference: petroleum
-    positive_alea_amount: 8.6
-    negative_alea_amount: 50.85
-    amplitude_factor: 1.59
-    offset_amount: -270.45
-    amount_round: 0
   forager:
     name: Forager
     nature: variant
@@ -1131,16 +1041,6 @@ curves:
     amplitude_factor: 2.65
     offset_amount: -63.6
     amount_round: 0
-  hanging_scroll:
-    name: Hanging scroll
-    nature: variant
-    unit_name: unit
-    reference: gold
-    positive_alea_amount: 13.76
-    negative_alea_amount: 3.39
-    amplitude_factor: 2.12
-    offset_amount: 34.9
-    amount_round: 1
   hazel_reaper:
     name: Hazel reaper
     nature: variant
@@ -1161,26 +1061,6 @@ curves:
     amplitude_factor: 2.65
     offset_amount: 192.5
     amount_round: 0
-  hen_guano:
-    name: Hen guano
-    nature: variant
-    unit_name: unit
-    reference: petroleum
-    positive_alea_amount: 0.0
-    negative_alea_amount: 4.52
-    amplitude_factor: 1.59
-    offset_amount: -83.3
-    amount_round: 2
-  hydraulic_oil:
-    name: Hydraulic oil
-    nature: variant
-    unit_name: unit
-    reference: cac40
-    positive_alea_amount: 24.08
-    negative_alea_amount: 5.65
-    amplitude_factor: 0.0
-    offset_amount: -270.45
-    amount_round: 0
   implanter:
     name: Implanter
     nature: variant
@@ -1190,36 +1070,6 @@ curves:
     negative_alea_amount: 28.25
     amplitude_factor: 0.0
     offset_amount: -152.25
-    amount_round: 1
-  inseminator:
-    name: Inseminator
-    nature: variant
-    unit_name: unit
-    reference: copper
-    positive_alea_amount: 13.76
-    negative_alea_amount: 41.81
-    amplitude_factor: 2.65
-    offset_amount: -43.9
-    amount_round: 1
-  irrigation_water:
-    name: Irrigation water
-    nature: variant
-    unit_name: unit
-    reference: cac40
-    positive_alea_amount: 20.64
-    negative_alea_amount: 10.17
-    amplitude_factor: 0.0
-    offset_amount: 212.2
-    amount_round: 2
-  land_parcel:
-    name: Land parcel
-    nature: variant
-    unit_name: unit
-    reference: usd
-    positive_alea_amount: 10.32
-    negative_alea_amount: 40.68
-    amplitude_factor: 0.53
-    offset_amount: -250.75
     amount_round: 1
   manager:
     name: Manager
@@ -1231,36 +1081,6 @@ curves:
     amplitude_factor: 1.59
     offset_amount: -250.75
     amount_round: 2
-  manual_implanter:
-    name: Manual implanter
-    nature: variant
-    unit_name: unit
-    reference: gold
-    positive_alea_amount: 12.04
-    negative_alea_amount: 16.95
-    amplitude_factor: 2.12
-    offset_amount: 15.2
-    amount_round: 0
-  meal_travel:
-    name: Meal travel
-    nature: variant
-    unit_name: unit
-    reference: petroleum
-    positive_alea_amount: 18.92
-    negative_alea_amount: 21.47
-    amplitude_factor: 1.59
-    offset_amount: -290.15
-    amount_round: 1
-  mineral_cleaner:
-    name: Mineral cleaner
-    nature: variant
-    unit_name: unit
-    reference: gold
-    positive_alea_amount: 8.6
-    negative_alea_amount: 35.03
-    amplitude_factor: 2.12
-    offset_amount: 54.6
-    amount_round: 1
   motor_oil:
     name: Motor oil
     nature: variant
@@ -1270,16 +1090,6 @@ curves:
     negative_alea_amount: 7.91
     amplitude_factor: 0.0
     offset_amount: 162.95
-    amount_round: 1
-  moving_travel:
-    name: Moving travel
-    nature: variant
-    unit_name: unit
-    reference: cac40
-    positive_alea_amount: 17.2
-    negative_alea_amount: 44.07
-    amplitude_factor: 0.0
-    offset_amount: 94.0
     amount_round: 1
   mower:
     name: Mower
@@ -1291,16 +1101,6 @@ curves:
     amplitude_factor: 0.0
     offset_amount: -191.65
     amount_round: 1
-  natural_water:
-    name: Natural water
-    nature: variant
-    unit_name: unit
-    reference: petroleum
-    positive_alea_amount: 24.08
-    negative_alea_amount: 14.69
-    amplitude_factor: 1.59
-    offset_amount: 15.2
-    amount_round: 2
   plum_reaper:
     name: Plum reaper
     nature: variant
@@ -1310,26 +1110,6 @@ curves:
     negative_alea_amount: 33.9
     amplitude_factor: 2.65
     offset_amount: -250.75
-    amount_round: 0
-  portable_computer:
-    name: Portable computer
-    nature: variant
-    unit_name: unit
-    reference: usd
-    positive_alea_amount: 3.44
-    negative_alea_amount: 16.95
-    amplitude_factor: 0.53
-    offset_amount: -83.3
-    amount_round: 1
-  printer:
-    name: Printer
-    nature: variant
-    unit_name: unit
-    reference: common_wheat
-    positive_alea_amount: 18.92
-    negative_alea_amount: 44.07
-    amplitude_factor: 1.06
-    offset_amount: -132.55
     amount_round: 0
   reaper:
     name: Reaper
@@ -1341,56 +1121,6 @@ curves:
     amplitude_factor: 2.65
     offset_amount: -142.4
     amount_round: 2
-  roll:
-    name: Roll
-    nature: variant
-    unit_name: unit
-    reference: common_wheat
-    positive_alea_amount: 8.6
-    negative_alea_amount: 37.29
-    amplitude_factor: 1.06
-    offset_amount: 94.0
-    amount_round: 0
-  running_water:
-    name: Running water
-    nature: variant
-    unit_name: unit
-    reference: world_population
-    positive_alea_amount: 12.04
-    negative_alea_amount: 7.91
-    amplitude_factor: 3.18
-    offset_amount: -142.4
-    amount_round: 2
-  server_rental:
-    name: Server rental
-    nature: variant
-    unit_name: unit
-    reference: world_population
-    positive_alea_amount: 0.0
-    negative_alea_amount: 15.82
-    amplitude_factor: 3.18
-    offset_amount: -181.8
-    amount_round: 0
-  silage_distributor:
-    name: Silage distributor
-    nature: variant
-    unit_name: unit
-    reference: gold
-    positive_alea_amount: 18.92
-    negative_alea_amount: 51.98
-    amplitude_factor: 2.12
-    offset_amount: -24.2
-    amount_round: 1
-  small_sticker:
-    name: Small sticker
-    nature: variant
-    unit_name: unit
-    reference: copper
-    positive_alea_amount: 24.08
-    negative_alea_amount: 7.91
-    amplitude_factor: 2.65
-    offset_amount: -4.5
-    amount_round: 0
   sower:
     name: Sower
     nature: variant
@@ -1451,23 +1181,3 @@ curves:
     amplitude_factor: 3.18
     offset_amount: 212.2
     amount_round: 1
-  vine_residu:
-    name: Vine residu
-    nature: variant
-    unit_name: unit
-    reference: world_population
-    positive_alea_amount: 17.2
-    negative_alea_amount: 46.33
-    amplitude_factor: 3.18
-    offset_amount: -24.2
-    amount_round: 1
-  water_spreader:
-    name: Water spreader
-    nature: variant
-    unit_name: unit
-    reference: gold
-    positive_alea_amount: 32.68
-    negative_alea_amount: 29.38
-    amplitude_factor: 2.12
-    offset_amount: -280.3
-    amount_round: 0
