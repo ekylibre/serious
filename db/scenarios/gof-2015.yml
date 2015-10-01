@@ -961,8 +961,78 @@ curves:
       amount: 7395
     - turn: 11
       amount: 7468
-  accommodation_travel:
-    name: Accommodation travel
+  bulk_ammonitrate_27:
+    name: Ammonitrate 27%
+    nature: variant
+    unit_name: ton
+    reference: petroleum
+    positive_alea_amount: 34.4
+    negative_alea_amount: 46.33
+    amplitude_factor: 2.12
+    offset_amount: 350
+    amount_round: 0
+  bulk_ammonitrate_33:
+    name: Ammonitrate 33%
+    nature: variant
+    unit_name: unit
+    reference: petroleum
+    positive_alea_amount: 34.4
+    negative_alea_amount: 46.33
+    amplitude_factor: 2.18
+    offset_amount: 380
+    amount_round: 0
+  bulk_diammo_phosphorus_21_53_0:
+    name: Phosphate diammo 21-53%
+    nature: variant
+    unit_name: unit
+    reference: petroleum
+    positive_alea_amount: 34.4
+    negative_alea_amount: 46.33
+    amplitude_factor: 2.30
+    offset_amount: 500
+    amount_round: 0
+  herbicide:
+    name: Herbicide
+    nature: variant
+    unit_name: unit
+    reference: petroleum
+    positive_alea_amount: 15
+    negative_alea_amount: 25
+    amplitude_factor: 2.30
+    offset_amount: -35
+    amount_round: 0
+  insecticide:
+    name: Insecticide
+    nature: variant
+    unit_name: unit
+    reference: petroleum
+    positive_alea_amount: 15
+    negative_alea_amount: 10
+    amplitude_factor: 2
+    offset_amount: -20
+    amount_round: 0
+  fungicide:
+    name: Fungicide
+    nature: variant
+    unit_name: unit
+    reference: petroleum
+    positive_alea_amount: 20
+    negative_alea_amount: 15
+    amplitude_factor: 1.5
+    offset_amount: 0
+    amount_round: 0
+  molluscicide:
+    name: Molluscicide
+    nature: variant
+    unit_name: unit
+    reference: petroleum
+    positive_alea_amount: 15
+    negative_alea_amount: 5
+    amplitude_factor: 2.30
+    offset_amount: -40
+    amount_round: 0
+  building_insurance:
+    name: building insurance
     nature: variant
     unit_name: unit
     reference: gold
@@ -970,6 +1040,46 @@ curves:
     negative_alea_amount: 46.33
     amplitude_factor: 2.12
     offset_amount: -280.3
+    amount_round: 0
+  equipment_insurance:
+    name: Equipment insurance
+    nature: variant
+    unit_name: unit
+    reference: gold
+    positive_alea_amount: 34.4
+    negative_alea_amount: 46.33
+    amplitude_factor: 2.12
+    offset_amount: -280.3
+    amount_round: 0
+  cereals_harvest_insurance:
+    name: Cereal harvest insurance
+    nature: variant
+    unit_name: unit
+    reference: gold
+    positive_alea_amount: 34.4
+    negative_alea_amount: 46.33
+    amplitude_factor: 2.12
+    offset_amount: 350
+    amount_round: 0 
+  orchards_harvest_insurance:
+    name: Orchard harvest insurance
+    nature: variant
+    unit_name: unit
+    reference: gold
+    positive_alea_amount: 34.4
+    negative_alea_amount: 46.33
+    amplitude_factor: 2.12
+    offset_amount: 1750
+    amount_round: 0
+  vines_harvest_insurance:
+    name: Vines harvest insurance
+    nature: variant
+    unit_name: unit
+    reference: gold
+    positive_alea_amount: 30.4
+    negative_alea_amount: 46.33
+    amplitude_factor: 2.12
+    offset_amount: 1500
     amount_round: 0
   accountancy:
     name: Accountancy
