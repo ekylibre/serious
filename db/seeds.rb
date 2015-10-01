@@ -24,6 +24,12 @@ else
   User.create!(email: 'admin@ekylibre.org', password: '12345678', password_confirmation: '12345678', first_name: 'Admin', last_name: 'STRATOR', role: :administrator)
   print '•'
 end
+if User.find_by(email: 'player@ekylibre.org')
+  print '='
+else
+  User.create!(email: 'player@ekylibre.org', password: '12345678', password_confirmation: '12345678', first_name: 'John', last_name: 'DOE')
+  print '•'
+end
 puts '!'
 
 puts 'Scenarios:'

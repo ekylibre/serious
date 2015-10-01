@@ -119,9 +119,8 @@ namespace :serious do
         code = name.parameterize
         value = I18n.transliterate(name.mb_chars.downcase).to_i(36)
         farms[code] = { name: name, stand_number: "SF#{(index + 1).to_s.rjust(2, '0')}", present: (value.modulo(20) > 1), application_url: "http://#{code}.serious.lan:3001" }
-        if value.modulo(10) > 6
-          participations << { participant: code, user: 'admin@ekylibre.org', nature: :player }
-        end
+        participations << { participant: code, user: 'admin@ekylibre.org', nature: :player }
+        participations << { participant: code, user: 'player@ekylibre.org', nature: :player }
         4.times do
           user = users.shift
           participations << { participant: code, user: user, nature: :player }
@@ -141,11 +140,10 @@ namespace :serious do
           items << { variant: VARIANTS[(index * value).modulo(VARIANTS.size)], tax: Serious::TAXES.keys.first, quota: 1 + value.modulo(7) }
         end
         actors[code][:catalog_items] = items
+        participations << { participant: code, user: 'admin@ekylibre.org', nature: :player }
+        participations << { participant: code, user: 'player@ekylibre.org', nature: :player }
         (1 + value.modulo(3)).times do
           participations << { participant: code, user: users.shift, nature: :player }
-        end
-        if true # value.modulo(10) > 5
-          participations << { participant: code, user: 'admin@ekylibre.org', nature: :player }
         end
       end
       game[:actors] = actors

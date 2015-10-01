@@ -1,8 +1,10 @@
 .container
   = simple_form_for resource, class: 'form' do |f|
+    - if params[:redirect]
+      = hidden_field_tag(:redirect, params[:redirect])
     = render 'form', f: f
     .col-md-5
     .col-md-3
       .btn-group
         = button_tag(:create.ta, class: 'btn btn-primary')
-        = link_to(:cancel.ta, {action: :index}, class: 'btn btn-default')
+        = link_to(:cancel.ta, params[:redirect] || {action: :index}, class: 'btn btn-default')

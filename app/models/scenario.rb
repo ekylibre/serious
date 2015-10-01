@@ -63,11 +63,12 @@ class Scenario < ActiveRecord::Base
   end
 
   def value_of(variant, turn)
-    if (curve = curves.find_by(code: variant))
-      curve.steps.find_by(turn: turn).amount
-    else
-      8
+    curve = curves.find_by(code: variant)
+    if curve
+      step = curve.steps.find_by(turn: turn)
+      return step.amount if step
     end
+    nil
   end
 
   class << self

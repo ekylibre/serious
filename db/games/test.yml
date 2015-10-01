@@ -180,7 +180,7 @@ actors:
       tax: french_vat_normal_2014
       quota: 3
   terre-du-sud:
-    name: Terres du Sud
+    name: Terre du Sud
     stand_number: SA04
     present: true
     insurer: true
@@ -462,6 +462,12 @@ participations:
 - user: michelle.guichard@heller.us
   nature: :organizer
 - participant: guichard
+  user: admin@ekylibre.org
+  nature: :player
+- participant: guichard
+  user: player@ekylibre.org
+  nature: :player
+- participant: guichard
   user: celina.barthelemy@ebert.com
   nature: :player
 - participant: guichard
@@ -472,6 +478,12 @@ participations:
   nature: :player
 - participant: guichard
   user: eric.leblanc@beahan.ca
+  nature: :player
+- participant: leblanc
+  user: admin@ekylibre.org
+  nature: :player
+- participant: leblanc
+  user: player@ekylibre.org
   nature: :player
 - participant: leblanc
   user: jules.bousquet@franeckiwunsch.name
@@ -486,6 +498,12 @@ participations:
   user: bernard.ribeiro@bailey.name
   nature: :player
 - participant: credit-agricole
+  user: admin@ekylibre.org
+  nature: :player
+- participant: credit-agricole
+  user: player@ekylibre.org
+  nature: :player
+- participant: credit-agricole
   user: margaret.coulon@cruickshankcollins.co.uk
   nature: :player
 - participant: credit-agricole
@@ -494,8 +512,11 @@ participations:
 - participant: credit-agricole
   user: hortense.moreau@dachconroy.com
   nature: :player
-- participant: credit-agricole
+- participant: groupama
   user: admin@ekylibre.org
+  nature: :player
+- participant: groupama
+  user: player@ekylibre.org
   nature: :player
 - participant: groupama
   user: camille.gautier@jacobi.us
@@ -503,8 +524,11 @@ participations:
 - participant: groupama
   user: zacharie.bonnin@howegoldner.ca
   nature: :player
-- participant: groupama
+- participant: unicoque
   user: admin@ekylibre.org
+  nature: :player
+- participant: unicoque
+  user: player@ekylibre.org
   nature: :player
 - participant: unicoque
   user: sebastien.bouchet@renner.ca
@@ -515,8 +539,11 @@ participations:
 - participant: unicoque
   user: nicolas.maury@dubuquehirthe.biz
   nature: :player
-- participant: unicoque
+- participant: terre-du-sud
   user: admin@ekylibre.org
+  nature: :player
+- participant: terre-du-sud
+  user: player@ekylibre.org
   nature: :player
 - participant: terre-du-sud
   user: franck.garcia@jewesswehner.info
@@ -527,20 +554,29 @@ participations:
 - participant: terre-du-sud
   user: emilie.roche@bahringer.ca
   nature: :player
-- participant: terre-du-sud
+- participant: razol
   user: admin@ekylibre.org
+  nature: :player
+- participant: razol
+  user: player@ekylibre.org
   nature: :player
 - participant: razol
   user: pauline.lacroix@roob.ca
   nature: :player
-- participant: razol
+- participant: cer
   user: admin@ekylibre.org
+  nature: :player
+- participant: cer
+  user: player@ekylibre.org
   nature: :player
 - participant: cer
   user: maryse.monnier@greenholt.co.uk
   nature: :player
-- participant: cer
+- participant: acom
   user: admin@ekylibre.org
+  nature: :player
+- participant: acom
+  user: player@ekylibre.org
   nature: :player
 - participant: acom
   user: gregoire.becker@ankunding.info
@@ -548,15 +584,15 @@ participations:
 - participant: acom
   user: diane.bertin@terry.biz
   nature: :player
-- participant: acom
+- participant: msa
   user: admin@ekylibre.org
+  nature: :player
+- participant: msa
+  user: player@ekylibre.org
   nature: :player
 - participant: msa
   user: claude.hardy@erdman.name
   nature: :player
 - participant: msa
   user: alix.levy@crooks.ca
-  nature: :player
-- participant: msa
-  user: admin@ekylibre.org
   nature: :player

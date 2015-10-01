@@ -10,9 +10,7 @@ class ParticipantsController < BaseController
   end
 
   def show
-    unless (@participant = Participant.find_by(id: params[:id]))
-      redirect_to :index, alert: 'Participant not found'
-    end
+    return unless find_resource
   end
 
   def affairs_with
@@ -23,5 +21,16 @@ class ParticipantsController < BaseController
     else
       render json: 'nil'
     end
+  end
+
+  protected
+
+  def find_resource
+    @participant = Participant.find_by(id: params[:id])
+    unless @participant
+      redirect_to :index, alert: 'Participant not found'
+      return false
+    end
+    true
   end
 end

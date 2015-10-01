@@ -175,6 +175,7 @@ class Game < ActiveRecord::Base
   end
 
   def elapsed_duration
+    return 0 unless launched_at
     Time.now - launched_at
   end
 

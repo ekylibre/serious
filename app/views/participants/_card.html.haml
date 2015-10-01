@@ -5,6 +5,11 @@
       .participant-stand-number= participant.stand_number
     .participant-title
       = options[:title] || participant.name
+      - if current_user.administrator? && current_participation
+        - if current_participation.organizer? || current_participation.participant == participant
+          %small
+            = link_to(edit_backend_participant_path(participant)) do
+              %i.glyphicon.glyphicon-pencil
     - if content
       = content
     - elsif !content.is_a?(FalseClass)

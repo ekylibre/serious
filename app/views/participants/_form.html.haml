@@ -1,0 +1,23 @@
+%h1 Participant
+= field_set do
+  .row
+    .col-md-6= f.input :name
+    .col-md-3= f.input :code
+    .col-md-3= f.input :present
+  .row
+    .col-md-6= f.input :application_url
+    .col-md-6= f.input :logo
+
+  .row
+    .col-md-3= f.input :stand_number
+  .row
+    .col-md-3= f.input :supplier
+    .col-md-3= f.input :customer
+    .col-md-3= f.input :lender
+    .col-md-3= f.input :borrower
+
+  .row
+    .col-md-3= f.input :contractor
+    .col-md-3= f.input :subcontractor
+    .col-md-3= f.input :insurer
+    .col-md-3= f.input :insured

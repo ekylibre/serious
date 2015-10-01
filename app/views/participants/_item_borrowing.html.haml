@@ -1,4 +1,4 @@
 .col-xs-2= item.number
-.col-xs-4= link_to(item.lender_name, participant_path(item.lender))
+.col-xs-4= link_to(item.lender_name, participant_path(item.lender, redirect: request.fullpath))
 .col-xs-3.decimal= "#{item.interest_percentage}%/#{item.turns_count}M"
 .col-xs-3.decimal= item.amount.l(currency: :EUR)

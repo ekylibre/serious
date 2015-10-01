@@ -5,7 +5,6 @@ class InsurancesController < BaseController
     @insurance = Insurance.new
     @insurance.insurer = @participant
     @insurance.insured = Participant.find(params[:insured_id])
-
     if current_participant.insured && @participant.insurer
       @insurance.nature = 'harvest'
       @insurance.quantity_unit = 'hectare'

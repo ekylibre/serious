@@ -1,5 +1,6 @@
 = simple_form_for [resource], class: 'form' do |f|
-  = render 'form', f: f
-  .btn-group
-    = button_tag(:update.ta, class: 'btn btn-primary')
-    = link_to(:cancel.ta, {action: :index}, class: 'btn btn-default')
+  .container
+    = render 'form', f: f
+    .btn-group
+      = button_tag(:update.ta, class: 'btn btn-primary')
+      = link_to(:cancel.ta, params[:redirect] || {action: :show, controller: :games}, class: 'btn btn-default')

@@ -64,7 +64,9 @@ class Participant < ActiveRecord::Base
   has_many :contractings,    class_name: 'Contract', foreign_key: :subcontractor_id
   has_many :contract_natures, class_name: 'ContractNature', foreign_key: :contractor_id
 
-  has_attached_file :logo
+  has_attached_file :logo, styles: {
+                      identity: ["200x200#", :png]
+                    }
 
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :logo_updated_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
@@ -74,6 +76,7 @@ class Participant < ActiveRecord::Base
   # ]VALIDATORS]
   validates_uniqueness_of :name, scope: :game_id
   validates :tenant, uniqueness: true, if: :farm?
+  validates_attachment_content_type :logo, content_type: /image/
 
   scope :actor, -> { where(nature: 'actor') }
   scope :farm,  -> { where(nature: 'farm') }

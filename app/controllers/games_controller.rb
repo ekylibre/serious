@@ -6,8 +6,12 @@ class GamesController < BaseController
   end
 
   def show
+    unless current_participation
+      redirect_to(action: :index)
+      return
+    end
     @game = Game.find_by(id: params[:id])
-    # FIXME Very crade code
+    # FIXME: Very crade code
     @game.update_column(:state, :finished) if @game.last_turn.stopped_at < Time.zone.now
     session[:view_mode] = params['mode'].to_s if params['mode']
     session[:view_mode] ||= 'map'
