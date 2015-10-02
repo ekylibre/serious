@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       get :current_turn_broadcasts_and_curves
       get :turns
       post :run
+      post :prepare
       post :trigger_issue
     end
   end

@@ -36,6 +36,9 @@
 #  turns_count   :integer
 #  updated_at    :datetime
 #
+
+require 'serious/slave'
+
 class Game < ActiveRecord::Base
   extend Enumerize
   enumerize :state, in: [:planned, :ready, :running, :finished], default: :planned, predicates: true
@@ -171,7 +174,7 @@ class Game < ActiveRecord::Base
   end
 
   def can_run?
-    self.ready? || self.planned?
+    self.ready?
   end
 
   def elapsed_duration
@@ -186,6 +189,11 @@ class Game < ActiveRecord::Base
   # Estimate delay before effective launch
   def launch_delay
     farms.where('LENGTH(TRIM(application_url)) > 0').count * 0.3
+  end
+
+  def prepare!
+    url = Serious::Slave.url_for("/api/v1/games/#{id}")
+    Serious::Slave.exec("bin/rake seriously:prepare GAME_URL=#{url} TOKEN=#{Shellwords.escape(self.access_token)}")
   end
 
   # Launch the game

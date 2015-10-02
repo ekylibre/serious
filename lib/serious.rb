@@ -5,5 +5,6 @@ module Serious
     french_vat_reduced: 5.5,
     french_vat_null: 0
   }.with_indifferent_access
+  autoload :Slave, 'serious/slave'
   # autoload Tenant, 'serious/tenant'
 end

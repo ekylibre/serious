@@ -65,8 +65,8 @@ class Participant < ActiveRecord::Base
   has_many :contract_natures, class_name: 'ContractNature', foreign_key: :contractor_id
 
   has_attached_file :logo, styles: {
-                      identity: ["200x200#", :png]
-                    }
+    identity: ['200x200#', :png]
+  }
 
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :logo_updated_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')

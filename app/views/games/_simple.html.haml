@@ -4,21 +4,28 @@
   - if current_participation.organizer?
     %h2
       %em= "Deux ex machina"
-      
+      %small= @game.state.text
+    - if current_user.administrator? && Rails.env.development?
+      %p Vous pouvez utiliser la commande suivante pour configurer localement les noms de domaines :
+      %pre
+        = "echo '127.0.0.1 #{@game.farms.map(&:domain).join(' ')}' | sudo tee --append /etc/hosts"
+    - unless @game.running? && current_turn
+      = link_to('Initialiser les fermes', prepare_game_path(@game), method: :post, class: 'btn btn-default')
     - if current_participation.game.can_run?
       = link_to('Lancer la partie', run_game_path(current_participation.game), method: :post, class: 'btn btn-default')
       - if current_user.administrator?
         = link_to('Modifier', edit_backend_game_path(current_participation.game), class: 'btn btn-default')
     - else
       -# Dropdown scenario issue
-      - if @scenario_issues.any?
+      - scenario = @game.scenario
+      - if scenario.issues.any?
         .btn-group
           .dropdown
             %button#dropdownMenu1.btn.btn-default.dropdown-toggle{'aria-expanded' => 'true', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', type: 'button'}
               = :choose_issue.tl
               %span.caret
             %ul.dropdown-menu
-              - @scenario_issues.each do |issue|
+              - scenario.issues.each do |issue|
                 %li= link_to(issue.name, trigger_issue_game_path(issue), method: :post,  class: 'dropdown-toggle')
 
   - if @game.description?

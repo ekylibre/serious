@@ -10,7 +10,7 @@ class GamesController < BaseController
       redirect_to(action: :index)
       return
     end
-    @game = Game.find_by(id: params[:id])
+    return unless find_resource
     # FIXME: Very crade code
     @game.update_column(:state, :finished) if @game.last_turn.stopped_at < Time.zone.now
     session[:view_mode] = params['mode'].to_s if params['mode']
@@ -37,21 +37,24 @@ class GamesController < BaseController
 
   # trigger issue
   def trigger_issue
-    unless (scenario_issue = ScenarioIssue.find(params[:id]))
-      fail 'Cannot find issue n°' + params[:id]
-    end
+    scenario_issue = ScenarioIssue.find(params[:id])
+    fail 'Cannot find issue n°' + params[:id] unless scenario_issue
     scenario_issue.trigger_turn = current_turn
     scenario_issue.save!
     current_game.trigger_issue(scenario_issue)
     redirect_to game_path(current_game)
   end
 
+  # Prepare farms for a game
+  def prepare
+    return unless find_resource
+    @game.prepare!
+    redirect_to game_path(@game)
+  end
+
   # Run a game
   def run
-    unless (@game = Game.find_by(id: params[:id]))
-      redirect_to :index
-      return
-    end
+    return unless find_resource
     @game.run!
     redirect_to game_path(@game)
   end
@@ -78,5 +81,16 @@ class GamesController < BaseController
     else
       render json: 'nil'
     end
+  end
+
+  protected
+
+  def find_resource
+    @game = Game.find_by(id: params[:id])
+    unless @game
+      redirect_to :index
+      return false
+    end
+    true
   end
 end
