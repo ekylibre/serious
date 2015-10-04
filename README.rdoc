@@ -40,7 +40,7 @@ To initialize DB, it's possible to run this command:
 
 or in less words:
 
-  rake db:reset
+  rake db:rebuild
 
 The seeds are generated from existing scenarios, historics and games soted in +db/+.
 
@@ -52,7 +52,7 @@ The seeds are generated from existing scenarios, historics and games soted in +d
 
 Launch ekylibre:
 
-  rails s -p 3001
+  foreman start
 
 
 === Deployment instructions

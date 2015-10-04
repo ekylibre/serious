@@ -7,12 +7,12 @@ farms:
     name: Guichard
     stand_number: SF01
     present: true
-    application_url: http://guichard.serious.lan:3001
+    application_url: http://guichard.serious.lan:8080
   leblanc:
     name: Leblanc
     stand_number: SF02
     present: true
-    application_url: http://leblanc.serious.lan:3001
+    application_url: http://leblanc.serious.lan:8080
 actors:
   credit-agricole:
     name: Crédit Agricole

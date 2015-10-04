@@ -12,7 +12,7 @@ farms:
     zone_height: 6
     stand_number: SF01
     present: true
-    application_url: http://f01.serious.lan:3001
+    application_url: http://f01.serious.lan:8080
   F02:
     name: Ferme Monnier
     zone_x: 4
@@ -21,7 +21,7 @@ farms:
     zone_height: 4
     stand_number: SF02
     present: true
-    application_url: http://f02.serious.lan:3001
+    application_url: http://f02.serious.lan:8080
   F03:
     name: Ferme Renaud
     zone_x: 10
@@ -30,7 +30,7 @@ farms:
     zone_height: 4
     stand_number: SF03
     present: true
-    application_url: http://f03.serious.lan:3001
+    application_url: http://f03.serious.lan:8080
   F04:
     name: Ferme Mendes
     zone_x: 16
@@ -39,7 +39,7 @@ farms:
     zone_height: 4
     stand_number: SF04
     present: true
-    application_url: http://f04.serious.lan:3001
+    application_url: http://f04.serious.lan:8080
   F05:
     name: Ferme Poirier
     zone_x: 0
@@ -48,7 +48,7 @@ farms:
     zone_height: 4
     stand_number: SF05
     present: true
-    application_url: http://f05.serious.lan:3001
+    application_url: http://f05.serious.lan:8080
   F06:
     name: Ferme Fouquet
     zone_x: 6
@@ -57,7 +57,7 @@ farms:
     zone_height: 6
     stand_number: SF06
     present: true
-    application_url: http://f06.serious.lan:3001
+    application_url: http://f06.serious.lan:8080
   F07:
     name: Ferme Michaud
     zone_x: 12
@@ -66,7 +66,7 @@ farms:
     zone_height: 6
     stand_number: SF07
     present: true
-    application_url: http://f07.serious.lan:3001
+    application_url: http://f07.serious.lan:8080
   F08:
     name: Ferme Ramos
     zone_x: 18
@@ -75,7 +75,7 @@ farms:
     zone_height: 6
     stand_number: SF08
     present: true
-    application_url: http://f08.serious.lan:3001
+    application_url: http://f08.serious.lan:8080
   F09:
     name: Ferme Wagner
     zone_x: 22
@@ -84,7 +84,7 @@ farms:
     zone_height: 4
     stand_number: SF09
     present: true
-    application_url: http://f09.serious.lan:3001
+    application_url: http://f09.serious.lan:8080
   F10:
     name: Les winners
     zone_x: 22
@@ -93,7 +93,7 @@ farms:
     zone_height: 6
     stand_number: SF10
     present: true
-    application_url: http://f10.serious.lan:3001
+    application_url: http://f10.serious.lan:8080
   F11:
     name: Ferme Leclercq
     zone_x: 0
@@ -102,7 +102,7 @@ farms:
     zone_height: 6
     stand_number: SF11
     present: true
-    application_url: http://f11.serious.lan:3001
+    application_url: http://f11.serious.lan:8080
   F12:
     name: Ferme Brunel
     zone_x: 4
@@ -111,7 +111,7 @@ farms:
     zone_height: 4
     stand_number: SF12
     present: true
-    application_url: http://f12.serious.lan:3001
+    application_url: http://f12.serious.lan:8080
   F13:
     name: Ferme Colin
     zone_x: 0
@@ -120,7 +120,7 @@ farms:
     zone_height: 4
     stand_number: SF13
     present: true
-    application_url: http://f13.serious.lan:3001
+    application_url: http://f13.serious.lan:8080
   F14:
     name: Ferme Valette
     zone_x: 6
@@ -129,7 +129,7 @@ farms:
     zone_height: 4
     stand_number: SF14
     present: true
-    application_url: http://f14.serious.lan:3001
+    application_url: http://f14.serious.lan:8080
   F15:
     name: Ferme Ferreira
     zone_x: 12
@@ -138,7 +138,7 @@ farms:
     zone_height: 4
     stand_number: SF15
     present: true
-    application_url: http://f15.serious.lan:3001
+    application_url: http://f15.serious.lan:8080
 actors:
   A01:
     name: Crédit Agricole

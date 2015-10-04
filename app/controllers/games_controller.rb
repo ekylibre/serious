@@ -11,8 +11,6 @@ class GamesController < BaseController
       return
     end
     return unless find_resource
-    # FIXME: Very crade code
-    @game.update_column(:state, :finished) if @game.last_turn.stopped_at < Time.zone.now
     session[:view_mode] = params['mode'].to_s if params['mode']
     session[:view_mode] ||= 'map'
     session[:view_mode] = 'simple' unless @game.running?
@@ -52,10 +50,24 @@ class GamesController < BaseController
     redirect_to game_path(@game)
   end
 
-  # Run a game
-  def run
+  # Start a game
+  def start
     return unless find_resource
-    @game.run!
+    @game.start!
+    redirect_to game_path(@game)
+  end
+
+  # Cancel a game
+  def cancel
+    return unless find_resource
+    @game.cancel!
+    redirect_to game_path(@game)
+  end
+
+  # Stop a game
+  def stop
+    return unless find_resource
+    @game.stop!
     redirect_to game_path(@game)
   end
 
