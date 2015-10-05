@@ -863,6 +863,50 @@ broadcasts:
     Porthos, n’avez-vous un si beau baudrier d’or que pour y suspendre une épée de
     paille ? Et Athos ? je ne vois pas Athos. Où est-il ?"
   release_turn: 11
+issues:
+- name: "— Monsieur, répondit tristement"
+  description: "— Malade, fort malade, dites-vous ? et de quelle maladie ? — On craint
+    que ce ne soit de la petite vérole, monsieur, répondit Porthos voulant mêler à
+    son tour un mot à la conversation, et ce qui serait fâcheux en ce que très certainement
+    cela gâterait son visage. — De la petite vérole ! Voilà encore une glorieuse histoire
+    que vous me contez là, Porthos ! — Malade de la petite vérole, à son âge ? — Non
+    pas !… mais blessé sans doute, tué peut-être. — Ah ! si je le savais !… Sangdieu
+    ! messieurs les mousquetaires, je n’entends pas que l’on hante ainsi les mauvais
+    lieux, qu’on se prenne de querelle dans la rue et qu’on joue de l’épée dans les
+    carrefours. Je ne veux pas enfin qu’on prête à rire aux gardes de M. le cardinal,
+    qui sont de braves gens, tranquilles, adroits, qui ne se mettent jamais dans le
+    cas d’être arrêtés, et qui d’ailleurs ne se laisseraient pas arrêter, eux ! —
+    j’en suis sûr. — Ils aimeraient mieux mourir sur la place que de faire un pas
+    en arrière. — Se sauver, détaler, fuir, c’est bon pour les mousquetaires du roi,
+    cela !"
+  nature: :climate_event
+  trigger_turn: 4
+- name: Porthos et Aramis frémissaient
+  description: "— Ah ! les mousquetaires du roi se font arrêter par les gardes de
+    M. le cardinal, continua M. de Tréville aussi furieux à l’intérieur que ses soldats,
+    mais saccadant ses paroles et les plongeant une à une pour ainsi dire et comme
+    autant de coups de stylet dans la poitrine de ses auditeurs. Ah ! six gardes de
+    Son Éminence arrêtent six mousquetaires de Sa Majesté ! Morbleu ! j’ai pris mon
+    parti. Je vais de ce pas au Louvre ; je donne ma démission de capitaine des mousquetaires
+    du roi pour demander une lieutenance dans les gardes du cardinal, et s’il me refuse,
+    morbleu ! je me fais abbé. À ces paroles, le murmure de l’extérieur devint une
+    explosion : partout on n’entendait que jurons et blasphèmes. Les morbleu ! les
+    sangdieu ! les morts de tous les diables ! se croisaient dans l’air. D’Artagnan
+    cherchait une tapisserie derrière laquelle se cacher, et se sentait une envie
+    démesurée de se fourrer sous la table. — Eh bien, mon capitaine, dit Porthos hors
+    de lui, la vérité est que nous étions six contre six, mais nous avons été pris
+    en traître, et avant que nous eussions eu le temps de tirer nos épées, deux d’entre
+    nous étaient tombés morts, et Athos, blessé grièvement, ne valait guère mieux.
+    Car vous le connaissez, Athos ; eh bien, capitaine, il a essayé de se relever
+    deux fois, et il est retombé deux fois. Cependant nous ne nous sommes pas rendus,
+    non ! l’on nous a entraînés de force. En chemin, nous nous sommes sauvés. Quant
+    à Athos, on l’avait cru mort, et on l’a laissé bien tranquillement sur le champ
+    de bataille, ne pensant pas qu’il valût la peine d’être emporté. Voilà l’histoire.
+    Que diable, capitaine ! on ne gagne pas toutes les batailles. Le grand Pompée
+    a perdu celle de Pharsale, et le roi François Ier, qui, à ce que j’ai entendu
+    dire, en valait bien un autre, a perdu cependant celle de Pavie."
+  nature: :climate_event
+  trigger_turn: 8
 curves:
   cac40:
     name: CAC40
@@ -875,25 +919,25 @@ curves:
     - turn: 1
       amount: 2712.0
     - turn: 2
-      amount: 2735.67
+      amount: 2680.46
     - turn: 3
-      amount: 2737.49
+      amount: 2652.49
     - turn: 4
-      amount: 2739.22
+      amount: 2591.62
     - turn: 5
-      amount: 2711.45
+      amount: 2526.81
     - turn: 6
-      amount: 2698.21
+      amount: 2469.61
     - turn: 7
-      amount: 2641.27
+      amount: 2362.25
     - turn: 8
-      amount: 2571.35
+      amount: 2305.87
     - turn: 9
-      amount: 2512.51
+      amount: 2270.66
     - turn: 10
-      amount: 2510.54
+      amount: 2178.62
     - turn: 11
-      amount: 2494.26
+      amount: 2036.42
   usd:
     name: Dollar américain (USD)
     description: Cours du dollar américain en euros
@@ -904,25 +948,25 @@ curves:
     - turn: 1
       amount: 0.8911
     - turn: 2
-      amount: 0.8845
+      amount: 0.8744
     - turn: 3
-      amount: 0.8812
+      amount: 0.8623
     - turn: 4
-      amount: 0.8583
+      amount: 0.8563
     - turn: 5
-      amount: 0.8402
+      amount: 0.8415
     - turn: 6
-      amount: 0.8073
+      amount: 0.8335
     - turn: 7
-      amount: 0.794
+      amount: 0.8125
     - turn: 8
-      amount: 0.7916
+      amount: 0.8007
     - turn: 9
-      amount: 0.8038
+      amount: 0.7701
     - turn: 10
-      amount: 0.8109
+      amount: 0.7625
     - turn: 11
-      amount: 0.8114
+      amount: 0.7486
   common_wheat:
     name: Blé panifiable
     description: Cours de la tonne de blé panifiable à Paris
@@ -933,25 +977,25 @@ curves:
     - turn: 1
       amount: 163.27
     - turn: 2
-      amount: 161.2035
+      amount: 160.5938
     - turn: 3
-      amount: 163.3594
+      amount: 158.5351
     - turn: 4
-      amount: 168.1999
+      amount: 155.2196
     - turn: 5
-      amount: 175.2693
+      amount: 149.2005
     - turn: 6
-      amount: 178.9519
+      amount: 143.124
     - turn: 7
-      amount: 185.8455
+      amount: 133.4831
     - turn: 8
-      amount: 189.7818
+      amount: 119.5935
     - turn: 9
-      amount: 193.5697
+      amount: 106.5986
     - turn: 10
-      amount: 198.0332
+      amount: 96.6318
     - turn: 11
-      amount: 201.9299
+      amount: 88.7139
   petroleum:
     name: Pétrole
     description: Cours du baril de pétrole en dollar américain (USD)
@@ -962,25 +1006,25 @@ curves:
     - turn: 1
       amount: 59.41
     - turn: 2
-      amount: 58.73
+      amount: 58.4
     - turn: 3
-      amount: 58.34
+      amount: 58.77
     - turn: 4
-      amount: 57.4
+      amount: 58.8
     - turn: 5
-      amount: 56.0
+      amount: 57.93
     - turn: 6
-      amount: 54.71
+      amount: 56.81
     - turn: 7
-      amount: 54.21
+      amount: 56.2
     - turn: 8
-      amount: 54.46
+      amount: 55.92
     - turn: 9
-      amount: 54.97
+      amount: 56.62
     - turn: 10
-      amount: 56.24
+      amount: 58.84
     - turn: 11
-      amount: 57.4
+      amount: 60.19
   gold:
     name: Or
     description: Cours de l'or
@@ -991,25 +1035,25 @@ curves:
     - turn: 1
       amount: 34135.93
     - turn: 2
-      amount: 34408.87
+      amount: 34159.58
     - turn: 3
-      amount: 34084.31
+      amount: 34290.85
     - turn: 4
-      amount: 33956.15
+      amount: 34254.71
     - turn: 5
-      amount: 33934.55
+      amount: 34447.38
     - turn: 6
-      amount: 33974.54
+      amount: 33722.73
     - turn: 7
-      amount: 34575.31
+      amount: 33663.86
     - turn: 8
-      amount: 34355.29
+      amount: 33696.12
     - turn: 9
-      amount: 33915.91
+      amount: 33982.26
     - turn: 10
-      amount: 33630.3
+      amount: 34444.59
     - turn: 11
-      amount: 32657.25
+      amount: 35105.12
   copper:
     name: Cuivre
     description: Cours du cuivre
@@ -1020,25 +1064,25 @@ curves:
     - turn: 1
       amount: 6436.12
     - turn: 2
-      amount: 6387.66
+      amount: 6361.5
     - turn: 3
-      amount: 6457.14
+      amount: 6281.67
     - turn: 4
-      amount: 6613.66
+      amount: 6197.22
     - turn: 5
-      amount: 6843.97
+      amount: 6062.85
     - turn: 6
-      amount: 7026.76
+      amount: 5926.26
     - turn: 7
-      amount: 7245.3
+      amount: 5854.97
     - turn: 8
-      amount: 7421.51
+      amount: 5932.14
     - turn: 9
-      amount: 7587.02
+      amount: 6005.73
     - turn: 10
-      amount: 7612.19
+      amount: 5942.98
     - turn: 11
-      amount: 7555.62
+      amount: 5985.87
   world_population:
     name: Population mondiale
     description: Nombre d'habitants sur Terre (en millions)
@@ -1049,25 +1093,25 @@ curves:
     - turn: 1
       amount: 7125
     - turn: 2
-      amount: 7147
+      amount: 7139
     - turn: 3
-      amount: 7164
+      amount: 7135
     - turn: 4
-      amount: 7213
+      amount: 7133
     - turn: 5
-      amount: 7278
+      amount: 7117
     - turn: 6
-      amount: 7319
+      amount: 7133
     - turn: 7
-      amount: 7396
+      amount: 7186
     - turn: 8
-      amount: 7504
+      amount: 7223
     - turn: 9
-      amount: 7601
+      amount: 7262
     - turn: 10
-      amount: 7690
+      amount: 7297
     - turn: 11
-      amount: 7812
+      amount: 7364
   accommodation_travel:
     name: Accommodation travel
     nature: variant

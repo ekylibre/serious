@@ -269,19 +269,19 @@ ActiveRecord::Schema.define(version: 20150507085614) do
   add_index "scenario_curves", ["scenario_id"], name: "index_scenario_curves_on_scenario_id", using: :btree
 
   create_table "scenario_issues", force: :cascade do |t|
-    t.integer  "scenario_id",                                                                                  null: false
-    t.string   "name",                                                                                         null: false
-    t.string   "description",                                                                                  null: false
-    t.string   "nature",                                                                                       null: false
-    t.string   "variety",                                                                                      null: false
+    t.integer  "scenario_id",                                       null: false
+    t.string   "name",                                              null: false
+    t.string   "nature",                                            null: false
+    t.string   "variety"
     t.integer  "trigger_turn"
-    t.string   "coordinates"
-    t.geometry "shape",                    limit: {:srid=>0, :type=>"multi_polygon"}
-    t.decimal  "destruction_percentage",                                              precision: 19, scale: 4
+    t.string   "coordinates_nature"
+    t.text     "coordinates"
+    t.decimal  "destruction_percentage",   precision: 19, scale: 4
     t.integer  "minimal_age"
     t.integer  "maximal_age"
     t.string   "impacted_indicator_name"
     t.string   "impacted_indicator_value"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

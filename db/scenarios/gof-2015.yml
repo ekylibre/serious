@@ -5,9 +5,10 @@ description: ''
 turn_nature: month
 turns_count: 12
 currency: EUR
+historic: "gof.zip"
 broadcasts:
-- name: Changements climatiques, ca continue !!!
-  content: Les spécialistes annoncent encore beaucoup de perturbations climatiques pour les 2 prochaines années. La COP 21 qui aura lieu dans 2 mois devrait aboutir à l'engagement des pays membres à maintenir le réchauffement global en deça de 2°C.
+- name: "Changements climatiques, ça continue !"
+  content: "Les spécialistes annoncent encore beaucoup de perturbations climatiques pour les 2 prochaines années. La COP 21 qui aura lieu dans 2 mois devrait aboutir à l'engagement des pays membres à maintenir le réchauffement global en deça de 2°C."
   release_turn: 1
 - name: "L'innovation au rendez vous"
   content: "Beaucoup d'innovations encore cette année dans les différents salons agricoles."
@@ -18,7 +19,7 @@ broadcasts:
 - name: "Atteint d'un rhume, il a apprend qu'il en a plus que pour 70 ans à vivre"
   content: "“C’est le genre d’histoire qui n’arrive qu’aux autres”. C’est ce que pensait Jérémie, 22 ans, il y a quelques jours à peine avant que son destin ne bascule. Cet étudiant en BTS ACSE, originaire de Marmande, en Lot-et-Garonne, entame sa journée comme n’importe quelle autre lorsqu’il est pris de toussotements et sent sa gorge un peu enrouée. Il se rend alors chez le médecin pour ce qu’il pense être une banale consultation, et la nouvelle tombe brutalement\_: il s’agit d’un rhume, de type “non viral”, l’un des moins graves. Il ne lui reste que 70 ans à vivre."
   release_turn: 5
-- name: "Monsanto « Nos pesticides ne provoquent que des maladies conformes aux normes européennes »"
+- name: "Monsanto «\_Nos pesticides ne provoquent que des maladies conformes aux normes européennes\_»"
   content: "Alors que beaucoup reprochent à Monsanto son monopole, qui interdit la variété des exploitations, ainsi que la haute toxicité de ses produits, la société a tenu à se défendre en mettant en avant son respect des règles."
   release_turn: 7
 - name: "Les Verts n’aborderont pas le thème de l’écologie pour éviter les conflits lors de leur conseil fédéral"
@@ -27,6 +28,21 @@ broadcasts:
 - name: "5 fruits et légumes/jour : hospitalisation d’un enfant ayant mangé 2 pastèques et 3 citrouilles"
   content: "YERVILLE – Cyril, 11 ans, est à l’hôpital depuis huit jours suite à l’ingurgitation de deux pastèques et trois citrouilles. Ses parents ne comprennent pas, ils avaient pourtant respecté les recommandations du ministère de la Santé pour l’alimentation de leur fils. Les « cinq fruits et légumes par jour », retour sur un slogan trompeur..."
   release_turn: 11
+
+# https://gist.github.com/anonymous/a723dc8e48da6dbc7eab
+issues:
+  - name: "Grêle"
+    nature: "climate_event"
+    variety: "plant"
+    coordinates_nature: "geojson"
+    coordinates: '{"type":"Feature","properties":{"stroke":"#555555","stroke-width":2,"stroke-opacity":1,"fill":"#555555","fill-opacity":0.5,"name":"hail"},"geometry":{"type":"Polygon","coordinates":[[[0.7872390747070312,44.520989167323734],[0.7106781005859375,44.474338593887126],[0.6114578247070312,44.41710705999032],[0.5270004272460938,44.34938634389529],[0.6131744384765625,44.381293541917195],[0.6976318359375,44.42250171703638],[0.8123016357421875,44.48866833139464],[0.8864593505859375,44.53420616251736],[0.9602737426757812,44.602446194121875],[0.8837127685546875,44.581664700316146],[0.7872390747070312,44.520989167323734]]]}}'
+    destruction_percentage: 30
+  - name: "Sangliers"
+    nature: "wild_animal_ravage"
+    variety: "plant"
+    coordinates_nature: "geojson"
+    coordinates: '{"type":"Feature","properties":{"stroke-width":2,"stroke-opacity":1,"fill":"#e33708","fill-opacity":0.5,"stroke":"#c72b2b","name":"wildboars"},"geometry":{"type":"Polygon","coordinates":[[[0.5667614936828613,44.49404107556108],[0.5642080307006836,44.49664308143501],[0.5627703666687012,44.49699510860722],[0.5578136444091797,44.496597164690655],[0.5554533004760742,44.49480638345854],[0.5551314353942871,44.49290840144099],[0.5568051338195801,44.49108689287088],[0.5658602714538574,44.490857286912785],[0.5667614936828613,44.49404107556108]]]}}'
+    destruction_percentage: 60
 
 curves:
   cac40:

@@ -53,17 +53,17 @@ class AddBase < ActiveRecord::Migration
     create_table :scenario_issues do |t|
       t.references :scenario, null: false, index: true
       t.string :name,             null: false
-      t.string :description,      null: false
       t.string :nature,           null: false
-      t.string :variety,          null: false
+      t.string :variety
       t.integer :trigger_turn
-      t.string :coordinates
-      t.multi_polygon :shape
+      t.string :coordinates_nature
+      t.text :coordinates
       t.decimal :destruction_percentage, precision: 19, scale: 4
       t.integer :minimal_age
       t.integer :maximal_age
       t.string :impacted_indicator_name
       t.string :impacted_indicator_value
+      t.text :description
       t.timestamps
     end
 

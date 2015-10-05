@@ -20,9 +20,10 @@
 #
 # == Table: scenario_issues
 #
-#  coordinates              :string
+#  coordinates              :text
+#  coordinates_nature       :string
 #  created_at               :datetime
-#  description              :string           not null
+#  description              :text
 #  destruction_percentage   :decimal(19, 4)
 #  id                       :integer          not null, primary key
 #  impacted_indicator_name  :string
@@ -32,10 +33,9 @@
 #  name                     :string           not null
 #  nature                   :string           not null
 #  scenario_id              :integer          not null
-#  shape                    :geometry({:srid=>0, :type=>"multi_polygon"})
 #  trigger_turn             :integer
 #  updated_at               :datetime
-#  variety                  :string           not null
+#  variety                  :string
 #
 require 'test_helper'
 

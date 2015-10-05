@@ -33,13 +33,12 @@ class GamesController < BaseController
     render json: data
   end
 
-  # trigger issue
+  # Trigger an issue to all farms
   def trigger_issue
     scenario_issue = ScenarioIssue.find(params[:id])
-    fail 'Cannot find issue n°' + params[:id] unless scenario_issue
     scenario_issue.trigger_turn = current_turn
     scenario_issue.save!
-    current_game.trigger_issue(scenario_issue)
+    current_game.trigger(scenario_issue)
     redirect_to game_path(current_game)
   end
 

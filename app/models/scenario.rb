@@ -73,12 +73,28 @@ class Scenario < ActiveRecord::Base
 
   class << self
     def import(file)
-      (hash = YAML.load_file(file).deep_symbolize_keys)
+      hash = YAML.load_file(file).deep_symbolize_keys
       return if find_by(name: hash[:name]) || find_by(code: hash[:code])
-      (scenario = create!(hash.slice(:code, :name, :description, :turn_nature, :turns_count, :currency)))
+      scenario = create!(hash.slice(:code, :name, :description, :turn_nature, :turns_count, :currency))
+      if hash[:historic]
+        historic = Pathname.new(file).dirname.join(hash[:historic])
+        if historic.exist?
+          f = File.open(historic)
+          scenario.historic = f
+          scenario.save!
+          f.close
+        else
+          puts "Cannot find #{historic.to_s.blue} (#{hash[:historic].inspect.red})"
+        end
+      end
       if hash[:broadcasts]
         hash[:broadcasts].each do |b|
           scenario.broadcasts.create!(b.slice(:name, :content, :release_turn))
+        end
+      end
+      if hash[:issues]
+        hash[:issues].each do |b|
+          scenario.issues.create!(b.slice(:name, :description, :coordinates_nature, :coordinates, :trigger_turn, :nature, :variety, :minimal_age, :maximal_age, :impacted_indicator_name, :impacted_indicator_value, :destruction_percentage))
         end
       end
       if hash[:curves]

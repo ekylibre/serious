@@ -15,7 +15,7 @@
         .btn-group
           .dropdown
             %button#trigger-issue.btn.btn-default.dropdown-toggle{ aria: {expanded: 'true', haspopup: 'true'}, data: {toggle: 'dropdown'}, type: 'button'}
-              = :trigger_issue.tl
+              = ScenarioIssue.model_name.human
               %span.caret
             %ul.dropdown-menu
               - @game.issues.each do |issue|

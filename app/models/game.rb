@@ -99,28 +99,25 @@ class Game < ActiveRecord::Base
     load! if self.ready? || self.running?
   end
 
-  def trigger_issue(scenario_issue)
+  def trigger(issue)
     participants.find_each do |participant|
       next unless participant.application_url?
-      participant.post('/scenario_issue',
-                       name: scenario_issue.name,
-                       nature: scenario_issue.nature,
-                       description: scenario_issue.description,
-                       observed_at: current_date,
+      participant.post('/issues',
+                       name: issue.name,
+                       nature: issue.nature,
+                       description: issue.description,
+                       # observed_at: current_date,
                        target: {
-                         variety: scenario_issue.variety,
-                         maximal_age: scenario_issue.maximal_age,
-                         minimal_age: scenario_issue.minimal_age,
-                         shape: scenario_issue.shape
+                         variety: issue.variety,
+                         maximal_age: issue.maximal_age,
+                         minimal_age: issue.minimal_age,
+                         coordinates_nature: issue.coordinates_nature,
+                         coordinates: issue.coordinates
                        },
                        damage: {
-                         impacted_indicator_name: scenario_issue.impacted_indicator_name,
-                         impacted_indicator_value: scenario_issue.impacted_indicator_value,
-                         destruction_percentage: scenario_issue.destruction_percentage
-                       },
-                       grid: {
-                         dimensions: '10x10',
-                         coordonnees: scenario_issue.coordinates
+                         impacted_indicator_name: issue.impacted_indicator_name,
+                         impacted_indicator_value: issue.impacted_indicator_value,
+                         destruction_percentage: issue.destruction_percentage
                        }
                       )
     end

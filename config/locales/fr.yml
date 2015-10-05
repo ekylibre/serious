@@ -31,24 +31,26 @@ fr:
     models:
       actor: Partenaire
       farm: Ferme
+      scenario_issue: "Incident"
   attributes:
     amount: "Montant"
+    application_url: "Url de la ferme dans Ekylibre"
     borrower: Emprunteur
     contractor: Contracteur
     customer: Acheteur
+    duration: "Durée d'un tour"
+    historic: "Historique"
     insurance_percentage: "Taux d'assurance (%)"
     insured: "Assuré"
     insurer: "Assureur"
     interest_percentage: "Taux d'intérêt (%)"
-    lender: Prêteur
-    subcontractor: Sous-traitant
-    supplier: Vendeur
+    lender: "Prêteur"
+    name: "Nom"
+    stand_number: "Numéro de stand"
+    subcontractor: "Sous-traitant"
+    supplier: "Vendeur"
     turn_duration: "Durée d'un tour"
     turns_count: "Nombre de tours"
-    stand_number: "Numéro de stand"
-    application_url: "Url de la ferme dans Ekylibre"
-    historic: "Historique"
-    duration: "Durée d'un tour"
     currency: "Devise"
     release_turn: "Tour"
     turns: "Tours"
@@ -58,7 +60,6 @@ fr:
     reference: "Référence"
     interpolation_method: "Méthode d'interpolation"
     description: "Description"
-    name: "Nom"
     present: "Présence"
 
   date:

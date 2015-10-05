@@ -1,6 +1,21 @@
 = field_set do
   = f.input :name
   = f.input :nature
-  = f.input :variety
   = f.input :description
-  = f.input :scenario_id, as: :hidden
+  = f.input :trigger_turn
+  = f.association :scenario, as: :hidden
+
+= field_set :target do
+  = f.input :variety
+  = f.input :shape
+  = f.input :minimal_age
+  = f.input :maximal_age
+
+= field_set :damages do
+  = f.input :destruction_percentage
+  = f.input :impacted_indicator_name
+  = f.input :impacted_indicator_value
+
+
+
+

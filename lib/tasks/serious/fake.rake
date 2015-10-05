@@ -34,6 +34,21 @@ namespace :serious do
       end
       scenario[:broadcasts] = broadcasts
 
+      issues = []
+      turn = 1
+      while turn < slength
+        if turn.modulo(4).zero?
+          issues << {
+            name: lines.shift.split(' ')[0..3].join(' '),
+            description: lines.shift(3).join(' '),
+            nature: 'climate_event',
+            trigger_turn: turn
+          }
+        end
+        turn += 1
+      end
+      scenario[:issues] = issues
+
       curves = {}
       # references
       references = YAML.load_file(here.join('references.yml')).deep_symbolize_keys
