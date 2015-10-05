@@ -118,7 +118,7 @@ namespace :serious do
         end
         code = name.parameterize
         value = I18n.transliterate(name.mb_chars.downcase).to_i(36)
-        farms[code] = { name: name, stand_number: "SF#{(index + 1).to_s.rjust(2, '0')}", present: (value.modulo(20) > 1), application_url: "http://#{code}.serious.lan:3001" }
+        farms[code] = { name: name, stand_number: "SF#{(index + 1).to_s.rjust(2, '0')}", present: (value.modulo(20) > 1), application_url: "http://#{code}.serious.lan:8080" }
         participations << { participant: code, user: 'admin@ekylibre.org', nature: :player }
         participations << { participant: code, user: 'player@ekylibre.org', nature: :player }
         4.times do

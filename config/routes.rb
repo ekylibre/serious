@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :games, only: [:show] do
         member do
+          post :prepare
           post :confirm
           get :historic
         end
@@ -33,7 +34,12 @@ Rails.application.routes.draw do
       get :current_turn, to: 'games#show_current_turn', path: 'current-turn'
       get :current_turn_broadcasts_and_curves
       get :turns
-      post :run
+      post :prepare
+      post :start
+      post :cancel
+      post :pause
+      post :resume
+      post :stop
       post :trigger_issue
     end
   end

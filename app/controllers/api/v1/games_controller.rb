@@ -5,9 +5,14 @@ class Api::V1::GamesController < Api::V1::BaseController
     render json: @game.configuration(url: game_url(@game))
   end
 
+  def prepare
+    @game.update_column(:state, :in_preparation)
+    render json: { status: 'ok' }
+  end
+
   def confirm
-    @game.update_column(:state, :ready) if @game.planned?
-    render json: 'ok'
+    @game.update_column(:state, :ready)
+    render json: { status: 'ok' }
   end
 
   def historic

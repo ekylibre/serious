@@ -365,7 +365,7 @@ curves:
     negative_alea_amount: 46.33
     amplitude_factor: 2.12
     offset_amount: 350
-    amount_round: 0 
+    amount_round: 0
   orchards_harvest_insurance:
     name: Orchard harvest insurance
     nature: variant

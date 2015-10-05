@@ -36,15 +36,19 @@
 #  turns_count   :integer
 #  updated_at    :datetime
 #
+
+require 'serious/slave'
+
 class Game < ActiveRecord::Base
   extend Enumerize
-  enumerize :state, in: [:planned, :ready, :running, :finished], default: :planned, predicates: true
+  enumerize :state, in: [:planned, :in_preparation, :ready, :running, :paused, :stopped, :finished], default: :planned, predicates: true
   enumerize :turn_nature, in: [:month], default: :month
   belongs_to :scenario
   has_many :actors, -> { actor }, class_name: 'Participant'
   has_many :broadcasts, through: :scenario
   has_many :deals
   has_many :farms, -> { farm }, class_name: 'Participant'
+  has_many :issues, through: :scenario
   has_many :organizer_participations, -> { where(nature: :organizer) }, class_name: 'Participation'
   has_many :organizers, through: :organizer_participations, source: :user
   has_many :participations
@@ -170,8 +174,25 @@ class Game < ActiveRecord::Base
     scenario.curves.where(nature: 'reference')
   end
 
-  def can_run?
-    self.ready? || self.planned?
+  def can_prepare?
+    self.planned? || self.stopped? || self.finished?
+  end
+
+  def can_edit?
+    self.planned? || self.stopped? || self.finished?
+  end
+
+
+  def can_start?
+    self.ready?
+  end
+
+  def can_stop?
+    self.running?
+  end
+
+  def really_running?
+    self.running? && self.current_turn
   end
 
   def elapsed_duration
@@ -188,15 +209,35 @@ class Game < ActiveRecord::Base
     farms.where('LENGTH(TRIM(application_url)) > 0').count * 0.3
   end
 
-  # Launch the game
-  def run!
+  def api_url
+    Serious::Slave.url_for("/api/v1/games/#{id}")
+  end
+
+  def prepare!
+    Serious::Slave.exec("bin/rake seriously:prepare GAME_URL=#{api_url} TOKEN=#{Shellwords.escape(self.access_token)}")
+  end
+
+  # Start the game
+  def start!
     now = Time.now + launch_delay
     self.launched_at = now
     save
-    fail 'Cannot run this game' unless self.ready?
-    self.state = :running
-    save
+    fail 'Cannot start this game' unless self.ready?
+    Serious::Slave.exec("bin/rake seriously:start GAME_URL=#{api_url} TOKEN=#{Shellwords.escape(self.access_token)}")
+    self.update_column(:state, :running)
   end
+
+  # Cancel the game
+  def cancel!
+    self.update_column(:state, :planned)
+  end
+
+  # Stop the game
+  def stop!
+    Serious::Slave.exec("bin/rake seriously:stop GAME_URL=#{api_url} TOKEN=#{Shellwords.escape(self.access_token)}")
+    self.update_column(:state, :stopped)
+  end
+
 
   # Creates Ekylibre instances and load them
   def load!
