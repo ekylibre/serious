@@ -297,8 +297,13 @@ $white_50: rgba(255, 255, 255, 0.5);
     #closeActorWindowButton:hover {
       cursor: pointer;
     }
-    #actorWindowBody {
-      overflow: scroll;
+    foreignObject {
+      #actorWindowBody {
+        overflow-y: scroll;
+        height: 380px;
+        .container {
+        }
+      }
     }
   }
   #broadcasts {
