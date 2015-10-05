@@ -66,7 +66,7 @@ class DealItem < ActiveRecord::Base
       self.unit_pretax_amount = catalog_item.pretax_amount(Game.find(deal.game_id))
       self.tax = catalog_item.tax
     end
-    if Serious::TAXES[tax]
+    if Serious::TAXES[tax] && unit_pretax_amount
       self.unit_amount = (unit_pretax_amount * (100 + Serious::TAXES[tax]) / 100.0).round(2)
       self.pretax_amount = unit_pretax_amount * self.quantity
       self.amount = (pretax_amount * (100 + Serious::TAXES[tax]) / 100.0).round(2)

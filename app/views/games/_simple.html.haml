@@ -23,7 +23,7 @@
       = link_to('Arrêter', stop_game_path(@game), method: :post, class: 'btn btn-default')
     - if current_user.administrator? && @game.can_edit?
       = link_to('Modifier', edit_backend_game_path(current_participation.game), class: 'btn btn-default')
-    -# if current_user.administrator? && Rails.env.development?
+    - if current_user.administrator? && Rails.env.development?
       %p Vous pouvez utiliser la commande suivante pour configurer localement les noms de domaines :
       %pre
         = "echo '127.0.0.1 #{@game.farms.map(&:domain).join(' ')}' | sudo tee --append /etc/hosts"

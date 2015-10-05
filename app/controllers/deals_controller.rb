@@ -46,7 +46,7 @@ class DealsController < BaseController
       item = nil
       fail "Erreur l'item n'existe pas"
     end
-
+    item.unit_pretax_amount = params[:unit_pretax_amount].to_d
     unless item.nil?
       item.quantity += params[:quantity] || 1
       item.save!
