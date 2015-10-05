@@ -147,15 +147,14 @@ window.initializeMap = (current_participant, game, turns, actorList) ->
       .text (actor) ->
         actor.name
   actors.each (actor) ->
-    s = d3.select "#actor#{actor.id}"
+    sign = d3.select "#actor#{actor.id}"
+      .select ".sign"
     if actor.present
-      s.select ".sign"
-        .select "text"
-          .text (actor) ->
-            actor.stand_number
+      sign.select "text"
+        .text (actor) ->
+          actor.stand_number
     else
-      s.select ".sign"
-        .style "display", "none"
+      sign.style "display", "none"
 
   # Display news and curves for the current turn
   broadcastContentRect = d3.select "#broadcastContent"
