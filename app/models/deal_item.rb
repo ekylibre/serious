@@ -63,8 +63,8 @@ class DealItem < ActiveRecord::Base
   before_validation do
     if catalog_item
       self.variant = catalog_item.variant
-      self.unit_pretax_amount = catalog_item.pretax_amount(Game.find(deal.game_id))
       self.tax = catalog_item.tax
+      self.unit_pretax_amount ||= catalog_item.pretax_amount
     end
     if Serious::TAXES[tax] && unit_pretax_amount
       self.unit_amount = (unit_pretax_amount * (100 + Serious::TAXES[tax]) / 100.0).round(2)

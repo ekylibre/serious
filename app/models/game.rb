@@ -182,7 +182,6 @@ class Game < ActiveRecord::Base
     self.planned? || self.stopped? || self.finished?
   end
 
-
   def can_start?
     self.ready?
   end
@@ -192,7 +191,7 @@ class Game < ActiveRecord::Base
   end
 
   def really_running?
-    self.running? && self.current_turn
+    self.running? && current_turn
   end
 
   def elapsed_duration
@@ -224,25 +223,30 @@ class Game < ActiveRecord::Base
     save
     fail 'Cannot start this game' unless self.ready?
     Serious::Slave.exec("bin/rake seriously:start GAME_URL=#{api_url} TOKEN=#{Shellwords.escape(self.access_token)}")
-    self.update_column(:state, :running)
+    update_column(:state, :running)
   end
 
   # Cancel the game
   def cancel!
-    self.update_column(:state, :planned)
+    update_column(:state, :planned)
   end
 
   # Stop the game
   def stop!
     Serious::Slave.exec("bin/rake seriously:stop GAME_URL=#{api_url} TOKEN=#{Shellwords.escape(self.access_token)}")
-    self.update_column(:state, :stopped)
+    update_column(:state, :stopped)
   end
-
 
   # Creates Ekylibre instances and load them
   def load!
     turns_list = turns.map do |turn|
-      { number: turn.number, started_at: turn.started_at, stopped_at: turn.stopped_at, frozen_at: turn.frozen_at, inside: { started_at: turn.inside_started_at, stopped_at: turn.inside_stopped_at } }
+      { number: turn.number, started_at: turn.started_at,
+        stopped_at: turn.stopped_at, frozen_at: turn.frozen_at,
+        inside: {
+          started_at: turn.inside_started_at,
+          stopped_at: turn.inside_stopped_at
+        }
+      }
     end
     participants.find_each do |farm|
       next unless farm.application_url?

@@ -30,7 +30,7 @@ class Api::V1::GamesController < Api::V1::BaseController
     authorization = request.headers['Authorization'].to_s.strip.split(/\s+/)
     unless authorization.first == 'g-token' && authorization.second == @game.access_token
       head :forbidden
-      return falsecontent_type
+      return false
     end
   end
 end

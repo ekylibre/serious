@@ -49,6 +49,7 @@
 #  zone_x            :integer
 #  zone_y            :integer
 #
+
 class Participant < ActiveRecord::Base
   extend Enumerize
   enumerize :nature, in: [:farm, :actor], predicates: true

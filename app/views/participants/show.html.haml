@@ -14,17 +14,20 @@
                 %h3 Produits à acheter
                 .items-list
                   - @participant.products.each do |product|
+                    - unit_pretax_amount = current_game.scenario.value_of(product[:variant], current_turn)
                     .items-item
                       .row
-                        - unit_pretax_amount = current_game.scenario.value_of(product[:variant], current_turn)
                         .col-md-8.catalog-item-title{title: product[:name].to_s.humanize}= product[:name].to_s.humanize
-                        .col-md-2.decimal.catalog-item-price= unit_pretax_amount.l(currency: :EUR)+ ' HT'
+                        .col-md-2.decimal.catalog-item-price
+                          - if unit_pretax_amount
+                            = unit_pretax_amount.l(currency: :EUR)+ ' HT'
                         .col-md-2.catalog-item-quantity
-                          = link_to({controller: :deals, action: :add_to_cart, customer_id: current_participant.id,
-                                    supplier_id: @participant.id, unit_pretax_amount: unit_pretax_amount,
-                                    catalog_item_id: product[:catalog_item_id], product_id: product[:id],
-                                     variant: product[:variant], tax: product[:tax]}, method: :post) do
-                            %i.glyphicon.glyphicon-shopping-cart
+                          - if unit_pretax_amount
+                            = link_to({controller: :deals, action: :add_to_cart, customer_id: current_participant.id,
+                                      supplier_id: @participant.id, unit_pretax_amount: unit_pretax_amount,
+                                      catalog_item_id: product[:catalog_item_id], product_id: product[:id],
+                                       variant: product[:variant], tax: product[:tax]}, method: :post) do
+                              %i.glyphicon.glyphicon-shopping-cart
             .col-md-4
               #cart= render 'deals/cart', deal: deal, supplier: @participant
 
@@ -40,13 +43,16 @@
                       .row
                         - unit_pretax_amount = current_game.scenario.value_of(product[:variant], current_turn)
                         .col-md-8.catalog-item-title{title: product[:name].to_s.humanize}= product[:name].to_s.humanize
-                        .col-md-2.decimal.catalog-item-price= unit_pretax_amount.l(currency: :EUR)+ ' HT'
+                        .col-md-2.decimal.catalog-item-price
+                          - if unit_pretax_amount
+                            = unit_pretax_amount.l(currency: :EUR)+ ' HT'
                         .col-md-2.catalog-item-quantity
-                          = link_to({controller: :deals, action: :add_to_cart, customer_id: @participant.id,
-                          supplier_id: current_participant.id,unit_pretax_amount: unit_pretax_amount,
-                          catalog_item_id: product[:catalog_item_id], product_id: product[:id],variant: product[:variant],
-                           tax: product[:tax]}, method: :post) do
-                            %i.glyphicon.glyphicon-shopping-cart
+                          - if unit_pretax_amount
+                            = link_to({controller: :deals, action: :add_to_cart, customer_id: @participant.id,
+                              supplier_id: current_participant.id,unit_pretax_amount: unit_pretax_amount,
+                              catalog_item_id: product[:catalog_item_id], product_id: product[:id],variant: product[:variant],
+                              tax: product[:tax]}, method: :post) do
+                              %i.glyphicon.glyphicon-shopping-cart
 
             .col-md-4
               #cart= render 'deals/cart', deal: deal, supplier: current_participant

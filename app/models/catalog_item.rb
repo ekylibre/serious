@@ -39,14 +39,16 @@ class CatalogItem < ActiveRecord::Base
   enumerize :nature, in: [:product, :loan], default: :product, predicates: true
   enumerize :tax, in: Serious::TAXES.keys
   belongs_to :participant, inverse_of: :catalog_items
+  has_one :game, through: :participant
+  has_one :scenario, through: :game
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_numericality_of :negative_margin_percentage, :positive_margin_percentage, :quota, allow_nil: true
   validates_presence_of :nature, :negative_margin_percentage, :participant, :positive_margin_percentage, :quota, :tax, :variant
   # ]VALIDATORS]
   validates_presence_of :nature, :tax
 
-  def pretax_amount(game)
-    game.scenario.value_of(variant, game.current_turn)
+  def pretax_amount
+    scenario.value_of(variant, game.current_turn.number)
   end
 
   def variant_name
