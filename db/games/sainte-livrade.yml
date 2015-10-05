@@ -195,135 +195,207 @@ actors:
   A07:
     name: "@com"
 participations:
+- user: admin@ekylibre.org
+  nature: :organizer
+- user: agathe.simon@dietrich.biz
+  nature: :organizer
+- user: michelle.guichard@heller.us
+  nature: :organizer
 - participant: F01
   user: laetitia.da@boyer.info
+  nature: :player
 - participant: F01
   user: thomas.georges@beier.biz
+  nature: :player
 - participant: F01
   user: alexandrie.bouvier@jacobson.name
+  nature: :player
 - participant: F01
   user: thomas.barbier@runte.ca
+  nature: :player
 - participant: F02
   user: auguste.lesage@botsfordeichmann.info
+  nature: :player
 - participant: F02
   user: franck.brunel@gleason.us
+  nature: :player
 - participant: F02
   user: patricia.picard@haucktorphy.us
+  nature: :player
 - participant: F02
   user: theodore.jacques@uptonhyatt.info
+  nature: :player
 - participant: F03
   user: georges.boucher@luettgenhirthe.com
+  nature: :player
 - participant: F03
   user: margaux.lesage@baumbach.co.uk
+  nature: :player
 - participant: F03
   user: franck.pichon@ledner.com
+  nature: :player
 - participant: F03
   user: celina.barthelemy@ebert.com
+  nature: :player
 - participant: F04
   user: julien.dumas@padberg.co.uk
+  nature: :player
 - participant: F04
   user: mathilde.moreno@hauck.com
+  nature: :player
 - participant: F04
   user: jules.jacob@leuschketurcotte.com
+  nature: :player
 - participant: F04
   user: alex.rossi@rogahndicki.info
+  nature: :player
 - participant: F05
   user: eric.lelievre@gerlachjohnston.info
+  nature: :player
 - participant: F05
   user: andree.brunet@stanton.ca
+  nature: :player
 - participant: F05
   user: celine.lebrun@wyman.us
+  nature: :player
 - participant: F05
   user: frederic.herve@ratke.us
+  nature: :player
 - participant: F06
   user: odette.lemoine@terry.ca
+  nature: :player
 - participant: F06
   user: emmanuelle.remy@abshire.name
+  nature: :player
 - participant: F06
   user: denis.becker@swaniawski.biz
+  nature: :player
 - participant: F06
   user: frederic.maury@goodwinkerluke.us
+  nature: :player
 - participant: F07
   user: etienne.rossi@wymanokuneva.biz
+  nature: :player
 - participant: F07
   user: astrid.leroy@abbottlynch.ca
+  nature: :player
 - participant: F07
   user: helene.charrier@goyette.biz
+  nature: :player
 - participant: F07
   user: marianne.lombard@grady.biz
+  nature: :player
 - participant: F08
   user: franck.garcia@jewesswehner.info
+  nature: :player
 - participant: F08
   user: audrey.lacroix@bauch.us
+  nature: :player
 - participant: F08
   user: adrien.francois@dietrich.ca
+  nature: :player
 - participant: F08
   user: andre.petit@romaguerarunolfsdottir.com
+  nature: :player
 - participant: F09
   user: odette.guibert@mcglynn.name
+  nature: :player
 - participant: F09
   user: valerie.rousset@gulgowski.name
+  nature: :player
 - participant: F09
   user: danielle.gillet@schambergermurphy.co.uk
+  nature: :player
 - participant: F09
   user: david.guibert@jacobsonlarson.co.uk
+  nature: :player
 - participant: F10
   user: jacques.chauvin@watersnicolas.com
+  nature: :player
 - participant: F10
   user: celine.chretien@stanton.co.uk
+  nature: :player
 - participant: F10
   user: isaac.diaz@auer.name
+  nature: :player
 - participant: F10
   user: lucy.traore@kirlin.biz
+  nature: :player
 - participant: F11
   user: sabine.gay@gislasonarmstrong.name
+  nature: :player
 - participant: F11
   user: valentine.benard@quitzon.us
+  nature: :player
 - participant: F11
   user: maggie.navarro@bradtke.name
+  nature: :player
 - participant: F11
   user: arthur.carre@mcglynn.name
+  nature: :player
 - participant: F12
   user: daisy.nicolas@spinka.us
+  nature: :player
 - participant: F12
   user: aimee.ollivier@jenkins.ca
+  nature: :player
 - participant: F12
   user: laure.guillet@bashirian.ca
+  nature: :player
 - participant: F12
   user: genevieve.bailly@zulauf.co.uk
+  nature: :player
 - participant: F13
   user: lorraine.paul@bradtke.us
+  nature: :player
 - participant: F13
   user: celina.cordier@fisher.biz
+  nature: :player
 - participant: F13
   user: paulette.barbe@schillerziemann.co.uk
+  nature: :player
 - participant: F13
   user: nath.arnaud@reichelarmstrong.us
+  nature: :player
 - participant: F14
   user: mathilde.dias@konopelski.ca
+  nature: :player
 - participant: F14
   user: zacharie.bonnin@howegoldner.ca
+  nature: :player
 - participant: F14
   user: christiane.begue@marks.biz
+  nature: :player
 - participant: F14
   user: genevieve.jacques@denesik.us
+  nature: :player
 - participant: F15
   user: christelle.lebon@trantow.info
+  nature: :player
 - participant: F15
   user: corinne.joseph@hermann.us
+  nature: :player
 - participant: F15
   user: penelope.mathieu@faymayer.com
+  nature: :player
 - participant: F15
   user: virginie.besson@windler.co.uk
+  nature: :player
 - participant: A01
   user: louis.hamon@mraz.name
+  nature: :player
 - participant: A01
   user: nicolas.maury@dubuquehirthe.biz
+  nature: :player
 - participant: A04
   user: camille.gautier@jacobi.us
+  nature: :player
 - participant: A04
   user: alexandrie.ollivier@lueilwitzbraun.name
+  nature: :player
 - participant: A06
   user: henri.martineau@rolfson.name
+  nature: :player
 - participant: A07
   user: martin.le@shanahancassin.co.uk
+  nature: :player
