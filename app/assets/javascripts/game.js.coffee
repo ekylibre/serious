@@ -111,46 +111,31 @@ window.initializeMap = (current_participant, game, turns, actorList) ->
 
   forceCenterMap()
 
-  # hide templates
-  d3.select("#templates").style "display", "none"
-
-  # hide placeholders
-  d3.select("#placeholders").style "display", "none"
-
-  # Game title and total duration (static data)
-  d3.select "#gameTitle"
-    .text game.name
-  d3.select "#gameTotalDuration"
-    .text game.total_duration # FIXME : not known
-
   # Initialize actors from the actorList array
-  actors = map.select "svg"
-    .append "g"
-      .attr "id", "actors"
-      .selectAll "g.actor"
-        .data actorList
+  actors = map.select "#actors"
+    .selectAll "g.actor"
+      .data actorList
 
-  # clone the templates
+  # clone the actor templates
   actors.enter()
     .append "g"
       .attr "class", "actor"
       .each (actor, i) ->
-        clone = d3.select if i < 4 then "#acteur-entrepot1" else if i < 7 then "#acteur-entrepot2" else "#acteur-tour"
+        this.actor = actor
+        clone = d3.select if i < 2 then "#acteur-entrepot1" else if i < 4 or i == 6 then "#acteur-entrepot2" else if i < 7 then "#acteur-entrepot3" else "#acteur-tour"
           .node()
             .cloneNode true
         clone.removeAttribute "id"
         this.appendChild clone
-        $.ajax {
-          url: "/participants/#{current_participant.id}/affairs_with/#{actor.id}"
-          dataType: 'json',
-          async: true,
-          success: (affairs) ->
-            # TODO : show count
-            console.log "affairs:"
-            console.log affairs
-          error: (jqXHR, textStatus, errorThrown) ->
-            console.log textStatus + "\n" + jqXHR.responseText
-        }
+        # TODO: show affairs count
+        #$.ajax {
+        #  url: "/participants/#{current_participant.id}/affairs_with/#{actor.id}"
+        #  dataType: 'json',
+        #  async: true,
+        #  success: (affairs) ->
+        #  error: (jqXHR, textStatus, errorThrown) ->
+        #    console.log textStatus + "\n" + jqXHR.responseText
+        #}
       .style "transform", (actor, i) ->
         placeholder = d3.select("#acteur-" + i).select("circle")
         "translate(#{ placeholder.attr 'cx' }px, #{ placeholder.attr 'cy' }px)"
@@ -158,13 +143,19 @@ window.initializeMap = (current_participant, game, turns, actorList) ->
 
   # show actor names and stand numbers
   actors
-    .select "text"
+    .select "text:nth-of-type(1)"
       .text (actor) ->
-        actor.name + if actor.present then " " + actor.stand_number else ""
-
-  # TODO : display current game status (time progress, turn number etc.)
-  console.log turns
-
+        actor.name
+  actors.each (actor) ->
+    s = d3.select "#actor#{actor.id}"
+    if actor.present
+      s.select ".sign"
+        .select "text"
+          .text (actor) ->
+            actor.stand_number
+    else
+      s.select ".sign"
+        .style "display", "none"
 
   # Display news and curves for the current turn
   broadcastContentRect = d3.select "#broadcastContent"
@@ -175,39 +166,86 @@ window.initializeMap = (current_participant, game, turns, actorList) ->
       .attr "width", broadcastContentRect.attr "width"
       .attr "height", broadcastContentRect.attr "height"
         .append "xhtml:body"
-          .attr "id", "broadcastsWindowBody"
-  # TODO : update whenever a new turn begins (use turns[current].stopped_at to setup a timer)
-  $.ajax {
-    url: "/games/#{game.id}/current_turn_broadcasts_and_curves",
-    dataType: 'json',
-    async: true,
-    success: (broadcasts_and_curves) ->
-      broadcasts_and_curves.broadcasts.forEach (broadcast) ->
-        body = d3.select "#broadcastsWindowBody"
-        body.append "p"
-          .attr "class", "broadcastName"
-          .text broadcast.name
-        body.append "p"
-          .attr "class", "broadcastContent"
-          .text broadcast.content
-     # TODO: curves
-    error: (jqXHR, textStatus, errorThrown) ->
-      d3.select "#broadcasts"
-        .select "flowPara"
-          .text textStatus + "\n" + jqXHR.responseText
-  }
+          .append "div"
+            .attr "id", "broadcastsContainer"
+            .append "div"
+              .attr "id", "broadcastsWindowDiv"
 
+  updateBroadcasts = () ->
+    $.ajax {
+      url: "/games/#{game.id}/current_turn_broadcasts_and_curves",
+      dataType: 'json',
+      async: true,
+      success: (broadcasts_and_curves) ->
+        div = d3.select "#broadcastsWindowDiv"
+        div.selectAll "p"
+          .remove()
+        broadcasts_and_curves.broadcasts.forEach (broadcast) ->
+          div.append "p"
+            .attr "class", "broadcastName"
+            .text broadcast.name
+          div.append "p"
+            .attr "class", "broadcastContent"
+            .text broadcast.content
+        $.ajax {
+          url: "/games/#{game.id}/current-turn",
+          dataType: 'json',
+          async: true,
+          success: (turn) ->
+            now = new Date()
+            later = new Date turns[turn.number - 1].stopped_at
+            interval = later - now
+            window.setTimeout updateBroadcasts, interval
+          error: (jqXHR, textStatus, errorThrown) ->
+            console.log "error while retreiving current-turn: " + textStatus + "\n" + jqXHR.responseText
+        }
+        # TODO: curves
+      error: (jqXHR, textStatus, errorThrown) ->
+        d3.select "#broadcastWindowDiv"
+          .append "p"
+            .text textStatus + "\n" + jqXHR.responseText
+    }
+  updateBroadcasts()
+
+  # Setup the actorWindow
+  actorContentRect = d3.select "#actorContentRect"
+  d3.select "#actorWindowGroup"
+    .append "foreignObject"
+      .attr "x", actorContentRect.attr "x"
+      .attr "y", actorContentRect.attr "y"
+      .attr "width", actorContentRect.attr "width"
+      .attr "height", actorContentRect.attr "height"
+        .append "xhtml:body"
+          .attr "id", "actorWindowBody"
 
   # click on an actor to open the actor window
   actors.on "click", () ->
-    clone = d3.select "#actorWindow"
-      .node()
-        .cloneNode true
-    clone.setAttribute "id", "actorWindow#{ this.getAttribute 'id' }"
-    d3.select "#map"
-      .select "svg"
-        .node()
-          .appendChild clone
-    # TODO : display actors offer (ajax)
-
-    forceCenterMap()
+    return if d3.select("#actorWindow").style("display") == "block"
+    disableMouse()
+    d3.select "#actorWindowBody"
+      .selectAll "*"
+        .remove()
+    d3.select "#nomActeur"
+      .text this.actor.name
+    d3.select "#actorWindow"
+      .style "display", "block"
+    d3.select "#closeActorWindowButton"
+      .on "click", () ->
+        d3.select "#actorWindow"
+          .style "display", "none"
+        d3.select "#closeActorWindowButton"
+          .on "click", null
+        enableMouse()
+    $.ajax {
+      url: "/participants/#{this.actor.id}?nolayout=true",
+      dataType: 'xml',
+      async: true,
+      success: (content) ->
+        d3.select "#actorWindowBody"
+          .node()
+            .appendChild content.firstChild
+      error: (jqXHR, textStatus, errorThrown) ->
+        d3.select "#actorWindowBody"
+          .append "p"
+            .text textStatus + "\n" + jqXHR.responseText
+    }
