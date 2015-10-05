@@ -308,6 +308,17 @@ $white_50: rgba(255, 255, 255, 0.5);
     right: 0;
     top: 0;
     body {
+      #broadcastsContainer {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+      }
+      #broadcastsWindowDiv {
+        animation-duration: 20s;
+        animation-iteration-count: infinite;
+        animation-name: scroll;
+        animation-timing-function: ease-in;
+      }
       font: 14px 'sans-serif';
       background-color: transparent;
       p.broadcastName {
@@ -317,5 +328,13 @@ $white_50: rgba(255, 255, 255, 0.5);
         font-size: 12px;
       }
     }
+  }
+}
+@keyframes scroll  {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-1000px);
   }
 }
