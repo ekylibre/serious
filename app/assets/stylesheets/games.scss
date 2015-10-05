@@ -275,23 +275,47 @@ $white_50: rgba(255, 255, 255, 0.5);
   height: calc(100vh - 50px);
   overflow: hidden;
   position: relative;
-}
-#map {
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-  height: 1080px;
-  width: 2048px;
-}
-#map .actor:hover {
-  cursor: pointer;
-}
-#broadcastsWindowBody {
-  font: 14px 'sans-serif';
-  background-color: transparent;
-  p.broadcastName {
-    font-weight: bold;
+  #map {
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    height: 1080px;
+    width: 2048px;
+    .actor:hover {
+      cursor: pointer;
+    }
+    #templates, #placeholders {
+      display: none;
+    }
   }
-  p.broadcastContent {
-    font-size: 12px;
+  #actorWindow {
+    position: absolute;
+    height: 558px;
+    width: 732px;
+    left: 0;
+    top: 0;
+    display: none;
+    #closeActorWindowButton:hover {
+      cursor: pointer;
+    }
+    #actorWindowBody {
+      overflow: scroll;
+    }
+  }
+  #broadcasts {
+    position: absolute;
+    height: 310px;
+    width: 635px;
+    right: 0;
+    top: 0;
+    body {
+      font: 14px 'sans-serif';
+      background-color: transparent;
+      p.broadcastName {
+        font-weight: bold;
+      }
+      p.broadcastContent {
+        font-size: 12px;
+      }
+    }
   }
 }

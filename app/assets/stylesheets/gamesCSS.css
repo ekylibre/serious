@@ -1,0 +1,19 @@
+@keyframes scroll {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-1000px);
+  }
+}
+#broadcastsContainer {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+#broadcastsWindowDiv {
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-name: scroll;
+  animation-timing-function: ease-in;
+}

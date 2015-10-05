@@ -11,6 +11,9 @@ class ParticipantsController < BaseController
 
   def show
     return unless find_resource
+    if params[:nolayout]
+      render layout: false
+    end
   end
 
   def affairs_with
