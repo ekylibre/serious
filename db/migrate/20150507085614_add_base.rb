@@ -111,6 +111,7 @@ class AddBase < ActiveRecord::Migration
       t.string :application_url
       t.string :stand_number
       t.boolean :present,        null: false, default: false
+      t.boolean :closed,         null: false, default: false
       t.boolean :customer,       null: false, default: false
       t.boolean :supplier,       null: false, default: false
       t.boolean :lender,         null: false, default: false

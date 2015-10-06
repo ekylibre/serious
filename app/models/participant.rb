@@ -23,6 +23,7 @@
 #  access_token      :string
 #  application_url   :string
 #  borrower          :boolean          default(FALSE), not null
+#  closed            :boolean          default(FALSE), not null
 #  code              :string           not null
 #  contractor        :boolean          default(FALSE), not null
 #  created_at        :datetime
@@ -73,7 +74,7 @@ class Participant < ActiveRecord::Base
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :logo_updated_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
   validates_numericality_of :logo_file_size, :zone_height, :zone_width, :zone_x, :zone_y, allow_nil: true, only_integer: true
-  validates_inclusion_of :borrower, :contractor, :customer, :insured, :insurer, :lender, :present, :subcontractor, :supplier, in: [true, false]
+  validates_inclusion_of :borrower, :closed, :contractor, :customer, :insured, :insurer, :lender, :present, :subcontractor, :supplier, in: [true, false]
   validates_presence_of :code, :game, :name, :nature
   # ]VALIDATORS]
   validates_uniqueness_of :name, scope: :game_id

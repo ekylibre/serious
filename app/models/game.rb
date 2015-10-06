@@ -149,6 +149,10 @@ class Game < ActiveRecord::Base
       hash[:actors].each do |code, actor|
         attributes = actor.slice(:name, :borrower, :lender, :customer, :supplier, :insured, :insurer, :subcontractor, :contractor, :zone_x, :zone_y, :zone_width, :zone_height, :present, :stand_number).merge(code: code)
         attributes[:catalog_items_attributes] = actor[:catalog_items] if actor[:catalog_items]
+        if actor[:logo]
+          path = Pathname.new(file).dirname.join(actor[:logo])
+          attributes[:logo] = File.open(path) if path.exist?
+        end
         game.actors.create! attributes
       end
 

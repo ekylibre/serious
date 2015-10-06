@@ -202,6 +202,7 @@ ActiveRecord::Schema.define(version: 20150507085614) do
     t.string   "application_url"
     t.string   "stand_number"
     t.boolean  "present",           default: false, null: false
+    t.boolean  "closed",            default: false, null: false
     t.boolean  "customer",          default: false, null: false
     t.boolean  "supplier",          default: false, null: false
     t.boolean  "lender",            default: false, null: false
