@@ -33,32 +33,34 @@
   - if @game.description?
     %p= @game.description
 
-  - if @game.current_turn and (broadcasts = @game.broadcasts.where(release_turn: @game.current_turn.number)) and broadcasts.any?
-    %h2
-      %i.glyphicon.glyphicon-bullhorn
-      = :broadcasts.tl
-    #carousel.carousel.slide{data: {ride: 'carousel'}}
-      %ol.carousel-indicators
-        - broadcasts.size.times do |index|
-          - classes = []
-          - classes << 'active' if index.zero?
-          %li{data: {target: '#carousel', slide_to: index}, class: classes}
-      .carousel-inner
-        - broadcasts.each_with_index do |broadcast, index|
-          - classes = []
-          - classes << 'active' if index.zero?
-          .item{class: classes}
-            .carousel-content
-              %div
-                %h4= truncate(broadcast.name, length: 90)
-                %p= truncate(broadcast.content, length: 200)
+  - if @game.running? && @game.current_turn
+    - broadcasts = @game.broadcasts.where(release_turn: @game.current_turn.number)
+    - if broadcasts.any?
+      %h2
+        %i.glyphicon.glyphicon-bullhorn
+        = :broadcasts.tl
+      #carousel.carousel.slide{data: {ride: 'carousel'}}
+        %ol.carousel-indicators
+          - broadcasts.size.times do |index|
+            - classes = []
+            - classes << 'active' if index.zero?
+            %li{data: {target: '#carousel', slide_to: index}, class: classes}
+        .carousel-inner
+          - broadcasts.each_with_index do |broadcast, index|
+            - classes = []
+            - classes << 'active' if index.zero?
+            .item{class: classes}
+              .carousel-content
+                %div
+                  %h4= truncate(broadcast.name, length: 90)
+                  %p= truncate(broadcast.content, length: 200)
 
-      - if broadcasts.count > 1
-        = link_to('#carousel', class: 'left carousel-control', data: {slide: 'prev'}) do
-          %span.glyphicon.glyphicon-chevron-left
+        - if broadcasts.count > 1
+          = link_to('#carousel', class: 'left carousel-control', data: {slide: 'prev'}) do
+            %span.glyphicon.glyphicon-chevron-left
 
-        = link_to('#carousel', class: 'right carousel-control', data: {slide: 'next'}) do
-          %span.glyphicon.glyphicon-chevron-right
+          = link_to('#carousel', class: 'right carousel-control', data: {slide: 'next'}) do
+            %span.glyphicon.glyphicon-chevron-right
 
 
   - participants = @game.participants.order(:name).select{|p| current_participation.can_see?(p) }
@@ -83,12 +85,16 @@
                 .stand-number
                   = participant.stand_number
               = participant_logo(participant)
-              .participant-caption
-                - if current_participant and (count = current_participant.affairs_with(participant).count) and count > 0
-                  %span.affairs-count
-                    %span.glyphicon.glyphicon-briefcase
-                    = count
-                = participant.name
+              - count = 0
+              - count = current_participant.affairs_with(participant).count if current_participant
+              - if count > 0 || !participant.logo.file?
+                .participant-caption
+                  - if count > 0
+                    %span.affairs-count
+                      %span.glyphicon.glyphicon-briefcase
+                      = count
+                  - unless participant.logo.file?
+                    = participant.name
             = link_to(url, class: "participant-details face face-#{side}") do
               %h3= participant.name
               %span.label.label-primary= participant.class.model_name.human

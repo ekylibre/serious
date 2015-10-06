@@ -23,6 +23,7 @@
 #  access_token      :string
 #  application_url   :string
 #  borrower          :boolean          default(FALSE), not null
+#  closed            :boolean          default(FALSE), not null
 #  code              :string           not null
 #  contractor        :boolean          default(FALSE), not null
 #  created_at        :datetime
@@ -54,6 +55,7 @@
 #
 # participants_001:
 #   borrower: true
+#   closed: true
 #   code: "Lorem ipsum"
 #   contractor: true
 #   customer: true

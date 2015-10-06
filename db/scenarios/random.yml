@@ -879,7 +879,7 @@ issues:
     j’en suis sûr. — Ils aimeraient mieux mourir sur la place que de faire un pas
     en arrière. — Se sauver, détaler, fuir, c’est bon pour les mousquetaires du roi,
     cela !"
-  nature: :climate_event
+  nature: climate_event
   trigger_turn: 4
 - name: Porthos et Aramis frémissaient
   description: "— Ah ! les mousquetaires du roi se font arrêter par les gardes de
@@ -905,7 +905,7 @@ issues:
     Que diable, capitaine ! on ne gagne pas toutes les batailles. Le grand Pompée
     a perdu celle de Pharsale, et le roi François Ier, qui, à ce que j’ai entendu
     dire, en valait bien un autre, a perdu cependant celle de Pavie."
-  nature: :climate_event
+  nature: climate_event
   trigger_turn: 8
 curves:
   cac40:
@@ -919,25 +919,25 @@ curves:
     - turn: 1
       amount: 2712.0
     - turn: 2
-      amount: 2680.46
+      amount: 2773.91
     - turn: 3
-      amount: 2652.49
+      amount: 2827.21
     - turn: 4
-      amount: 2591.62
+      amount: 2930.21
     - turn: 5
-      amount: 2526.81
+      amount: 2968.3
     - turn: 6
-      amount: 2469.61
+      amount: 3037.45
     - turn: 7
-      amount: 2362.25
+      amount: 3134.91
     - turn: 8
-      amount: 2305.87
+      amount: 3187.35
     - turn: 9
-      amount: 2270.66
+      amount: 3279.87
     - turn: 10
-      amount: 2178.62
+      amount: 3374.26
     - turn: 11
-      amount: 2036.42
+      amount: 3428.39
   usd:
     name: Dollar américain (USD)
     description: Cours du dollar américain en euros
@@ -948,25 +948,25 @@ curves:
     - turn: 1
       amount: 0.8911
     - turn: 2
-      amount: 0.8744
+      amount: 0.8933
     - turn: 3
-      amount: 0.8623
+      amount: 0.9021
     - turn: 4
-      amount: 0.8563
+      amount: 0.9093
     - turn: 5
-      amount: 0.8415
+      amount: 0.9089
     - turn: 6
-      amount: 0.8335
+      amount: 0.9047
     - turn: 7
-      amount: 0.8125
+      amount: 0.9194
     - turn: 8
-      amount: 0.8007
+      amount: 0.9154
     - turn: 9
-      amount: 0.7701
+      amount: 0.917
     - turn: 10
-      amount: 0.7625
+      amount: 0.9238
     - turn: 11
-      amount: 0.7486
+      amount: 0.9292
   common_wheat:
     name: Blé panifiable
     description: Cours de la tonne de blé panifiable à Paris
@@ -977,25 +977,25 @@ curves:
     - turn: 1
       amount: 163.27
     - turn: 2
-      amount: 160.5938
+      amount: 160.9546
     - turn: 3
-      amount: 158.5351
+      amount: 159.0714
     - turn: 4
-      amount: 155.2196
+      amount: 156.4701
     - turn: 5
-      amount: 149.2005
+      amount: 151.8603
     - turn: 6
-      amount: 143.124
+      amount: 147.5099
     - turn: 7
-      amount: 133.4831
+      amount: 139.6405
     - turn: 8
-      amount: 119.5935
+      amount: 133.1694
     - turn: 9
-      amount: 106.5986
+      amount: 128.094
     - turn: 10
-      amount: 96.6318
+      amount: 123.123
     - turn: 11
-      amount: 88.7139
+      amount: 113.9847
   petroleum:
     name: Pétrole
     description: Cours du baril de pétrole en dollar américain (USD)
@@ -1006,25 +1006,25 @@ curves:
     - turn: 1
       amount: 59.41
     - turn: 2
-      amount: 58.4
+      amount: 59.32
     - turn: 3
-      amount: 58.77
+      amount: 59.22
     - turn: 4
-      amount: 58.8
+      amount: 58.62
     - turn: 5
-      amount: 57.93
+      amount: 57.51
     - turn: 6
-      amount: 56.81
+      amount: 55.93
     - turn: 7
-      amount: 56.2
+      amount: 53.52
     - turn: 8
-      amount: 55.92
+      amount: 51.98
     - turn: 9
-      amount: 56.62
+      amount: 51.0
     - turn: 10
-      amount: 58.84
+      amount: 50.62
     - turn: 11
-      amount: 60.19
+      amount: 50.67
   gold:
     name: Or
     description: Cours de l'or
@@ -1035,25 +1035,25 @@ curves:
     - turn: 1
       amount: 34135.93
     - turn: 2
-      amount: 34159.58
+      amount: 33414.85
     - turn: 3
-      amount: 34290.85
+      amount: 33051.12
     - turn: 4
-      amount: 34254.71
+      amount: 32604.19
     - turn: 5
-      amount: 34447.38
+      amount: 33108.02
     - turn: 6
-      amount: 33722.73
+      amount: 33218.53
     - turn: 7
-      amount: 33663.86
+      amount: 32625.52
     - turn: 8
-      amount: 33696.12
+      amount: 32087.52
     - turn: 9
-      amount: 33982.26
+      amount: 30783.88
     - turn: 10
-      amount: 34444.59
+      amount: 29399.84
     - turn: 11
-      amount: 35105.12
+      amount: 27553.38
   copper:
     name: Cuivre
     description: Cours du cuivre
@@ -1064,25 +1064,25 @@ curves:
     - turn: 1
       amount: 6436.12
     - turn: 2
-      amount: 6361.5
+      amount: 6472.64
     - turn: 3
-      amount: 6281.67
+      amount: 6570.09
     - turn: 4
-      amount: 6197.22
+      amount: 6556.39
     - turn: 5
-      amount: 6062.85
+      amount: 6591.91
     - turn: 6
-      amount: 5926.26
+      amount: 6627.25
     - turn: 7
-      amount: 5854.97
+      amount: 6603.24
     - turn: 8
-      amount: 5932.14
+      amount: 6586.73
     - turn: 9
-      amount: 6005.73
+      amount: 6538.78
     - turn: 10
-      amount: 5942.98
+      amount: 6491.22
     - turn: 11
-      amount: 5985.87
+      amount: 6330.55
   world_population:
     name: Population mondiale
     description: Nombre d'habitants sur Terre (en millions)
@@ -1093,25 +1093,25 @@ curves:
     - turn: 1
       amount: 7125
     - turn: 2
-      amount: 7139
+      amount: 7175
     - turn: 3
-      amount: 7135
+      amount: 7283
     - turn: 4
-      amount: 7133
+      amount: 7414
     - turn: 5
-      amount: 7117
+      amount: 7571
     - turn: 6
-      amount: 7133
+      amount: 7728
     - turn: 7
-      amount: 7186
+      amount: 7884
     - turn: 8
-      amount: 7223
+      amount: 8058
     - turn: 9
-      amount: 7262
+      amount: 8211
     - turn: 10
-      amount: 7297
+      amount: 8403
     - turn: 11
-      amount: 7364
+      amount: 8602
   accommodation_travel:
     name: Accommodation travel
     nature: variant

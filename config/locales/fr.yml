@@ -71,6 +71,18 @@ fr:
       state:
         draft: "Devis"
         invoice: "Facture"
+    game:
+      state:
+        planned: "Prévue"
+        in_preparation: "En préparation"
+        ready: "Prête"
+        running: "En cours"
+        paused: "En pause"
+        stopped: "Arrêtée"
+        finished: "Terminée"
+    insurance:
+      nature:
+        harvest: "Récolte"
     participation:
       nature:
         organizer: Organisateur
@@ -80,17 +92,19 @@ fr:
         administrator: Administrateur
         organizer: Organisateur
         player: Joueur
-    insurance:
-      nature:
-        harvest: "Récolte"
-
   labels:
     are_you_sure: "Êtes-vous sûr(e)\_?"
+    borrow: "Emprunter"
     cart: "Panier"
     choose_issue: "Choisir un incident"
     close: "Fermer"
+    contact: "Contact"
     curves_view_mode: "Cours"
     documents: "Documents"
+    insure: "Assurer"
+    insure_yourself: "S'assurer"
+    lend: "Prêter"
+    loan: "Emprunt"
     map_view_mode: "Vue carte"
     minutes: "Minutes"
     my_purchases: "Mes achats"
@@ -100,11 +114,11 @@ fr:
     my_lendings: "Mes prêts"
     my_borrowings: "Mes emprunts"
     new_quantity: "Nouvelle quantité"
-    purchase: "Achat"
+    purchase: "Acheter"
     ratings_view_mode: "Notes"
     sale: "Vente"
-    insurrance: "Assurance"
-    loan: "Emprunt"
+    sell: "Vendre"
+    transactions: "Transactions"
     broadcasts: "News"
     new_farm: "Ajouter une ferme"
     new_actor: "Ajouter un acteur"

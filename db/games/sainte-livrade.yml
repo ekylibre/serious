@@ -1,147 +1,87 @@
 ---
-name: Sainte-Livrade
-map_width: 40
-map_height: 40
+name: Game of Farms 2015
+code: sainte-livrade
 scenario: gof-2015
 farms:
   f01:
-    name: ferme Barthelemy
-    zone_x: 0
-    zone_y: 0
-    zone_width: 4
-    zone_height: 6
+    name: Havana
     stand_number: SF01
     present: true
     application_url: http://f01.serious.lan:8080
   f02:
-    name: ferme Monnier
-    zone_x: 4
-    zone_y: 0
-    zone_width: 6
-    zone_height: 4
+    name: Hadibou
     stand_number: SF02
     present: true
     application_url: http://f02.serious.lan:8080
   f03:
-    name: ferme Renaud
-    zone_x: 10
-    zone_y: 0
-    zone_width: 6
-    zone_height: 4
+    name: GAEC du Bon Sens
     stand_number: SF03
     present: true
     application_url: http://f03.serious.lan:8080
   f04:
-    name: ferme Mendes
-    zone_x: 16
-    zone_y: 0
-    zone_width: 6
-    zone_height: 4
+    name: GAEC des Cailloux
     stand_number: SF04
     present: true
     application_url: http://f04.serious.lan:8080
   f05:
-    name: ferme Poirier
-    zone_x: 0
-    zone_y: 8
-    zone_width: 6
-    zone_height: 4
+    name: Poirier
     stand_number: SF05
     present: true
     application_url: http://f05.serious.lan:8080
   f06:
-    name: ferme fouquet
-    zone_x: 6
-    zone_y: 6
-    zone_width: 4
-    zone_height: 6
+    name: fouquet
     stand_number: SF06
     present: true
     application_url: http://f06.serious.lan:8080
   f07:
-    name: ferme Michaud
-    zone_x: 12
-    zone_y: 6
-    zone_width: 4
-    zone_height: 6
+    name: Michaud
     stand_number: SF07
     present: true
     application_url: http://f07.serious.lan:8080
   f08:
-    name: ferme Ramos
-    zone_x: 18
-    zone_y: 4
-    zone_width: 4
-    zone_height: 6
+    name: Ramos
     stand_number: SF08
     present: true
     application_url: http://f08.serious.lan:8080
   f09:
-    name: ferme Wagner
-    zone_x: 22
-    zone_y: 6
-    zone_width: 6
-    zone_height: 4
+    name: Wagner
     stand_number: SF09
     present: true
     application_url: http://f09.serious.lan:8080
   f10:
-    name: Les winners
-    zone_x: 22
-    zone_y: 0
-    zone_width: 4
-    zone_height: 6
+    name: Les Winners
     stand_number: SF10
     present: true
     application_url: http://f10.serious.lan:8080
   f11:
-    name: ferme Leclercq
-    zone_x: 0
-    zone_y: 12
-    zone_width: 4
-    zone_height: 6
+    name: Leclercq
     stand_number: SF11
     present: true
     application_url: http://f11.serious.lan:8080
   f12:
-    name: ferme Brunel
-    zone_x: 4
-    zone_y: 14
-    zone_width: 6
-    zone_height: 4
+    name: Brunel
     stand_number: SF12
     present: true
     application_url: http://f12.serious.lan:8080
   f13:
-    name: ferme Colin
-    zone_x: 0
-    zone_y: 18
-    zone_width: 6
-    zone_height: 4
+    name: Colin
     stand_number: SF13
     present: true
     application_url: http://f13.serious.lan:8080
   f14:
-    name: ferme Valette
-    zone_x: 6
-    zone_y: 18
-    zone_width: 6
-    zone_height: 4
+    name: Valette
     stand_number: SF14
     present: true
     application_url: http://f14.serious.lan:8080
   f15:
-    name: ferme ferreira
-    zone_x: 12
-    zone_y: 12
-    zone_width: 6
-    zone_height: 4
+    name: Ferreira
     stand_number: SF15
     present: true
     application_url: http://f15.serious.lan:8080
 actors:
-  A01:
+  a01:
     name: Crédit Agricole
+    logo: "credit-agricole.jpg"
     stand_number: SA01
     present: true
     insurer: true
@@ -162,8 +102,9 @@ actors:
     - variant: orchards_harvest_insurance
       tax: french_vat_normal_2014
       quota: 10
-  A02:
+  a02:
     name: Crédit Mutuel
+    logo: "credit-mutuel.jpg"
     stand_number: SA02
     present: true
     insurer: true
@@ -184,16 +125,24 @@ actors:
     - variant: orchards_harvest_insurance
       tax: french_vat_normal_2014
       quota: 10
-  A03:
+  a03:
     name: Unicoque
-  A04:
+    logo: "unicoque.jpg"
+  a04:
     name: Terres du Sud
-  A05:
+    logo: "terres-du-sud.jpg"
+  a05:
     name: Tonon
-  A06:
+    logo: "tonon.jpg"
+  a06:
     name: CER
-  A07:
+    logo: "cer.jpg"
+  a07:
     name: "@com"
+    logo: "acom.jpg"
+  a08:
+    name: Groupama
+    logo: "groupama.jpg"
 participations:
 - user: admin@ekylibre.org
   nature: :organizer
@@ -381,21 +330,21 @@ participations:
 - participant: f15
   user: virginie.besson@windler.co.uk
   nature: :player
-- participant: A01
+- participant: a01
   user: louis.hamon@mraz.name
   nature: :player
-- participant: A01
+- participant: a01
   user: nicolas.maury@dubuquehirthe.biz
   nature: :player
-- participant: A04
+- participant: a04
   user: camille.gautier@jacobi.us
   nature: :player
-- participant: A04
+- participant: a04
   user: alexandrie.ollivier@lueilwitzbraun.name
   nature: :player
-- participant: A06
+- participant: a06
   user: henri.martineau@rolfson.name
   nature: :player
-- participant: A07
+- participant: a07
   user: martin.le@shanahancassin.co.uk
   nature: :player
