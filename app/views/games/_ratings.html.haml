@@ -1,0 +1,16 @@
+:ruby
+  series = []
+  @game.participants.each do |participant|
+    serie = {name: participant.name, data: []}
+    participant.ratings.each do |rating|
+      # raise rating.rated_at.inspect
+      serie[:data] << [(rating.rated_at.utc.to_f * 1000).to_i, rating.value]
+    end
+    series << serie if serie[:data].any?
+  end
+.container
+  %h1 Notes
+  - if series.any?
+    = spline_chart(series, x_axis: {type: 'datetime'}, y_axis: {min: 0, max: 100}, legend: true)
+  - else
+    = "Aucune note pour l'instant"

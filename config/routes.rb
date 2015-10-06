@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         member do
           post :prepare
           post :confirm
+          post :evaluate
           get :historic
         end
       end
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
       post :resume
       post :stop
       post :trigger_issue
+      post :evaluate
     end
   end
   resources :participants

@@ -49,7 +49,7 @@
               %ul.dropdown-menu
                 - if current_game && current_game.running?
                   %li.dropdown-header= "Affichage"
-                  - [:simple, :map, :curves].each do |mode|
+                  - [:simple, :map, :curves, :ratings].each do |mode|
                     %li{class: (mode.to_s == session[:view_mode].to_s ? 'active' : nil)}= link_to("#{mode}_view_mode".tl, {mode: mode})
                   %li.divider{role: 'separator'}
                 - current_user.active_games.each do |game|

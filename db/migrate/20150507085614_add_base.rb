@@ -126,6 +126,14 @@ class AddBase < ActiveRecord::Migration
       t.timestamps
     end
 
+    create_table :participant_ratings do |t|
+      t.references :participant, null: false, index: true
+      t.references :game, null: false, index: true
+      t.timestamp :rated_at, null: false
+      t.json :report
+      t.timestamps
+    end
+
     create_table :catalog_items do |t|
       t.references :participant, null: false, index: true
       t.string :variant,         null: false, index: true

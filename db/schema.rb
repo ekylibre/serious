@@ -176,6 +176,18 @@ ActiveRecord::Schema.define(version: 20150507085614) do
   add_index "loans", ["game_id"], name: "index_loans_on_game_id", using: :btree
   add_index "loans", ["lender_id"], name: "index_loans_on_lender_id", using: :btree
 
+  create_table "participant_ratings", force: :cascade do |t|
+    t.integer  "participant_id", null: false
+    t.integer  "game_id",        null: false
+    t.datetime "rated_at",       null: false
+    t.json     "report"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "participant_ratings", ["game_id"], name: "index_participant_ratings_on_game_id", using: :btree
+  add_index "participant_ratings", ["participant_id"], name: "index_participant_ratings_on_participant_id", using: :btree
+
   create_table "participants", force: :cascade do |t|
     t.integer  "game_id",                           null: false
     t.string   "nature",                            null: false

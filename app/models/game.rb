@@ -53,6 +53,7 @@ class Game < ActiveRecord::Base
   has_many :organizers, through: :organizer_participations, source: :user
   has_many :participations
   has_many :participants
+  has_many :ratings, class_name: 'ParticipantRating'
   has_many :turns, -> { order(:number) }, class_name: 'GameTurn', dependent: :destroy, counter_cache: false
   has_many :users, through: :participations
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
@@ -207,6 +208,10 @@ class Game < ActiveRecord::Base
 
   def api_url
     Serious::Slave.url_for("/api/v1/games/#{id}")
+  end
+
+  def evaluate!
+    Serious::Slave.exec("bin/rake seriously:evaluate GAME_URL=#{api_url} TOKEN=#{Shellwords.escape(self.access_token)}")
   end
 
   def prepare!

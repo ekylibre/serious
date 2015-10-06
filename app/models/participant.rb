@@ -56,6 +56,7 @@ class Participant < ActiveRecord::Base
   belongs_to :game
   has_many :catalog_items, inverse_of: :participant
   has_many :participations
+  has_many :ratings, -> { order(:rated_at) }, class_name: 'ParticipantRating'
   has_many :users, through: :participations
   has_many :sales,      class_name: 'Deal', foreign_key: :supplier_id
   has_many :purchases,  class_name: 'Deal', foreign_key: :customer_id

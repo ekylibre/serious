@@ -23,6 +23,20 @@ class Api::V1::GamesController < Api::V1::BaseController
     end
   end
 
+  # Register notes of farms
+  def evaluate
+    puts params[:rating].inspect.yellow
+    params[:ratings].each do |tenant, report|
+      participant = @game.participants.find_by(tenant: tenant)
+      if participant
+        participant.ratings.create!(report: report, rated_at: Time.parse(report[:stopped_at]))
+      else
+        puts "Cannot find participant #{tenant}"
+      end
+    end
+    render json: { status: 'ok' }
+  end
+
   protected
 
   def authorize!

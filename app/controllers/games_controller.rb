@@ -42,6 +42,13 @@ class GamesController < BaseController
     redirect_to game_path(current_game)
   end
 
+  # Evaluate farms for a game
+  def evaluate
+    return unless find_resource
+    @game.evaluate!
+    redirect_to game_path(@game)
+  end
+
   # Prepare farms for a game
   def prepare
     return unless find_resource
