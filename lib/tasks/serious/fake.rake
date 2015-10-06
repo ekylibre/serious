@@ -144,12 +144,12 @@ namespace :serious do
       game[:farms] = farms
 
       actors = {}
-      ['Crédit Agricole', 'Groupama', 'Unicoque', 'Terre du Sud', 'Razol', 'CER', 'Acom', 'MSA'].each_with_index do |name, index|
+      ['Crédit Agricole', 'Groupama', 'Unicoque', 'Terres du Sud', 'Razol', 'CER', 'Acom', 'MSA'].each_with_index do |name, index|
         value = I18n.transliterate(name.mb_chars.downcase).to_i(36)
         code = name.parameterize
         supplier = (value.modulo(10) > 3)
         customer = (value.modulo(25) > 15)
-        actors[code] = { name: name, stand_number: "SA#{(index + 1).to_s.rjust(2, '0')}", present: (value.modulo(30) > 6), insurer: (value.modulo(21) > 9), contractor: (value.modulo(21) > 6), supplier: supplier, customer: customer, lender: !(supplier or customer) }
+        actors[code] = { name: name, stand_number: "SA#{(index + 1).to_s.rjust(2, '0')}", present: (value.modulo(30) > 6), logo: "#{code}.jpg", insurer: (value.modulo(21) > 9), contractor: (value.modulo(21) > 6), supplier: supplier, customer: customer, lender: !(supplier || customer) }
         items = []
         15.times do |index|
           items << { variant: VARIANTS[(index * value).modulo(VARIANTS.size)], tax: Serious::TAXES.keys.first, quota: 1 + value.modulo(7) }

@@ -18,6 +18,7 @@ actors:
     name: Crédit Agricole
     stand_number: SA01
     present: true
+    logo: credit-agricole.jpg
     insurer: false
     contractor: true
     supplier: false
@@ -73,6 +74,7 @@ actors:
     name: Groupama
     stand_number: SA02
     present: false
+    logo: groupama.jpg
     insurer: true
     contractor: true
     supplier: true
@@ -128,6 +130,7 @@ actors:
     name: Unicoque
     stand_number: SA03
     present: false
+    logo: unicoque.jpg
     insurer: false
     contractor: false
     supplier: false
@@ -179,10 +182,11 @@ actors:
     - variant: grain_crusher
       tax: french_vat_normal_2014
       quota: 3
-  terre-du-sud:
-    name: Terre du Sud
+  terres-du-sud:
+    name: Terres du Sud
     stand_number: SA04
-    present: true
+    present: false
+    logo: terres-du-sud.jpg
     insurer: true
     contractor: true
     supplier: true
@@ -192,52 +196,53 @@ actors:
     - variant: accommodation_travel
       tax: french_vat_normal_2014
       quota: 7
+    - variant: hedge_cutter
+      tax: french_vat_normal_2014
+      quota: 7
     - variant: roll
+      tax: french_vat_normal_2014
+      quota: 7
+    - variant: building_material
       tax: french_vat_normal_2014
       quota: 7
     - variant: land_parcel
       tax: french_vat_normal_2014
       quota: 7
+    - variant: sprayer
+      tax: french_vat_normal_2014
+      quota: 7
     - variant: forager
+      tax: french_vat_normal_2014
+      quota: 7
+    - variant: moving_travel
       tax: french_vat_normal_2014
       quota: 7
     - variant: water_spreader
       tax: french_vat_normal_2014
       quota: 7
+    - variant: hazel_reaper
+      tax: french_vat_normal_2014
+      quota: 7
     - variant: reaper
+      tax: french_vat_normal_2014
+      quota: 7
+    - variant: bos_vial
       tax: french_vat_normal_2014
       quota: 7
     - variant: irrigation_water
       tax: french_vat_normal_2014
       quota: 7
+    - variant: sower
+      tax: french_vat_normal_2014
+      quota: 7
     - variant: diesel
-      tax: french_vat_normal_2014
-      quota: 7
-    - variant: vine_residu
-      tax: french_vat_normal_2014
-      quota: 7
-    - variant: printer
-      tax: french_vat_normal_2014
-      quota: 7
-    - variant: inseminator
-      tax: french_vat_normal_2014
-      quota: 7
-    - variant: cover_implanter
-      tax: french_vat_normal_2014
-      quota: 7
-    - variant: trailer
-      tax: french_vat_normal_2014
-      quota: 7
-    - variant: portable_computer
-      tax: french_vat_normal_2014
-      quota: 7
-    - variant: implanter
       tax: french_vat_normal_2014
       quota: 7
   razol:
     name: Razol
     stand_number: SA05
     present: true
+    logo: razol.jpg
     insurer: true
     contractor: true
     supplier: true
@@ -293,6 +298,7 @@ actors:
     name: CER
     stand_number: SA06
     present: false
+    logo: cer.jpg
     insurer: true
     contractor: true
     supplier: false
@@ -348,6 +354,7 @@ actors:
     name: Acom
     stand_number: SA07
     present: true
+    logo: acom.jpg
     insurer: true
     contractor: true
     supplier: true
@@ -403,6 +410,7 @@ actors:
     name: MSA
     stand_number: SA08
     present: true
+    logo: msa.jpg
     insurer: false
     contractor: false
     supplier: false
@@ -539,51 +547,48 @@ participations:
 - participant: unicoque
   user: nicolas.maury@dubuquehirthe.biz
   nature: :player
-- participant: terre-du-sud
+- participant: terres-du-sud
   user: admin@ekylibre.org
   nature: :player
-- participant: terre-du-sud
+- participant: terres-du-sud
   user: player@ekylibre.org
   nature: :player
-- participant: terre-du-sud
+- participant: terres-du-sud
   user: franck.garcia@jewesswehner.info
   nature: :player
-- participant: terre-du-sud
+- participant: terres-du-sud
   user: louis.hamon@mraz.name
   nature: :player
-- participant: terre-du-sud
+- participant: razol
+  user: admin@ekylibre.org
+  nature: :player
+- participant: razol
+  user: player@ekylibre.org
+  nature: :player
+- participant: razol
   user: emilie.roche@bahringer.ca
   nature: :player
-- participant: razol
+- participant: cer
   user: admin@ekylibre.org
   nature: :player
-- participant: razol
+- participant: cer
   user: player@ekylibre.org
   nature: :player
-- participant: razol
+- participant: cer
   user: pauline.lacroix@roob.ca
   nature: :player
-- participant: cer
+- participant: acom
   user: admin@ekylibre.org
   nature: :player
-- participant: cer
+- participant: acom
   user: player@ekylibre.org
   nature: :player
-- participant: cer
+- participant: acom
   user: maryse.monnier@greenholt.co.uk
-  nature: :player
-- participant: acom
-  user: admin@ekylibre.org
-  nature: :player
-- participant: acom
-  user: player@ekylibre.org
   nature: :player
 - participant: acom
   user: gregoire.becker@ankunding.info
   nature: :player
-- participant: acom
-  user: diane.bertin@terry.biz
-  nature: :player
 - participant: msa
   user: admin@ekylibre.org
   nature: :player
@@ -591,8 +596,8 @@ participations:
   user: player@ekylibre.org
   nature: :player
 - participant: msa
-  user: claude.hardy@erdman.name
+  user: diane.bertin@terry.biz
   nature: :player
 - participant: msa
-  user: alix.levy@crooks.ca
+  user: claude.hardy@erdman.name
   nature: :player
