@@ -262,6 +262,7 @@ class Game < ActiveRecord::Base
   def configuration(options = {})
     conf = {}.merge(options)
     conf[:name] = name
+    conf[:url] = Serious::Slave.url_for("/games/#{id}")
     conf[:description] = description if self.description?
     conf[:planned_at] = self.planned_at if self.planned_at?
     conf[:farms] = []
