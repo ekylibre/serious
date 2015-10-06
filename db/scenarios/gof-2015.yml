@@ -7,27 +7,120 @@ turns_count: 12
 currency: EUR
 historic: "gof.zip"
 broadcasts:
+- name: "Rentrée 2015 : Stéphane LE FOLL en visite dans un lycée agricole"
+  content: "À l’occasion de la rentrée scolaire dans l’enseignement agricole, Stéphane LE FOLL, Ministre de l’Agriculture, de l’Agroalimentaire et de la Forêt, s'est rendu le mardi 8 septembre dans les Yvelines à l’Etablissement Public Local d’Enseignement Agricole de Saint-Germain-en-Laye/Chambourcy."
+  release_turn: 1
+- name: "Info pratique : Votre banque pour vous aider à préparer la nouvelle campagne"
+  content: "Les banques rivalisent d'offres et de promotions pour les agriculteurs. Des offres intéressantes, mais limitées dans la durée. Les banques sont de plus en plus sélectives vis à vis de leurs clients, mais les conditions d'emprunts peuvent valoir le coup."
+  release_turn: 1
+- name: "Salon @TechElevage : l’innovation en élevage"
+  content: "La Chambre d’agriculture organise pour la 3ème année, un salon Tech’Elevage, salon de l’innovation en élevage à La Roche-sur-Yon du Mercredi 18 au Vendredi 20  Novembre 2015 au ParcExpo des Oudairies."
+  release_turn: 1
+- name: "Vendanges dans les Landes : qualité et quantité en 2015"
+  content: "Un beau printemps, un été chaud et sec, quelques pluies bienvenues… Tout y est pour un bon millésime. Tout avait idéalement commencé avec la pousse rapide d'un beau printemps, une floraison fin mai, suivie d'un été chaud et sec. Alors que fin août brûlait, la catastrophe a été évitée de peu grâce à des pluies abondantes et des nuits fraîches, venues limiter les effets de la sécheresse et accélérer la maturité, comme il le fallait. "
+  release_turn: 2
+- name: "Info pratique Machinisme : Choisir et entretenir ses tracteurs"
+  content: "Avec le vieillissement d'un tracteur, les charges augmentent progressivement du fait des coûts d’entretien. Garder un tracteur d’occasion semble parfois plus rentable que le rachat d’un tracteur neuf, mais attention aussi aux pannes «\_sévères\_». À partir d’un certain coût de réparation, le tracteur d’occasion n’est plus rentable."
+  release_turn: 2
 - name: "Changements climatiques, ça continue !"
   content: "Les spécialistes annoncent encore beaucoup de perturbations climatiques pour les 2 prochaines années. La COP 21 qui aura lieu dans 2 mois devrait aboutir à l'engagement des pays membres à maintenir le réchauffement global en deça de 2°C."
-  release_turn: 1
-- name: "L'innovation au rendez vous"
-  content: "Beaucoup d'innovations encore cette année dans les différents salons agricoles."
-  release_turn: 1
-- name: "Blé dur - nouveau record !"
-  content: "Quelle ne fut pas la surprise de Jean-Michel MARTIN lorsqu'en ouvrant le capot de sa moissonneuse il trouva un grain de blé de 55kg\_: «\_Fier d'avoir pu établi ce nouveau record mais un peu déçu d'y avoir laissé ma moissoneuse-batteuse\_»."
+  release_turn: 2
+- name: "Monsanto «\_Nos pesticides ne provoquent que des maladies conformes aux normes européennes\_»"
+  content: "Alors que beaucoup reprochent à Monsanto son monopole, qui interdit la variété des exploitations, ainsi que la haute toxicité de ses produits, la société a tenu à se défendre en mettant en avant son respect des règles."
   release_turn: 3
+- name: "Des entreprises du gymnase du lycée Etienne Restat déménagent"
+  content: "Le président a annoncé la délocalisation de deux entreprises de Sainte-Livrade : le concessionaire Tonon et le Crédit Mutuel. Prévue pour fin février 2016, il ne sera plus possible de leur rendre visite à partir de cette date."
+  release_turn: 3
+- name: "Petites annonces : Ouvrier agricole polyvalent"
+  content: "Ouvrier de 33 ans, 15ans d'expérience en polyculture élevage bovin viande. Dynamique, polyvalent et sérieux, je suis disponible de suite. Étudie toute proposition."
+  release_turn: 3
+- name: "Les Verts n’aborderont pas le thème de l’écologie pour éviter les conflits lors de leur conseil fédéral"
+  content: "La direction du parti Europe Écologie les Verts vient de rendre publiques les questions qui seront abordées lors du prochain conseil fédéral en janvier 2016. Les grandes figures du parti, qui doivent à cette occasion déterminer leur ligne politique, semblent s’être mises d’accord pour ne pas aborder la thématique de l’écologie afin d’éviter d’incessants conflits internes."
+  release_turn: 4
+- name: "Info pratique Assurance : Guide, conseils et bons plans"
+  content: "Pour anticiper la nouvelle année vos assureurs vous proposent de faire le point. Tout au long de notre vie nous devons faire face à de nouvelles situations et avec elles, à de nouveaux besoins d'assurance. Les différents contrats d'assurances pourront vous être présentés."
+  release_turn: 4
+- name: "Un pâturage gratuit pour les rennes du père Noël ! "
+  content: "Délibération du conseil municipal : «\_Avec une pensée toute particulière pour tous les petits enfants de Sainte-Gemmes-sur-Loire, du temps présent et du temps à venir, le conseil a décidé d'accorder, à titre exceptionnel et à chaque Noël, la gratuité des pâtures de l'Ile-aux-Chevaux... pour les rennes du père Noël.\_»"
+  release_turn: 4
 - name: "Atteint d'un rhume, il a apprend qu'il en a plus que pour 70 ans à vivre"
   content: "“C’est le genre d’histoire qui n’arrive qu’aux autres”. C’est ce que pensait Jérémie, 22 ans, il y a quelques jours à peine avant que son destin ne bascule. Cet étudiant en BTS ACSE, originaire de Marmande, en Lot-et-Garonne, entame sa journée comme n’importe quelle autre lorsqu’il est pris de toussotements et sent sa gorge un peu enrouée. Il se rend alors chez le médecin pour ce qu’il pense être une banale consultation, et la nouvelle tombe brutalement\_: il s’agit d’un rhume, de type “non viral”, l’un des moins graves. Il ne lui reste que 70 ans à vivre."
   release_turn: 5
-- name: "Monsanto «\_Nos pesticides ne provoquent que des maladies conformes aux normes européennes\_»"
-  content: "Alors que beaucoup reprochent à Monsanto son monopole, qui interdit la variété des exploitations, ainsi que la haute toxicité de ses produits, la société a tenu à se défendre en mettant en avant son respect des règles."
+- name: "Info pratique : Cultures pérennes"
+  content: "Ne les oubliez pas ! Durant l'hiver, effectuez les travaux nécessaires sur vos cutures pérennes."
+  release_turn: 5
+- name: "Maladie, accident : Osez anticiper les coups durs"
+  content: "Parce que la maladie ne prévient pas, que les risques d'accident sont inhérents à votre métier, nous vous accompagnons en cas de grands ou de petits problèmes de santé. Des aides par anticipation existent pour vous faire remplacer et profiter du Service de Remplacement. Osez vous aussi anticiper les coups durs dès maintenant."
+  release_turn: 5
+- name: "Le Salon de l’Agriculture a son nouveau champion du monde du cri du cochon"
+  content: "Il est des cochons pas comme les autres au Salon de l’Agriculture. Comme chaque année, le Salon a accueilli ce samedi après-midi un championnat du cri de cochon. Plusieurs candidats s’affrontaient dans cette terrible épreuve. L’enjeu: reproduire le cri du porcelet, du cochon amoureux, ou de la truie en chaleur. Le tout avec un costume rose bonbon et un groin sur le nez."
+  release_turn: 6
+- name: "Climat : Un temps capricieux dans le Lot"
+  content: "Le département a été balayé par une vague d'orages violents. Au plus fort de l'épisode dépressionnaire, 1000 foyers ont été privés d'électricité."
+  release_turn: 6
+- name: ""
+  content: ""
+  release_turn: 6
+- name: "Alerte météo : Département 47"
+  content: "Météo France annonce d'ores et déjà une dégradation orageuse sur le Sud-ouest avec risque important de grêle dans le Lot-et-Garonne."
   release_turn: 7
-- name: "Les Verts n’aborderont pas le thème de l’écologie pour éviter les conflits lors de leur conseil fédéral"
-  content: "La direction du parti Europe Écologie les Verts vient de rendre publiques les questions qui seront abordées lors du conseil fédéral qui se tiendra samedi. Les grandes figures du parti, qui doivent à cette occasion déterminer leur ligne politique, semblent s’être mises d’accord pour ne pas aborder la thématique de l’écologie afin d’éviter d’incessants conflits internes."
+- name: "L'innovation au rendez vous"
+  content: "Beaucoup d'innovations encore cette année dans les différents salons agricoles."
+  release_turn: 7
+- name: ""
+  content: ""
+  release_turn: 7
+- name: "Info pratique : Centres de gestion agricoles"
+  content: "Pour vous faire conseiller en matière de comptabilité, de formation et de fiscalité, prenez rendez-vous !"
+  release_turn: 8
+- name: "Actualité"
+  content: "En accord avec les professeurs, la note obtenue par les étudiants lors du Serious Game sera comptabilisée dans leur moyenne générale."
+  release_turn: 8
+- name: ""
+  content: ""
+  release_turn: 8
+- name: "Erratum"
+  content: "Un poisson s'est glissé dans les news du mois d'avril."
+  release_turn: 9
+- name: "Sangliers : Une nouvelle battue organisée"
+  content: "Pour endiguer la prolifération des sangliers, les chasseurs sont sollicités. Ils étaient une quarantaine pour une matinée de traque."
+  release_turn: 9
+- name: "Salon de l'Agriculture d'Aquitaine, du beau, du bon et de l'innovant"
+  content: "Le monde agricole est innovant, et le Salon régional de l'Agriculture d'Aquitaine tient à ce que cela se sache. Alors cette année, c'est bien l'innovation qui sera le thème central du Salon."
+  release_turn: 9
+- name: ""
+  content: ""
   release_turn: 9
 - name: "5 fruits et légumes/jour : hospitalisation d’un enfant ayant mangé 2 pastèques et 3 citrouilles"
   content: "YERVILLE – Cyril, 11 ans, est à l’hôpital depuis huit jours suite à l’ingurgitation de deux pastèques et trois citrouilles. Ses parents ne comprennent pas, ils avaient pourtant respecté les recommandations du ministère de la Santé pour l’alimentation de leur fils. Les « cinq fruits et légumes par jour », retour sur un slogan trompeur..."
+  release_turn: 10
+- name: "Risque de sécheresse dans le sud-ouest de la France"
+  content: "Prairies grillées pour les animaux, rendements attendus en baisse pour les céréaliers... Les agriculteurs d'une dizaine de départements subissent les conséquences d'un manque d'eau et attendent des pluies avec impatience."
+  release_turn: 10
+- name: ""
+  content: ""
+  release_turn: 10
+- name: "Dans le Lot-et-Garonne, les agriculteurs accueillent la pluie à bras ouverts"
+  content: "Après un mois de juin chaud et sec, les agriculteurs craignaient pour la survie de leurs récoltes. Pour ces derniers, les fortes pluies de ce mois-ci sont vécues comme une bénédiction."
   release_turn: 11
+- name: "Blé dur - nouveau record !"
+  content: "Quelle ne fut pas la surprise de Jean-Michel MARTIN lorsqu'en ouvrant le capot de sa moissonneuse il trouva un grain de blé de 55kg\_: «\_Fier d'avoir pu établi ce nouveau record mais un peu déçu d'y avoir laissé ma moissoneuse-batteuse\_»."
+  release_turn: 11
+- name: "Etre agriculteur et partir en vacances c'est possible !"
+  content: "La Chambre d'Agriculture propose un service de remplacement, en confiant temporairement des exploitations agricoles à des professionnels du secteur. L'occasion de prendre des congés sans crainte. Dès maintenant, pensez à nous appeler pour réserver votre remplacement pour cet été."
+  release_turn: 11
+- name: "Location de pièges Topcat"
+  content: "Le gazage de taupes est terminé pour ce printemps mais vous pouvez encore lutter contre la taupe et le rat taupier. Pour cela nous vous louons des pièges de type TOPCAT : pièges très efficaces, rapides et simples d’utilisation."
+  release_turn: 11
+- name: "Bienvenue à la ferme : un réseau pour des vacances au contact des animaux"
+  content: "Le réseau “Bienvenue à la ferme”, qui regroupe près de 6 000 agriculteurs sur toute la France propose une offre spécialement conçue pour les familles désireuses de se ressourcer au vert et de faire découvrir les animaux de la ferme aux plus petits : les Z'anifermes."
+  release_turn: 12
+- name: ""
+  content: ""
+  release_turn: 12
+- name: ""
+  content: ""
+  release_turn: 12
 
 # https://gist.github.com/anonymous/a723dc8e48da6dbc7eab
 issues:
