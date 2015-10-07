@@ -143,6 +143,9 @@ actors:
   a08:
     name: Groupama
     logo: "groupama.jpg"
+  a09:
+    name: Ceta de guyenne
+    logo: "ceta.jpg"
 participations:
 - user: admin@ekylibre.org
   nature: :organizer
@@ -347,4 +350,7 @@ participations:
   nature: :player
 - participant: a07
   user: martin.le@shanahancassin.co.uk
+  nature: :player
+- participant: a09
+  user: sdupland@47.cerfrance.fr
   nature: :player
