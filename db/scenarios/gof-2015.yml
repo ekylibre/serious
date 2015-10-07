@@ -705,3 +705,69 @@ curves:
     amplitude_factor: 3.18
     offset_amount: 212.2
     amount_round: 1
+monthly_costs:
+  global_corp:
+    - variant: electricity
+      tax: french_vat_reduced 
+      unit_pretax_amount: 0.1
+      quantity: 4859
+    - variant: diesel
+      tax: french_vat_null
+      unit_pretax_amount: 0.51
+      quantity: 8900
+    - variant: running_water
+      tax: french_vat_reduced
+      unit_pretax_amount: 6.98
+      quantity: 56
+    - variant: internet_line_subscription
+      tax: french_vat_normal_2014
+      unit_pretax_amount: 29.90
+      quantity: 1
+    - variant: phone_line_subscription
+      tax: french_vat_normal_2014
+      unit_pretax_amount: 19.90
+      quantity: 3
+    - variant: bank_service
+      tax: french_vat_normal_2014
+      unit_pretax_amount: 39.90
+      quantity: 1
+    - variant: equipment_repair_service
+      tax: french_vat_normal_2014
+      unit_pretax_amount: 450
+      quantity: 1
+    - variant: subscription_professional_society
+      tax: french_vat_normal_2014
+      unit_pretax_amount: 55
+      quantity: 1
+    - variant: postal_charges
+      tax: french_vat_normal_2014
+      unit_pretax_amount: 80
+      quantity: 1
+    - variant: car_moving_travel
+      tax: french_vat_null
+      unit_pretax_amount: 380
+      quantity: 3
+    - variant: moving_travel
+      tax: french_vat_normal_2014
+      unit_pretax_amount: 180
+      quantity: 2
+    - variant: little_office_equipment
+      tax: french_vat_normal_2014
+      unit_pretax_amount: 52
+      quantity: 3
+    - variant: furniture
+      tax: french_vat_normal_2014
+      unit_pretax_amount: 89
+      quantity: 4
+    - variant: salary_social_contribution
+      tax: french_vat_normal_2014
+      unit_pretax_amount: 950
+      quantity: 2
+    - variant: associate_social_contribution
+      tax: french_vat_normal_2014
+      unit_pretax_amount: 1100
+      quantity: 2
+    - variant: employee
+      tax: french_vat_normal_2014
+      unit_pretax_amount: 1500
+      quantity: 4
