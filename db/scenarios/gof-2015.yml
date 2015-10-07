@@ -58,8 +58,8 @@ broadcasts:
 - name: "Climat : Un temps capricieux dans le Lot"
   content: "Le département a été balayé par une vague d'orages violents. Au plus fort de l'épisode dépressionnaire, 1000 foyers ont été privés d'électricité."
   release_turn: 6
-- name: ""
-  content: ""
+- name: "Concours : Move Your Robot 2016"
+  content: "Move your Robot est un challenge national de robotique qui permet aux participants de s’affronter en programmant le meilleur logiciel possible pour guider le robot Oz de Naïo Technologies. Si vous êtes étudiant, enseignant, chercheur ou juste passionné de robotique, c’est l’occasion de travailler sur vrai un robot professionnel. Les phases finales auront lieu à Toulouse les 26 et 27 février 2016."
   release_turn: 6
 - name: "Alerte météo : Département 47"
   content: "Météo France annonce d'ores et déjà une dégradation orageuse sur le Sud-ouest avec risque important de grêle dans le Lot-et-Garonne."
@@ -67,8 +67,8 @@ broadcasts:
 - name: "L'innovation au rendez vous"
   content: "Beaucoup d'innovations encore cette année dans les différents salons agricoles."
   release_turn: 7
-- name: ""
-  content: ""
+- name: "Insolite : Les animaux de la ferme défilent à l'occasion du carnaval"
+  content: "Quelques vaches, veaux et volailles ont défilé depuis le Parc des Expositions, vers la place de la Cathédrale St Vincent. Rencontres, présentation des races, et atelier photo improvisé, où les enfants pouvaient repartir avec leur photo en compagnie des animaux de la ferme. Un défilé organisé par les élèves du Lycée agricole. "
   release_turn: 7
 - name: "Info pratique : Centres de gestion agricoles"
   content: "Pour vous faire conseiller en matière de comptabilité, de formation et de fiscalité, prenez rendez-vous !"
@@ -76,8 +76,8 @@ broadcasts:
 - name: "Actualité"
   content: "En accord avec les professeurs, la note obtenue par les étudiants lors du Serious Game sera comptabilisée dans leur moyenne générale."
   release_turn: 8
-- name: ""
-  content: ""
+- name: "Ampool : la voiture électrique open source en kit"
+  content: "L’Ampool est le premier véhicule électrique libre, modulaire et connecté. Porté par le cluster Aquinetic dans sa première phase et soutenu par la Région Aquitaine, ce projet révolutionnaire préfigure l’automobile de demain.À terme, il pourra s’adapter à de multiples usages tels que les déplacements urbains, les visites touristiques, la logistique du dernier kilomètre ou les travaux agricoles de précision pilotés à distance par GPS. Elle devrait entrer en commercialisation à l’été 2016"
   release_turn: 8
 - name: "Erratum"
   content: "Un poisson s'est glissé dans les news du mois d'avril."
@@ -88,8 +88,8 @@ broadcasts:
 - name: "Salon de l'Agriculture d'Aquitaine, du beau, du bon et de l'innovant"
   content: "Le monde agricole est innovant, et le Salon régional de l'Agriculture d'Aquitaine tient à ce que cela se sache. Alors cette année, c'est bien l'innovation qui sera le thème central du Salon."
   release_turn: 9
-- name: ""
-  content: ""
+- name: "Mesurer la hauteur du Maïs par stéréoscopie avec des drônes"
+  content: "Au cours d’un atelier drône organisé dans le cadre des journées QualiAgro, les résultats de mesures de hauteur de plants de Maïs obtenues à l’aide d’un drône par stéréoscopie ont été présentées. Ils montrent qu’il est possible de mesurer la hauteur du maïs avec une précision de l’ordre de 10 cm à condition d’avoir au préalable réalisé un modèle numérique terrain du sol nu. Cette technique offre des perspectives intéressantes pour analyser rapidement les résultats d’une expérimentation sur la croissance de la plante."
   release_turn: 9
 - name: "5 fruits et légumes/jour : hospitalisation d’un enfant ayant mangé 2 pastèques et 3 citrouilles"
   content: "YERVILLE – Cyril, 11 ans, est à l’hôpital depuis huit jours suite à l’ingurgitation de deux pastèques et trois citrouilles. Ses parents ne comprennent pas, ils avaient pourtant respecté les recommandations du ministère de la Santé pour l’alimentation de leur fils. Les « cinq fruits et légumes par jour », retour sur un slogan trompeur..."
@@ -97,8 +97,8 @@ broadcasts:
 - name: "Risque de sécheresse dans le sud-ouest de la France"
   content: "Prairies grillées pour les animaux, rendements attendus en baisse pour les céréaliers... Les agriculteurs d'une dizaine de départements subissent les conséquences d'un manque d'eau et attendent des pluies avec impatience."
   release_turn: 10
-- name: ""
-  content: ""
+- name: "Bee Smart : un projet d’apiculture de précision"
+  content: "Le projet «\_bee smart\_» est clairement une application, à l’échelle d’une ruche de ce que sera l’agriculture lorsqu’elle sera entièrement connectée.  38 °C, une ruche voit naître des abeilles qui produisent du miel. A 39 °C, des faux-bourdons viennent s’ajouter à la communauté, ce qui a pour effet direct de baisser sa productivité. C’est ce type d’information qu’une équipe bulgare ­récolte et analyse depuis plus d’un an pour aider les apiculteurs à mieux gérer leurs ruches."
   release_turn: 10
 - name: "Dans le Lot-et-Garonne, les agriculteurs accueillent la pluie à bras ouverts"
   content: "Après un mois de juin chaud et sec, les agriculteurs craignaient pour la survie de leurs récoltes. Pour ces derniers, les fortes pluies de ce mois-ci sont vécues comme une bénédiction."
@@ -115,11 +115,11 @@ broadcasts:
 - name: "Bienvenue à la ferme : un réseau pour des vacances au contact des animaux"
   content: "Le réseau “Bienvenue à la ferme”, qui regroupe près de 6 000 agriculteurs sur toute la France propose une offre spécialement conçue pour les familles désireuses de se ressourcer au vert et de faire découvrir les animaux de la ferme aux plus petits : les Z'anifermes."
   release_turn: 12
-- name: ""
-  content: ""
+- name: "Cow Parade – Transhumance"
+  content: "2ème édition de la Cow Parade Transhumance, un évenement unique au monde ! À la fin de la Cow Parade Transhumance, une vente aux enchères des vaches sera organisée, au moment du lancement de la 32è Campagne des Restaurants du Cœur."
   release_turn: 12
-- name: ""
-  content: ""
+- name: "Elle avait très faim jusqu’à ce qu’elle découvre que le repas est à base de légumes verts"
+  content: "Alors qu’elle rêvait de manger quelques minutes plus tôt, Sophie voit illico presto son appétit coupé. L’odeur de la cuisson vapeur, le manque de graisses dans ce qui est censé être un «\_repas\_», ou encore l’idée d’avaler un légume, la dégoûtent. L’enfant décide alors de tenter le tout pour le tout en menaçant sa mère de faire une grève de la faim. Après un débat houleux avec l’adulte, Sophie obtient le droit de ne manger que trois haricots, et ce, avec de la mayonnaise."
   release_turn: 12
 
 # https://gist.github.com/anonymous/a723dc8e48da6dbc7eab
