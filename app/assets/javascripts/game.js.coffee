@@ -122,7 +122,7 @@ window.initializeMap = (current_participant, game, turns, actorList) ->
       .attr "class", "actor"
       .each (actor, i) ->
         this.actor = actor
-        clone = d3.select if i < 2 then "#acteur-entrepot1" else if i < 4 or i == 6 then "#acteur-entrepot2" else if i < 7 then "#acteur-entrepot3" else "#acteur-tour"
+        clone = d3.select if i < 2 then "#acteur-entrepot1" else if i < 4 or i == 6 then "#acteur-entrepot2" else if i < 7 then "#acteur-entrepot3" else if i < 19 then "#acteur-tour" else "#acteur-entrepot1"
           .node()
             .cloneNode true
         clone.removeAttribute "id"
