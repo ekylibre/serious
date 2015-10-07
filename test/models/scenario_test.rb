@@ -29,6 +29,7 @@
 #  historic_file_size    :integer
 #  historic_updated_at   :datetime
 #  id                    :integer          not null, primary key
+#  monthly_expenses      :json
 #  name                  :string           not null
 #  started_on            :date             not null
 #  turn_nature           :string

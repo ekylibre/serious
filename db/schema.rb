@@ -101,9 +101,10 @@ ActiveRecord::Schema.define(version: 20150507085614) do
   add_index "deals", ["supplier_id"], name: "index_deals_on_supplier_id", using: :btree
 
   create_table "game_turns", force: :cascade do |t|
-    t.integer  "game_id",    null: false
-    t.integer  "number",     null: false
-    t.integer  "duration",   null: false
+    t.integer  "game_id",                       null: false
+    t.integer  "number",                        null: false
+    t.integer  "duration",                      null: false
+    t.boolean  "expenses_paid", default: false, null: false
     t.datetime "started_at"
     t.datetime "stopped_at"
     t.datetime "created_at"
@@ -313,6 +314,7 @@ ActiveRecord::Schema.define(version: 20150507085614) do
     t.integer  "historic_file_size"
     t.datetime "historic_updated_at"
     t.text     "description"
+    t.json     "monthly_expenses"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

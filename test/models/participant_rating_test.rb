@@ -31,7 +31,5 @@
 require 'test_helper'
 
 class ParticipantRatingTest < ActiveSupport::TestCase
-
   test_fixtures
-
 end

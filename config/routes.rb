@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       post :resume
       post :stop
       post :trigger_issue
+      post :pay_expenses
       post :evaluate
     end
   end

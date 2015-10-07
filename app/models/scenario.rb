@@ -29,6 +29,7 @@
 #  historic_file_size    :integer
 #  historic_updated_at   :datetime
 #  id                    :integer          not null, primary key
+#  monthly_expenses      :json
 #  name                  :string           not null
 #  started_on            :date             not null
 #  turn_nature           :string
@@ -75,7 +76,7 @@ class Scenario < ActiveRecord::Base
     def import(file)
       hash = YAML.load_file(file).deep_symbolize_keys
       return if find_by(name: hash[:name]) || find_by(code: hash[:code])
-      scenario = create!(hash.slice(:code, :name, :description, :turn_nature, :turns_count, :currency))
+      scenario = create!(hash.slice(:code, :name, :description, :turn_nature, :turns_count, :currency, :monthly_expenses))
       if hash[:historic]
         historic = Pathname.new(file).dirname.join(hash[:historic])
         if historic.exist?

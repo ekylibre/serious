@@ -37,18 +37,14 @@ class ParticipantRating < ActiveRecord::Base
   # ]VALIDATORS]
 
   before_validation do
-    if self.participant
-      self.game ||= self.participant.game
-    end
+    self.game ||= participant.game if participant
   end
 
   def value
-    self.report['passed'].to_i
+    report['passed'].to_i
   end
 
   def percentage_value
-    self.report['passed'].to_i / (self.report['passed'].to_i + self.report['failed'].to_i)
+    report['passed'].to_i / (report['passed'].to_i + report['failed'].to_i)
   end
-
 end
-

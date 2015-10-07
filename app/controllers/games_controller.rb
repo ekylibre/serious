@@ -44,6 +44,11 @@ class GamesController < BaseController
     redirect_to game_path(current_game)
   end
 
+  def pay_expenses
+    current_game.pay_expenses!
+    redirect_to game_path(current_game)
+  end
+
   # Evaluate farms for a game
   def evaluate
     return unless find_resource

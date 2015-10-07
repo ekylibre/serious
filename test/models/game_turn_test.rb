@@ -20,14 +20,15 @@
 #
 # == Table: game_turns
 #
-#  created_at :datetime
-#  duration   :integer          not null
-#  game_id    :integer          not null
-#  id         :integer          not null, primary key
-#  number     :integer          not null
-#  started_at :datetime
-#  stopped_at :datetime
-#  updated_at :datetime
+#  created_at    :datetime
+#  duration      :integer          not null
+#  expenses_paid :boolean          default(FALSE), not null
+#  game_id       :integer          not null
+#  id            :integer          not null, primary key
+#  number        :integer          not null
+#  started_at    :datetime
+#  stopped_at    :datetime
+#  updated_at    :datetime
 #
 require 'test_helper'
 

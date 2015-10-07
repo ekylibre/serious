@@ -11,6 +11,7 @@ class AddBase < ActiveRecord::Migration
       t.date :started_on,     null: false
       t.attachment :historic
       t.text :description
+      t.json :monthly_expenses
       t.timestamps
     end
 
@@ -87,6 +88,7 @@ class AddBase < ActiveRecord::Migration
       t.references :game, null: false, index: true
       t.integer :number,         null: false
       t.integer :duration,       null: false # in real life
+      t.boolean :expenses_paid,  null: false, default: false
       t.datetime :started_at
       t.datetime :stopped_at
       t.timestamps

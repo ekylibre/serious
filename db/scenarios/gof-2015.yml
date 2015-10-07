@@ -705,10 +705,10 @@ curves:
     amplitude_factor: 3.18
     offset_amount: 212.2
     amount_round: 1
-monthly_costs:
+monthly_expenses:
   global_corp:
     - variant: electricity
-      tax: french_vat_reduced 
+      tax: french_vat_reduced
       unit_pretax_amount: 0.1
       quantity: 4859
     - variant: diesel

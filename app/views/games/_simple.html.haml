@@ -20,6 +20,8 @@
             %ul.dropdown-menu
               - @game.issues.each do |issue|
                 %li= link_to(issue.name, trigger_issue_game_path(issue), method: :post,  class: 'dropdown-toggle')
+      - if @game.current_turn && !@game.current_turn.expenses_paid
+        = link_to('Dépenses mensuelles', pay_expenses_game_path(@game), method: :post, class: 'btn btn-default')
       = link_to('Évaluer', evaluate_game_path(@game), method: :post, class: 'btn btn-default')
     - if @game.running?
       = link_to('Arrêter', stop_game_path(@game), method: :post, class: 'btn btn-default')

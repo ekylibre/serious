@@ -65,7 +65,7 @@ class Game < ActiveRecord::Base
 
   scope :active, -> { where(state: 'running') }
 
-  delegate :historic, :started_on, to: :scenario
+  delegate :historic, :started_on, :monthly_expenses, to: :scenario
 
   accepts_nested_attributes_for :participants
 
@@ -260,6 +260,24 @@ class Game < ActiveRecord::Base
                           id: id,
                           turns: turns_list)
     end
+  end
+
+  # Adds purchase for given monthly expenses
+  def pay_expenses!
+    return nil unless self.monthly_expenses
+    participants.find_each do |farm|
+      next unless farm.application_url?
+      monthly_expenses.each do |supplier, items|
+        farm.post('/purchases',
+                  supplier: {
+                    last_name: supplier.to_s.humanize,
+                    code: supplier
+                  },
+                  items: items)
+      end
+    end
+    turn = current_turn
+    turn.update_column(:expenses_paid, true) if turn
   end
 
   # Produce hash of configuration information of game

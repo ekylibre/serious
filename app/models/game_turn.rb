@@ -20,20 +20,22 @@
 #
 # == Table: game_turns
 #
-#  created_at :datetime
-#  duration   :integer          not null
-#  game_id    :integer          not null
-#  id         :integer          not null, primary key
-#  number     :integer          not null
-#  started_at :datetime
-#  stopped_at :datetime
-#  updated_at :datetime
+#  created_at    :datetime
+#  duration      :integer          not null
+#  expenses_paid :boolean          default(FALSE), not null
+#  game_id       :integer          not null
+#  id            :integer          not null, primary key
+#  number        :integer          not null
+#  started_at    :datetime
+#  stopped_at    :datetime
+#  updated_at    :datetime
 #
 class GameTurn < ActiveRecord::Base
   belongs_to :game
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :started_at, :stopped_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')
   validates_numericality_of :duration, :number, allow_nil: true, only_integer: true
+  validates_inclusion_of :expenses_paid, in: [true, false]
   validates_presence_of :duration, :game, :number
   # ]VALIDATORS]
   validates_numericality_of :number, greater_than: 0
