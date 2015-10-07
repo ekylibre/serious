@@ -170,6 +170,20 @@ window.initializeMap = (current_participant, game, turns, actorList) ->
             .append "div"
               .attr "id", "broadcastsWindowDiv"
 
+  hideBroadcasts = () ->
+    d3.select "#broadcasts"
+      .transition()
+        .style "right", "-450px"
+    d3.select "#broadcasts"
+      .on "click", () ->
+        showBroadcasts()
+  showBroadcasts = () ->
+    d3.select "#broadcasts"
+      .transition()
+        .style "right", "0px"
+    d3.select "#broadcasts"
+      .on "click", () ->
+        hideBroadcasts()
   updateBroadcasts = () ->
     $.ajax {
       url: "/games/#{game.id}/current_turn_broadcasts_and_curves",
@@ -193,8 +207,9 @@ window.initializeMap = (current_participant, game, turns, actorList) ->
           success: (turn) ->
             now = new Date()
             later = new Date turns[turn.number - 1].stopped_at
-            interval = later - now
+            interval = later - now + 1
             window.setTimeout updateBroadcasts, interval
+            showBroadcasts()
           error: (jqXHR, textStatus, errorThrown) ->
             console.log "error while retreiving current-turn: " + textStatus + "\n" + jqXHR.responseText
         }
