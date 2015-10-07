@@ -3,7 +3,7 @@
   .user-details
     .user-title
       = user.name
-      - if current_user.administrator?
+      - if current_user.administrator? || (current_user && current_user == @user)
         %small.user-email= user.email
     - if content
       = content

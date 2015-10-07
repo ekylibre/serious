@@ -3,7 +3,5 @@
     = inline_svg "base-map-gof.svg"
   #broadcasts
     = inline_svg "broadcasts.svg"
-  #actorWindow
-    = inline_svg "actorWindow.svg"
   :coffee
     initializeMap #{current_participant.to_json}, #{@game.to_json}, #{@game.turns.to_json}, #{@game.participants.order(:name).select{|p|current_participation.can_see?(p)}.to_json}
