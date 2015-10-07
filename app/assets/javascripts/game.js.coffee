@@ -120,13 +120,15 @@ window.initializeMap = (current_participant, game, turns, actorList) ->
   actors.enter()
     .append "g"
       .attr "class", "actor"
-      .each (actor, i) ->
-        this.actor = actor
-        clone = d3.select if i < 2 then "#acteur-entrepot1" else if i < 4 or i == 6 then "#acteur-entrepot2" else if i < 7 then "#acteur-entrepot3" else if i < 19 then "#acteur-tour" else "#acteur-entrepot1"
-          .node()
-            .cloneNode true
-        clone.removeAttribute "id"
-        this.appendChild clone
+      .append "a"
+        .attr "xlink:href", (actor) ->
+          "/participants/#{actor.id}"
+        .each (actor, i) ->
+          clone = d3.select if i < 2 then "#acteur-entrepot1" else if i < 4 or i == 6 then "#acteur-entrepot2" else if i < 7 then "#acteur-entrepot3" else if i < 19 then "#acteur-tour" else "#acteur-entrepot1"
+            .node()
+              .cloneNode true
+          clone.removeAttribute "id"
+          this.appendChild clone
         # TODO: show affairs count
         #$.ajax {
         #  url: "/participants/#{current_participant.id}/affairs_with/#{actor.id}"
@@ -220,46 +222,3 @@ window.initializeMap = (current_participant, game, turns, actorList) ->
             .text textStatus + "\n" + jqXHR.responseText
     }
   updateBroadcasts()
-
-  # Setup the actorWindow
-  actorContentRect = d3.select "#actorContentRect"
-  d3.select "#actorWindowGroup"
-    .append "foreignObject"
-      .attr "x", actorContentRect.attr "x"
-      .attr "y", actorContentRect.attr "y"
-      .attr "width", actorContentRect.attr "width"
-      .attr "height", actorContentRect.attr "height"
-        .append "xhtml:body"
-          .attr "id", "actorWindowBody"
-
-  # click on an actor to open the actor window
-  actors.on "click", () ->
-    return if d3.select("#actorWindow").style("display") == "block"
-    disableMouse()
-    d3.select "#actorWindowBody"
-      .selectAll "*"
-        .remove()
-    d3.select "#nomActeur"
-      .text this.actor.name
-    d3.select "#actorWindow"
-      .style "display", "block"
-    d3.select "#closeActorWindowButton"
-      .on "click", () ->
-        d3.select "#actorWindow"
-          .style "display", "none"
-        d3.select "#closeActorWindowButton"
-          .on "click", null
-        enableMouse()
-    $.ajax {
-      url: "/participants/#{this.actor.id}?nolayout=true",
-      dataType: 'xml',
-      async: true,
-      success: (content) ->
-        d3.select "#actorWindowBody"
-          .node()
-            .appendChild content.firstChild
-      error: (jqXHR, textStatus, errorThrown) ->
-        d3.select "#actorWindowBody"
-          .append "p"
-            .text textStatus + "\n" + jqXHR.responseText
-    }
