@@ -13,7 +13,9 @@ class GamesController < BaseController
     return unless find_resource
     session[:view_mode] = params['mode'].to_s if params['mode']
     session[:view_mode] ||= 'map'
-    session[:view_mode] = 'simple' unless @game.running?
+    if !@game.running? || (session[:view_mode] == 'ratings' && !(current_participation.organizer? || current_user.administrator?))
+      session[:view_mode] = 'simple'
+    end
     if @game
       @scenario_issues = ScenarioIssue.where(scenario_id: @game.scenario_id)
     else
