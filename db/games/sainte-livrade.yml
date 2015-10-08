@@ -7,72 +7,58 @@ farms:
     name: Havana
     stand_number: SF1
     present: true
-    application_url: http://ferme1.serious.lan:8080
   ferme2:
     name: Hadibou
     stand_number: SF2
     present: true
-    application_url: http://ferme2.serious.lan:8080
   ferme3:
     name: GAEC du Bon Sens
     stand_number: SF3
     present: true
-    application_url: http://ferme3.serious.lan:8080
   ferme4:
     name: GAEC des Cailloux
     stand_number: SF4
     present: true
-    application_url: http://ferme4.serious.lan:8080
   ferme5:
     name: GAEC des Milliardaires
     stand_number: SF5
     present: true
-    application_url: http://ferme5.serious.lan:8080
   ferme6:
-    name: EARL ça Crache
+    name: EARL Ça Crache
     stand_number: SF6
     present: true
-    application_url: http://ferme6.serious.lan:8080
   ferme7:
     name: GAEC Faleoa
     stand_number: SF7
     present: true
-    application_url: http://ferme7.serious.lan:8080
   ferme8:
     name: GAEC du Petit Jaune
     stand_number: SF8
     present: true
-    application_url: http://ferme8.serious.lan:8080
   ferme9:
     name: GAEC Panzani
     stand_number: SF9
     present: true
-    application_url: http://ferme9.serious.lan:8080
   ferme10:
     name: Ferme PBX
     stand_number: SF10
     present: true
-    application_url: http://ferme10.serious.lan:8080
   ferme11:
     name: Ferme du Belvédère
     stand_number: SF11
     present: true
-    application_url: http://ferme11.serious.lan:8080
   ferme12:
     name: Ferme du Gat
     stand_number: SF12
     present: true
-    application_url: http://ferme12.serious.lan:8080
   ferme13:
-    name: Ferme L'orée du bois
+    name: "Ferme L'Orée du Bois"
     stand_number: SF13
     present: true
-    application_url: http://ferme13.serious.lan:8080
   ferme14:
-    name: Ferme de la Croix Blanche
+    name: "Ferme de la Croix Blanche"
     stand_number: SF14
     present: true
-    application_url: http://ferme14.serious.lan:8080
 actors:
   a01:
     name: Crédit Agricole

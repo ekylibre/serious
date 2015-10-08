@@ -17,6 +17,10 @@ module Serious
         @path ||= (config[:path] =~ /^\//) ? Pathname.new(config[:path]) : Rails.root.join(config[:path])
       end
 
+      def domain
+        config[:domain]
+      end
+
       def exec(command)
         Dir.chdir(path) do
           puts command.blue
