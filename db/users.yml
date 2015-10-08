@@ -1,4 +1,7 @@
 ---
+- first_name: Admin
+  last_name: EKYLIBRE
+  email: admin@ekylibre.org
 - first_name: Agathe
   last_name: SIMON
   email: agathe.simon@dietrich.biz
@@ -8,6 +11,84 @@
 - first_name: Célina
   last_name: BARTHELEMY
   email: celina.barthelemy@ebert.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: iphigenie.heuze@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: julie.devellis@gof2015.com  
+- first_name: Michelle
+  last_name: GUICHARD
+  email: noelie.kubler@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: celia.doucet@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: norah.corneglio@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: vanessa.sautron@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: luigi.gosnach@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: antoine.clement@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: raphael.rioualen@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: kelly.chamaillard@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: guillaume.auro@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: clement.mery@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: alexandre.legeleux@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: arnaud.borella@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: pierre.laguionie@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: jeremy.malaret@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: jaques.darras@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: guillaume.testut@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: benjamin.bouyou@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: maxime.tangogne@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: pauline.lacombe@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: geoffrey.stedile@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: cyril.saint-mezard@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: freddy.bourjade@gof2015.com
+- first_name: Michelle
+  last_name: GUICHARD
+  email: jeremy.tessariol@gof2015.com
+- first_name: Sophie
+  last_name: DUPLAND
+  email: sdupland@47.cerfrance.fr
 - first_name: "Élodie"
   last_name: RODRIGUES
   email: elodie.rodrigues@daugherty.com
@@ -601,8 +682,3 @@
 - first_name: Corinne
   last_name: JOSEPH
   email: corinne.joseph@hermann.us
-- first_name: Sophie
-  last_name: DUPLAND
-  email: sdupland@47.cerfrance.fr
-
-

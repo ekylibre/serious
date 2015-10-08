@@ -3,81 +3,76 @@ name: Game of Farms 2015
 code: sainte-livrade
 scenario: gof-2015
 farms:
-  ferme-1:
+  ferme1:
     name: Havana
     stand_number: SF1
     present: true
-    application_url: http://ferme-1.serious.lan:8080
-  ferme-2:
+    application_url: http://ferme1.serious.lan:8080
+  ferme2:
     name: Hadibou
     stand_number: SF2
     present: true
-    application_url: http://ferme-2.serious.lan:8080
-  ferme-3:
+    application_url: http://ferme2.serious.lan:8080
+  ferme3:
     name: GAEC du Bon Sens
     stand_number: SF3
     present: true
-    application_url: http://ferme-3.serious.lan:8080
-  ferme-4:
+    application_url: http://ferme3.serious.lan:8080
+  ferme4:
     name: GAEC des Cailloux
     stand_number: SF4
     present: true
-    application_url: http://ferme-4.serious.lan:8080
-  ferme-5:
-    name: Poirier
+    application_url: http://ferme4.serious.lan:8080
+  ferme5:
+    name: GAEC des Milliardaires
     stand_number: SF5
     present: true
-    application_url: http://ferme-5.serious.lan:8080
-  ferme-6:
-    name: fouquet
+    application_url: http://ferme5.serious.lan:8080
+  ferme6:
+    name: EARL ça Crache
     stand_number: SF6
     present: true
-    application_url: http://ferme-6.serious.lan:8080
-  ferme-7:
-    name: Michaud
+    application_url: http://ferme6.serious.lan:8080
+  ferme7:
+    name: GAEC Faleoa
     stand_number: SF7
     present: true
-    application_url: http://ferme-7.serious.lan:8080
-  ferme-8:
-    name: Ramos
+    application_url: http://ferme7.serious.lan:8080
+  ferme8:
+    name: GAEC du Petit Jaune
     stand_number: SF8
     present: true
-    application_url: http://ferme-8.serious.lan:8080
-  ferme-9:
-    name: Wagner
+    application_url: http://ferme8.serious.lan:8080
+  ferme9:
+    name: GAEC Panzani
     stand_number: SF9
     present: true
-    application_url: http://ferme-9.serious.lan:8080
-  ferme-10:
-    name: Les Winners
+    application_url: http://ferme9.serious.lan:8080
+  ferme10:
+    name: Ferme PBX
     stand_number: SF10
     present: true
-    application_url: http://ferme-10.serious.lan:8080
-  ferme-11:
-    name: Leclercq
+    application_url: http://ferme10.serious.lan:8080
+  ferme11:
+    name: Ferme du Belvédère
     stand_number: SF11
     present: true
-    application_url: http://ferme-11.serious.lan:8080
-  ferme-12:
-    name: Brunel
+    application_url: http://ferme11.serious.lan:8080
+  ferme12:
+    name: Ferme du Gat
     stand_number: SF12
     present: true
-    application_url: http://ferme-12.serious.lan:8080
-  ferme-13:
-    name: Colin
+    application_url: http://ferme12.serious.lan:8080
+  ferme13:
+    name: Ferme L'orée du bois
     stand_number: SF13
     present: true
-    application_url: http://ferme-13.serious.lan:8080
-  ferme-14:
-    name: Valette
+    application_url: http://ferme13.serious.lan:8080
+  ferme14:
+    name: Ferme de la Croix Blanche
     stand_number: SF14
     present: true
-    application_url: http://ferme-14.serious.lan:8080
-  ferme-15:
-    name: Ferreira
-    stand_number: SF15
-    present: true
-    application_url: http://ferme-15.serious.lan:8080
+    application_url: http://ferme14.serious.lan:8080
 actors:
   a01:
     name: Crédit Agricole
@@ -153,203 +148,80 @@ participations:
   nature: :organizer
 - user: michelle.guichard@heller.us
   nature: :organizer
-- participant: ferme-1
-  user: laetitia.da@boyer.info
+- participant: ferme1
+  user: iphigenie.heuze@gof2015.com
   nature: :player
-- participant: ferme-1
-  user: thomas.georges@beier.biz
+- participant: ferme1
+  user: julie.devellis@gof2015.com
   nature: :player
-- participant: ferme-1
-  user: alexandrie.bouvier@jacobson.name
+- participant: ferme1
+  user: noelie.kubler@gof2015.com
   nature: :player
-- participant: ferme-1
-  user: thomas.barbier@runte.ca
+- participant: ferme1
+  user: celia.doucet@gof2015.com
   nature: :player
-- participant: ferme-2
-  user: auguste.lesage@botsfordeichmann.info
+- participant: ferme1
+  user: norah.corneglio@gof2015.com
+  nature: :player  
+- participant: ferme2
+  user: vanessa.sautron@gof2015.com
   nature: :player
-- participant: ferme-2
-  user: franck.brunel@gleason.us
+- participant: ferme2
+  user: luigi.gosnach@gof2015.com
   nature: :player
-- participant: ferme-2
-  user: patricia.picard@haucktorphy.us
+- participant: ferme2
+  user: antoine.clement@gof2015.com
   nature: :player
-- participant: ferme-2
-  user: theodore.jacques@uptonhyatt.info
+- participant: ferme2
+  user: raphael.rioualen@gof2015.com
   nature: :player
-- participant: ferme-3
-  user: georges.boucher@luettgenhirthe.com
+- participant: ferme2
+  user: kelly.chamaillard@gof2015.com
   nature: :player
-- participant: ferme-3
-  user: margaux.lesage@baumbach.co.uk
+- participant: ferme3
+  user: guillaume.auro@gof2015.com
   nature: :player
-- participant: ferme-3
-  user: franck.pichon@ledner.com
+- participant: ferme3
+  user: clement.mery@gof2015.com
+  nature: :player 
+- participant: ferme3
+  user: alexandre.legeleux@gof2015.com
+  nature: :player 
+- participant: ferme3
+  user: arnaud.borella@gof2015.com
   nature: :player
-- participant: ferme-3
-  user: celina.barthelemy@ebert.com
+- participant: ferme4
+  user: pierre.laguionie@gof2015.com
   nature: :player
-- participant: ferme-4
-  user: julien.dumas@padberg.co.uk
+- participant: ferme4
+  user: jeremy.malaret@gof2015.com
   nature: :player
-- participant: ferme-4
-  user: mathilde.moreno@hauck.com
+- participant: ferme4
+  user: jaques.darras@gof2015.com
   nature: :player
-- participant: ferme-4
-  user: jules.jacob@leuschketurcotte.com
+- participant: ferme4
+  user: guillaume.testut@gof2015.com
   nature: :player
-- participant: ferme-4
-  user: alex.rossi@rogahndicki.info
+- participant: ferme4
+  user: benjamin.bouyou@gof2015.com
   nature: :player
-- participant: ferme-5
-  user: eric.lelievre@gerlachjohnston.info
+- participant: ferme5
+  user: maxime.tangogne@gof2015.com
   nature: :player
-- participant: ferme-5
-  user: andree.brunet@stanton.ca
+- participant: ferme5
+  user: pauline.lacombe@gof2015.com
   nature: :player
-- participant: ferme-5
-  user: celine.lebrun@wyman.us
+- participant: ferme5
+  user: geoffrey.stedile@gof2015.com
   nature: :player
-- participant: ferme-5
-  user: frederic.herve@ratke.us
+- participant: ferme5
+  user: cyril.saint-mezard@gof2015.com
   nature: :player
-- participant: ferme-6
-  user: odette.lemoine@terry.ca
-  nature: :player
-- participant: ferme-6
-  user: emmanuelle.remy@abshire.name
-  nature: :player
-- participant: ferme-6
-  user: denis.becker@swaniawski.biz
-  nature: :player
-- participant: ferme-6
-  user: frederic.maury@goodwinkerluke.us
-  nature: :player
-- participant: ferme-7
-  user: etienne.rossi@wymanokuneva.biz
-  nature: :player
-- participant: ferme-7
-  user: astrid.leroy@abbottlynch.ca
-  nature: :player
-- participant: ferme-7
-  user: helene.charrier@goyette.biz
-  nature: :player
-- participant: ferme-7
-  user: marianne.lombard@grady.biz
-  nature: :player
-- participant: ferme-8
-  user: franck.garcia@jewesswehner.info
-  nature: :player
-- participant: ferme-8
-  user: audrey.lacroix@bauch.us
-  nature: :player
-- participant: ferme-8
-  user: adrien.francois@dietrich.ca
-  nature: :player
-- participant: ferme-8
-  user: andre.petit@romaguerarunolfsdottir.com
-  nature: :player
-- participant: ferme-9
-  user: odette.guibert@mcglynn.name
-  nature: :player
-- participant: ferme-9
-  user: valerie.rousset@gulgowski.name
-  nature: :player
-- participant: ferme-9
-  user: danielle.gillet@schambergermurphy.co.uk
-  nature: :player
-- participant: ferme-9
-  user: david.guibert@jacobsonlarson.co.uk
-  nature: :player
-- participant: ferme-10
-  user: jacques.chauvin@watersnicolas.com
-  nature: :player
-- participant: ferme-10
-  user: celine.chretien@stanton.co.uk
-  nature: :player
-- participant: ferme-10
-  user: isaac.diaz@auer.name
-  nature: :player
-- participant: ferme-10
-  user: lucy.traore@kirlin.biz
-  nature: :player
-- participant: ferme-11
-  user: sabine.gay@gislasonarmstrong.name
-  nature: :player
-- participant: ferme-11
-  user: valentine.benard@quitzon.us
-  nature: :player
-- participant: ferme-11
-  user: maggie.navarro@bradtke.name
-  nature: :player
-- participant: ferme-11
-  user: arthur.carre@mcglynn.name
-  nature: :player
-- participant: ferme-12
-  user: daisy.nicolas@spinka.us
-  nature: :player
-- participant: ferme-12
-  user: aimee.ollivier@jenkins.ca
-  nature: :player
-- participant: ferme-12
-  user: laure.guillet@bashirian.ca
-  nature: :player
-- participant: ferme-12
-  user: genevieve.bailly@zulauf.co.uk
-  nature: :player
-- participant: ferme-13
-  user: lorraine.paul@bradtke.us
-  nature: :player
-- participant: ferme-13
-  user: celina.cordier@fisher.biz
-  nature: :player
-- participant: ferme-13
-  user: paulette.barbe@schillerziemann.co.uk
-  nature: :player
-- participant: ferme-13
-  user: nath.arnaud@reichelarmstrong.us
-  nature: :player
-- participant: ferme-14
-  user: mathilde.dias@konopelski.ca
-  nature: :player
-- participant: ferme-14
-  user: zacharie.bonnin@howegoldner.ca
-  nature: :player
-- participant: ferme-14
-  user: christiane.begue@marks.biz
-  nature: :player
-- participant: ferme-14
-  user: genevieve.jacques@denesik.us
-  nature: :player
-- participant: ferme-15
-  user: christelle.lebon@trantow.info
-  nature: :player
-- participant: ferme-15
-  user: corinne.joseph@hermann.us
-  nature: :player
-- participant: ferme-15
-  user: penelope.mathieu@faymayer.com
-  nature: :player
-- participant: ferme-15
-  user: virginie.besson@windler.co.uk
-  nature: :player
-- participant: a01
-  user: louis.hamon@mraz.name
-  nature: :player
-- participant: a01
-  user: nicolas.maury@dubuquehirthe.biz
-  nature: :player
-- participant: a04
-  user: camille.gautier@jacobi.us
-  nature: :player
-- participant: a04
-  user: alexandrie.ollivier@lueilwitzbraun.name
-  nature: :player
-- participant: a06
-  user: henri.martineau@rolfson.name
-  nature: :player
-- participant: a07
-  user: martin.le@shanahancassin.co.uk
+- participant: ferme5
+  user: freddy.bourjade@gof2015.com
+  nature: :player  
+- participant: ferme5
+  user: jeremy.tessariol@gof2015.com
   nature: :player
 - participant: a09
   user: sdupland@47.cerfrance.fr
