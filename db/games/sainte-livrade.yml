@@ -4,12 +4,12 @@ code: sainte-livrade
 scenario: gof-2015
 farms:
   ferme1:
-    name: Havana
+    name: Ferme d'Havana
     stand_number: SF1
     present: true
     application_url: http://ferme1.serious.lan:8080
   ferme2:
-    name: Hadibou
+    name: Ferme d'Hadibou
     stand_number: SF2
     present: true
     application_url: http://ferme2.serious.lan:8080
@@ -85,18 +85,9 @@ actors:
     customer: false
     lender: true
     catalog_items:
-    - variant: building_insurance
+    - variant: bank_service
       tax: french_vat_normal_2014
-      quota: 12
-    - variant: equipment_insurance
-      tax: french_vat_normal_2014
-      quota: 12
-    - variant: cereals_harvest_insurance
-      tax: french_vat_normal_2014
-      quota: 10
-    - variant: orchards_harvest_insurance
-      tax: french_vat_normal_2014
-      quota: 10
+      quota: 6
   a02:
     name: Crédit Mutuel
     logo: "credit-mutuel.jpg"
@@ -108,39 +99,160 @@ actors:
     customer: false
     lender: true
     catalog_items:
-    - variant: building_insurance
+    - variant: bank_service
       tax: french_vat_normal_2014
-      quota: 12
-    - variant: equipment_insurance
-      tax: french_vat_normal_2014
-      quota: 12
-    - variant: cereals_harvest_insurance
-      tax: french_vat_normal_2014
-      quota: 10
-    - variant: orchards_harvest_insurance
-      tax: french_vat_normal_2014
-      quota: 10
+      quota: 6
   a03:
     name: Unicoque
     logo: "unicoque.jpg"
+    stand_number: SA03
+    present: true
+    insurer: false
+    contractor: true
+    supplier: false
+    customer: true
+    lender: false
+    catalog_items:
+    - variant: hazelnut
+      tax: french_vat_reduced
+      quota: 12
+    - variant: walnut
+      tax: french_vat_reduced
+      quota: 12
   a04:
     name: Terres du Sud
     logo: "terres-du-sud.jpg"
+    stand_number: SA04
+    present: true
+    insurer: false
+    contractor: true
+    supplier: true
+    customer: true
+    lender: false
+    catalog_items:
+    - variant: wheat_grain
+      tax: french_vat_reduced
+      quota: 6
+    - variant: corn_grain
+      tax: french_vat_reduced
+      quota: 6
+    - variant: soy_grain
+      tax: french_vat_reduced
+      quota: 6  
+    - variant: bulk_ammonitrate_27
+      tax: french_vat_normal_2014
+      quota: 6
+    - variant: bulk_ammonitrate_33
+      tax: french_vat_normal_2014
+      quota: 6
+    - variant: bulk_diammo_phosphorus_21_53_0
+      tax: french_vat_normal_2014
+      quota: 6
+    - variant: herbicide
+      tax: french_vat_normal_2014
+      quota: 6
+    - variant: insecticide
+      tax: french_vat_normal_2014
+      quota: 6
+    - variant: fungicide
+      tax: french_vat_normal_2014
+      quota: 6
+    - variant: molluscicide
+      tax: french_vat_normal_2014
+      quota: 6  
   a05:
     name: Tonon
     logo: "tonon.jpg"
+    stand_number: SA05
+    present: true
+    insurer: false
+    contractor: false
+    supplier: true
+    customer: false
+    lender: false
+    catalog_items:
+    - variant: forager
+      tax: french_vat_normal_2014
+      quota: 2
+    - variant: grain_crusher
+      tax: french_vat_normal_2014
+      quota: 2
+    - variant: grape_reaper
+      tax: french_vat_normal_2014
+      quota: 2
+    - variant: hazel_reaper
+      tax: french_vat_normal_2014
+      quota: 2
+    - variant: grape_reaper
+      tax: french_vat_normal_2014
+      quota: 2
+    - variant: hedge_cutter
+      tax: french_vat_normal_2014
+      quota: 4
+    - variant: reaper
+      tax: french_vat_normal_2014
+      quota: 1
+    - variant: tractor
+      tax: french_vat_normal_2014
+      quota: 8
   a06:
     name: CER
     logo: "cer.jpg"
+    stand_number: SA06
+    present: true
+    insurer: false
+    contractor: false
+    supplier: true
+    customer: false
+    lender: false
+    catalog_items:
+    - variant: accountancy
+      tax: french_vat_normal_2014
+      quota: 10
+    - variant: advise
+      tax: french_vat_normal_2014
+      quota: 10  
   a07:
     name: "@com"
     logo: "acom.jpg"
+    stand_number: SA07
+    present: true
+    insurer: false
+    contractor: false
+    supplier: true
+    customer: false
+    lender: false
+    catalog_items:
+    - variant: accountancy
+      tax: french_vat_normal_2014
+      quota: 10
+    - variant: advise
+      tax: french_vat_normal_2014
+      quota: 10
   a08:
     name: Groupama
     logo: "groupama.jpg"
+    stand_number: SA02
+    present: true
+    insurer: true
+    contractor: false
+    supplier: true
+    customer: false
+    lender: true
+    catalog_items:
+    - variant: bank_service
+      tax: french_vat_normal_2014
+      quota: 6
   a09:
     name: Ceta de guyenne
     logo: "ceta.jpg"
+    stand_number: SA08
+    present: true
+    insurer: false
+    contractor: false
+    supplier: true
+    customer: false
+    lender: false
 participations:
 - user: admin@ekylibre.org
   nature: :organizer
@@ -223,6 +335,156 @@ participations:
 - participant: ferme5
   user: jeremy.tessariol@gof2015.com
   nature: :player
+- participant: ferme6
+  user: noe.landas@gof2015.com
+  nature: :player
+- participant: ferme6
+  user: adeline.camus@gof2015.com
+  nature: :player
+- participant: ferme6
+  user: bastien.viel@gof2015.com
+  nature: :player
+- participant: ferme6
+  user: noe.lacau@gof2015.com
+  nature: :player
+- participant: ferme6
+  user: jean-baptiste.durand@gof2015.com
+  nature: :player
+- participant: ferme7
+  user: adrien.cabanes@gof2015.com
+  nature: :player
+- participant: ferme7
+  user: oriane.jacob@gof2015.com
+  nature: :player
+- participant: ferme7
+  user: fabien.viel@gof2015.com
+  nature: :player
+- participant: ferme7
+  user: aymeric.gueyzet@gof2015.com
+  nature: :player
+- participant: ferme7
+  user: enzo.ghirard@gof2015.com
+  nature: :player
+- participant: ferme7
+  user: loic.peberay@gof2015.com
+  nature: :player
+- participant: ferme8
+  user: paul.bouquet@gof2015.com
+  nature: :player
+- participant: ferme8
+  user: jeremy.dardouri@gof2015.com
+  nature: :player
+- participant: ferme8
+  user: alexandre.dassier@gof2015.com
+  nature: :player
+- participant: ferme8
+  user: joseph.pinon@gof2015.com
+  nature: :player
+- participant: ferme8
+  user: camille.schuhmacher@gof2015.com
+  nature: :player
+- participant: ferme9
+  user: priscilia.bouchard@gof2015.com
+  nature: :player
+- participant: ferme9
+  user: quitterie.darras@gof2015.com
+  nature: :player
+- participant: ferme9
+  user: estelle.faggiani@gof2015.com
+  nature: :player
+- participant: ferme9
+  user: soukaina.hanine@gof2015.com
+  nature: :player
+- participant: ferme9
+  user: geoffrey.maleret@gof2015.com
+  nature: :player
+- participant: ferme9
+  user: melanie.maziere@gof2015.com
+  nature: :player
+- participant: ferme10
+  user: marie-fantine.tullet@gof2015.com
+  nature: :player
+- participant: ferme10
+  user: valentin.soulage@gof2015.com
+  nature: :player
+- participant: ferme10
+  user: antoine.campoverde@gof2015.com
+  nature: :player
+- participant: ferme10
+  user: cecile.munoz-guipouy@gof2015.com
+  nature: :player
+- participant: ferme11
+  user: nicolas.lavallade@gof2015.com
+  nature: :player
+- participant: ferme11
+  user: louis.veyssi@gof2015.com
+  nature: :player
+- participant: ferme11
+  user: clara.dalpra@gof2015.com
+  nature: :player
+- participant: ferme11
+  user: thomas.ehlinger@gof2015.com
+  nature: :player
+- participant: ferme12
+  user: elodie.birepinte@gof2015.com
+  nature: :player
+- participant: ferme12
+  user: melanie.dupouy@gof2015.com
+  nature: :player
+- participant: ferme12
+  user: noemie.dassonville@gof2015.com
+  nature: :player
+- participant: ferme12
+  user: sarah.philippot@gof2015.com
+  nature: :player
+- participant: ferme13
+  user: simon.agard@gof2015.com
+  nature: :player
+- participant: ferme13
+  user: alexis.grimal@gof2015.com
+  nature: :player
+- participant: ferme13
+  user: anais.turcot@gof2015.com
+  nature: :player
+- participant: ferme13
+  user: sarah.fradin@gof2015.com
+  nature: :player
+- participant: ferme14
+  user: paul.piveteau@gof2015.com
+  nature: :player
+- participant: ferme14
+  user: simon.harbers@gof2015.com
+  nature: :player
+- participant: ferme14
+  user: guillaume.gabard@gof2015.com
+  nature: :player
+- participant: ferme14
+  user: henri.goffinet@gof2015.com
+  nature: :player
+- participant: a01
+  user: partenaire@credit-agricole.fr
+  nature: :player
+- participant: a02
+  user: partenaire@credit-mutuel.fr
+  nature: :player
+- participant: a03
+  user: partenaire@unicoque.fr
+  nature: :player
+- participant: a04
+  user: partenaire@terres-du-sud.fr
+  nature: :player  
+- participant: a05
+  user: partenaire@tonon.fr
+  nature: :player
+- participant: a06
+  user: partenaire@47.cerfrance.fr
+  nature: :player
+- participant: a07
+  user: partenaire@acom.fr
+  nature: :player 
+- participant: a08
+  user: partenaire@groupama.fr
+  nature: :player 
 - participant: a09
-  user: sdupland@47.cerfrance.fr
+  user: partenaire@ceta-de-guyenne.fr
   nature: :player

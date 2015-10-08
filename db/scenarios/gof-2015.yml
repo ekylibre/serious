@@ -445,6 +445,56 @@ curves:
     amplitude_factor: 2.30
     offset_amount: -40
     amount_round: 0
+  wheat_grain:
+    name: Grain de blé tendre
+    nature: variant
+    unit_name: ton
+    reference: common_wheat
+    positive_alea_amount: 45
+    negative_alea_amount: 20
+    amplitude_factor: 1
+    offset_amount: 0
+    amount_round: 0
+  corn_grain:
+    name: Grain de Maïs classe A
+    nature: variant
+    unit_name: ton
+    reference: corn
+    positive_alea_amount: 55
+    negative_alea_amount: 20
+    amplitude_factor: 1
+    offset_amount: 0
+    amount_round: 0
+  hazelnut:
+    name: Noisettes
+    nature: variant
+    unit_name: ton
+    reference: corn
+    positive_alea_amount: 55
+    negative_alea_amount: 20
+    amplitude_factor: 1
+    offset_amount: 2865
+    amount_round: 0
+  walnut:
+    name: Noix
+    nature: variant
+    unit_name: ton
+    reference: corn
+    positive_alea_amount: 55
+    negative_alea_amount: 20
+    amplitude_factor: 1
+    offset_amount: 3256
+    amount_round: 0
+  soy_grain:
+    name: Soja
+    nature: variant
+    unit_name: ton
+    reference: corn
+    positive_alea_amount: 55
+    negative_alea_amount: 20
+    amplitude_factor: 1
+    offset_amount: 150
+    amount_round: 0   
   building_insurance:
     name: building insurance
     nature: variant
