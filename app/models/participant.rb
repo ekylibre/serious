@@ -96,6 +96,9 @@ class Participant < ActiveRecord::Base
       self.insured = true
       self.tenant ||= code
       self.access_token ||= Devise.friendly_token
+      if self.application_url.blank? && Serious::Slave.domain
+        self.application_url = "http://#{self.code}.#{Serious::Slave.domain}"
+      end
     end
   end
 
