@@ -124,7 +124,7 @@ actors:
       quota: 6
     - variant: soy_grain
       tax: french_vat_reduced
-      quota: 6  
+      quota: 6
     - variant: bulk_ammonitrate_27
       tax: french_vat_normal_2014
       quota: 6
@@ -145,7 +145,7 @@ actors:
       quota: 6
     - variant: molluscicide
       tax: french_vat_normal_2014
-      quota: 6  
+      quota: 6
   a05:
     name: Tonon
     logo: "tonon.jpg"
@@ -197,7 +197,7 @@ actors:
       quota: 10
     - variant: advise
       tax: french_vat_normal_2014
-      quota: 10  
+      quota: 10
   a07:
     name: "@com"
     logo: "acom.jpg"
@@ -260,7 +260,7 @@ participations:
   nature: :player
 - participant: ferme1
   user: norah.corneglio@gof2015.com
-  nature: :player  
+  nature: :player
 - participant: ferme2
   user: vanessa.sautron@gof2015.com
   nature: :player
@@ -281,10 +281,10 @@ participations:
   nature: :player
 - participant: ferme3
   user: clement.mery@gof2015.com
-  nature: :player 
+  nature: :player
 - participant: ferme3
   user: alexandre.legeleux@gof2015.com
-  nature: :player 
+  nature: :player
 - participant: ferme3
   user: arnaud.borella@gof2015.com
   nature: :player
@@ -317,7 +317,7 @@ participations:
   nature: :player
 - participant: ferme5
   user: freddy.bourjade@gof2015.com
-  nature: :player  
+  nature: :player
 - participant: ferme5
   user: jeremy.tessariol@gof2015.com
   nature: :player
@@ -458,7 +458,7 @@ participations:
   nature: :player
 - participant: a04
   user: partenaire@terres-du-sud.fr
-  nature: :player  
+  nature: :player
 - participant: a05
   user: partenaire@tonon.fr
   nature: :player
@@ -467,10 +467,10 @@ participations:
   nature: :player
 - participant: a07
   user: partenaire@acom.fr
-  nature: :player 
+  nature: :player
 - participant: a08
   user: partenaire@groupama.fr
-  nature: :player 
+  nature: :player
 - participant: a09
   user: partenaire@ceta-de-guyenne.fr
   nature: :player

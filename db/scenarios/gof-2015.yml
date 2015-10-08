@@ -494,7 +494,7 @@ curves:
     negative_alea_amount: 20
     amplitude_factor: 1
     offset_amount: 150
-    amount_round: 0   
+    amount_round: 0
   building_insurance:
     name: building insurance
     nature: variant

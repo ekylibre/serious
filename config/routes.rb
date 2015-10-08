@@ -56,7 +56,13 @@ Rails.application.routes.draw do
   resources :actors
   resources :loans
   resources :participations
-  resources :contract_natures, path: 'contract-natures'
+  resources :contracts do
+    member do
+      get :execute
+      post :execute
+      post :cancel
+    end
+  end
   resources :deal_items, only: [:destroy], path: 'deal-items'
   resources :deals, except: [:index] do
     collection do

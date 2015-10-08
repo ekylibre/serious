@@ -1,0 +1,12 @@
+= participant_card(@contract.contractor, content: false) do
+  = "Sous-traitant : #{@contract.subcontractor.name}"
+= f.association :contractor, as: :hidden
+= f.association :subcontractor, as: :hidden
+.row
+  .col-md-12= f.input :name, placeholder: "Blé Bio"
+.row
+  .col-md-6= f.input :variant, collection: @contract.contractor.catalog_items.map(&:variant)
+  .col-md-3= f.input :quantity, placeholder: "Entre 60 et 70 t"
+  .col-md-3= f.input :delay, placeholder: "Juillet 2016"
+.row
+  .col-md-12= f.input :conditions, placeholder: "Conduite bio en label rouge..."

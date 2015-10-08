@@ -1,0 +1,7 @@
+.container
+  %h1
+    = "Contrat n°#{@contract.number}"
+    %small= @contract.name
+  - total = 10
+  - total.times do |i|
+    = link_to("J'accepte d'acheter la marchandise avec une qualité de #{i + 1}/#{total}", {action: :execute, id: @contract.id, rating: i + 1}, method: :post, class: 'btn btn-large btn-block btn-primary')

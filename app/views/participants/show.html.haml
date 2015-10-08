@@ -27,38 +27,42 @@
             = t.tab :sell do
               = render "sell"
           -# Insurance
-          - if current_participant.insurer and @participant.insured && current_turn
+          - if current_participant.insurer && @participant.insured && current_turn
             = t.tab :insure do
               .col-md-8
                 .catalog
                   = link_to('Assurer la ferme',new_insurance_path(insurer_id: current_participant.id,
                             insured_id: @participant.id, redirect: request.fullpath), class: 'btn btn-default')
-          - elsif current_participant.insured and @participant.insurer && current_turn
+          - elsif current_participant.insured && @participant.insurer && current_turn
             = t.tab :insure_yourself do
               .col-md-8
                 .catalog
                   = link_to("S'assurer", new_insurance_path(insurer_id: @participant.id,
                             insured_id: current_participant.id, redirect: request.fullpath), class: 'btn btn-default')
           -# Loans
-          - if current_participant.lender and @participant.borrower && current_turn
+          - if current_participant.lender && @participant.borrower && current_turn
             = t.tab :lend do
               .col-md-8
                 .catalog
                   = link_to('Prêter', new_loan_path(lender_id: current_participant.id, borrower_id: @participant.id, redirect: request.fullpath),
                              class: 'btn btn-default')
-          - elsif current_participant.borrower and @participant.lender && current_turn
+          - elsif current_participant.borrower && @participant.lender && current_turn
             = t.tab :borrow do
               .col-md-8
                 .catalog
                   = link_to('Emprunter', new_loan_path(lender_id: @participant.id, borrower_id: current_participant.id, redirect: request.fullpath), class: 'btn btn-default')
 
-          - if @participant.contract_natures.any?
-            = t.tab :contracts do
-              - @participant.contract_natures.each do |nature|
-                .items-block
-                  %h3= nature.name
-                  %p= nature.amount.l(currency: :EUR)
-                  %p= link_to('Voir le contrat', contract_nature_path(nature))
+          -# Contracts
+          - if current_participant.contractor && @participant.subcontractor && current_turn
+            = t.tab :missionate do
+              .col-md-8
+                .catalog
+                  = link_to('Missionner', new_contract_path(contractor_id: current_participant.id, subcontractor_id: @participant.id, redirect: request.fullpath),
+                             class: 'btn btn-default')
+          - elsif current_participant.subcontractor && @participant.contractor && current_turn
+            = t.tab :operate do
+              .col-md-8
+                .catalog
+                  = link_to('Traiter', new_contract_path(contractor_id: @participant.id, subcontractor_id: current_participant.id, redirect: request.fullpath), class: 'btn btn-default')
 
-
-
+= @participant.subcontractings.where(state: [:cancelled, :executed]).pluck(:quality_rating).compact.sum || 0.0

@@ -1,0 +1,46 @@
+.container
+  .page
+    .supplier
+      .name= link_to(@contract.contractor.name, participant_path(@contract.contractor))
+      %p.coordinates
+        14 avenue de la gare
+        %br
+        47000 AGEN
+        %br
+        Tel: 05 53 12 34 56
+    .customer
+      .name= link_to(@contract.subcontractor.name, participant_path(@contract.subcontractor))
+      %p.coordinates
+        27 rue de la mairie
+        %br
+        47000 AGEN
+
+    %h1
+      = "Contrat n°#{@contract.number}"
+      %small= @contract.name
+
+    - if @contract.executed?
+      .alert.alert-success
+        %span.glyphicon.glyphicon-check
+        %span.sr-only
+        = "Contrat éxécuté (Qualité : #{@contract.quality_rating})"
+    - elsif @contract.cancelled?
+      .alert.alert-danger
+        %span.glyphicon.glyphicon-exclamation-sign
+        %span.sr-only
+        Contrat annulé
+
+    %h2 Délai
+    = @contract.delay
+
+    %h2 Produit
+    = @contract.quantity
+    = @contract.variant
+
+    %h2 Conditions
+    %p= @contract.conditions
+
+    .actions
+      - if @contract.active?
+        = link_to("Clôturer le contrat", execute_contract_path(@contract), class: "btn btn-default")
+        = link_to("Annuler le contrat", cancel_contract_path(@contract), method: :post, class: "btn btn-danger", data: {confirm: "Êtes-vous sûr(e) de vouloir annuler définitivement le contrat ?"})

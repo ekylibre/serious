@@ -10,7 +10,7 @@ module Serious
       end
 
       def config
-        @config ||= YAML.load_file(Rails.root.join('config', 'slave.yml')).deep_symbolize_keys
+        @config ||= YAML.load_file(Rails.root.join('config', 'slave.yml')).deep_symbolize_keys[Rails.env.to_sym] || {}
       end
 
       def path
@@ -19,6 +19,12 @@ module Serious
 
       def domain
         config[:domain]
+      end
+
+      def rake(task, env = {})
+        env['RAILS_ENV'] = config[:env] || Rails.env
+        vars = env.collect{|k,v| "#{k}=#{Shellwords.escape(v)}" }.join(' ')
+        exec("bin/rake #{task} #{vars}")
       end
 
       def exec(command)

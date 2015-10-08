@@ -20,27 +20,29 @@
 #
 # == Table: contracts
 #
+#  conditions       :text
 #  contractor_id    :integer          not null
 #  created_at       :datetime
-#  delivery_turn    :integer          not null
+#  delay            :string
 #  game_id          :integer          not null
 #  id               :integer          not null, primary key
-#  nature_id        :integer          not null
-#  quantity         :decimal(19, 4)   not null
-#  state            :string
+#  name             :string
+#  quality_rating   :integer
+#  quantity         :string
+#  state            :string           not null
 #  subcontractor_id :integer          not null
 #  updated_at       :datetime
+#  variant          :string           not null
 #
 #
 # == Fixture: contracts
 #
 # contracts_001:
 #   contractor: contractors_001
-#   delivery_turn: 0
 #   game: games_001
-#   nature: natures_001
-#   quantity: 0
+#   state: "Lorem ipsum"
 #   subcontractor: subcontractors_001
+#   variant: "Lorem ipsum"
 #
 
 # This model initially had no columns defined.  If you add columns to the

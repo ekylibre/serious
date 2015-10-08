@@ -1,0 +1,3 @@
+.col-xs-2= item.id
+.col-xs-4= link_to(item.contractor.name, participant_path(item.contractor, redirect: request.fullpath))
+.col-xs-6= link_to(item.name, contract_path(item))
