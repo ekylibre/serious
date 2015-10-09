@@ -5,14 +5,6 @@
   - if current_participant
     .row
       = tabbox(:participant) do |t|
-        = t.tab :transactions do
-          = items_block(current_participant, :purchases, relative_to: @participant, as: :supplier)
-          = items_block(current_participant, :sales,     relative_to: @participant, as: :customer)
-          = items_block(current_participant, :contractings,    relative_to: @participant, as: :contractor)
-          = items_block(current_participant, :subcontractings, relative_to: @participant, as: :subcontractor)
-          = items_block(current_participant, :lendings,   relative_to: @participant, as: :borrower)
-          = items_block(current_participant, :borrowings, relative_to: @participant, as: :lender)
-
         - if (@participant.present? && current_participant.farm?) || (current_participation && current_participation.organizer?)
           = t.tab :contact do
             .jumbotron
@@ -65,4 +57,11 @@
                 .catalog
                   = link_to('Traiter', new_contract_path(contractor_id: @participant.id, subcontractor_id: current_participant.id, redirect: request.fullpath), class: 'btn btn-default')
 
-= @participant.subcontractings.where(state: [:cancelled, :executed]).pluck(:quality_rating).compact.sum || 0.0
+        = t.tab :transactions do
+          = items_block(current_participant, :purchases, relative_to: @participant, as: :supplier)
+          = items_block(current_participant, :sales,     relative_to: @participant, as: :customer)
+          = items_block(current_participant, :contractings,    relative_to: @participant, as: :contractor)
+          = items_block(current_participant, :subcontractings, relative_to: @participant, as: :subcontractor)
+          = items_block(current_participant, :lendings,   relative_to: @participant, as: :borrower)
+          = items_block(current_participant, :borrowings, relative_to: @participant, as: :lender)
+

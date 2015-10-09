@@ -72,6 +72,7 @@ Rails.application.routes.draw do
       post :cancel
       post :checkout
       patch :change_quantity, path: 'change-quantity'
+      patch :change_unit_pretax_amount, path: 'change-unit-pretax-amount'
     end
   end
   resources :users

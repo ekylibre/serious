@@ -72,4 +72,23 @@ class DealsController < BaseController
                                                            current_participant ? deal.customer : deal.supplier)
     end
   end
+
+  def change_unit_pretax_amount
+    deal = Deal.find(params[:id])
+    item = deal.items.find(params[:item_id])
+    if params[:unit_pretax_amount].to_d >= 1
+      item.unit_pretax_amount = params[:unit_pretax_amount]
+      item.save!
+    else
+      DealItem.destroy(item)
+    end
+    deal.reload
+    if request.xhr?
+      render partial: 'cart', locals: { deal: deal, supplier: deal.supplier }
+    else
+      redirect_to params[:redirect] || participant_url(current_participant.nil? ? deal.supplier : deal.supplier ==
+                                                           current_participant ? deal.customer : deal.supplier)
+    end
+  end
+
 end

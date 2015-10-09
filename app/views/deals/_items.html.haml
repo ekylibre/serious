@@ -19,7 +19,8 @@
         %td= item.variant_name
         %td.decimal-value
           = link_to(item.quantity, change_quantity_deal_path(deal.id, item_id: item.id), remote: true, method: :patch, data: {change_quantity: :new_quantity.tl} )
-        %td.decimal-value= item.pretax_amount.l(currency: :EUR)
+        %td.decimal-value
+          = link_to(item.unit_pretax_amount.l(currency: :EUR), change_unit_pretax_amount_deal_path(deal.id, item_id: item.id), remote: true, method: :patch, data: {change_unit_pretax_amount: :new_unit_pretax_amount.tl})
         %td
-          = link_to(deal_item_path(item, redirect: request.fullpath), method: :delete) do
+          = link_to(deal_item_path(item), method: :delete) do
             %i.glyphicon.glyphicon-remove
