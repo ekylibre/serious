@@ -1,3 +1,4 @@
+# coding: utf-8
 class AddBase < ActiveRecord::Migration
   def change
     # Start of everything: 01/09/2015
@@ -148,26 +149,17 @@ class AddBase < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :contract_natures do |t|
-      t.references :contractor,  null: false, index: true
-      t.decimal :amount,         precision: 19, scale: 4, null: false
-      t.integer :release_turn,   null: false
-      t.string :name,            null: false
-      t.string :variant
-      t.text :description
-      t.integer :contracts_count
-      t.integer :contracts_quota
-      t.timestamps
-    end
-
     create_table :contracts do |t|
       t.references :contractor,    null: false, index: true
       t.references :subcontractor, null: false, index: true
-      t.references :nature,        null: false, index: true
       t.references :game,          null: false, index: true
-      t.integer :delivery_turn,    null: false
-      t.decimal :quantity, precision: 19, scale: 4, null: false
-      t.string :state
+      t.string :state,             null: false
+      t.string :name
+      t.string :variant, null: false
+      t.string :delay
+      t.string :quantity
+      t.text :conditions
+      t.integer :quality_rating
       t.timestamps
     end
 

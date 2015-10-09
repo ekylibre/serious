@@ -65,7 +65,6 @@ class Participant < ActiveRecord::Base
   has_many :lendings,   class_name: 'Loan', foreign_key: :lender_id
   has_many :subcontractings, class_name: 'Contract', foreign_key: :contractor_id
   has_many :contractings,    class_name: 'Contract', foreign_key: :subcontractor_id
-  has_many :contract_natures, class_name: 'ContractNature', foreign_key: :contractor_id
 
   has_attached_file :logo, styles: {
     identity: ['200x200#', :png]
@@ -163,6 +162,12 @@ class Participant < ActiveRecord::Base
     list += subcontractings.where(subcontractor: other).to_a
     list += contractings.where(contractor: other).to_a
     list
+  end
+
+  def transfer_quality_rating
+    contracts = self.contractings.where(state: [:cancelled, :executed])
+    average = 2 * (contracts.sum(:quality_rating).to_f || 0.0) / contracts.count
+    post("/guides/quality", {rating: average})
   end
 
   def domain

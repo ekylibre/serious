@@ -19,18 +19,16 @@
               %span.caret
             %ul.dropdown-menu
               - @game.issues.each do |issue|
-                %li= link_to(issue.name, trigger_issue_game_path(issue), method: :post,  class: 'dropdown-toggle')
+                %li= link_to(issue.name, trigger_issue_game_path(issue), method: :post, class: 'dropdown-toggle', data: {confirm: "Sûr(e) de vouloir déclencher #{issue.name} ?"})
       - if @game.current_turn && !@game.current_turn.expenses_paid
-        = link_to('Dépenses mensuelles', pay_expenses_game_path(@game), method: :post, class: 'btn btn-default')
+        = link_to('Dépenses mensuelles', pay_expenses_game_path(@game), method: :post, class: 'btn btn-default', data: {confirm: "Sûr(e) de vouloir faire payer les dépenses mensuelles ?"})
       = link_to('Évaluer', evaluate_game_path(@game), method: :post, class: 'btn btn-default')
     - if @game.running?
-      = link_to('Arrêter', stop_game_path(@game), method: :post, class: 'btn btn-default')
+      = link_to('Arrêter', stop_game_path(@game), method: :post, class: 'btn btn-default', data: {confirm: "Sûr(e) de vouloir arrêter la partie définitivement ?"})
     - if current_user.administrator? && @game.can_edit?
       = link_to('Modifier', edit_backend_game_path(current_participation.game), class: 'btn btn-default')
-    - if current_user.administrator? && Rails.env.development?
-      %p Vous pouvez utiliser la commande suivante pour configurer localement les noms de domaines :
-      %pre
-        = "echo '127.0.0.1 #{@game.farms.map(&:domain).join(' ')}' | sudo tee --append /etc/hosts"
+    %p Vous pouvez utiliser la commande suivante pour configurer localement les noms de domaines :
+    %pre= "echo '127.0.0.1 #{@game.farms.map(&:domain).join(' ')}' | sudo tee --append /etc/hosts"
 
   - if @game.description?
     %p= @game.description

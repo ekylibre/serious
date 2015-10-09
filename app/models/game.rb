@@ -215,11 +215,11 @@ class Game < ActiveRecord::Base
   end
 
   def evaluate!
-    Serious::Slave.exec("bin/rake seriously:evaluate GAME_URL=#{api_url} TOKEN=#{Shellwords.escape(self.access_token)}")
+    Serious::Slave.rake("seriously:evaluate", GAME_URL: api_url, TOKEN: self.access_token)
   end
 
   def prepare!
-    Serious::Slave.exec("bin/rake seriously:prepare GAME_URL=#{api_url} TOKEN=#{Shellwords.escape(self.access_token)}")
+    Serious::Slave.rake("seriously:prepare", GAME_URL: api_url, TOKEN: self.access_token)
   end
 
   # Start the game
@@ -228,7 +228,7 @@ class Game < ActiveRecord::Base
     self.launched_at = now
     save
     fail 'Cannot start this game' unless self.ready?
-    Serious::Slave.exec("bin/rake seriously:start GAME_URL=#{api_url} TOKEN=#{Shellwords.escape(self.access_token)}")
+    Serious::Slave.rake("seriously:start", GAME_URL: api_url, TOKEN: self.access_token)
     update_column(:state, :running)
   end
 
@@ -239,7 +239,7 @@ class Game < ActiveRecord::Base
 
   # Stop the game
   def stop!
-    Serious::Slave.exec("bin/rake seriously:stop GAME_URL=#{api_url} TOKEN=#{Shellwords.escape(self.access_token)}")
+    Serious::Slave.rake("seriously:stop", GAME_URL: api_url, TOKEN: self.access_token)
     update_column(:state, :stopped)
   end
 

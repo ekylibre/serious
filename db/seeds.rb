@@ -14,7 +14,8 @@ YAML.load_file(root.join('db', 'users.yml')).each do |user|
   if User.find_by(email: user['email'])
     print '-'
   else
-    User.create!(user.merge(password: '12345678', password_confirmation: '12345678'))
+    user['password'] = '12345678' if user['password'].blank? || Rails.env.development?
+    User.create!(user.merge(password: user['password'], password_confirmation: user['password']))
     print '·'
   end
 end

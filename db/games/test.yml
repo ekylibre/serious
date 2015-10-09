@@ -3,16 +3,16 @@ code: test
 name: Development game
 scenario: random
 farms:
-  guichard:
-    name: Guichard
+  simon:
+    name: Simon
     stand_number: SF01
     present: true
-    application_url: http://guichard.serious.lan:8080
-  leblanc:
-    name: Leblanc
+    application_url: http://simon.serious.lan:8080
+  guichard:
+    name: Guichard
     stand_number: SF02
     present: true
-    application_url: http://leblanc.serious.lan:8080
+    application_url: http://guichard.serious.lan:8080
 actors:
   credit-agricole:
     name: Crédit Agricole
@@ -465,45 +465,45 @@ actors:
 participations:
 - user: admin@ekylibre.org
   nature: :organizer
+- user: admin@ekylibre.org
+  nature: :organizer
 - user: agathe.simon@dietrich.biz
   nature: :organizer
-- user: michelle.guichard@heller.us
-  nature: :organizer
-- participant: guichard
+- participant: simon
   user: admin@ekylibre.org
   nature: :player
-- participant: guichard
+- participant: simon
   user: player@ekylibre.org
   nature: :player
-- participant: guichard
+- participant: simon
+  user: michelle.guichard@heller.us
+  nature: :player
+- participant: simon
   user: celina.barthelemy@ebert.com
   nature: :player
-- participant: guichard
-  user: elodie.rodrigues@daugherty.com
+- participant: simon
+  user: iphigenie.heuze@gof2015.com
+  nature: :player
+- participant: simon
+  user: julie.devellis@gof2015.com
   nature: :player
 - participant: guichard
-  user: aurelie.camus@mills.biz
+  user: admin@ekylibre.org
   nature: :player
 - participant: guichard
-  user: eric.leblanc@beahan.ca
-  nature: :player
-- participant: leblanc
-  user: admin@ekylibre.org
-  nature: :player
-- participant: leblanc
   user: player@ekylibre.org
   nature: :player
-- participant: leblanc
-  user: jules.bousquet@franeckiwunsch.name
+- participant: guichard
+  user: noelie.kubler@gof2015.com
   nature: :player
-- participant: leblanc
-  user: benjamin.aubry@johnston.co.uk
+- participant: guichard
+  user: celia.doucet@gof2015.com
   nature: :player
-- participant: leblanc
-  user: martin.goff@herzog.name
+- participant: guichard
+  user: norah.corneglio@gof2015.com
   nature: :player
-- participant: leblanc
-  user: bernard.ribeiro@bailey.name
+- participant: guichard
+  user: vanessa.sautron@gof2015.com
   nature: :player
 - participant: credit-agricole
   user: admin@ekylibre.org
@@ -512,13 +512,13 @@ participations:
   user: player@ekylibre.org
   nature: :player
 - participant: credit-agricole
-  user: margaret.coulon@cruickshankcollins.co.uk
+  user: luigi.gosnach@gof2015.com
   nature: :player
 - participant: credit-agricole
-  user: christelle.labbe@conroy.co.uk
+  user: antoine.clement@gof2015.com
   nature: :player
 - participant: credit-agricole
-  user: hortense.moreau@dachconroy.com
+  user: raphael.rioualen@gof2015.com
   nature: :player
 - participant: groupama
   user: admin@ekylibre.org
@@ -527,10 +527,10 @@ participations:
   user: player@ekylibre.org
   nature: :player
 - participant: groupama
-  user: camille.gautier@jacobi.us
+  user: kelly.chamaillard@gof2015.com
   nature: :player
 - participant: groupama
-  user: zacharie.bonnin@howegoldner.ca
+  user: guillaume.auro@gof2015.com
   nature: :player
 - participant: unicoque
   user: admin@ekylibre.org
@@ -539,13 +539,13 @@ participations:
   user: player@ekylibre.org
   nature: :player
 - participant: unicoque
-  user: sebastien.bouchet@renner.ca
+  user: clement.mery@gof2015.com
   nature: :player
 - participant: unicoque
-  user: monique.jacquot@treutel.us
+  user: alexandre.legeleux@gof2015.com
   nature: :player
 - participant: unicoque
-  user: nicolas.maury@dubuquehirthe.biz
+  user: arnaud.borella@gof2015.com
   nature: :player
 - participant: terres-du-sud
   user: admin@ekylibre.org
@@ -554,10 +554,10 @@ participations:
   user: player@ekylibre.org
   nature: :player
 - participant: terres-du-sud
-  user: franck.garcia@jewesswehner.info
+  user: pierre.laguionie@gof2015.com
   nature: :player
 - participant: terres-du-sud
-  user: louis.hamon@mraz.name
+  user: jeremy.malaret@gof2015.com
   nature: :player
 - participant: razol
   user: admin@ekylibre.org
@@ -566,7 +566,7 @@ participations:
   user: player@ekylibre.org
   nature: :player
 - participant: razol
-  user: emilie.roche@bahringer.ca
+  user: jaques.darras@gof2015.com
   nature: :player
 - participant: cer
   user: admin@ekylibre.org
@@ -575,7 +575,7 @@ participations:
   user: player@ekylibre.org
   nature: :player
 - participant: cer
-  user: pauline.lacroix@roob.ca
+  user: guillaume.testut@gof2015.com
   nature: :player
 - participant: acom
   user: admin@ekylibre.org
@@ -584,10 +584,10 @@ participations:
   user: player@ekylibre.org
   nature: :player
 - participant: acom
-  user: maryse.monnier@greenholt.co.uk
+  user: benjamin.bouyou@gof2015.com
   nature: :player
 - participant: acom
-  user: gregoire.becker@ankunding.info
+  user: maxime.tangogne@gof2015.com
   nature: :player
 - participant: msa
   user: admin@ekylibre.org
@@ -596,8 +596,8 @@ participations:
   user: player@ekylibre.org
   nature: :player
 - participant: msa
-  user: diane.bertin@terry.biz
+  user: pauline.lacombe@gof2015.com
   nature: :player
 - participant: msa
-  user: claude.hardy@erdman.name
+  user: geoffrey.stedile@gof2015.com
   nature: :player
