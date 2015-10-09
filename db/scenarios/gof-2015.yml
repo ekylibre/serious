@@ -485,6 +485,16 @@ curves:
     amplitude_factor: 1
     offset_amount: 3256
     amount_round: 0
+  plum:
+    name: Prune
+    nature: variant
+    unit_name: ton
+    reference: corn
+    positive_alea_amount: 55
+    negative_alea_amount: 20
+    amplitude_factor: 1
+    offset_amount: 3150
+    amount_round: 0
   soy_grain:
     name: Soja
     nature: variant

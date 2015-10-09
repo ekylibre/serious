@@ -235,10 +235,17 @@ actors:
     stand_number: SA08
     present: true
     insurer: false
-    contractor: false
+    contractor: true
     supplier: true
-    customer: false
+    customer: true
     lender: false
+    catalog_items:
+    - variant: advise
+      tax: french_vat_normal_2014
+      quota: 10
+    - variant: plum
+      tax: french_vat_reduced
+      quota: 6
 participations:
 - user: admin@ekylibre.org
   nature: :organizer
