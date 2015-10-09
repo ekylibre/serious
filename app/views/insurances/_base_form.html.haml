@@ -1,7 +1,7 @@
 .row
-  .col-md-3= f.input :nature, label: "Nature de l'assurance", disabled: is_disabled, as: is_hidden
-  .col-md-3= f.input :quantity_unit,  label: 'Unité assurée', disabled: is_disabled, as: is_hidden
+  .col-md-4= f.input :nature, label: "Nature de l'assurance", disabled: is_disabled, as: is_hidden
   .col-md-3= f.input :quantity_value, label: 'Quantité assurée', disabled: is_disabled, as: is_hidden
+  .col-md-2= f.input :quantity_unit,  label: 'Unité assurée', disabled: is_disabled, as: is_hidden, collection: [['Hectare', :hectare]]
   .col-md-3= f.input :unit_refundable_amount, label: 'Montant remboursable', disabled: is_disabled, as: is_hidden
 
 .row

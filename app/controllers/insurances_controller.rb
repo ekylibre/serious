@@ -23,7 +23,7 @@ class InsurancesController < BaseController
     @insurance.game_id = @insurer.game_id
     respond_to do |format|
       if @insurance.save!
-        format.html { redirect_to @participant, notice: 'Insurance was successfully created.' }
+        format.html { redirect_to @insurer, notice: 'Insurance was successfully created.' }
         format.json { render :show, status: :created, location: @insurance }
       else
         format.html { render :new, notice: 'Registration problem' }
