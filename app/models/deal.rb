@@ -38,8 +38,8 @@ class Deal < ActiveRecord::Base
   belongs_to :game
   belongs_to :customer, class_name: 'Participant'
   belongs_to :supplier, class_name: 'Participant'
-  has_many :items, class_name: 'DealItem'
-  enumerize :state, in: [:draft, :invoice], default: :draft, predicates: true
+  has_many :items, class_name: 'DealItem', dependent: :destroy
+  enumerize :state, in: [:draft, :invoice, :cancelled], default: :draft, predicates: true
 
   # [VALIDATORS[ Do not edit these lines directly. Use `rake clean:validations`.
   validates_datetime :invoiced_at, allow_blank: true, on_or_after: Time.new(1, 1, 1, 0, 0, 0, '+00:00')

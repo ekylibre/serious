@@ -1,4 +1,4 @@
-= participant_card(@participant, content: false)
+= participant_card(f.object.insurer, content: false)
 = f.association :insurer, as: :hidden
 = f.association :insured, as: :hidden
 = render partial: 'base_form', locals: {is_disabled: @is_disabled, f: f, is_hidden: nil}

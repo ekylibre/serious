@@ -16,7 +16,14 @@ class DealsController < BaseController
   end
 
   def cancel
-    fail NotImplementedError
+    # fail NotImplementedError
+    deal = Deal.find(params[:id])
+    if deal.draft?
+      Deal.destroy deal
+    else
+      deal.cancel
+    end
+    redirect_to params[:redirect] || participant_url(current_participant.nil? ? deal.supplier : deal.supplier == current_participant ? deal.customer : deal.supplier)
   end
 
   def destroy

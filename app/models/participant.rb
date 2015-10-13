@@ -65,6 +65,8 @@ class Participant < ActiveRecord::Base
   has_many :lendings,   class_name: 'Loan', foreign_key: :lender_id
   has_many :subcontractings, class_name: 'Contract', foreign_key: :contractor_id
   has_many :contractings,    class_name: 'Contract', foreign_key: :subcontractor_id
+  has_many :insurerings, class_name: 'Insurance', foreign_key: :insurer_id
+  has_many :insuredings, class_name: 'Insurance', foreign_key: :insured_id
 
   has_attached_file :logo, styles: {
     identity: ['200x200#', :png]

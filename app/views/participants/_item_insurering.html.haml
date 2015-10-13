@@ -1,0 +1,4 @@
+.col-xs-2= item.id
+.col-xs-4= link_to(item.insured.name, participant_path(item.insured, redirect: request.fullpath))
+.col-xs-3.decimal= "#{item.unit_pretax_amount.l(currency: 'EUR')} payé/#{item.unit_refundable_amount.l(currency: 'EUR')} remboursable"
+.col-xs-3.decimal= item.amount.l(currency: :EUR)

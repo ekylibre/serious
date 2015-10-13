@@ -64,4 +64,6 @@
           = items_block(current_participant, :subcontractings, relative_to: @participant, as: :subcontractor)
           = items_block(current_participant, :lendings,   relative_to: @participant, as: :borrower)
           = items_block(current_participant, :borrowings, relative_to: @participant, as: :lender)
+          = items_block(current_participant, :insuredings, relative_to: @participant, as: :insurer)
+          = items_block(current_participant, :insurerings, relative_to: @participant, as: :insured)
 

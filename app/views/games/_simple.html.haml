@@ -25,6 +25,7 @@
       = link_to('Évaluer', evaluate_game_path(@game), method: :post, class: 'btn btn-default')
     - if @game.running?
       = link_to('Arrêter', stop_game_path(@game), method: :post, class: 'btn btn-default', data: {confirm: "Sûr(e) de vouloir arrêter la partie définitivement ?"})
+      = link_to('Évaluer', evaluate_game_path(@game), method: :post, class: 'btn btn-default')
     - if current_user.administrator? && @game.can_edit?
       = link_to('Modifier', edit_backend_game_path(current_participation.game), class: 'btn btn-default')
     %p Vous pouvez utiliser la commande suivante pour configurer localement les noms de domaines :
