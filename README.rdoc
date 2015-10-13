@@ -31,6 +31,16 @@ In Ekylibre, you have to install plugin seriously:
   cd plugins
   git clone git@forge.ekylibre.com:seriously.git
 
+=== Slave configuration
+
+Adds config/slave.yml file to configure access to ekylibre:
+
+  development:
+    path: ../serious-ekylibre
+    master_url: http://game.serious.lan:3000
+    # domain: serious.lan
+    # port: 80
+    # protocol: http
 
 === Database creation and initialization
 

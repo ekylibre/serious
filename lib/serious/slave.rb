@@ -18,7 +18,20 @@ module Serious
       end
 
       def domain
-        config[:domain]
+        @domain ||= config[:domain] || "serious.lan"
+      end
+
+      def domain_with_port
+        suffix = (port == 80) ? '' : ":#{port}"
+        "#{domain}#{suffix}"
+      end
+
+      def port
+        @port ||= (config[:port] || 80).to_i
+      end
+
+      def protocol
+        @protocol ||= config[:protocol] || 'http'
       end
 
       def rake(task, env = {})
